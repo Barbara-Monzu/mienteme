@@ -39,6 +39,9 @@ const userSchema = new Schema(
 
     dates: [{
       type: Schema.Types.ObjectId, ref: "Date"}],
+
+    chat: [{
+        type: Schema.Types.ObjectId, ref: "User"}],
     
   },
   

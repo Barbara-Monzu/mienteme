@@ -3,18 +3,27 @@ const { Schema, model } = require("mongoose");
 const trivialSchema = new Schema(
 
 	{
-		isTrue: {
-			type: String,
-			trim: true,
-			required: true,
-			maxlength: 150,
+		questionOne: {
+			texto: {
+				type:String, 
+			},
+
+			tipo: {
+				type: Boolean, 
+				default: true,
+			}
 		},
 
-		isFalse: {
-			type: String,
-			trim: true,
-			required: true,
-			maxlength: 150,
+		questionTwo: {
+			texto: {
+
+				type:String, 
+			},
+			
+			tipo: {
+				type: Boolean, 
+				default: false,
+			}
 		},
 
 
