@@ -1,24 +1,90 @@
-# click-me
+# Click-me
 
-BackEnd - Servidor 
+### Description
 
-1.	post /signup --------- Crea y guarda en la BBDD al usuario
-2.	post /login --------- Guarda el UserLogged (req.current.session)
-3.  get/?filter=—— Get AllUsers to DDBB, muestra las sugerencias de gente por cercanía y permite hacer el filtro (city, category, fecha)
-4.	post /new-date ———— Muestra Formulario para crear la nueva cita y guardarlo en la BBDD
-5.	post /edit-profile ———— Formulario para editar perfil
-6. post /edit-profile/:id-date ———— Form para editar cita en la BBDD 
-7. post /edit-profile/:id-date/delete ———— Elimina de la BBDD una cita.
+**Click-me** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
+
+### Server Install
+
+```sh
+npm install
+```
+
+### Server Usage
+
+```sh
+npm run dev
+```
 
 
-FrontEnd -
+### Server .env variables needed
 
-Route - React
+- PORT=5005
+- ORIGIN=http://localhost:3000
+- DB_REMOTE
+- SESS_SECRET
+- CLOUDINARY_NAME
+- CLOUDINARY_KEY
+- CLOUDINARY_SECRET
 
-1./
-2./signup
-3./login
-4./
-5./allUsers
-6./user/:id
-7./user/?user=&date=
+### Client Install
+
+```sh
+npm install
+```
+
+### Client Usage
+
+```sh
+npm run start
+```
+
+### Client .env variables needed
+
+- REACT_APP_API_URL=http://localhost:5005/api
+
+### Endpoints
+
+|	Method	|	Path	|	Description	|
+|	-	|	-	|	-	|
+|	POST	|	/api/auth/signup	|	Create and save the user in the database	|
+|	POST	|	/api/auth/login	|	Check if the data entered with those of the database are correct and log in the user
+|	GET	|	/api/auth/logout	|	Ends the current session.	|
+|	POST	|	/api/auth/refresh-session	|	Refresh user session by bringing updated user info from database.	|
+|	POST	|	/api/auth/isloggedin	|	Verifies if a user is logged in.	|
+|	GET	|	/api/people/?filter=	|	Brings all users but the logged in one, and filter by default by proximity. The user can filter by city, category and date of the date.	|
+|	GET	|	/api/people/:id	|	Brings data from a specific user.	|
+|	POST	|	/api/people/new-date	|	Create and save an date in the DB and in the User who creates it	|
+|	GET	|	/api/chats/	|	Brings all chats where the logged user is a participant.	|
+|	POST	|	/api/chats/	|	Creates a new chat conversation between two users.	|
+|	PUT	|	/api/chats/	|	Creates new messages and updates the chat where they were sent.	|
+|	GET	|	/api/requests/	| Check if the user has answered the question and unblock the chat with that person	|
+|	PUT	|	/api/people/edit-profile/:id/:iddate	|	Modifies the user by adding or changing dates	|
+|	DELETE	|	/api/people/:id	|	Deletes user.	|
+|	DELETE	|	/api/people/edit-profile/:iddate/	|	Delete date.	|
+|	PUT	|	/api/people/edit-profile/:id	|	Updates user info and dates.	|
+
+
+### Technologies
+
+- React
+- MongoDB
+- Express
+- Node
+- Javascript (ES6)
+- HTML & CSS
+
+
+### FrontEnd -
+
+* ./
+* ./signup
+* ./login
+* ./
+* ./allUsers
+* ./user/:id
+* ./user/?user=&date=
+
+### Additional info
+
+This project has been developed by Guido Crespo and Bárbara Monzú as the final project of Ironhack's Web Development Bootcamp and it has been created in two weeks.
