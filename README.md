@@ -78,9 +78,7 @@ npm run start
 - HTML & CSS
 
 
-FrontEnd -
-
-Route - React
+### FrontEnd -
 
 * ./
 * ./signup
@@ -92,4 +90,4 @@ Route - React
 
 ### Additional info
 
-This project has been developed by Guido Crespo, and Bárbara Monzú as the final project of Ironhack's Web Development Bootcamp and it has been created in two weeks.
+This project has been developed by Guido Crespo and Bárbara Monzú as the final project of Ironhack's Web Development Bootcamp and it has been created in two weeks.
