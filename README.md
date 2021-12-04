@@ -2,7 +2,7 @@
 
 ### Description
 
-**Click-me** (SPA) is an online dating application. The profiles propose ideal romantic dates. If the user selects a date, they must play to find out a truth and a lie proposed by the profile. In order to talk to that person, the lie must be right. 
+**Click-me** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
 
 ### Server Install
 
