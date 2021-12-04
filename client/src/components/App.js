@@ -7,8 +7,9 @@ import { Switch, Route, Redirect, Navbar } from 'react-router-dom'
 // import Navbar from './layout/Navigation/Navbar'
 import SignupPage from './pages/Signup/SignupPage';
 import LoginPage from './pages/Login/LoginPage';
-// import allUsers from './pages/allUsers/allUsers';
+import AllUsers from './pages/allUsers/allUsers';
 import AuthService from './services/auth.service';
+// import UserProfile from './pages/allUsers/UserProfile';
 
 
 class App extends Component {
@@ -48,6 +49,8 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/" exact render={() => <Home logout={this.logout} loggedUser={this.state.loggedUser}/>} />
+            <Route path="/allUsers" exact render={() => <AllUsers />} />
+            {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
               <Redirect to="/" />
               :

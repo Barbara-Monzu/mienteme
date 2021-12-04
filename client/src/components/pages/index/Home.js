@@ -46,6 +46,14 @@ const visualPage = {
               <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
             </Link>
 
+            <Link to="/allUsers">
+              <Button variant="dark" size="lg" onClick={props.logout} >allUsers</Button>
+            </Link>
+
+            <Link to="/userDetails">
+              <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
+            </Link>
+
           </div>
 
       </div>

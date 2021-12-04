@@ -1,44 +1,45 @@
-// import React, { Component } from "react";
-// import { Container } from 'react-bootstrap'
-// import UsersService from "../../../services/people.service";
-// import CoasterList from "./CoasterList";
+import React, { Component } from "react";
+import { Container } from 'react-bootstrap'
+import PeopleService from "../../services/people.service";
+import UserProfile from "./userProfile";
 
-// class UsersPage extends Component {
-//   constructor() {
-//     super()
+class AllUsers extends Component {
+  constructor() {
+    super()
 
-//     this.state = {
-//       people: []
-//     }
+    this.state = {
+      people: []
+    }
 
-//     this.service = new UsersService()
-//   }
+    this.service = new PeopleService()
+  }
 
-//   componentDidMount() {
-//     this.refreshCoasters()
-//   }
+  componentDidMount() {
+    this.refreshUsers()
+  }
 
-//   refreshUsers = () => {
-//     this.service.getAllUsers()
-//       .then(response => {
-//         const people = response.data
+  refreshUsers = () => {
+    this.service.getAllUsers()
+      .then(response => {
+        const people = response.data
+        this.setState({ people: people })
+      })
+      .catch(err => console.log(err))
+  }
 
-//         this.setState({ people: people })
-//       })
-//       .catch(err => console.log(err))
-//   }
+  render() {
 
-//   render() {
+    return (
+      <Container>
+        <h1>People List</h1>
 
-//     return (
-//       <Container>
-//         <h1>People List</h1>
+        {this.state.people.map((elm) => <p>{elm.email}</p> )}
 
-//         <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} />
+        {/* <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} /> */}
 
-//       </Container>
-//     )
-//   }
-// }
+      </Container>
+    )
+  }
+}
 
-// export default UsersPage
+export default AllUsers

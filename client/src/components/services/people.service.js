@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-class CoasterService {
+class UsersService {
   constructor() {
     this.app = axios.create({
-      baseURL: 'http://localhost:5005/api/people'
+      baseURL: 'http://localhost:5005/api/users'
     })
   }
 
@@ -12,4 +12,4 @@ class CoasterService {
   createDate = (newData) => this.app.post("/newDate", newData)
 }
 
-export default CoasterService
+export default UsersService
