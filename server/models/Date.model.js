@@ -19,17 +19,17 @@ const dateSchema = new Schema(
 
 		pictures: [String],
 
-		// location: {
-		// 	type: {
-		// 		type: String,
-		// 		default: "Point",
-		// 	},
-		// 	coordinates: {
-		// 		type: [Number],
-		// 		maxlength: 2,
-		// 		index: "2dsphere",
-		// 	}
-		// },
+		location: {
+			type: {
+				type: String,
+				default: "Point",
+			},
+			coordinates: {
+				type: [Number],
+				maxlength: 2,
+				index: "2dsphere",
+			}
+		},
 
 		address: {
 			street: {
