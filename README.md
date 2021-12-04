@@ -16,6 +16,33 @@ npm install
 npm run dev
 ```
 
+
+### Server .env variables needed
+
+- PORT=5005
+- ORIGIN=http://localhost:3000
+- DB_REMOTE
+- SESS_SECRET
+- CLOUDINARY_NAME
+- CLOUDINARY_KEY
+- CLOUDINARY_SECRET
+
+### Client Install
+
+```sh
+npm install
+```
+
+### Client Usage
+
+```sh
+npm run start
+```
+
+### Client .env variables needed
+
+- REACT_APP_API_URL=http://localhost:5005/api
+
 ### Endpoints
 
 |	Method	|	Path	|	Description	|
@@ -62,3 +89,7 @@ Route - React
 * ./allUsers
 * ./user/:id
 * ./user/?user=&date=
+
+### Additional info
+
+This project has been developed by Guido Crespo, and Bárbara Monzú as the final project of Ironhack's Web Development Bootcamp and it has been created in two weeks.
