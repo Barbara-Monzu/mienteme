@@ -57,6 +57,28 @@ npm run start
 |	DELETE	|	/api/people/edit-profile/:iddate/	|	Delete date.	|
 |	PUT	|	/api/people/edit-profile/:id	|	Updates user info and dates.	|
 
+### Front-end Endpoints
+
+| Routes file | Path                       | Action                                            | 
+| ----------- | -------------------------- |-------------------------------------------------- |
+| Base 
+|             | /                          | Render home page                                  |
+|             | /singup                  | Render user register page                         |
+|             | /login            | Render user login page                            |
+| User 
+|             | /                  | Render all users                                  |
+|             | /profile                    | Render user profile  page                         |
+|             | /edit-profile/:id         | Render edit user profile page                     |
+|             | /profile/chat                 | Render chat                              |
+| ADMIN
+|             | /admin-panel               | Render home admin page                            |
+|             | /allUsers            | Render list of users                           |
+| Admin Users
+|             | /user/:id                  | Render user details page                         |
+|             | /user/new-date               | Render create a date to user                           |
+|             | /user/edit-profile/:id           |                           |
+
+
 
 ### Technologies
 
@@ -67,16 +89,6 @@ npm run start
 - Javascript (ES6)
 - HTML & CSS
 
-
-### FrontEnd -
-
-* ./
-* ./signup
-* ./login
-* ./
-* ./allUsers
-* ./user/:id
-* ./user/?user=&date=
 
 ### Additional info
 
