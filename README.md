@@ -22,6 +22,15 @@ npm run dev
 - PORT=5005
 - ORIGIN=http://localhost:3000
 - SESS_SECRET
+- CLOUDINARY_NAME = Your Cloudinary user name
+- CLOUDINARY_KEY = Key to your Cloudinary account
+- CLOUDINARY_SECRET = Secret key of your Cloudinary account
+
+
+### On client:
+
+- REACT_APP_API_URL = Api URL
+- REACT_APP_API_KEY_MAPS = Key to your google maps api
 
 
 ### Client Install
@@ -56,6 +65,8 @@ npm run start
 |	DELETE	|	/api/people/:id	|	Deletes user.	|
 |	DELETE	|	/api/people/edit-profile/:iddate/	|	Delete date.	|
 |	PUT	|	/api/people/edit-profile/:id	|	Updates user info and dates.	|
+|	POST	|	/api/secondOportunity/new	|	Creates a request to second oportunity.	|
+|	GET	|	/api/secondOportunity/	|	Render all seconds oportunities pending	|
 
 ### Front-end Endpoints
 
