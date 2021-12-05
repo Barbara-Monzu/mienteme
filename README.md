@@ -21,11 +21,8 @@ npm run dev
 
 - PORT=5005
 - ORIGIN=http://localhost:3000
-- DB_REMOTE
 - SESS_SECRET
-- CLOUDINARY_NAME
-- CLOUDINARY_KEY
-- CLOUDINARY_SECRET
+
 
 ### Client Install
 
@@ -39,9 +36,6 @@ npm install
 npm run start
 ```
 
-### Client .env variables needed
-
-- REACT_APP_API_URL=http://localhost:5005/api
 
 ### Endpoints
 
@@ -55,10 +49,9 @@ npm run start
 |	GET	|	/api/people/?filter=	|	Brings all users but the logged in one, and filter by default by proximity. The user can filter by city, category and date of the date.	|
 |	GET	|	/api/people/:id	|	Brings data from a specific user.	|
 |	POST	|	/api/people/new-date	|	Create and save an date in the DB and in the User who creates it	|
-|	GET	|	/api/chats/	|	Brings all chats where the logged user is a participant.	|
-|	POST	|	/api/chats/	|	Creates a new chat conversation between two users.	|
-|	PUT	|	/api/chats/	|	Creates new messages and updates the chat where they were sent.	|
-|	GET	|	/api/requests/	| Check if the user has answered the question and unblock the chat with that person	|
+|	GET	|	/api/conversations/	|	Brings all conversations where the logged user is a participant.	|
+|	POST	|	/api/conversations/	|	Creates a new conversation between two users.	|
+|	PUT	|	/api/conversations/	|	Creates new messages and updates the chat where they were sent.	|
 |	PUT	|	/api/people/edit-profile/:id/:iddate	|	Modifies the user by adding or changing dates	|
 |	DELETE	|	/api/people/:id	|	Deletes user.	|
 |	DELETE	|	/api/people/edit-profile/:iddate/	|	Delete date.	|
