@@ -5,6 +5,8 @@ const userSchema = new Schema(
     username: { 
       type: String, 
 	    trim: true,
+      min: 3,
+      max: 20,
     
     },
 
@@ -16,7 +18,6 @@ const userSchema = new Schema(
     profileImg: {
       type: [String],
       default: "",
-
     },
     
     email: {
@@ -28,8 +29,14 @@ const userSchema = new Schema(
 	    unique: true
     },
 
+    city: {
+      type: String,
+      max: 50,
+    },
+
     trivial: [{
-      type: Schema.Types.ObjectId, ref: "Trivial"}],
+      type: Schema.Types.ObjectId, ref: "Trivial"
+    }],
     
     role:  { 
       type: String, 
@@ -37,11 +44,25 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'] 
     },
 
+    secondOpportunity: [{
+        type: Schema.Types.ObjectId, ref: "SecondOpportunity",
+       
+      }],
+
+    matchs: [{
+      type: Schema.Types.ObjectId, ref: "Date",
+    }],
+
     dates: [{
-      type: Schema.Types.ObjectId, ref: "Date"}],
+      type: Schema.Types.ObjectId, ref: "Date",
+      matchs: {
+        type: Schema.Types.ObjectId, ref: "User"
+      }
+    }],
 
     chat: [{
-        type: Schema.Types.ObjectId, ref: "User"}],
+        type: Schema.Types.ObjectId, ref: "Conversation"
+      }],
     
   },
   

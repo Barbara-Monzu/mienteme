@@ -4,27 +4,36 @@ const trivialSchema = new Schema(
 
 	{
 		questionOne: {
-			texto: {
+			text: {
 				type:String, 
 			},
 
-			tipo: {
+			type: {
 				type: Boolean, 
 				default: true,
 			}
 		},
 
 		questionTwo: {
-			texto: {
+			text: {
 
 				type:String, 
 			},
 			
-			tipo: {
+			type: {
 				type: Boolean, 
 				default: false,
 			}
 		},
+
+		clue: {
+			type: String, 
+		},
+
+		creator: {
+			type: Schema.Types.ObjectId,
+			ref: "User"
+		}
 
 
 	}

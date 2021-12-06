@@ -2,5 +2,8 @@
 module.exports = app => {
   
   app.use("/api", require("./auth.routes"));
-  app.use("/api/users", require("./users.routes"));
+  app.use("/api/people", require("./people.routes"));
+  // app.use("/api/conversation", require("./conversation.routes"));
+  // app.use("/api/messages", require("./messages.routes"));
+
 }

@@ -1,8 +1,8 @@
 const { Schema, model } = require('mongoose')
 
-const chatSchema = new Schema({
+const conversationSchema = new Schema({
 
-  usersMatchs: [{
+  members: [{
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
@@ -11,10 +11,16 @@ const chatSchema = new Schema({
   messages: [{
     type: Schema.Types.ObjectId,
     ref: 'Message',
-  }]
+  }],
+
+  date: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Date',
+  }],
+
 
 }, { timestamps: true })
 
-const Chat = model('Chat', chatSchema)
+const Conversation = model('Chat', conversationSchema)
 
-module.exports = Chat
+module.exports = Conversation
