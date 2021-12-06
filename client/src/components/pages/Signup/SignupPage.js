@@ -33,7 +33,7 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <div style={{backgroundImage: `url(${imgPortada})`, backgroundSize: "cover", height: "100vh"}}>
+      <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh"}}>
       <Row style={{paddingTop: "150px"}}>
           <Col md={{ span: 4, offset: 4 }}>
             <h2 >Sing Up</h2>

@@ -5,11 +5,11 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect, Navbar } from 'react-router-dom'
 // import Footer from './layout/Footer/Footer'
 // import Navbar from './layout/Navigation/Navbar'
-import SignupPage from './pages/Signup/SignupPage';
-import LoginPage from './pages/Login/LoginPage';
-import AllUsers from './pages/allUsers/allUsers';
+import SignupPage from './pages/signup/SignupPage';
+import LoginPage from './pages/login/LoginPage';
+import AllUsers from './pages/allUsers/AllUsers';
 import AuthService from './services/auth.service';
-// import UserProfile from './pages/allUsers/UserProfile';
+// import UserProfile from './pages/profile/userProfile';
 
 
 class App extends Component {

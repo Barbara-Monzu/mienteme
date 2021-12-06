@@ -24,10 +24,8 @@ const visualPage = {
 
   return (
     <>
-    
-      <img src={imgHome} alt={"couple"} style={{ width: "100%", minHeight: "100%"}} />
 
-      <div style={visualPage}>
+      <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
 
         <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
         <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
@@ -42,15 +40,17 @@ const visualPage = {
               <Button variant="dark" size="lg">Sing up</Button>
             </Link>
 
-            <Link to="/">
+            <Link to="/" style={{margin: "10px"}}>
               <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
             </Link>
 
-            <Link to="/allUsers">
+            <div style={{marginTop: "20px"}}></div>
+
+            <Link to="/allUsers" style={{margin: "10px"}}>
               <Button variant="dark" size="lg" onClick={props.logout} >allUsers</Button>
             </Link>
 
-            <Link to="/userDetails">
+            <Link to="/userDetails" style={{margin: "10px"}}>
               <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
             </Link>
 

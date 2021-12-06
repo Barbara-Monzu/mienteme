@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
-import UserProfile from "./userProfile";
+// import UserProfile from "../profile/UserProfile";
 
 class AllUsers extends Component {
   constructor() {
