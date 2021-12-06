@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const trivialSchema = new Schema(
 
 	{
-		questionOne: {
+		questionTrue: {
 			text: {
 				type:String, 
 			},
@@ -14,7 +14,7 @@ const trivialSchema = new Schema(
 			}
 		},
 
-		questionTwo: {
+		questionFalse: {
 			text: {
 
 				type:String, 

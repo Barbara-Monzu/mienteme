@@ -16,14 +16,31 @@ const requestSchema = new Schema({
 
   day: {
     type: Date,
-    default: new Date
+    default: Date.now
   },
 
-  trivial: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'Trivial'
+  questionTrue: {
+    text: {
+      type: String, 
     },
+
+    type: {
+      type: Boolean, 
+      default: true,
+    }
+  },
+
+  questionFalse: {
+    text: {
+
+      type:String, 
+    },
+    
+    type: {
+      type: Boolean, 
+      default: false,
+    }
+  },
 
     dateSelected: {
       type: Schema.Types.ObjectId,
@@ -42,6 +59,8 @@ const requestSchema = new Schema({
       default: 'PENDING',
       required: true
     },
+
+
 
 }, { timestamps: true })
 

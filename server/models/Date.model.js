@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const dateSchema = new Schema(
 
 	{
-		name: {
+		nameDate: {
 			type: String,
 			trim: true,
 			required: true,
@@ -49,19 +49,14 @@ const dateSchema = new Schema(
 		category: {
 			type: String,
 			trim: true,
-			enum: ['gastronomy', 'culture', 'others']
+			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM', 'OTHERS' ]
 		},
 
 		day: {
-			type: String,
+			type: Date,
 
 		},
 
-		hour: {
-			type: Number,
-
-		},
-		
 		creator: {
 			type: Schema.Types.ObjectId,
 			ref: "User"

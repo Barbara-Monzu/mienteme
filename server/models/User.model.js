@@ -29,14 +29,57 @@ const userSchema = new Schema(
 	    unique: true
     },
 
+    age: {
+      type: Number,
+    },
+
+    bio: {
+      type: String,
+    },
+
     city: {
       type: String,
       max: 50,
     },
 
-    trivial: [{
-      type: Schema.Types.ObjectId, ref: "Trivial"
-    }],
+    location: {
+			type: {
+				type: String,
+				default: "Point",
+			},
+			coordinates: {
+				type: [Number],
+				maxlength: 2,
+				index: "2dsphere",
+			}
+		},
+
+    questionTrue: {
+        text: {
+          type: String, 
+        },
+  
+        type: {
+          type: Boolean, 
+          default: true,
+        }
+      },
+  
+      questionFalse: {
+        text: {
+  
+          type:String, 
+        },
+        
+        type: {
+          type: Boolean, 
+          default: false,
+        }
+      },
+  
+      clue: {
+        type: String, 
+      },
     
     role:  { 
       type: String, 
@@ -44,23 +87,18 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'] 
     },
 
-    secondOpportunity: [{
-        type: Schema.Types.ObjectId, ref: "SecondOpportunity",
-       
-      }],
-
-    matchs: [{
+    chatMatchs: [{
       type: Schema.Types.ObjectId, ref: "Date",
     }],
 
     dates: [{
       type: Schema.Types.ObjectId, ref: "Date",
-      matchs: {
+      matchs: [{
         type: Schema.Types.ObjectId, ref: "User"
-      }
+      }]
     }],
 
-    chat: [{
+    conversation: [{
         type: Schema.Types.ObjectId, ref: "Conversation"
       }],
     

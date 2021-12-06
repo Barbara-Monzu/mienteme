@@ -4,6 +4,30 @@ const Trivial = require("../models/Trivial.model")
 const Date = require("../models/Date.model")
 
 
+router.post("/newUser", (req, res) => {
+  const { name, description, pictures, street, number, city, category, day, hour } = req.body
+
+  User.findByIdAndUpdate({ 
+    username, 
+    profileImg, 
+    age, 
+    bio, 
+    city, 
+    location,
+    questionTrue,
+    questionFalse,
+    clue,
+    chatMatchs,
+    dates,
+    category, 
+    pictures, 
+    day,
+    hour
+  })
+    .then(createUserInfo => res.json(createUserInfo))
+    .catch(err => res.json({ err, errMessage: "Problema creando User" }))
+})
+
 router.get("/allUsers", (req, res) => {
   User.find()
   .populate("dates")
