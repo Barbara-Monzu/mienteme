@@ -73,17 +73,19 @@ npm run start
 | Routes file | Path                       | Action                                            | 
 | ----------- | -------------------------- |-------------------------------------------------- |
 | Base 
-|             | /                          | Render home page                                  |
-|             | /singup                  | Render user register page                         |
-|             | /login            | Render user login page                            |
+|             | /                          | Render home page                            |
+|             | /singup                  | Render user register page                     |
+|             | /login            | Render user login page                               |
 | User 
-|             | /                  | Render all users                                  |
-|             | /profile                    | Render user profile  page                         |
-|             | /edit-profile/:id         | Render edit user profile page                     |
+|             | /                  | Render all users                                    |
+|             | /profile                    | Render user profile  page                  |
+|             | /edit-profile/:id         | Render edit user profile page                |
 |             | /profile/chat                 | Render chat                              |
+|             | /profile/chat/:idconversation                 | Render one conversation  |
+|             | /profile/:iddate/                | Render one date and the followers to that date  |
 | ADMIN
-|             | /admin-panel               | Render home admin page                            |
-|             | /allUsers            | Render list of users                           |
+|             | /admin-panel               | Render home admin page                       |
+|             | /allUsers            | Render list of users                               |
 | Admin Users
 |             | /user/:id                  | Render user details page                         |
 |             | /user/new-date               | Render create a date to user                           |
