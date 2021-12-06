@@ -7,7 +7,7 @@ const Date = require("../models/Date.model")
 router.post("/newUser", (req, res) => {
   const { name, description, pictures, street, number, city, category, day, hour } = req.body
 
-  User.findByIdAndUpdate({ 
+  User.findByIdAndUpdate(id,  { 
     username, 
     profileImg, 
     age, 
@@ -22,13 +22,20 @@ router.post("/newUser", (req, res) => {
     category, 
     pictures, 
     day,
-    hour
-  })
+    hour,
+    nameDate,
+    description,
+    pictures,
+    addressDate,
+    category,
+    day,
+
+  }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
-    .catch(err => res.json({ err, errMessage: "Problema creando User" }))
+    .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
 
-router.get("/allUsers", (req, res) => {
+router.get("/allUsers/:genre", (req, res) => {
   User.find()
   .populate("dates")
     .then(allUsers => res.json(allUsers))

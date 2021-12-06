@@ -31,7 +31,7 @@ const dateSchema = new Schema(
 			}
 		},
 
-		address: {
+		addressDate: {
 			street: {
 				type: String,
 				trim: true,
