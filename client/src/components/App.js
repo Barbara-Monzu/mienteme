@@ -2,7 +2,7 @@
 import './App.css';
 import Home from './pages/index/Home';
 import React, { Component } from 'react'
-import { Switch, Route, Redirect, Navbar } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 // import Footer from './layout/Footer/Footer'
 // import Navbar from './layout/Navigation/Navbar'
 import SignupPage from './pages/signup/SignupPage';

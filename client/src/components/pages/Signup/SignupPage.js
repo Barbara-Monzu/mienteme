@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 import AuthService from '../../services/auth.service'
-import imgPortada from '../../../images/Portada.jpg'
 
 class SignupPage extends Component {
   constructor(props) {

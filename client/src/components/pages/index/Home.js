@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Button, Row, Navbar } from "react-bootstrap";
-import imgHome from "../../../images/Portada.jpg"
+import { Button } from "react-bootstrap";
+
 
 
 const Home = (props) => {

@@ -17,7 +17,7 @@ const dateSchema = new Schema(
 			maxlength: 300,
 		},
 
-		pictures: [String],
+		picturesDate: [String],
 
 		location: {
 			type: {
@@ -52,10 +52,9 @@ const dateSchema = new Schema(
 			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM', 'OTHERS' ]
 		},
 
-		day: {
-			type: Date,
-
-		},
+		// day: {
+		// 	type: Date,
+		// },
 
 		creator: {
 			type: Schema.Types.ObjectId,

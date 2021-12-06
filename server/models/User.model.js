@@ -31,10 +31,24 @@ const userSchema = new Schema(
 
     age: {
       type: Number,
+      min: 18
+    },
+
+    genre: { 
+      type: String,
+      default: 'USER',
+      enum: ['WOMEN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
+      required: true,
     },
 
     bio: {
       type: String,
+    },
+
+    filter: {
+      type: [String],
+      enum: ['WOMEN', 'MEN', 'BOTH' ],
+      required: true,
     },
 
     city: {
