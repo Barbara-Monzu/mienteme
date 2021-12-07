@@ -16,7 +16,7 @@ router.get('/', isLoggedIn, (req, res) => {
 })
 
 
-router.post('/', isLoggedIn, (req, res) => {
+router.post('/:idDate/create', isLoggedIn, (req, res) => {
 
   const id = req.session.currentUser._id
   const { otherUserId } = req.body
