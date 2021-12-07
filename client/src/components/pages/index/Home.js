@@ -58,6 +58,10 @@ const visualPage = {
               <Button variant="dark" size="lg" onClick={props.logout}>Chat del User</Button>
             </Link>
 
+            <Link to="/privatechat" style={{margin: "10px"}}>
+              <Button variant="dark" size="lg" onClick={props.logout}>Conversación privada</Button>
+            </Link>
+
           </div>
 
       </div>

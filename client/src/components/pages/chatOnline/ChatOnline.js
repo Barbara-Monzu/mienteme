@@ -35,7 +35,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   return (
     <div className="chatOnline">
         <h1>Chat</h1>
-        <input type="searchbar" className="" placeholder="mensajes"/>
+        <input type="searchbar" className="searchBar" placeholder="mensajes"/>
         <Conversation />
         <Conversation />
         <Conversation />

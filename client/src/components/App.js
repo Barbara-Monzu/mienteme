@@ -9,6 +9,7 @@ import SignupPage from './pages/signup/SignupPage';
 import LoginPage from './pages/login/LoginPage';
 import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';
+import PrivateChat from './pages/privateChat/PrivateChat';
 import AuthService from './services/auth.service';
 // import UserProfile from './pages/profile/userProfile';
 
@@ -60,6 +61,7 @@ class App extends Component {
                 <Route path="/singup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/chat" render={() => <ChatOnline /> } />
+                <Route path="/privatechat" render={() => <PrivateChat /> } />
               </>
             }
       
