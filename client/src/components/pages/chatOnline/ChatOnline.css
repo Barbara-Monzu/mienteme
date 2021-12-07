@@ -1,0 +1,58 @@
+h1 {
+  text-align: center;
+}
+
+.chatOnline {
+  margin: 20px;
+}
+
+.chatOnlineFriend {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .chatOnlineImgContainer {
+    position: relative;
+    margin-right: 10px;
+  }
+  
+  .chatOnlineImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid white;
+  }
+  
+  .chatOnlineBadge {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 26px;
+    border: 1px solid #ada9a9;
+    padding: 1% 6%;
+    background-image: url(https://img.icons8.com/ios-filled/50/000000/search--v1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    outline: 0;
+    background-position: 20px;
+    background-size: 20px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .chatOnlineName {
+      display: none;
+    }
+  }
+  

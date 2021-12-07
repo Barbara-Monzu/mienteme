@@ -54,6 +54,10 @@ const visualPage = {
               <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
             </Link>
 
+            <Link to="/chat" style={{margin: "10px"}}>
+              <Button variant="dark" size="lg" onClick={props.logout}>Chat del User</Button>
+            </Link>
+
           </div>
 
       </div>
