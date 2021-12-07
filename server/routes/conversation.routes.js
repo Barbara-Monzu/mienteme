@@ -22,7 +22,7 @@ router.post('/', isLoggedIn, (req, res) => {
   const { otherUserId } = req.body
 
   Conversation
-    .create({ members: [id, otherUserId] })
+    .create()
     .then(() => res.status(200).json({ message: 'Conversation successfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
 
