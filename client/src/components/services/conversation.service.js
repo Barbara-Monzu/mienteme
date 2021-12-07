@@ -7,9 +7,14 @@ class ConversationService {
     })
   }
 
-  getAllConversation = () => this.app.get("/allConversations")
-  createConversation = (newConver) => this.app.post("/new", newConver)
-  addMessage = (message, conversation) => this.instance.put('/', { message, conversation })
+  // getAllConversations = () => this.app.get("/all")
+  createConversation = (idDate) => this.app.post(`/created/${idDate}`)
+
+  getAllMessages = () => this.app.get("/allMessages")
+
+  createMessage = (message, conversation) => this.app.post('/createMessage', (message, conversation))
+  
+  deleteMessage = (idMessage, message, conversation) => this.app.put(`/delete-message/${idMessage}`, { message, conversation })
 }
 
 export default ConversationService
