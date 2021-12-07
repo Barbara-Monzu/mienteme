@@ -30,6 +30,19 @@ router.post("/newUser", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
 
+// router.post("/user/newDate", (req, res) => {
+//   const { nameDate, description } = req.body
+
+
+//   Date.create({ 
+//     nameDate, 
+//     description, 
+ 
+//   })
+//     .then(newDate => res.json(newDate))
+//     .catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
+// })
+
 
 router.post("/user/:id/newDate", (req, res) => {
   const { id } = req.params

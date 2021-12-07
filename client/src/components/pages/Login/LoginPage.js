@@ -60,6 +60,24 @@ class LoginPage extends Component {
                 <Button variant="dark" type="submit">
                   Submit
                 </Button>
+
+                <br></br>
+
+                      <Button variant="dark" type="submit" style={{margin: "10px"}}>
+                        Iniciar sesión con Google
+                      </Button>
+
+                      <br></br>
+
+                      {/* <Button onClick={SingInWithInstagram} variant="dark" type="submit" style={{margin: "10px"}}>
+                      Iniciar sesión con Intagram
+                      </Button>
+
+                      <br></br>
+
+                      <Button onClick={SingInWithFacebook} variant="dark" type="submit" style={{margin: "10px"}}>
+                      Iniciar sesión con Facebook
+                      </Button> */}
               </Form>
             </Col>
           </Row>

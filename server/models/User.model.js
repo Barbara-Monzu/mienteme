@@ -12,7 +12,7 @@ const userSchema = new Schema(
 
     password: {
 	    type: String,
-	    required: true,
+	    // required: true,
 	  },
 
     profileImg: {
@@ -35,10 +35,11 @@ const userSchema = new Schema(
     },
 
     genre: { 
+    
       type: String,
-      default: 'USER',
-      enum: ['WOMEN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
-      required: true,
+      default: 'I DON NOT IDENTIFY WITH ANY GENDER',
+      enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
+      // required: true,
     },
 
     bio: {
@@ -48,7 +49,7 @@ const userSchema = new Schema(
     filter: {
       type: [String],
       enum: ['WOMEN', 'MEN', 'BOTH' ],
-      required: true,
+      // required: true,
     },
 
     city: {

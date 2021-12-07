@@ -48,9 +48,29 @@ class SignupPage extends Component {
                 <Form.Control onChange={this.handleInputChange} value={this.state.pwd} name="pwd" type="password" placeholder="Password" />
               </Form.Group>
 
-              <Button variant="dark" type="submit">
+              <Button variant="dark" type="submit" style={{margin: "10px"}}>
                 Submit
               </Button>
+
+              <br></br>
+
+              <Button variant="dark" type="submit" style={{margin: "10px"}}>
+                Registrarme con Google
+              </Button>
+
+              <br></br>
+
+              <Button variant="dark" type="submit" style={{margin: "10px"}}>
+                Registrarme con Intagram
+              </Button>
+
+              <br></br>
+
+              <Button variant="dark" type="submit" style={{margin: "10px"}}>
+              Registrarme con Facebook
+              </Button>
+
+
             </Form>
           </Col>
         </Row>

@@ -3,7 +3,7 @@ import axios from 'axios'
 class ConversationService {
   constructor() {
     this.app = axios.create({
-      baseURL: `${process.env.REACT_APP_BASE_URL}/conversation`
+      baseURL: 'http://localhost:5005/api/conversation'
     })
   }
 
