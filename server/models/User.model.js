@@ -46,10 +46,17 @@ const userSchema = new Schema(
       type: String,
     },
 
-    filter: {
-      type: [String],
-      enum: ['WOMEN', 'MEN', 'BOTH' ],
-      // required: true,
+    filter: { 
+      genre: {
+        type: [String],
+        enum: ['WOMEN', 'MEN', 'BOTH' ],
+      },
+
+      age: {
+        type: [Number],
+        min: 18,
+        max: 80
+      },
     },
 
     city: {
@@ -101,17 +108,6 @@ const userSchema = new Schema(
       default: "USER",
       enum: ['USER', 'ADMIN'] 
     },
-
-    chatMatchs: [{
-      type: Schema.Types.ObjectId, ref: "Date",
-    }],
-
-    dates: [{
-      type: Schema.Types.ObjectId, ref: "Date",
-      matchs: [{
-        type: Schema.Types.ObjectId, ref: "User"
-      }]
-    }],
 
     conversation: [{
         type: Schema.Types.ObjectId, ref: "Conversation"

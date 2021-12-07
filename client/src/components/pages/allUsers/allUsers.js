@@ -21,6 +21,7 @@ class AllUsers extends Component {
   refreshUsers = () => {
     this.service.getAllUsers()
       .then(response => {
+        console.log(response.data)
         const people = response.data
         this.setState({ people: people })
       })
@@ -33,7 +34,7 @@ class AllUsers extends Component {
       <Container>
         <h1>People List</h1>
 
-        {this.state.people.map((elm) => {
+        {this.state.people?.map((elm) => {
           return <div >
               <div style={{display: "flex", justifyContent: "space-between"}}>
               <img src={"https://tn.com.ar/resizer/3CWgoZYTJwyqy1puyD7KP46fsc4=/767x0/smart/filters:quality(60)/cloudfront-us-east-1.images.arcpublishing.com/artear/WQCJWLAR5VPYH5MRTQ6H5OFK6E.jpg"} alt={"tarantino"} style={{height: "70px", width: "70px", borderRadius: "50%"}}/>

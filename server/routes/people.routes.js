@@ -77,7 +77,6 @@ router.post("/user/:id/newDate", (req, res) => {
 
 router.get("/allUsers", (req, res) => {
   User.find().limit(200)
-  .populate("dates")
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })

@@ -2,12 +2,6 @@
 
 const conversationSchema = new Schema({
 
-  members: [{
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }],
-
   messages: [{
     type: Schema.Types.ObjectId,
     ref: 'Message',
