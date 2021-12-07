@@ -5,10 +5,11 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 // import Footer from './layout/Footer/Footer'
 // import Navbar from './layout/Navigation/Navbar'
-import SignupPage from './pages/signup/SignupPage';
+import SignupPage from './pages/signUp/SignupPage';
 import LoginPage from './pages/login/LoginPage';
 import AllUsers from './pages/allUsers/AllUsers';
 import AuthService from './services/auth.service';
+import CreateDate from './pages/createDate/CreateDate';
 // import UserProfile from './pages/profile/userProfile';
 
 
@@ -52,12 +53,13 @@ class App extends Component {
             <Route path="/allUsers" exact render={() => <AllUsers />} />
             {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
-              <Redirect to="/" />
+              <Redirect to="/inicio" />
               :
               <>
                 
                 <Route path="/singup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
+                <Route path="/home" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
               </>
             }
       

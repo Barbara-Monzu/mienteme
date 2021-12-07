@@ -53,7 +53,7 @@ const visualPage = {
             <Link to="/userDetails" style={{margin: "10px"}}>
               <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
             </Link>
-
+            
           </div>
 
       </div>

@@ -22,7 +22,7 @@ class LoginPage extends Component {
       .then(response => {
         this.props.storeUser(response.data)
 
-        this.props.history.push("/allUsers")
+        this.props.history.push("/AllUsers")
 
       })
       .catch(err => console.log(err.response.data.message))
@@ -42,42 +42,24 @@ class LoginPage extends Component {
           <Row style={{paddingTop: "150px"}}>
 
             <Col md={{ span: 4, offset: 4 }}>
-              <h2>Login</h2>
+              <h2>Entrar</h2>
 
               <hr />
 
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" placeholder="Elige un nombre de usuario" />
+                  <Form.Label></Form.Label>
+                  <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" placeholder="Correo electrónico" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control onChange={this.handleInputChange} value={this.state.pwd} name="pwd" type="password" placeholder="Password" />
+                  <Form.Label></Form.Label>
+                  <Form.Control onChange={this.handleInputChange} value={this.state.pwd} name="pwd" type="password" placeholder="Contraseña" />
                 </Form.Group>
 
                 <Button variant="dark" type="submit">
                   Submit
                 </Button>
-
-                <br></br>
-
-                      <Button variant="dark" type="submit" style={{margin: "10px"}}>
-                        Iniciar sesión con Google
-                      </Button>
-
-                      <br></br>
-
-                      {/* <Button onClick={SingInWithInstagram} variant="dark" type="submit" style={{margin: "10px"}}>
-                      Iniciar sesión con Intagram
-                      </Button>
-
-                      <br></br>
-
-                      <Button onClick={SingInWithFacebook} variant="dark" type="submit" style={{margin: "10px"}}>
-                      Iniciar sesión con Facebook
-                      </Button> */}
               </Form>
             </Col>
           </Row>
@@ -88,4 +70,3 @@ class LoginPage extends Component {
 }
 
 export default LoginPage
-

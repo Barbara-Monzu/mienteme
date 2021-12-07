@@ -1,0 +1,128 @@
+
+
+.body-box {
+    width: 100%;
+}
+
+h2.signup {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 100px;
+    font-style: italic;
+}
+
+p.signup {
+    text-align: center;
+    font-size: 13px;
+    line-height: 15px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+a.signup { 
+    color: rgb(95, 95, 95);
+    font-weight: 900;
+}
+
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-box button {
+    /* margin: 5px */
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 25px;
+    margin-top: 25px;
+}
+
+.signup-form input {
+    border-radius: 5px;
+    height: 25px;
+    width: 200px;
+    margin-top: 5px;
+}
+
+button.signup {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 300px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: white;
+    border: 2px solid black;
+    /* font-weight: 900; */
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+button.signup-social {
+    overflow: hidden;
+    width: 300px;
+    margin-top: 25px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: white;
+    border: 2px solid black;
+    /* font-weight: 900; */
+    font-size: 15px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 3px;
+}
+
+img .exit-logo {
+    width: 30px;
+}
+
+
+button .logo {
+    width: 20px;
+    margin-left: 5px;
+}
+
+p.signup-text {
+    text-align: center;
+    width: 100%;
+}
+
+.logo-container{
+    /* text-align: right; */
+}
+
+img.exit-logo {
+    width: 35px;
+    padding: 10px;
+    text-align: right;
+
+}
+
+a.link-footer {
+    color: rgb(95, 95, 95);
+    margin-top: 15px;
+}
+
+.project-logo-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+img.project-logo {
+    width: 35px;
+    margin-top: 15px;
+}
+
+.project-logo-box {
+    width: 55%;
+    text-align: end;
+}
