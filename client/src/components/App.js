@@ -55,7 +55,7 @@ class App extends Component {
             <Route path="/allUsers" exact render={() => <AllUsers />} />
             {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
-              <Redirect to="/" />
+              <Redirect to="/inicio" />
               :
               <>
                 

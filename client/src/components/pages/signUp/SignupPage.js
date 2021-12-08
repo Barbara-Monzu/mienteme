@@ -33,10 +33,6 @@ class SignupPage extends Component {
     this.setState({ [name]: value })
   }
 
-  
-
-
-
   render() {
     return (
           <div>
@@ -69,6 +65,8 @@ class SignupPage extends Component {
               <button className="signup">
                 Registrarme
               </button>
+            
+             {/* <CreateUser /> */}
 
               {/* <Link to="/userDetails" style={{margin: "10px"}}>
                 <Button variant="dark" size="lg">Crea tu cita</Button>
