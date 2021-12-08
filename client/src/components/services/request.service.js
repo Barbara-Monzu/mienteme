@@ -8,7 +8,7 @@ class RequestService {
   }
 
   getAllRequestPending = () => this.app.get("/allRequestPending")
-  getAllSecondOpportunities = () => this.app.get("/allSecondsOpportunities")
+  getAllSecondsOpportunities = () => this.app.get("/allSecondsOpportunities")
   createRequest = (id, idDate, newRequest) => this.app.post(`/create/${id}/${idDate}`, newRequest)
   answerRequest = ( idRequest, answer ) => this.app.post(`/answer/${idRequest}`, answer)
 }

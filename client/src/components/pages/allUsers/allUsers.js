@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Container } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
+import RequestService from "../../services/request.service";
+
 // import UserProfile from "../profile/UserProfile";
 
 class AllUsers extends Component {
@@ -10,6 +12,8 @@ class AllUsers extends Component {
 
     this.state = {
       people: [],
+      allUsersPending: [],
+      allUsersSecondsOpportunities: [],
       username: "",
       profileImages: "",
       age: "",
@@ -21,11 +25,17 @@ class AllUsers extends Component {
       questionFalse: "",
       clue: "",
       CheckFirstForm: false,
-      showForm: true
+      showForm: true,
+      selectedUser: "",
+      selectedUserPending: "",
+      selectedUserSecondOpportunities: ""
+
     }
 
     this.service = new PeopleService()
     this.serviceCheckForm = new CheckFirstFormService()
+    this.serviceRequest = new RequestService()
+  
   }
 
   componentDidMount() {
@@ -78,15 +88,69 @@ class AllUsers extends Component {
   }
 
 
-  randomUser = () => {
+  randomUserGlobal = () => {
     const randomUser = Math.floor(Math.random() * this.state.people.length )
-    const newRandomUser = this.state.people?.splice(randomUser, 1)
-    const deleteRandomUser = this.state.people?.filter((elm) => elm !== newRandomUser)
+    const copyPeople = [...this.state.people]
+    const newRandomUser = copyPeople.splice(randomUser, 1)
     this.setState({ 
       selected: newRandomUser,
-      people: deleteRandomUser
+      people: copyPeople
      })
   }
+
+  randomUserPending = () => {
+    const randomUser = Math.floor(Math.random() * this.state.allUsersPending.length )
+    const copyPendingPeople = [...this.state.allUsersPending]
+    const newRandomUser = this.state.allUsersPending?.splice(randomUser, 1)
+    this.setState({ 
+      selectedUserPending: newRandomUser,
+      allUsersPending: copyPendingPeople
+     })
+  }
+
+  randomUserSecondsOpportunities = () => {
+    const randomUser = Math.floor(Math.random() * this.state.allUsersSecondsOpportunities.length )
+    const copySecondsOpportunitiesPeople = [...this.state.allUsersSecondsOpportunities]
+    const newRandomUser = this.state.allUsersSecondsOpportunities?.splice(randomUser, 1)
+  
+    this.setState({ 
+      selectedUserSecondOpportunities: newRandomUser,
+      allUsersSecondsOpportunities: copySecondsOpportunitiesPeople
+     })
+  }
+
+  // nextPending = () => {
+  //   this.randomUserPending()
+  // }
+
+
+  getRequestPending = () => {
+    this.serviceRequest.getAllRequestPending()
+    .then(response => {
+      let usersPendings = response.data
+      this.setState({ 
+        allUsersPending: usersPendings,
+      }, () => this.randomUserPending())
+      
+    })
+    .catch(err => console.log(err))
+
+
+  }
+
+  getSecondsOpportunities = () => {
+    this.serviceRequest.getAllSecondsOpportunities()
+    .then(response => {
+      let usersSecondsOpportunities = response.data
+      this.setState({ 
+        allUsersSecondsOpportunities: usersSecondsOpportunities,
+       })
+    })
+    .catch(err => console.log(err))
+
+  }
+
+ 
 
   render() {
     return (
