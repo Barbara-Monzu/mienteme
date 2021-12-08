@@ -51,7 +51,7 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/" exact render={() => <Home logout={this.logout} loggedUser={this.state.loggedUser}/>} />
-            <Route path="/allUsers" exact render={() => <AllUsers />} />
+            <Route path="/allUsers" exact render={() => <AllUsers logout={this.logout} loggedUser={this.state.loggedUser}/>} />
             {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
               <Redirect to="/" />

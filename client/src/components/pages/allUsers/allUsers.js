@@ -4,6 +4,7 @@ import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 import RequestService from "../../services/request.service";
 
+
 // import UserProfile from "../profile/UserProfile";
 
 class AllUsers extends Component {
@@ -12,14 +13,17 @@ class AllUsers extends Component {
 
     this.state = {
       people: [],
+      datesPeople: [],
       allUsersPending: [],
+      datesUserPending: [],
       allUsersSecondsOpportunities: [],
+      datesUserSecondsOpportunities: [],
       username: "",
       profileImages: "",
       age: "",
       genre: "",
       bio: "",
-      filter: "",
+      filter: {},
       city: "",
       questionTrue: "",
       questionFalse: "",
@@ -35,6 +39,7 @@ class AllUsers extends Component {
     this.service = new PeopleService()
     this.serviceCheckForm = new CheckFirstFormService()
     this.serviceRequest = new RequestService()
+    
   
   }
 
@@ -92,9 +97,12 @@ class AllUsers extends Component {
     const randomUser = Math.floor(Math.random() * this.state.people.length )
     const copyPeople = [...this.state.people]
     const newRandomUser = copyPeople.splice(randomUser, 1)
+
+ 
+
     this.setState({ 
       selected: newRandomUser,
-      people: copyPeople
+      people: copyPeople,
      })
   }
 
@@ -145,7 +153,7 @@ class AllUsers extends Component {
       this.setState({ 
         allUsersSecondsOpportunities: usersSecondsOpportunities,
        })
-    })
+    }, () => this.randomUserSecondsOpportunities())
     .catch(err => console.log(err))
 
   }

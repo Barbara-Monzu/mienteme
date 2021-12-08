@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 
 
 
-const Home = (props) => {
+const  Home = (props) => {
 
 const visualPage = {
   display: "flex", 

@@ -7,10 +7,10 @@ const conversationSchema = new Schema({
     ref: 'User',
   }],
 
-  date: [{
+  date: {
     type: Schema.Types.ObjectId,
     ref: 'Date',
-  }],
+  },
   
 
 

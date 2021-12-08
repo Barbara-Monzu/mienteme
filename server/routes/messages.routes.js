@@ -8,31 +8,24 @@ const Message = require('../models/Message.model')
 router.get('/allMessages', (req, res) => {
 
   const id = req.session.currentUser._id
+  const idConver = req.body
 
-  const idOtherUser = req.body
-
-  Date 
-    .find({
-        $and: [{
-                creator: id
-            },
-            {
-                match: idOtherUser
-            },
-        ],
-        $or: {
-            $and: [{
-                    creator: idOtherUser
-                },
-                {
-                    match: id
-                },
-            ],
-    }})
-    .populate(["creator", "match"])
-    .then(Messages => res.status(200).json(Messages))
+  Message
+    .find({ conversation: idConver})
+    .populate("conversation")
+    .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
 })
+
+router.get('/lastMessage', (req, res) => {
+
+    const idConver = req.body
+  
+    Message
+      .findOne({ conversation: idConver}, { sort: { 'created_at' : -1 } })
+      .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
+      .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
+  })
 
 
 router.put('/createMessage', (req, res) => {

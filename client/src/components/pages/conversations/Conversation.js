@@ -1,51 +1,38 @@
 
 import { useEffect, useState } from "react";
-import "./Conversation.css";
+import ServiceConversation from '../../services/conversation.service';
+import ServiceMessages from '../../services/messages.service';
+import EachConver from './pages/login/EachConver';
 
-export default function Conversation({ conversation, currentUser }) {
-  const [user, setUser] = useState();
-//   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+export default function Conversation({ currentUser }) {
 
-//   useEffect(() => {
-//     const friendId = conversation.members.find((m) => m !== currentUser._id);
+  const [allConvers, setAllConvers] = useState([])
 
-//     const getUser = async () => {
-//       try {
-//         const res = await axios("/users?userId=" + friendId);
-//         setUser(res.data);
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
-//     getUser();
-//   }, [currentUser, conversation]);
+  const [matchsProfiles, setMatchsProfile] = useState([])
+
+  const serviceConversation = new ServiceConversation()
+  const serviceMessages = new ServiceMessages()
+
+  useEffect(() => {
+    getConversations()
+
+  }, [])
+
+
+
+ const getConversations = () => {
+  let myConvers = serviceConversation.getAllConversations()
+    .then(response => response.data)
+    .catch(err => console.log(err))
+  setAllConvers(myConvers)
+  const matchsProfiles = myConvers.members.find((elm) => elm !== currentUser._id);
+  setMatchsProfile(matchsProfiles)
+}
+
 
   return (
     <>
-    <div className="conversation">
-
-      <div className="chatOnlineImgContainer">
-            <img
-              className="chatOnlineImg"
-              src={"https://www.soyfutbol.com/__export/1611681055504/sites/debate/img/2021/01/26/ester_exposito_portada_crop1611681042130.jpg_1902800913.jpg"}
-              alt=""
-            />
-            <div className="chatOnlineBadge"></div>
-        </div>
-
-      <div className="date">
-       <div>
-            <span className="conversationName">Ester, 25</span>
-            <p className="message">Vente pa Alcalá que estoy sola</p>
-
-        </div>
-
-        <p>10 dic.</p>
-      </div>
-
-    </div>
-
-    <hr></hr>
+    {allConvers.map((elm) => <EachConver infoConver={ elm }/>)}
     </>
 
    

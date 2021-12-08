@@ -1,14 +1,23 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// class DatesService {
-//   constructor() {
-//     this.app = axios.create({
-//       baseURL: `${process.env.REACT_APP_BASE_URL}/dates`
-//     })
-//   }
+class DatesService {
+  constructor() {
+    this.app = axios.create({
+      baseURL: 'http://localhost:5005/api/dates'
+    })
+  }
 
-//   getAllDates = () => this.app.get("/allDates")
-//   createDates = (newDate) => this.app.post("/new", newDate)
-// }
+  createDate = (newData) => this.app.post('/new', newData)
 
-// export default DatesService
+  editDate = (idDate, newData) => this.app.post(`/edit-date/${idDate}`, newData)
+
+  getOwnDates = () => this.app.get("/mydates")
+
+  getUserDates = (idOtherUser) => this.app.get(`/its-dates/${idOtherUser}`)
+
+  deleteDate = (idDate) => this.app.delete(`/delete/${idDate}`)
+
+}
+
+export default DatesService
+
