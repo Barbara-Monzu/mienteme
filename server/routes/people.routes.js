@@ -86,19 +86,6 @@ router.get("/allUsers", (req, res) => {
 })
 
 
-router.get("/allWomen", (req, res) => {
-  User.find({ genre: { $in: ['WOMAN', "I DON NOT IDENTIFY WITH ANY GENDER"] }}).limit(200)
-    .then(allWomen => res.json(allWomen))
-    .catch(err => res.json({ err, errMessage: "Problema buscando a todas las Mujeres y lxs no identificados en ningún género" }))
-})
-
-
-router.get("/allMen", (req, res) => {
-  User.find({ genre: { $in: ['MEN', "I DON NOT IDENTIFY WITH ANY GENDER"] }}).limit(200)
-    .then(allMens => res.json(allMens))
-    .catch(err => res.json({ err, errMessage: "Problema buscando a todos los Hombres y lxs no identificados en ningún género" }))
-})
-
 router.get("/profile/:id", (req, res) => {
   const { id } = req.params
 

@@ -9,10 +9,6 @@ class UsersService {
 
   getAllUsers = () => this.app.get("/allUsers")
 
-  getAllWomen = () => this.app.get("/allWomen")
-
-  getAllMen = () => this.app.get("/allMen")
-
   getOneUser = (id) => this.app.get(`/profile/${id}`)
 
   createDate = (id, newData) => this.app.post(`/profile/${id}/newDate`, newData)
