@@ -1,14 +1,19 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// class MessagesService {
-//   constructor() {
-//     this.app = axios.create({
-//       baseURL: `${process.env.REACT_APP_BASE_URL}/messages`
-//     })
-//   }
+class ConversationService {
+  constructor() {
+    this.app = axios.create({
+      baseURL: 'http://localhost:5005/api/messages'
+    })
+  }
 
-//   getAllMessages = () => this.app.get("/allMessages")
-//   createMessage = (newMessage) => this.app.post("/newMessage", newMessage)
-// }
+  
 
-// export default MessagesService
+  getAllMessages = () => this.app.get("/allMessages")
+
+  createMessage = (message, conversation) => this.app.post('/createMessage', (message, conversation))
+  
+  deleteMessage = (idMessage, conversation) => this.app.put(`/delete-message/${idMessage}`,  conversation )
+}
+
+export default ConversationService

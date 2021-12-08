@@ -15,7 +15,7 @@ const userSchema = new Schema(
 	    // required: true,
 	  },
 
-    profileImg: {
+    profileImages: {
       type: [String],
       default: "",
     },
@@ -35,8 +35,8 @@ const userSchema = new Schema(
     },
 
     genre: { 
-    
       type: String,
+      uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
       enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
       // required: true,
@@ -49,6 +49,7 @@ const userSchema = new Schema(
     filter: { 
       genre: {
         type: [String],
+        uppercase: true,
         enum: ['WOMEN', 'MEN', 'BOTH' ],
       },
 
@@ -109,9 +110,11 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'] 
     },
 
-    conversation: [{
-        type: Schema.Types.ObjectId, ref: "Conversation"
-      }],
+    CheckFirstForm: {
+      type: Boolean, 
+      default: false,
+    }
+
     
   },
   

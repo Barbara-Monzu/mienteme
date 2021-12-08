@@ -1,13 +1,15 @@
 const router = require("express").Router()
 const User = require("../models/User.model")
-const Trivial = require("../models/Trivial.model")
 const Date = require("../models/Date.model")
 
-router.post("/newUser", (req, res) => {
+router.post("/newUser/:id", (req, res) => {
+  const { id } = req.params
+
   const { username, 
     profileImages, 
     age, 
     bio, 
+    genre,
     city, 
     location,
     questionTrue,
@@ -44,38 +46,40 @@ router.post("/newUser", (req, res) => {
 // })
 
 
-router.post("/user/:id/newDate", (req, res) => {
+router.post("/newUser/:id/newDate", (req, res) => {
   const { id } = req.params
-  const { nameDate, description, picturesDate, street, number, city, category, day, } = req.body
+  const { nameDate, description, picturesDate, street, number, city, category, day } = req.body
 
-  if (User.findOne(id).sort( dates.length === 3 )) {
-    res.status(400).json({ code: 400, message: 'Ya tienes tres citas en tu perfil, borra alguna para poder crear una nueva' })
-    return
-  }
+  // if (User.findOne(id).sort( dates.length === 3 )) {
+  //   res.status(400).json({ code: 400, message: 'Ya tienes tres citas en tu perfil, borra alguna para poder crear una nueva' })
+  //   return
+  // }
 
   Date.create({ 
     nameDate, 
     description, 
-    street, 
-    number, 
-    city, 
+    addressDate: {street, number, city},
     category, 
     picturesDate, 
     day,
+    creator: id
   })
-    .then(newDate => res.json(newDate),
-      User.findByIdAndUpdate(user._id, { $pull: { dates: newDate } }, { new: true })
-		    .then(user => {
-			    console.log("error actualizando la primera cita en el perfil del usuario", user)
-		      })
-		    .catch(err => {
-			  console.log(err)
-		}))
+    .then(newDate => res.json(newDate))
     .catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
 })
 
 
 router.get("/allUsers", (req, res) => {
+
+  // const id = req.session.currentUser._id
+  // const filterGenre = req.body.filter.genre
+  // const filterAgeSince = req.body.filter.age[0]
+  // const filterAgeTo = req.body.filter.age[1]
+
+
+
+  //   if( filterGenre === "WOMEN") 
+
   User.find().limit(200)
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
@@ -95,17 +99,25 @@ router.get("/allMen", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema buscando a todos los Hombres y lxs no identificados en ningún género" }))
 })
 
-router.get("/user/:id", (req, res) => {
+router.get("/profile/:id", (req, res) => {
   const { id } = req.params
 
-  User.findById(id)
-  .populate('dates')
-    .then(theUser => res.json(theUser))
-    .catch(err => res.json({ err, errMessage: "Problema buscando al User en el perfil del User" }))
-})
+  const userFind = User.findById(id)
+  const datesFind = Date.find({creator: id})
+
+  Promise.all([userFind, datesFind])
+    .then(infoProfile => {
+      const [infoUser, datesProfile] = infoProfile;
+      res.json(infoProfile)
+
+    })
+      .catch(err => res.json({ err, errMessage: "Problema encontrando el perfil" }))
+
+  }
+)
 
 
-router.put("/user/:id/edit-profile", (req, res) => {
+router.post("/profile/:id/edit-profile", (req, res) => {
   const { id } = req.params
 
   const { username, 
@@ -132,11 +144,9 @@ router.put("/user/:id/edit-profile", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema editando al Usuario en el perfil del Usuario" }))
 })
 
-router.put("/user/:id/edit-profile/:idDate/edit", (req, res) => {
-  const { id } = req.params
+router.post("/profile/edit-date/:idDate", (req, res) => {
   const { idDate } = req.params
-
-  const { nameDate, description, picturesDate, street, number, city, category, day, } = req.body
+  const { nameDate, description, picturesDate, street, number, city, category, day } = req.body
 
   Date.findByIdAndUpdate( idDate, { 
     nameDate, 
@@ -146,38 +156,24 @@ router.put("/user/:id/edit-profile/:idDate/edit", (req, res) => {
     city, 
     category, 
     picturesDate, 
-    day,
-  })
-    .then(newDate => res.json(newDate),
-      User.findByIdAndUpdate(id, { $pull: { dates: newDate } }, { new: true })
-		    .then(userUpdate => {
-			    console.log("error actualizando una cita en el perfil del usuario", user)
-		      })
-		    .catch(err => {
-			  console.log(err)
-		}))
-    .catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
+    day
+  }, {new: true} ) 
+    .then(editDate => res.json(editDate))
+		.catch(err => console.log(err))
+   
 })
 
 
-router.delete("/edit-info-profile/:id/delete/:idDate", (req, res) => {
-  const { id } = req.params
+router.delete("/delete/:idDate", (req, res) => {
   const { idDate } = req.params
 
   Date.findByIdAndDelete(idDate)
-  .then(newDate => res.json(newDate),
-  User.findOneAndDelete(id, { $sort: { dates: idDate } }, { new: true })
-    .then(deleteDateUser => {
-      console.log("error eliminando una cita en el perfil del usuario", deleteDateUser)
-      })
-    .catch(err => {
-    console.log(err)
-}))
-.catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
+    .then(deleteDateUser => res.json(deleteDateUser))
+    .catch(err => console.log(err))
+
 })
 
-
-router.delete("/edit-profile/delete-profile/:id", (req, res) => {
+router.delete("/delete-profile/:id", (req, res) => {
   const { id } = req.params
 
   User.findByIdAndDelete(id)

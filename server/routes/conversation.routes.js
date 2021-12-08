@@ -1,48 +1,35 @@
 const router = require("express").Router()
-const { isLoggedIn } = require('../middleware')
+// const { isLoggedIn } = require('../middleware')
 const Conversation = require('../models/Conversation.model')
 const Message = require('../models/Message.model')
+const Request = require('../models/Request.model')
 
+router.post('/create/:idDate', (req, res) => {
 
-router.get('/', isLoggedIn, (req, res) => {
+  const idDate = req.params
+  
+  Request.findOne(idDate)
+  .then((converCreated) => Conversation.create({ date: idDate }))
 
-  const id = req.session.currentUser._id
-
-  Conversation
-    .find({ members: id })
-    .populate('messages')
-    .then(Conversations => res.status(200).json(Conversations))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
-})
-
-
-router.post('/', isLoggedIn, (req, res) => {
-
-  const id = req.session.currentUser._id
-  const { otherUserId } = req.body
-
-  Conversation
-    .create({ members: [id, otherUserId] })
-    .then(() => res.status(200).json({ message: 'Conversation successfully created' }))
+    .then((converCreated) => res.status(200).json({ message: 'Conversation successfully created' }, converCreated))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
 
 })
 
+router.get('/all', (req, res) => {
 
-router.put('/', isLoggedIn, (req, res) => {
+  const id = req.session.currentUser._id
 
-  const { message, Conversation } = req.body
-
-  Message
-    .create(message)
-    .then(message => Conversation.findByIdAndUpdate({ _id: Conversation }, { $push: { messages: message } }, { new: true }))
-    .then(() => res.status(200).json({ message: 'Message successfully created' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
-
+  Request 
+    .find({$and: 
+              [
+                  { $or: [{creator: id}, {sender: id}] },
+                  { guessed: true }
+              ]
+            })
+    .then(conversations => res.status(200).json(conversations))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
 })
-
-
-// TODO router.delete('/', isLoggedIn, (req, res) => { })
 
 
 module.exports = router

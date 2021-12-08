@@ -61,11 +61,6 @@ const dateSchema = new Schema(
 			ref: "User"
 		},
 
-		match: {
-			type: Schema.Types.ObjectId,
-			ref: "User"
-
-		}
 	}
 )
 

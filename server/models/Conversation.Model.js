@@ -2,15 +2,16 @@
 
 const conversationSchema = new Schema({
 
-  messages: [{
+  members: [{
     type: Schema.Types.ObjectId,
-    ref: 'Message',
+    ref: 'User',
   }],
 
   date: [{
     type: Schema.Types.ObjectId,
     ref: 'Date',
   }],
+  
 
 
 }, { timestamps: true })
