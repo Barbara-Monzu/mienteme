@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
+import CheckFirstFormService from "../../services/checkFirstFormService.service";
 // import UserProfile from "../profile/UserProfile";
 
 class AllUsers extends Component {
@@ -8,57 +9,95 @@ class AllUsers extends Component {
     super()
 
     this.state = {
-      people: []
+      people: [],
+      username: "",
+      profileImages: "",
+      age: "",
+      genre: "",
+      bio: "",
+      filter: "",
+      city: "",
+      questionTrue: "",
+      questionFalse: "",
+      clue: "",
+      CheckFirstForm: false,
+      showForm: true
     }
 
     this.service = new PeopleService()
+    this.serviceCheckForm = new CheckFirstFormService()
   }
 
   componentDidMount() {
-    this.refreshUsers()
+    this.showForm() 
+
+    if(!this.state.showForm) {
+      this.refreshUsers()
+      this.randomUser()
+    }
+
+   
+  }
+
+  showForm = () => {
+    this.serviceCheckForm.check()
+    .then(response => {
+      console.log(response.data)
+      response.data.CheckFirstForm &&
+      this.setState({ showForm: false }) })
+    .catch(err => console.log(err))
   }
 
   refreshUsers = () => {
+    const minAge = this.state.filter.age[0]
+    const maxAge = this.state.filter.age[1]
+    const filterByGenre = this.state.filter.genre
+
     this.service.getAllUsers()
       .then(response => {
-        console.log(response.data)
-        const people = response.data
+
+        if(filterByGenre === "WOMEN"){
+        const people = response.data.filter((elm) => elm.filter.genre === "WOMEN")
+        people.filter((elm) => (elm >= minAge) && (elm <= maxAge))
         this.setState({ people: people })
+        }
+
+        if(filterByGenre === "MEN"){
+          const people = response.data.filter((elm) => elm.filter.genre === "MEN")
+          people.filter((elm) => (elm >= minAge) && (elm <= maxAge))
+          this.setState({ people: people })
+          }
+
+        else {
+          const people = response.data
+          this.setState({ people: people })
+        }
+
       })
       .catch(err => console.log(err))
   }
 
+
+  randomUser = () => {
+    const randomUser = Math.floor(Math.random() * this.state.people.length )
+    const newRandomUser = this.state.people?.splice(randomUser, 1)
+    const deleteRandomUser = this.state.people?.filter((elm) => elm !== newRandomUser)
+    this.setState({ 
+      selected: newRandomUser,
+      people: deleteRandomUser
+     })
+  }
+
   render() {
-
     return (
-      <Container>
-        <h1>People List</h1>
-
-        {this.state.people?.map((elm) => {
-          return <div >
-              <div style={{display: "flex", justifyContent: "space-between"}}>
-              <img src={"https://tn.com.ar/resizer/3CWgoZYTJwyqy1puyD7KP46fsc4=/767x0/smart/filters:quality(60)/cloudfront-us-east-1.images.arcpublishing.com/artear/WQCJWLAR5VPYH5MRTQ6H5OFK6E.jpg"} alt={"tarantino"} style={{height: "70px", width: "70px", borderRadius: "50%"}}/>
-              <p><strong>online</strong></p> 
-              </div>
-              <div>
-              <p>{elm.username}</p>
-              <p>{elm.bio}</p>
-              </div>
-
-             <hr></hr>
-             
-             
-
-          </div>
-
-          
-          } )}
-
+      <div>
+        <p></p>
+          {/* <UserCard {...this.state.selected}/> */}
         {/* <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} /> */}
-
-      </Container>
+      </div>
     )
   }
 }
+
 
 export default AllUsers

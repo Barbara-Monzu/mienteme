@@ -35,8 +35,8 @@ const userSchema = new Schema(
     },
 
     genre: { 
-    
       type: String,
+      uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
       enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
       // required: true,
@@ -49,6 +49,7 @@ const userSchema = new Schema(
     filter: { 
       genre: {
         type: [String],
+        uppercase: true,
         enum: ['WOMEN', 'MEN', 'BOTH' ],
       },
 
@@ -108,6 +109,11 @@ const userSchema = new Schema(
       default: "USER",
       enum: ['USER', 'ADMIN'] 
     },
+
+    CheckFirstForm: {
+      type: Boolean, 
+      default: false,
+    }
 
     
   },

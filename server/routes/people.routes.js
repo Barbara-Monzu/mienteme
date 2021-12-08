@@ -70,6 +70,16 @@ router.post("/newUser/:id/newDate", (req, res) => {
 
 
 router.get("/allUsers", (req, res) => {
+
+  // const id = req.session.currentUser._id
+  // const filterGenre = req.body.filter.genre
+  // const filterAgeSince = req.body.filter.age[0]
+  // const filterAgeTo = req.body.filter.age[1]
+
+
+
+  //   if( filterGenre === "WOMEN") 
+
   User.find().limit(200)
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
