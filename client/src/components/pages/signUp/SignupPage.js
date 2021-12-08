@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import { Container, form, Button, Row, Col } from 'react-bootstrap'
 import AuthService from '../../services/auth.service'
 import CreateUser from '../createUser/CreateUser'
+import { Modal, Form, Button  } from 'react-bootstrap';
 import './SignupPage.css'
 
 class SignupPage extends Component {
@@ -31,6 +32,10 @@ class SignupPage extends Component {
 
     this.setState({ [name]: value })
   }
+
+  
+
+
 
   render() {
     return (
@@ -64,8 +69,6 @@ class SignupPage extends Component {
               <button className="signup">
                 Registrarme
               </button>
-            
-             {/* <CreateUser /> */}
 
               {/* <Link to="/userDetails" style={{margin: "10px"}}>
                 <Button variant="dark" size="lg">Crea tu cita</Button>
@@ -100,6 +103,21 @@ class SignupPage extends Component {
               <a className="link-footer" href="#">¿No consigues iniciar sesión?</a>
             </div>
             </form>
+
+              {/* <Modal.Dialog>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal title</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p>Modal body text goes here.</p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary">Close</Button>
+                <Button variant="primary">Save changes</Button>
+              </Modal.Footer>
+              </Modal.Dialog> */}
           </div>
     )
   }

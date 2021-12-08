@@ -55,18 +55,15 @@ class App extends Component {
             <Route path="/allUsers" exact render={() => <AllUsers />} />
             {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
-              <Redirect to="/inicio" />
+              <Redirect to="/" />
               :
               <>
                 
                 <Route path="/singup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
-<<<<<<< HEAD
                 <Route path="/home" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
-=======
                 <Route path="/chat" render={() => <ChatOnline /> } />
                 <Route path="/privatechat" render={() => <PrivateChat /> } />
->>>>>>> master
               </>
             }
       

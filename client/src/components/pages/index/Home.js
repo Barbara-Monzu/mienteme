@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
 
 
 
@@ -25,47 +24,41 @@ const visualPage = {
   return (
     <>
 
-      <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
+      <div>
 
-        <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
-        <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
+        <h1>Click-me </h1>
+        <p>¿Verdad o mentira?</p>
         
           <div>
 
-            <Link to="/login" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg">Login</Button>
+            <Link to="/login" >
+              <button>Iniciar sesión</button>
             </Link>
 
-            <Link to="/singup" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg">Sing up</Button>
+            <Link to="/singup" >
+              <button>Crear nueva cuenta</button>
             </Link>
 
-            <Link to="/" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
+            <Link to="/" >
+              <button onClick={props.logout} >Cerrar sesión</button>
             </Link>
 
-            <div style={{marginTop: "20px"}}></div>
-
-            <Link to="/allUsers" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout} >allUsers</Button>
+            <Link to="/allUsers" >
+              <button onClick={props.logout} >Usuarios</button>
             </Link>
 
-            <Link to="/userDetails" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
-            </Link>
-<<<<<<< HEAD
-            
-=======
+            {/* <Link to="/userDetails" >
+              <button onClick={props.logout}>Detalles del Usuario</button>
+            </Link> */}
 
-            <Link to="/chat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Chat del User</Button>
+            <Link to="/chat" >
+              <button onClick={props.logout}>Chat</button>
             </Link>
 
-            <Link to="/privatechat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Conversación privada</Button>
+            <Link to="/privatechat" >
+              <button onClick={props.logout}>Conversación privada</button>
             </Link>
 
->>>>>>> master
           </div>
 
       </div>

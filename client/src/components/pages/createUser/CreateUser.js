@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-// import { orm, Button, Modal } from 'react-bootstrap'
+import { Form, Button, Modal } from 'react-bootstrap'
 import './CreateUser.css'
+// import React, { useEffect } from 'react'
 // const AuthService = new AuthService()
 
 const CreateUser = () => {
@@ -20,7 +21,7 @@ const CreateUser = () => {
         dates: "",
     })
 
-
+  
   const handleInputChange = (e) => {
     let { name, value } = e.currentTarget
     // setFormData({ ...formData, [name]: value })
@@ -32,59 +33,119 @@ const CreateUser = () => {
     // .catch(err => console.log(err))
   }
 
+
+
   return (
 
-    <form onSubmit={handleSubmit}>
+    <Modal>
+      <Modal.Header closeButton>
+        <Modal.Title>Modal Form Title</Modal.Title>
+      </Modal.Header>
 
-      <form>
-        <label></label>
-            <input name="username" value={formData.username} onChange={handleInputChange} type="text" placeholder="Nombre de usuario" />
-      </form>
+      <Modal.Body>
+      <Form onSubmit={handleSubmit}>
 
-      <form>
-        <label></label>
-            <input name="profileImages" value={formData.profileImages} onChange={handleInputChange} type="file" placeholder="selecciona una imagen"/>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label></Form.Label>
+        <Form.Control name="username" value={formData.username} onChange={handleInputChange} type="text" placeholder="Nombre de usuario" />
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="age" value={formData.age}  type="number" label="age" placeholder="Edad"/>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label></Form.Label>
+        <Form.Control name="profileImages" value={formData.profileImages} onChange={handleInputChange} type="file" placeholder="Selecciona una imagen"/>
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="bio" value={formData.bio} onChange={handleInputChange} type="textarea" placeholder="Acerca de mí" />
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="age" value={formData.age}  type="number" label="age" placeholder="Edad"/>
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="city" value={formData.city} onChange={handleInputChange} type="text" placeholder="Ciudad" />
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="bio" value={formData.bio} onChange={handleInputChange} type="textarea" placeholder="Acerca de mí"/>
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="location" value={formData.location} onChange={handleInputChange} type="text" placeholder="Direccion"/>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="city" value={formData.city} onChange={handleInputChange} type="text" placeholder="Ciudad"/>
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pregunta Verdadera" />
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="location" value={formData.location} onChange={handleInputChange} type="text" placeholder="Direccion"/>
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="questionFalse" value={formData.questionFalse} onChange={handleInputChange} type="text" placeholder="Pregunta Falsa"/>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pregunta Verdadera" />
+      </Form.Group>
 
-      <form>
-        <label></label>
-            <input name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pista"/>
-      </form>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="questionFalse" value={formData.questionFalse} onChange={handleInputChange} type="text" placeholder="Pregunta Falsa"/>
+      </Form.Group>
 
-      <button onClick={() => setModal(!modal)}>Crea tu primera cita</button>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pista"/>
+      </Form.Group>
 
-    {/* <>
-      <Modal show={modal} backdrop="static" onHide={setModal()}>
+      <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check name="questionFalse" value={formData.questionFalse} onChange={handleInputChange} type="text" placeholder="Pregunta Falsa"/>
+      </Form.Group>
+      </Form>
+
+  </Modal.Body>
+  <Modal.Footer>
+      <Button onClick={() => setModal(!modal)} variant="primary" type="submit">
+        Crea tu primer cita
+      </Button>
+  </Modal.Footer>
+</Modal>
+
+    // <form onSubmit={handleSubmit}>
+
+    //   <form>
+    //     <label></label>
+    //         <input name="username" value={formData.username} onChange={handleInputChange} type="text" placeholder="Nombre de usuario" />
+    //   </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="profileImages" value={formData.profileImages} onChange={handleInputChange} type="file" placeholder="Selecciona una imagen"/>
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="age" value={formData.age}  type="number" label="age" placeholder="Edad"/>
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="bio" value={formData.bio} onChange={handleInputChange} type="textarea" placeholder="Acerca de mí" />
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="city" value={formData.city} onChange={handleInputChange} type="text" placeholder="Ciudad" />
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="location" value={formData.location} onChange={handleInputChange} type="text" placeholder="Direccion"/>
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pregunta Verdadera" />
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="questionFalse" value={formData.questionFalse} onChange={handleInputChange} type="text" placeholder="Pregunta Falsa"/>
+      // </form>
+
+      // <form>
+      //   <label></label>
+      //       <input name="questionTrue" value={formData.questionTrue} onChange={handleInputChange} type="text" placeholder="Pista"/>
+      // </form>
+
+      // <button onClick={() => setModal(!modal)}>Crea tu primera cita</button>
+ /* <>
+    <Modal show={modal} backdrop="static" onHide={setModal()}>
         <Modal.Header closeButton>
         <Modal.Title>Nueva Cita</Modal.Title>
         </Modal.Header>
@@ -92,12 +153,12 @@ const CreateUser = () => {
         <Dateform />
         </Modal.Body>
       </Modal>
-    </> */}
+    </>  */
 
-      <button variant="primary" type="submit">
-        Submit
-      </button>
-    </form>
+      // <button variant="primary" type="submit">
+      //   Enviar
+      // </button>
+    // </form>
   )
 }
 
