@@ -7,9 +7,10 @@ const Request = require('../models/Request.model')
 router.post('/create/:idDate', (req, res) => {
 
   const idDate = req.params
+  
+  Request.findOne(idDate)
+  .then((converCreated) => Conversation.create({ date: idDate }))
 
-  Conversation
-    .create({ date: idDate })
     .then((converCreated) => res.status(200).json({ message: 'Conversation successfully created' }, converCreated))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
 

@@ -30,9 +30,9 @@ router.get('/allSecondsOpportunities', (req, res) => {
 
 
 router.post('/create/:id/:idDate/:idCreator', (req, res) => {
-  const {idDate, id, idCreator }  = req.params
+  const {idDate, id }  = req.params
 
-  const createRequest = Request.create({ creator: id, receiver: idCreator, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: idDate})
+  const createRequest = Request.create({ creator: id, receiver: idCreatorDate, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: idDate})
 
   // mi id va a ser current user, se eliminará de la barra 
 

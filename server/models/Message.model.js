@@ -13,8 +13,19 @@ const messageSchema = new Schema({
         }
   
     },
+
+    conversation: {
+        type: Schema.Types.ObjectId, ref: "Conversation"
+      },
+
   
     sender: { 
+        type: Schema.Types.ObjectId, 
+        ref:'User', 
+        required:true 
+    },
+
+    receiver: { 
         type: Schema.Types.ObjectId, 
         ref:'User', 
         required:true 
@@ -31,7 +42,14 @@ const messageSchema = new Schema({
         required: true,
         default: false
     },
+
+    deletedForMe: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
   },
+
 
 )
 

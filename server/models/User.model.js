@@ -109,10 +109,6 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'] 
     },
 
-    conversation: [{
-        type: Schema.Types.ObjectId, ref: "Conversation"
-      }],
-
     
   },
   
