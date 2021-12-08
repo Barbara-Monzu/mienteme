@@ -1,36 +1,35 @@
 import "./Post.css";
 // import { MoreVert } from "@material-ui/icons";
-// import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { format } from "timeago.js";
 // import { Link } from "react-router-dom";
 // import { AuthContext } from "../../context/AuthContext";
 
+import ServiceMessages from '../../services/messages.service';
+
 export default function Post({ post }) {
-  // const [like, setLike] = useState(post.likes.length);
-  // const [isLiked, setIsLiked] = useState(false);
-  // const [user, setUser] = useState({});
-  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  // const { user: currentUser } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   setIsLiked(post.likes.includes(currentUser._id));
-  // }, [currentUser._id, post.likes]);
+const serviceMessages = new ServiceMessages()
+const [userProfile, setUserProfile] = useState(undefined)
+const [messages, setMessages] = useState([])
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(`/users?userId=${post.userId}`);
-  //     setUser(res.data);
-  //   };
-  //   fetchUser();
-  // }, [post.userId]);
+useEffect(() => {
+  getMyMessages()
 
-  // const likeHandler = () => {
-  //   try {
-  //     axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
-  //   } catch (err) {}
-  //   setLike(isLiked ? like - 1 : like + 1);
-  //   setIsLiked(!isLiked);
-  // };
+}, [])
+
+  const getMyMessages = (idConver) => {
+    serviceMessages.getAllMessages(idConver)
+      .then(response => setMessages(response.data))
+      .catch(err => console.log(err))
+
+  }
+
+  // messages.creator === currentUser._id ? 
+  // SACAR MENSAJES A LA DERECHA Y EN AZUL : SACARLOS A LA IZQUIERDA Y EN BLANCO
+
+  
+
   return (
     <div className="post">
          

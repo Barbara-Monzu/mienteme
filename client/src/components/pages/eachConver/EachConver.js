@@ -1,19 +1,37 @@
 
 import { useEffect, useState } from "react";
 import "./EachConver.css";
-import ServiceConversation from '../../services/conversation.service';
 import ServiceMessages from '../../services/messages.service';
 
 export default function EachConversation({ infoConver }) {
   
 const serviceMessages = new ServiceMessages()
 
-  const getMyMessages = (idConver) => {
-    serviceMessages.getAllMessages(idConver)
+const [userProfile, setUserProfile] = useState(undefined)
+
+//DESCOMENTAR
+
+// useEffect(() => {
+//     getUserProfile()
+
+//   }, [])
+
+
+// const getUserProfile = () => {
+// let profile = infoConver.members.find((elm) => elm !== currentUser._id);
+//     setUserProfile(profile)
+// }
+
+
+
+  const getLastMessage = (idConver) => {
+    serviceMessages.getLastMessage(idConver)
       .then(response => response.data)
       .catch(err => console.log(err))
 
   }
+
+  //pasarle como prop la idConver
 
   return (
     <>
