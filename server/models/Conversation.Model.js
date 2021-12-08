@@ -12,6 +12,13 @@ const conversationSchema = new Schema({
     ref: 'Date',
   }],
 
+  //busco Date.find(creator: idOtherUser)
+  //creo conver.create(date: responseanterior)
+  //en los mensajes tendré que estar yo
+
+  //
+  
+
 
 }, { timestamps: true })
 

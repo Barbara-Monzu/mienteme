@@ -2,7 +2,7 @@ const router = require("express").Router()
 // const { isLoggedIn } = require('../middleware')
 const Conversation = require('../models/Conversation.model')
 const Message = require('../models/Message.model')
-
+const Request = require('../models/Request.model')
 
 router.post('/create/:idDate', (req, res) => {
 
@@ -15,45 +15,20 @@ router.post('/create/:idDate', (req, res) => {
 
 })
 
-router.get('/allMessages', (req, res) => {
+router.get('/all', (req, res) => {
 
   const id = req.session.currentUser._id
 
-  Message 
-    .find({ sender: id })
-    .then(Messages => res.status(200).json(Messages))
+  Request 
+    .find({$and: 
+              [
+                  { $or: [{creator: id}, {sender: id}] },
+                  { guessed: true }
+              ]
+            })
+    .then(conversations => res.status(200).json(conversations))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
 })
-
-
-router.put('/createMessage', (req, res) => {
-
-  const id = req.session.currentUser._id
-  const { message, conversation } = req.body
-
-  Message
-    .create({ message: text, sender: id})
-    .then(message => Conversation.findByIdAndUpdate({ _id: conversation }, { $push: { messages: message } }, { new: true }))
-    .then(() => res.status(200).json({ message: 'Message successfully created' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
-
-})
-
-
-router.put('/delete-message/:idMessage', (req, res) => {
-
-  const { idMessage } = req.params
-  const { Conversation } = req.body
-
-  Message
-    .findByIdAndDelete(idMessage)
-    .then(message => Conversation.findByIdAndUpdate({ _id: Conversation }, { $pull: { messages: idMessage } }, { new: true }))
-    .then(() => res.status(200).json({ message: 'Message successfully created' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
-})
-
-
-// TODO router.delete('/', (req, res) => { })
 
 
 module.exports = router

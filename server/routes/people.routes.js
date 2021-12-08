@@ -1,6 +1,5 @@
 const router = require("express").Router()
 const User = require("../models/User.model")
-const Trivial = require("../models/Trivial.model")
 const Date = require("../models/Date.model")
 
 router.post("/newUser/:id", (req, res) => {
