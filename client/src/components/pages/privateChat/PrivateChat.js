@@ -5,19 +5,18 @@ import "./PrivateChat.css";
 import io from 'socket.io-client'
 import MessagesService from "../../services/messages.service";
 import { Link } from "react-router-dom";
-// import { AuthContext } from "../../context/AuthContext";
+
 
 let socket;
 
 export default function PrivateChat({ infoConver }) {
 
-//   const { user } = useContext(AuthContext);
 
 const messagesService = new MessagesService()
 
 const [messages, setMessages] = useState([])
 const [message, setMessage] = useState('')
-// const [userProfile, setUserProfile] = useState(undefined)
+// const [userMatch, setUserMatch] = useState(undefined)
 
 
 useEffect(() => {
@@ -54,22 +53,15 @@ useEffect(() => {
     })
         return () => {socket.off()}
     }, [messages])
-
-
-const divRef = useRef(null);
-
-useEffect(() => {
-    divRef.current.scrollIntoView({behavior: "smooth"})
-    })
      
 
   const sendMessage = (e) => {
     e.preventDefault()
 
-    // messagesService
-    //   .createMessage(message)
-    //   .then(res => null)
-    //   .catch(err => console.error(err))
+    messagesService
+      .createMessage(message)
+      .then(res => null)
+      .catch(err => console.error(err))
 
     if (message !== "") {
       socket.emit('sendMessage', message)
@@ -78,6 +70,12 @@ useEffect(() => {
 
   }
 
+
+const divRef = useRef(null);
+
+useEffect(() => {
+    divRef.current.scrollIntoView({behavior: "smooth"})
+    })
 
 
   return (
