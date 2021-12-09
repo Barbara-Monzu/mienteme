@@ -12,7 +12,6 @@ router.get('/allMessages', (req, res) => {
 
   Message
     .find({ conversation: idConver})
-    .populate("conversation")
     .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
 })

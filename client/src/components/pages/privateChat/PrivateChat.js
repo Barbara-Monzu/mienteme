@@ -4,19 +4,27 @@ import Post from "../post/Post.js";
 import "./PrivateChat.css";
 import io from 'socket.io-client'
 import MessagesService from "../../services/messages.service";
+import UserContext from '../../services/UserContext'
+import { useLocation } from 'react-router-dom'
 import { Link } from "react-router-dom";
 
 
 let socket;
 
-export default function PrivateChat({ infoConver }) {
+export default function PrivateChat({ idConver }) {
 
-
+const { loggedUser } = useContext(UserContext)
 const messagesService = new MessagesService()
 
+const matchProfile = idConver.members.filter(elm => elm !== loggedUser._id)
+
+const [room, setRoom] = useState('')
 const [messages, setMessages] = useState([])
 const [message, setMessage] = useState('')
-// const [userMatch, setUserMatch] = useState(undefined)
+
+const updateMessages = (message) => setMessages([...messages, message.message])
+// const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message, 'db')))
+
 
 
 useEffect(() => {
@@ -25,14 +33,10 @@ useEffect(() => {
 
 }, [])
 
-//   const getMyMessages = (idConver) => {
-//     messagesService.getAllMessages(idConver)
-//       .then(response => setMessages(response.data))
-//       .catch(err => console.log(err))
-//   }
 
+const setSocketConfig = () => {
 
-  const setSocketConfig = () => {
+  const username = loggedUser.username
 
     socket = io("//localhost:5005", {
 
@@ -42,31 +46,61 @@ useEffect(() => {
       }, transports: ['websocket']
     })
 
+    const roomName = [matchProfile._id.split(""), loggedUser._id.split("")].sort().join("")
+    setRoom(`${roomName}`)
+
+    socket.emit('join', { username, room: room }, () => {
+      setInitialMessages()
+    })
+
     socket.emit("conectado", "online");
 
   }
 
- useEffect(() => {
-    socket.on("receiveMessages", message => {
-        setMessages([...messages, message.message])
-    
-    })
-        return () => {socket.off()}
-    }, [messages])
-     
+  const setInitialMessages = () => setMessages(getMessages())
 
+  const getMessages = () => {
+          messagesService
+          .getAllmyMessages(idConver)
+          .then(allMyMessages => null)
+          .catch(err => console.error(err))
+  
+  }
+  
+  //Envío mensajes y los recibo. ¿Porqué si pongo al revés estos dos funciones me da error? No lee el useEffect()
+
+  useEffect(() => {
+    socket.on("receiveMessages", message => {
+      setMessages([...messages, message.message])
+      
+    })
+    return () => {socket.off()}
+  }, [messages])
+  
+  
   const sendMessage = (e) => {
-    e.preventDefault()
+      e.preventDefault()
+  
+      if (message !== "") {
+        socket.emit("sendMessage", message)
+        setMessage("")
+      }
+
+
+//qué va antes? Arriba le sigo que me resetee el mensaje a "", pero en esta linea de debajo le estoy diciendo que me coja ese mensaje,
+// ¿Qué menaje me coge, el de arriba o el de abajo? El lleno o el vacío?
+
+
+    const newMessage = {
+      message: { text: message },
+      sender: loggedUser._id,
+      receiver: matchProfile._id
+    }
 
     messagesService
-      .createMessage(message)
+      .createMessage(newMessage, idConver._id)
       .then(res => null)
       .catch(err => console.error(err))
-
-    if (message !== "") {
-      socket.emit('sendMessage', message)
-      setMessage("")
-    }
 
   }
 
