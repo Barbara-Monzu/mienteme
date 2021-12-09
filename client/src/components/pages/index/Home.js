@@ -42,8 +42,6 @@ const visualPage = {
 
 
             <div style={{marginTop: "20px"}}></div>
-
-
           </div>
 
       </div>

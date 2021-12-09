@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 // import Footer from './layout/Footer/Footer'
 // import Navbar from './layout/Navigation/Navbar'
-import SignupPage from './pages/signup/SignupPage';
+import SignupPage from './pages/signUp/SignupPage';
 import LoginPage from './pages/login/LoginPage';
 import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';

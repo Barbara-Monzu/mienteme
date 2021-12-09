@@ -1,0 +1,74 @@
+
+.card-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img.card-pic {
+    width: 500px;
+    border-radius: 70px;
+}
+
+img.profile-pic {
+    height: 100%;
+    width: 35px;
+    padding: 10px;
+    border-radius: 500px;
+    margin: 10px 0 30px 10px
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+
+p.card-name {
+    font-size: 40px;
+    /* margin-top: 0px; */
+    /* margin-left: 35px  */
+}
+
+p.card-age {
+    font-size: 25px;
+    margin-right: 100px;
+}
+
+p.card-bio {
+    font-size: 25px;
+
+}
+
+.date {
+    display: flex;
+    justify-content: space-around;
+}
+
+img.date-pic {
+    width: 100px;
+    border-radius: 50%;
+    height: 90px;
+    margin-bottom: 600px;
+}
+
+.date .detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-description {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+}
+
+p.date-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-style: italic;
+}
