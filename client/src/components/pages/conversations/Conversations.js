@@ -30,7 +30,8 @@ export default function Conversation({ currentUser }) {
 
   return (
     <>
-    {allConvers.map((elm) => <EachConver infoConver={ elm }/>)}
+    <EachConver />
+    {/* {allConvers.map((elm) => <EachConver infoConver={ elm }/>)} */}
     </>
 
    

@@ -51,8 +51,8 @@ const [lastMessage, setLastMessage] = useState("")
 
       <div className="date">
        <div>
-            <span className="conversationName">{userProfile.username}, {userProfile.age}</span>
-            <p className="message">{lastMessage}</p>
+            {/* <span className="conversationName">{userProfile.username}, {userProfile.age}</span>
+            <p className="message">{lastMessage}</p> */}
 
         </div>
 

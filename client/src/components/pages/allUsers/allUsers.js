@@ -1,10 +1,10 @@
 import React, { Component, createContext } from "react";
-import { Container } from 'react-bootstrap'
+import { Link, Button } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 import RequestService from "../../services/request.service";
 
-const UserContext = createContext(null)
+const MatchContext = createContext(null)
 
 // import UserProfile from "../profile/UserProfile";
 
@@ -163,11 +163,21 @@ class AllUsers extends Component {
 
   render() {
     return (
-      <div>
-        <p></p>
-          {/* <UserCard {...this.state.selected}/> */}
-        {/* <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} /> */}
+
+      <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
+
+      <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
+      <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
+      <p>Aquí tiene que estar la carta del usuario y debajo nuestra Nav</p>
+
+      {/* <Link to="/" style={{margin: "10px"}}>
+              <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
+      </Link> */}
+      
       </div>
+
+       
+     
     )
   }
 }

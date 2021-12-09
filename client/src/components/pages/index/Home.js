@@ -40,27 +40,9 @@ const visualPage = {
               <Button variant="dark" size="lg">Sing up</Button>
             </Link>
 
-            <Link to="/" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
-            </Link>
 
             <div style={{marginTop: "20px"}}></div>
 
-            <Link to="/allUsers" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout} >allUsers</Button>
-            </Link>
-
-            <Link to="/userDetails" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Detalles del Usuario</Button>
-            </Link>
-
-            <Link to="/chat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Chat del User</Button>
-            </Link>
-
-            <Link to="/privatechat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout}>Conversación privada</Button>
-            </Link>
 
           </div>
 
