@@ -7,7 +7,7 @@ const UserCard = ({ username, age, bio, profileImg, nameDate, description, categ
   return (
     
     <div className="card">
-      <img className="profile-pic" src="https://www.fundaciocaixaltea.com/wp-content/uploads/2018/01/default-profile.png"/>
+      <img className="card-profile-pic" src="https://www.fundaciocaixaltea.com/wp-content/uploads/2018/01/default-profile.png"/>
 
 
      <div className="card-pic-container">
@@ -27,19 +27,19 @@ const UserCard = ({ username, age, bio, profileImg, nameDate, description, categ
         <div className="detail">
         <p>Cena</p>
         <p className="date-description">Una rica cena</p>
-        <p>GASTRONOMÍA</p>
+        <p className="date-category">GASTRONOMÍA</p>
         </div>
 
         <div className="detail">
         <p>Cena</p>
         <p className="date-description">Una rica cena</p>
-        <p>GASTRONOMÍA</p>
+        <p className="date-category">GASTRONOMÍA</p>
         </div>
 
         <div className="detail">
         <p>Cena</p>
         <p className="date-description">Una rica cena</p>
-        <p>GASTRONOMÍA</p>
+        <p className="date-category">GASTRONOMÍA</p>
         </div>
 
       </div>

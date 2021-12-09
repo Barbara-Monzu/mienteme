@@ -11,7 +11,7 @@ const FooterNav = () => {
                 <a href="#"><img className="second-chance" src="https://www.pngkit.com/png/full/352-3520722_arrow-repeat-comments-repost-logo-png.png" /></a>
             </Link>
             <Link to="/buscar" >
-                <a href="#"> <img className="buscar" src="https://www.freeiconspng.com/uploads/search-icon-png-1.png" /></a>
+                <a href="#"> <img className="search" src="https://www.freeiconspng.com/uploads/search-icon-png-1.png" /></a>
             </Link>
             <Link className="link" to="/peticiones" >
                 <a href="#"> <img className="request" src="https://static.thenounproject.com/png/2714894-200.png" /></a>
