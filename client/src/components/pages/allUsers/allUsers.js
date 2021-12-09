@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { Container } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 import RequestService from "../../services/request.service";
 
+const UserContext = createContext(null)
 
 // import UserProfile from "../profile/UserProfile";
 

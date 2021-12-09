@@ -16,13 +16,15 @@ const cors = require("cors")
 
 io.on('connect', socket => {
 
-    socket.on("sendMessage", (message) => {
-        io.emit("receiveMessages", {message} )
-    
+    socket.on("conectado", () => {
+        console.log("un user se ha conectado")
 
     })
 
+    socket.on("sendMessage", (message) => {
+        io.emit("receiveMessages", {message} )
 
+    })
 
 
 //   socket.on('sendMessage', (message, callback) => {

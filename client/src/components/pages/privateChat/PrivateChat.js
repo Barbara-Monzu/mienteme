@@ -63,9 +63,6 @@ useEffect(() => {
     })
      
 
-
-
-
   const sendMessage = (e) => {
     e.preventDefault()
 
