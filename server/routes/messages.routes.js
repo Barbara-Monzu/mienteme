@@ -28,7 +28,7 @@ router.get('/lastMessage', (req, res) => {
   })
 
 
-router.put('/createMessage', (req, res) => {
+router.post('/createMessage', (req, res) => {
 
   const id = req.session.currentUser._id
   const { message, conversation } = req.body
@@ -42,7 +42,7 @@ router.put('/createMessage', (req, res) => {
 })
 
 
-router.put('/delete-message/:idMessage', (req, res) => {
+router.delete('/deleteMessage/:idMessage', (req, res) => {
 
   const { idMessage } = req.params
   const { conversation } = req.body

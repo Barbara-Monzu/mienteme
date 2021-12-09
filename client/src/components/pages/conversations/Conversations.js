@@ -1,10 +1,12 @@
 
 import { useEffect, useState } from "react";
 import ServiceConversation from '../../services/conversation.service';
+import EachConver from '../eachConver/EachConver';
 
-import EachConver from './pages/login/EachConver';
 
 export default function Conversation({ currentUser }) {
+
+
 
   const [allConvers, setAllConvers] = useState([])
 

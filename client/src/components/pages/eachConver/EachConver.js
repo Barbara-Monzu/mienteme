@@ -8,6 +8,7 @@ export default function EachConversation({ infoConver }) {
 const serviceMessages = new ServiceMessages()
 
 const [userProfile, setUserProfile] = useState(undefined)
+const [lastMessage, setLastMessage] = useState("")
 
 //DESCOMENTAR
 
@@ -22,16 +23,18 @@ const [userProfile, setUserProfile] = useState(undefined)
 //     setUserProfile(profile)
 // }
 
-
-
   const getLastMessage = (idConver) => {
     serviceMessages.getLastMessage(idConver)
-      .then(response => response.data)
+      .then(response => {
+        setLastMessage(response.data)
+      })
       .catch(err => console.log(err))
 
   }
 
   //pasarle como prop la idConver
+
+  //si hace click en la conver && <Post >
 
   return (
     <>
@@ -48,8 +51,8 @@ const [userProfile, setUserProfile] = useState(undefined)
 
       <div className="date">
        <div>
-            <span className="conversationName">Ester, 25</span>
-            <p className="message">Vente pa Alcalá que estoy sola</p>
+            <span className="conversationName">{userProfile.username}, {userProfile.age}</span>
+            <p className="message">{lastMessage}</p>
 
         </div>
 

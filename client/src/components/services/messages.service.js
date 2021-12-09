@@ -14,9 +14,11 @@ class ConversationService {
 
   getLastMessage = (idConver) => this.app.get('/lastMessage', idConver)
 
-  createMessage = (message, conversation) => this.app.post('/createMessage', (message, conversation))
+  // addMessage = (message, idConver) => this.app.post(`/addMessage/${idConver}`, message)
+
+  createMessage = (message, idConver) => this.app.post('/createMessage', (message, idConver))
   
-  deleteMessage = (idMessage, conversation) => this.app.put(`/delete-message/${idMessage}`,  conversation )
+  deleteMessage = (idMessage, conversation) => this.app.delete(`/deleteMessage/${idMessage}`,  conversation )
 }
 
 export default ConversationService

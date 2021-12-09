@@ -11,6 +11,7 @@ import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';
 import PrivateChat from './pages/privateChat/PrivateChat';
 import AuthService from './services/auth.service';
+// import { UserProvider } from './UserContext'
 // import UserProfile from './pages/profile/userProfile';
 
 
