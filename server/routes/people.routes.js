@@ -38,7 +38,7 @@ router.get("/allUsers", (req, res) => {
 
   //   if( filterGenre === "WOMEN") 
 
-  User.find().limit(200)
+  User.find()
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })

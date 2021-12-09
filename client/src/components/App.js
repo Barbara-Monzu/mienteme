@@ -8,7 +8,6 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 // import Navbar from './layout/Navigation/Navbar'
 import SignupPage from './pages/signUp/SignupPage';
 import LoginPage from './pages/login/LoginPage';
-import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';
 import PrivateChat from './pages/privateChat/PrivateChat';
 import SearchCard from './pages/searchCard/SearchCard';
@@ -64,7 +63,7 @@ class App extends Component {
                 para sacar el logged user, llamar a useContext y const { loggedUser } = useContext(UserContext)*/}
               {/* Aquí debería estar solo la Home y en la Home el componente de allUsers y la Nav Bar. En la Nav sacar el logout del contexto global */}
                 <Route path="/click-me" exact render={() => <LoggedUserHome logout={this.logout}/>} />
-                <Route path="/allUsers" exact render={() => <AllUsers />} />
+        
                 <Route path="/chat" render={() => <ChatOnline />} />
                 <Route path="/privatechat" render={() => <PrivateChat />} />
                 <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
