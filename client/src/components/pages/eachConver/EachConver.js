@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import "./EachConver.css";
 import ServiceMessages from '../../services/messages.service';
+import { Link } from "react-router-dom";
 
 export default function EachConversation({ infoConver }) {
   
@@ -23,8 +24,8 @@ const [lastMessage, setLastMessage] = useState("")
 //     setUserProfile(profile)
 // }
 
-  const getLastMessage = (idConver) => {
-    serviceMessages.getLastMessage(idConver)
+  const getLastMessage = (infoConver) => {
+    serviceMessages.getLastMessage(infoConver._id)
       .then(response => {
         setLastMessage(response.data)
       })
@@ -32,12 +33,15 @@ const [lastMessage, setLastMessage] = useState("")
 
   }
 
-  //pasarle como prop la idConver
+  //pasarle como prop la infoConver
 
   //si hace click en la conver && <Post >
 
   return (
     <>
+ <Link to="/privatechat" style={{margin: "10px"}}>
+        
+
     <div className="conversation">
       
       <div className="chatOnlineImgContainer">
@@ -63,8 +67,8 @@ const [lastMessage, setLastMessage] = useState("")
     </div>
 
     <hr></hr>
+  </Link>
     </>
-
    
   );
 }

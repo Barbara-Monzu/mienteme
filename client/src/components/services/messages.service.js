@@ -12,7 +12,7 @@ class ConversationService {
 
   getAllMessages = (idConver) => this.app.get("/allMessages", idConver)
 
-  getLastMessage = (idConver) => this.app.get('/lastMessage', idConver)
+  getLastMessage = (idConver) => this.app.get(`/lastMessage/${idConver}`)
 
   // addMessage = (message, idConver) => this.app.post(`/addMessage/${idConver}`, message)
 

@@ -13,10 +13,10 @@ let socket;
 
 export default function PrivateChat({ idConver }) {
 
-const { loggedUser } = useContext(UserContext)
-const messagesService = new MessagesService()
+// const { loggedUser } = useContext(UserContext)
+// const messagesService = new MessagesService()
 
-const matchProfile = idConver.members.filter(elm => elm !== loggedUser._id)
+// const matchProfile = idConver.members.filter(elm => elm !== loggedUser._id)
 
 const [room, setRoom] = useState('')
 const [messages, setMessages] = useState([])
@@ -36,7 +36,7 @@ useEffect(() => {
 
 const setSocketConfig = () => {
 
-  const username = loggedUser.username
+  // const username = loggedUser.username
 
     socket = io("//localhost:5005", {
 
@@ -46,26 +46,26 @@ const setSocketConfig = () => {
       }, transports: ['websocket']
     })
 
-    const roomName = [matchProfile._id.split(""), loggedUser._id.split("")].sort().join("")
-    setRoom(`${roomName}`)
+    // const roomName = [matchProfile._id.split(""), loggedUser._id.split("")].sort().join("")
+    // setRoom(`${roomName}`)
 
-    socket.emit('join', { username, room: room }, () => {
-      setInitialMessages()
-    })
+    // socket.emit('join', { username, room: room }, () => {
+    //   setInitialMessages()
+    // })
 
     socket.emit("conectado", "online");
 
   }
 
-  const setInitialMessages = () => setMessages(getMessages())
+  // const setInitialMessages = () => setMessages(getMessages())
 
-  const getMessages = () => {
-          messagesService
-          .getAllmyMessages(idConver)
-          .then(allMyMessages => null)
-          .catch(err => console.error(err))
+  // const getMessages = () => {
+  //         messagesService
+  //         .getAllmyMessages(idConver)
+  //         .then(allMyMessages => null)
+  //         .catch(err => console.error(err))
   
-  }
+  // }
   
   //Envío mensajes y los recibo. ¿Porqué si pongo al revés estos dos funciones me da error? No lee el useEffect()
 
@@ -91,16 +91,16 @@ const setSocketConfig = () => {
 // ¿Qué menaje me coge, el de arriba o el de abajo? El lleno o el vacío?
 
 
-    const newMessage = {
-      message: { text: message },
-      sender: loggedUser._id,
-      receiver: matchProfile._id
-    }
+    // const newMessage = {
+    //   message: { text: message },
+    //   sender: loggedUser._id,
+    //   receiver: matchProfile._id
+    // }
 
-    messagesService
-      .createMessage(newMessage, idConver._id)
-      .then(res => null)
-      .catch(err => console.error(err))
+    // messagesService
+    //   .createMessage(newMessage, idConver._id)
+    //   .then(res => null)
+    //   .catch(err => console.error(err))
 
   }
 

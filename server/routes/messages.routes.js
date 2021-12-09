@@ -16,9 +16,9 @@ router.get('/allMessages', (req, res) => {
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
 })
 
-router.get('/lastMessage', (req, res) => {
+router.get('/lastMessage/:idConver', (req, res) => {
 
-    const idConver = req.body
+    const  { idConver }  = req.params
   
     Message
       .findOne({ conversation: idConver}, { sort: { 'created_at' : -1 } })
