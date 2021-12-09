@@ -1,0 +1,118 @@
+.search-h1 {
+    font-style: italic;
+}
+
+.search-container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-box a {
+    text-decoration: none;
+}
+
+.search-card {
+    color: white;
+    font-size: 30px;
+    font-weight: 900;
+    font-style: italic;
+    text-align: start;
+    background-color: gray;
+    height: 300px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    border-radius: 10px;
+}
+
+.search-card.one {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url(https://www.cocinayvino.com/wp-content/uploads/2016/09/54710710_ml-1068x657.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-card.two { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url(https://www.aventurequebec.ca/public_upload/images/Entreprise/Carbure%20Aventure/thumbnails/CarbureAventure-scale_max-1000x1000.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-card.three { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url(https://cdn.broadwaydirect.com/wp-content/uploads/2017/10/Haunted-Theater-800x450.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-card.four { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-image: url(https://hips.hearstapps.com/esq.h-cdn.co/assets/17/09/1488473694-stocksy-txp52523c11xoo100-medium-1198520.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search-title {
+    margin-left: 10px;
+}
+
+.search-subtitle {
+    font-size: 16px;
+    font-weight: 900;
+    margin-left: 10px;
+}
+
+.search-interest {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.search-navbar {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-navbar-title {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.search-input {
+    width: 500px;
+    border-radius: 10px;
+    height: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -11,6 +11,9 @@ import LoginPage from './pages/login/LoginPage';
 import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';
 import PrivateChat from './pages/privateChat/PrivateChat';
+import SearchCard from './pages/searchCard/SearchCard';
+import RequestPending from './pages/requestPending/RequestPending'
+import SecondsOpportunities from './pages/secondsOpportunities/SecondsOpportunities';
 import AuthService from './services/auth.service';
 import { UserProvider } from './services/UserContext'
 // import UserProfile from './pages/profile/userProfile';
@@ -23,7 +26,7 @@ class App extends Component {
     this.state = {
       loggedUser: undefined
     }
-    
+
     this.authService = new AuthService()
   }
 
@@ -64,6 +67,9 @@ class App extends Component {
                 <Route path="/allUsers" exact render={() => <AllUsers />} />
                 <Route path="/chat" render={() => <ChatOnline />} />
                 <Route path="/privatechat" render={() => <PrivateChat />} />
+                <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
+                <Route path="/buscar" render={() => <SearchCard />} />
+                <Route path="/peticiones" render={() => <RequestPending />} />
               </UserProvider>
   
               </>

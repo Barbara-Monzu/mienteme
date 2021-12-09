@@ -1,0 +1,46 @@
+.second-card-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.second-card-pic {
+    width: 500px;
+    border-radius: 70px;
+}
+
+.second-profile-pic {
+    height: 100%;
+    width: 35px;
+    padding: 10px;
+    border-radius: 500px;
+    margin: 10px 0 30px 10px
+}
+
+.second-info {
+    display: flex;
+    align-items: center;
+}
+
+
+.second-card-name {
+    font-size: 40px;
+    /* margin-top: 0px; */
+    /* margin-left: 35px  */
+}
+
+.second-card-age {
+    font-size: 25px;
+    margin-right: 100px;
+}
+
+.second-card a {
+    text-decoration: none;
+    display:flex;
+    justify-content: flex-end;
+}
+
+
+
+
+

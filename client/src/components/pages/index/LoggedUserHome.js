@@ -1,6 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
+import React, { Component, createContext } from "react";
+import CreateUser from "../createUser/CreateUser";
+import UserCard from '../allUsers/userCard/UserCard'
+import FooterNav from "../footerNav/FooterNav";
+import { Form, Button, Modal, Container, Link } from 'react-bootstrap'
+// import RequestPending from "../../requestPending/RequestPending";
+
+// import PeopleService from "../../services/people.service";
+// import CheckFirstFormService from "../../services/checkFirstFormService.service";
+// import RequestService from "../../services/request.service";
+
 
 
 
@@ -21,45 +30,42 @@ const visualPage = {
 }
 
 
-
   return (
     <>
 
-      <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
-
-        <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
-        <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
         
-          <div>
+    
+          <Modal>
+          <Modal.Header closeButton>
+            <Modal.Title>Crea tu usuario</Modal.Title>
+          </Modal.Header>
 
-            <div style={{marginTop: "20px"}}></div>
+          <Modal.Body>
 
-            <Link to="/allUsers" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" >allUsers</Button>
-            </Link>
+          <CreateUser />
 
-            <Link to="/perfil" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg">Tu perfil</Button>
-            </Link>
+          </Modal.Body>
+            {/* <Modal.Footer>
+                <Button onClick={() => setModal(!modal)} variant="primary" type="submit">
+                  Crea tu primer cita
+                </Button>
+            </Modal.Footer> */}
+        </Modal>
+              
+          <UserCard />
 
-            <Link to="/chat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg">Chat del User</Button>
-            </Link>
+          <FooterNav />  
 
-            <Link to="/privatechat" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg">Conversación privada</Button>
-            </Link>
+          {/* <Conversations />
 
-            <Link to="/" style={{margin: "10px"}}>
-              <Button variant="dark" size="lg" onClick={props.logout} >Logout</Button>
-            </Link>
+          <UsersRequestPendingCard />
+          <SearchCard />
+          <ProfileCard />
+          <UsersSecondOpportunitiesCard /> */}
+          
 
-          </div>
-
-      </div>
-
-
-      {/* <Navbar />*/}
+        {/* <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} /> */}
+     
     </>
   )
 }

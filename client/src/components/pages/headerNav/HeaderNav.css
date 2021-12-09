@@ -1,0 +1,17 @@
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 45px;
+    padding: 10px;
+}
+
+.logout {
+    width: 43px;
+    height: 46px;
+    padding: 10px;
+}

@@ -24,10 +24,10 @@ const visualPage = {
   return (
     <>
 
-      <div>
+        <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
 
-        <h1>Click-me </h1>
-        <p>¿Verdad o mentira?</p>
+        <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
+        <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
         
           <div>
 

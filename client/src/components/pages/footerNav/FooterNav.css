@@ -1,0 +1,25 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+img.search {
+    width: 100px;
+}
+img.request {
+    width: 40px;
+}
+img.chat {
+    width: 35px;
+}
+img.second-chance {
+    width: 40px;
+}
+img.user {
+    width: 50px;
+}
+
+
+
+
+

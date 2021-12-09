@@ -3,7 +3,7 @@ import { Link, Button } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 import RequestService from "../../services/request.service";
-import UserCard from "./UserCard";
+import UserCard from "./userCard/UserCard";
 
 const MatchContext = createContext(null)
 
@@ -174,3 +174,5 @@ class AllUsers extends Component {
     )
   }
 }
+
+export default AllUsers

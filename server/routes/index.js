@@ -8,10 +8,7 @@ module.exports = app => {
   // app.use("/api/upload", require("./uploads.routes"));
   app.use("/api/messages", require("./messages.routes"));
   app.use("/api/checkForm", require("./checkForm.routes"));
-<<<<<<< HEAD
-=======
   app.use("/api/dates", require("./dates.routes"));
->>>>>>> dfd5f16
 
 }
 
