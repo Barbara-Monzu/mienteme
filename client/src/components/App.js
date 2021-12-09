@@ -12,6 +12,8 @@ import ChatOnline from './pages/chatOnline/ChatOnline';
 import PrivateChat from './pages/privateChat/PrivateChat';
 import AuthService from './services/auth.service';
 import CreateDate from './pages/createDate/CreateDate';
+import RequestPending from './requestPending/RequestPending';
+import SearchCard from './searchCard/SearchCard';
 // import UserProfile from './pages/profile/userProfile';
 
 
@@ -52,7 +54,7 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/" exact render={() => <Home logout={this.logout} loggedUser={this.state.loggedUser}/>} />
-            <Route path="/allUsers" exact render={() => <AllUsers />} />
+            <Route path="/inicio" exact render={() => <AllUsers />} />
             {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
             {this.state.loggedUser ?
               <Redirect to="/inicio" />
@@ -64,6 +66,8 @@ class App extends Component {
                 <Route path="/home" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/chat" render={() => <ChatOnline /> } />
                 <Route path="/privatechat" render={() => <PrivateChat /> } />
+                <Route path="/requestpending" render={() => <RequestPending /> } />
+                <Route path="/searchcard" render={() => <SearchCard /> } />
               </>
             }
       

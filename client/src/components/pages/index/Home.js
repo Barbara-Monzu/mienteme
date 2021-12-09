@@ -43,7 +43,7 @@ const visualPage = {
               <button onClick={props.logout} >Cerrar sesión</button>
             </Link>
 
-            <Link to="/allUsers" >
+            <Link to="/inicio">
               <button onClick={props.logout} >Usuarios</button>
             </Link>
 
@@ -57,6 +57,14 @@ const visualPage = {
 
             <Link to="/privatechat" >
               <button onClick={props.logout}>Conversación privada</button>
+            </Link>
+
+            <Link to="/requestpending" >
+              <button onClick={props.logout}>Peticiones</button>
+            </Link>
+
+            <Link to="/searchcard" >
+              <button onClick={props.logout}>Búsqueda</button>
             </Link>
 
           </div>

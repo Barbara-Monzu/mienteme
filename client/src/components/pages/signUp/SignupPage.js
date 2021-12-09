@@ -102,6 +102,7 @@ class SignupPage extends Component {
             </div>
             </form>
 
+              
               {/* <Modal.Dialog>
               <Modal.Header closeButton>
                 <Modal.Title>Modal title</Modal.Title>

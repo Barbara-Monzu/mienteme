@@ -5,29 +5,9 @@ const Date = require("../models/Date.model")
 router.post("/newUser/:id", (req, res) => {
   const { id } = req.params
 
-  const { username, 
-    profileImages, 
-    age, 
-    bio, 
-    genre,
-    city, 
-    location,
-    questionTrue,
-    questionFalse,
-    clue } = req.body
+  const {  username, profileImages, age, bio, genre, city, location, questionTrue, questionFalse, clue } = req.body
   
-  User.findByIdAndUpdate(id,  { 
-    username, 
-    profileImages, 
-    genre,
-    age, 
-    bio, 
-    city, 
-    location,
-    questionTrue,
-    questionFalse,
-    clue
-  }, { new: true })
+  User.findByIdAndUpdate(id, { username, profileImages, genre, age, bio, city, location, questionTrue, questionFalse, clue }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
