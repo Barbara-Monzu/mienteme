@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import "./ChatOnline.css";
-import Conversation from "../conversations/Conversation";
+import Conversation from "../conversations/Conversations";
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 //   const [friends, setFriends] = useState([]);

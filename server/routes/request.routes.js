@@ -30,7 +30,8 @@ router.get('/allSecondsOpportunities', (req, res) => {
 
 
 router.post('/create/:id/:idDate/:idCreator', (req, res) => {
-  const {idDate, id }  = req.params
+  const { idDate }  = req.params
+  const id = req.session.currentUser._id
 
   const createRequest = Request.create({ creator: id, receiver: idCreatorDate, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: idDate})
 
@@ -65,16 +66,11 @@ const answer = req.body
 
 //response será "YES" o "NO"
  
-answer ? 
   Request
     .findByIdAndUpdate({idRequest, tryAgain: "YES"}, { new: true })
     .then((secondOpportunity) => res.status(200).json({ message: 'Second Opportunity Done' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
-    
-: Request
-    .findByIdAndDelete({idRequest})
-    .then((secondOpportunity) => res.status(200).json({ message: 'Request delete' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error deleting request", err }))
+
 
 })
 

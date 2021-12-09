@@ -26,28 +26,6 @@ router.post("/newUser/:id", (req, res) => {
 // })
 
 
-router.post("/newUser/:id/newDate", (req, res) => {
-  const { id } = req.params
-  const { nameDate, description, picturesDate, street, number, city, category, day } = req.body
-
-  // if (User.findOne(id).sort( dates.length === 3 )) {
-  //   res.status(400).json({ code: 400, message: 'Ya tienes tres citas en tu perfil, borra alguna para poder crear una nueva' })
-  //   return
-  // }
-
-  Date.create({ 
-    nameDate, 
-    description, 
-    addressDate: {street, number, city},
-    category, 
-    picturesDate, 
-    day,
-    creator: id
-  })
-    .then(newDate => res.json(newDate))
-    .catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
-})
-
 
 router.get("/allUsers", (req, res) => {
 
@@ -65,19 +43,6 @@ router.get("/allUsers", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })
 
-
-router.get("/allWomen", (req, res) => {
-  User.find({ genre: { $in: ['WOMAN', "I DON NOT IDENTIFY WITH ANY GENDER"] }}).limit(200)
-    .then(allWomen => res.json(allWomen))
-    .catch(err => res.json({ err, errMessage: "Problema buscando a todas las Mujeres y lxs no identificados en ningún género" }))
-})
-
-
-router.get("/allMen", (req, res) => {
-  User.find({ genre: { $in: ['MEN', "I DON NOT IDENTIFY WITH ANY GENDER"] }}).limit(200)
-    .then(allMens => res.json(allMens))
-    .catch(err => res.json({ err, errMessage: "Problema buscando a todos los Hombres y lxs no identificados en ningún género" }))
-})
 
 router.get("/profile/:id", (req, res) => {
   const { id } = req.params
@@ -124,34 +89,7 @@ router.post("/profile/:id/edit-profile", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema editando al Usuario en el perfil del Usuario" }))
 })
 
-router.post("/profile/edit-date/:idDate", (req, res) => {
-  const { idDate } = req.params
-  const { nameDate, description, picturesDate, street, number, city, category, day } = req.body
 
-  Date.findByIdAndUpdate( idDate, { 
-    nameDate, 
-    description, 
-    street, 
-    number, 
-    city, 
-    category, 
-    picturesDate, 
-    day
-  }, {new: true} ) 
-    .then(editDate => res.json(editDate))
-		.catch(err => console.log(err))
-   
-})
-
-
-router.delete("/delete/:idDate", (req, res) => {
-  const { idDate } = req.params
-
-  Date.findByIdAndDelete(idDate)
-    .then(deleteDateUser => res.json(deleteDateUser))
-    .catch(err => console.log(err))
-
-})
 
 router.delete("/delete-profile/:id", (req, res) => {
   const { id } = req.params

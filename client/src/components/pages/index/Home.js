@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 
-const Home = (props) => {
+const  Home = (props) => {
 
 const visualPage = {
   display: "flex", 
@@ -39,34 +39,8 @@ const visualPage = {
               <button>Crear nueva cuenta</button>
             </Link>
 
-            <Link to="/" >
-              <button onClick={props.logout} >Cerrar sesión</button>
-            </Link>
 
-            <Link to="/inicio">
-              <button onClick={props.logout} >Usuarios</button>
-            </Link>
-
-            {/* <Link to="/userDetails" >
-              <button onClick={props.logout}>Detalles del Usuario</button>
-            </Link> */}
-
-            <Link to="/chat" >
-              <button onClick={props.logout}>Chat</button>
-            </Link>
-
-            <Link to="/privatechat" >
-              <button onClick={props.logout}>Conversación privada</button>
-            </Link>
-
-            <Link to="/requestpending" >
-              <button onClick={props.logout}>Peticiones</button>
-            </Link>
-
-            <Link to="/searchcard" >
-              <button onClick={props.logout}>Búsqueda</button>
-            </Link>
-
+            <div style={{marginTop: "20px"}}></div>
           </div>
 
       </div>

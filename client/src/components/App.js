@@ -1,6 +1,7 @@
 
 import './App.css';
 import Home from './pages/index/Home';
+import LoggedUserHome from './pages/index/LoggedUserHome';
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 // import Footer from './layout/Footer/Footer'
@@ -11,9 +12,7 @@ import AllUsers from './pages/allUsers/AllUsers';
 import ChatOnline from './pages/chatOnline/ChatOnline';
 import PrivateChat from './pages/privateChat/PrivateChat';
 import AuthService from './services/auth.service';
-import CreateDate from './pages/createDate/CreateDate';
-import RequestPending from './requestPending/RequestPending';
-import SearchCard from './searchCard/SearchCard';
+import { UserProvider } from './services/UserContext'
 // import UserProfile from './pages/profile/userProfile';
 
 
@@ -24,7 +23,7 @@ class App extends Component {
     this.state = {
       loggedUser: undefined
     }
-
+    
     this.authService = new AuthService()
   }
 
@@ -40,7 +39,9 @@ class App extends Component {
 
   logout = () => {
     this.authService.logout()
-      .then(response => this.storeUser(null))
+      .then(response => {
+        this.storeUser(null)
+        this.props.history.push("/")})
       .catch(err => console.log(err))
   }
 
@@ -49,32 +50,34 @@ class App extends Component {
     return (
       <>
 
-        {/* <Navbar storeUser={this.storeUser} loggedUser={this.state.loggedUser} /> */}
-
         <main>
           <Switch>
-            <Route path="/" exact render={() => <Home logout={this.logout} loggedUser={this.state.loggedUser}/>} />
-            <Route path="/inicio" exact render={() => <AllUsers />} />
-            {/* <Route path="/user/:id" render={(props) => <UserProfile {...props} />} /> */}
-            {this.state.loggedUser ?
-              <Redirect to="/inicio" />
+            {this.state.loggedUser ? 
+
+              <>
+              <Redirect to="/click-me" />
+              <UserProvider loggedUser={this.state.loggedUser} logout={this.logout}>
+              {/* El logged User solo se lo pasamos a la navbar que va a contener el botón 
+                para sacar el logged user, llamar a useContext y const { loggedUser } = useContext(UserContext)*/}
+              {/* Aquí debería estar solo la Home y en la Home el componente de allUsers y la Nav Bar. En la Nav sacar el logout del contexto global */}
+                <Route path="/click-me" exact render={() => <LoggedUserHome logout={this.logout}/>} />
+                <Route path="/allUsers" exact render={() => <AllUsers />} />
+                <Route path="/chat" render={() => <ChatOnline />} />
+                <Route path="/privatechat" render={() => <PrivateChat />} />
+              </UserProvider>
+  
+              </>
               :
               <>
-                
+                <Route path="/" exact render={() => <Home />} />
                 <Route path="/singup" render={(props) => <SignupPage {...props} storeUser={this.storeUser} />} />
                 <Route path="/login" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
-                <Route path="/home" render={(props) => <LoginPage {...props} storeUser={this.storeUser} />} />
-                <Route path="/chat" render={() => <ChatOnline /> } />
-                <Route path="/privatechat" render={() => <PrivateChat /> } />
-                <Route path="/requestpending" render={() => <RequestPending /> } />
-                <Route path="/searchcard" render={() => <SearchCard /> } />
               </>
             }
       
           </Switch>
         </main>
 
-        {/* <Footer /> */}
       </>
     )
   }

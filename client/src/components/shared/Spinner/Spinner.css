@@ -1,0 +1,19 @@
+.spinner.circle {
+    border-radius: 50%;
+    border-top: 6px solid rgb(210, 210, 210);
+    border-right: 6px solid rgb(210, 210, 210);
+    border-left: 6px solid black;
+    border-bottom: 6px solid black;
+    animation: rotateme .5s infinite
+}
+
+
+@keyframes rotateme {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

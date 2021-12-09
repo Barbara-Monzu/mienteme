@@ -20,6 +20,7 @@ class LoginPage extends Component {
 
     this.authService.login(this.state.email, this.state.pwd)
       .then(response => {
+        console.log(response)
         this.props.storeUser(response.data)
 
         this.props.history.push("/AllUsers")

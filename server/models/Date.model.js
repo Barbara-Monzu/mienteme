@@ -48,6 +48,7 @@ const dateSchema = new Schema(
 
 		category: {
 			type: String,
+			uppercase: true,
 			trim: true,
 			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM', 'OTHERS' ]
 		},

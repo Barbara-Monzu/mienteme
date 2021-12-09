@@ -34,7 +34,7 @@ const messageSchema = new Schema({
     delivered: { 
         type: Date,
         required: true,
-        default: Date.now() 
+        default: Date.now 
     },
   
     read: {

@@ -3,7 +3,8 @@ import axios from 'axios'
 class ConversationService {
   constructor() {
     this.app = axios.create({
-      baseURL: 'http://localhost:5005/api/conversation'
+      baseURL: 'http://localhost:5005/api/conversation',
+      withCredentials: true
     })
   }
 
