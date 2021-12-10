@@ -33,13 +33,13 @@ class UserCard extends Component {
 
   }
 
-  openModal = () => {
+  openTrivial = () => {
     this.setState({
       showTrivial: true
     })
   }
 
-  modalSuccess = () => {
+  openModalSuccess = () => {
     this.closeModal()
     this.setState({
       showResponse: true
@@ -53,7 +53,7 @@ class UserCard extends Component {
     })
   }
 
-  closeModal = () => {
+  closeModalTrivial = () => {
     this.setState({
       showTrivial: false
     })
@@ -72,7 +72,7 @@ class UserCard extends Component {
   }
 
   dateSelected = (date) => {
-    this.openModal()
+    this.openTrivial()
     this.setState({
       dateSelected: date
     })
@@ -106,8 +106,8 @@ class UserCard extends Component {
   }
 
   createConversation = () => {
-    this.modalSuccess()
-    this.closeModal()
+    this.openModalSuccess()
+    this.closeModalTrivial()
 
     this.conversationService.create(this.props[0]._id, this.state.dateSelected._id)
       .then(response => console.log("creando la conversación ==>", response.data))
@@ -139,9 +139,9 @@ class UserCard extends Component {
           <div key={i} className="date">
 
             <div onClick={() => this.dateSelected(elm)} className="detail">
-              <p>Cena</p>
-              <p className="date-description">{elm.nameDate}</p>
-              <p className="date-category">{elm.description}</p>
+              <p>{elm.nameDate}</p>
+              <p className="date-description">{elm.description}</p>
+              <p className="date-category">{elm.category}</p>
             </div>
 
           </div>
@@ -149,6 +149,7 @@ class UserCard extends Component {
         )}
         {/* <button onClick={this.openModal}>Quiero tener esta cita contigo</button> */}
 
+            {/* {this.state.random % 2 !== 0 } ? */}
         <Modal
           show={this.state.showTrivial}
           backdrop="static"
@@ -158,7 +159,6 @@ class UserCard extends Component {
             <Modal.Title>Adivina la mentira y podrás hablar conmigo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/* {this.random % 2 !== 0 } ? */}
             <div onClick={() => this.createConversation()} className="search-box">
 
               <div className="search-card two">
@@ -175,9 +175,8 @@ class UserCard extends Component {
             </div>
 
           </Modal.Body>
-
         </Modal>
-
+            
         <Modal
           show={this.state.showResponse}
           backdrop="static"

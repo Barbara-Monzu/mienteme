@@ -129,7 +129,7 @@ class LoggedUserHome extends Component {
     randomUserPending = () => {
         const randomUser = Math.floor(Math.random() * this.state.allUsersPending.length)
         const copyPendingPeople = [...this.state.allUsersPending]
-        const newRandomUser = this.state.allUsersPending?.splice(randomUser, 1)
+        const newRandomUser = copyPendingPeople?.splice(randomUser, 1)
         this.setState({
             selectedUserPending: newRandomUser,
             allUsersPending: copyPendingPeople
@@ -139,7 +139,7 @@ class LoggedUserHome extends Component {
     randomUserSecondsOpportunities = () => {
         const randomUser = Math.floor(Math.random() * this.state.allUsersSecondsOpportunities.length)
         const copySecondsOpportunitiesPeople = [...this.state.allUsersSecondsOpportunities]
-        const newRandomUser = this.state.allUsersSecondsOpportunities?.splice(randomUser, 1)
+        const newRandomUser = copySecondsOpportunitiesPeople?.splice(randomUser, 1)
 
         this.setState({
             selectedUserSecondOpportunities: newRandomUser,

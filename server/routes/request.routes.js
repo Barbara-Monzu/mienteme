@@ -11,7 +11,7 @@ router.get('/allRequestPending', (req, res) => {
   const id = req.session.currentUser._id
 
   Request
-    .find({ receiver: id })
+    .find({ $and: [ { receiver: id, tryAgain: "PENDING"} ] })
     .populate(["creator", "dateSelected"])
     .then(Request => res.status(200).json(Request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
@@ -22,7 +22,7 @@ router.get('/allSecondsOpportunities', (req, res) => {
   const id = req.session.currentUser._id
 
   Request
-    .find({ creator: id, tryAgain: "YES"})
+    .find({ $and: [ { creator: id, tryAgain: "YES"} ] })
     .populate(["receiver", "dateSelected"])
     .then(Request => res.status(200).json(Request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
