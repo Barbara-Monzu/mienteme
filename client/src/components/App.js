@@ -55,14 +55,13 @@ class App extends Component {
         <main>
           <Switch>
             {this.state.loggedUser ? 
-
               <>
               <Redirect to="/click-me" />
-              <UserProvider loggedUser={this.state.loggedUser} logout={this.logout}>
+              <UserProvider loggedUser={this.state.loggedUser} logout={this.logout} storeUser={this.storeUser}>
               {/* El logged User solo se lo pasamos a la navbar que va a contener el botón 
                 para sacar el logged user, llamar a useContext y const { loggedUser } = useContext(UserContext)*/}
               {/* Aquí debería estar solo la Home y en la Home el componente de allUsers y la Nav Bar. En la Nav sacar el logout del contexto global */}
-                <Route path="/click-me" exact render={() => <LoggedUserHome logout={this.logout}/>} />
+                <Route path="/click-me" exact render={() => <LoggedUserHome logout={this.logout} loggedUser={this.state.loggedUser}/>} />
         
                 <Route path="/chat" render={() => <ChatOnline />} />
                 <Route path="/privatechat" render={() => <PrivateChat />} />

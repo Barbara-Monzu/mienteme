@@ -12,7 +12,7 @@ const userSchema = new Schema(
 
     password: {
 	    type: String,
-	    // required: true,
+	    required: true,
 	  },
 
     profileImages: {
@@ -39,7 +39,7 @@ const userSchema = new Schema(
       uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
       enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
-      // required: true,
+      required: true,
     },
 
     bio: {
@@ -63,6 +63,7 @@ const userSchema = new Schema(
     city: {
       type: String,
       max: 50,
+      uppercase: true,
     },
 
     location: {

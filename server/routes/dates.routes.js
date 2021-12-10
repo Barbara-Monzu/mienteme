@@ -44,8 +44,8 @@ router.post("/new", (req, res) => {
      
   })
 
-  router.get("/mydates", (req, res) => {
-    const id = req.session.currentUser._id
+  router.get("/mydates/:id", (req, res) => {
+    const {id} = req.params
   
     Date.find({creator: id})
       .then( Mydates => res.json(Mydates))
@@ -54,7 +54,8 @@ router.post("/new", (req, res) => {
   })
 
   router.get("/its-dates/:idOtherUser", (req, res) => {
-    const idOtherUser = req.params
+
+    const { idOtherUser } = req.params
   
     Date.find({creator: idOtherUser })
       .then( itsDates => res.json(itsDates))

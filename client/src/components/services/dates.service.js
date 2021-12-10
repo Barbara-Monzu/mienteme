@@ -11,7 +11,7 @@ class DatesService {
 
   editDate = (idDate, newData) => this.app.post(`/edit-date/${idDate}`, newData)
 
-  getOwnDates = () => this.app.get("/mydates")
+  getOwnDates = (id) => this.app.get(`/mydates/${id}`)
 
   getUserDates = (idOtherUser) => this.app.get(`/its-dates/${idOtherUser}`)
 

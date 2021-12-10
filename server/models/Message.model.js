@@ -2,15 +2,9 @@ const { Schema, model } = require('mongoose')
 
 const messageSchema = new Schema({
 
-    message:{
-        text: { 
-            type:String, 
-            required: true 
-        },
-  
-        image: {
-            type: String
-        }
+    message: {
+        type:String, 
+        required: true 
   
     },
 

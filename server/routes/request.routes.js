@@ -29,11 +29,13 @@ router.get('/allSecondsOpportunities', (req, res) => {
 })
 
 
-router.post('/create/:id/:idDate/:idCreator', (req, res) => {
-  const { idDate }  = req.params
+router.post('/create/:date/', (req, res) => {
+  const { date }  = req.params
   const id = req.session.currentUser._id
 
-  const createRequest = Request.create({ creator: id, receiver: idCreatorDate, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: idDate})
+ Request.create({ creator: id, receiver: date.creator, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: date._id})
+     .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
 
   // mi id va a ser current user, se eliminará de la barra 
 

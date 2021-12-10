@@ -9,7 +9,9 @@ class ConversationService {
   }
 
   getAllConversations = () => this.app.get("/all")
-  createConversation = (idDate) => this.app.post(`/created/${idDate}`)
+
+  create = (idOtherUser, idDate) => this.app.post(`/create/${idDate}`, idOtherUser)
+
 
 }
 

@@ -12,6 +12,15 @@ router.post("/newUser/:id", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
 
+router.post("/new", (req, res) => {
+
+  const {  username, profileImages, age, bio, genre, city, questionTrue, questionFalse, clue } = req.body
+  
+  User.create({ username, profileImages, genre, age, bio, city, questionTrue, questionFalse, clue })
+    .then(createUserInfo => res.json(createUserInfo))
+    .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
+})
+
 // router.post("/user/newDate", (req, res) => {
 //   const { nameDate, description } = req.body
 
@@ -33,7 +42,6 @@ router.get("/allUsers", (req, res) => {
   // const filterGenre = req.body.filter.genre
   // const filterAgeSince = req.body.filter.age[0]
   // const filterAgeTo = req.body.filter.age[1]
-
 
 
   //   if( filterGenre === "WOMEN") 

@@ -7,15 +7,18 @@ import { Form, Button, Modal, Container, Link } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 import RequestService from "../../services/request.service";
-import HeaderNav from "../headerNav/HeaderNav";
+import HeaderNav from "../headerNav/HeaderNav"
+import AuthService from '../../services/auth.service';
+
 
 const MatchContext = createContext(null)
 
 
 class LoggedUserHome extends Component {
 
-    constructor() {
-        super()
+
+    constructor(props) {
+        super(props)
 
         this.state = {
             people: [],
@@ -45,9 +48,16 @@ class LoggedUserHome extends Component {
         this.PeopleService = new PeopleService()
         this.serviceCheckForm = new CheckFirstFormService()
         this.serviceRequest = new RequestService()
-
+        this.authService = new AuthService()
 
     }
+
+    logout = () => {
+        this.authService.logout()
+          .then(response => {
+            this.props.history.push("/")})
+          .catch(err => console.log(err))
+      }
 
     componentDidMount() {
         // this.showForm() 
@@ -89,8 +99,12 @@ class LoggedUserHome extends Component {
                 //   }
 
                 // else {
-                const people = response.data
-                console.log("estoy mirando la respuesta", response.data)
+                const people = response.data.filter(elm => 
+                    elm._id !== this.props.loggedUser._id)
+
+                    console.log("todos los usuarios menos yo", people)
+                    
+              
                 this.setState({ people: people }, () => this.randomUserGlobal())
                 // }
 
@@ -185,20 +199,19 @@ class LoggedUserHome extends Component {
                   Crea tu primer cita
                 </Button>
             </Modal.Footer> */}
-            
             <HeaderNav />
 
                 </Modal>
-                {this.state.selectedUser ? (<UserCard {...this.state.selectedUser} next={this.randomUserGlobal}/>) : null}
-
+                {this.state.selectedUser ? (<UserCard {...this.state.selectedUser} next={this.randomUserGlobal} loggedUser={this.props.loggedUser} />) : null}
+                <button onClick={this.logout()}>Log out</button>
                 <FooterNav />
 
-                {/* <Conversations />
+        {/* <Conversations />
 
           <UsersRequestPendingCard />
           <SearchCard />
           <ProfileCard />
-          <UsersSecondOpportunitiesCard /> */}
+          <UsersSecondOpportunitiesCard />  */}
 
 
                 {/* <UserProfile refreshUsers={this.refreshUsers} people={this.state.people} /> */}
