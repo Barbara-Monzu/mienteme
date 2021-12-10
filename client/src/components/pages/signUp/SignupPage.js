@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import { Container, form, Button, Row, Col } from 'react-bootstrap'
 import AuthService from '../../services/auth.service'
-import CreateUser from '../createUser/CreateUser'
+// import EditProfile from '../editProfile/EditProfile'
 import { Modal, Form, Button  } from 'react-bootstrap';
 import './SignupPage.css'
 
@@ -66,7 +66,7 @@ class SignupPage extends Component {
                 Registrarme
               </button>
             
-             {/* <CreateUser /> */}
+             {/* <EditProfile /> */}
 
               {/* <Link to="/userDetails" style={{margin: "10px"}}>
                 <Button variant="dark" size="lg">Crea tu cita</Button>

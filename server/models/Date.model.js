@@ -53,9 +53,9 @@ const dateSchema = new Schema(
 			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM', 'OTHERS' ]
 		},
 
-		// day: {
-		// 	type: Date,
-		// },
+		day: {
+			type: String,
+		},
 
 		creator: {
 			type: Schema.Types.ObjectId,

@@ -31,21 +31,6 @@ router.post('/if-exist/:idDate', (req, res) => {
   })
 
 
-  // router.get('/all', (req, res) => {
-
-  //   const id = req.session.currentUser._id
-
-  //   Request 
-  //     .find({$and: 
-  //               [
-  //                   { $or: [{creator: id}, {sender: id}] },
-  //                   { guessed: true }
-  //               ]
-  //             })
-  //     .then(conversations => res.status(200).json(conversations))
-  //     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
-  // })
-
   router.get('/all', (req, res) => {
 
     const id = req.session.currentUser._id

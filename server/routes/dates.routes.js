@@ -62,6 +62,61 @@ router.post("/new", (req, res) => {
       .catch(err => console.log(err))
   
   })
+
+  router.get("/gastronomy-dates/", (req, res) => {
+
+  
+    Date.find({category: "GASTRONOMY" })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
+
+  router.get("/culture-dates/", (req, res) => {
+
+  
+    Date.find({category: 'CULTURE' })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
+  
+  router.get("/nature-dates/", (req, res) => {
+
+  
+    Date.find({category: 'NATURE' })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
+
+  router.get("/random-dates/", (req, res) => {
+
+  
+    Date.find({category: 'RANDOM' })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
+
+  router.get("/others-dates/", (req, res) => {
+
+  
+    Date.find({category: 'OTHERS' })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
+
+  router.get("/byday-dates", (req, res) => {
+
+    const { day } = req.body
+  
+    Date.find({ day: day })
+      .then( gastronomyDates => res.json(gastronomyDates))
+      .catch(err => console.log(err))
+  
+  })
   
   
   router.delete("/delete/:idDate", (req, res) => {

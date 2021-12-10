@@ -25,7 +25,7 @@ class UserCard extends Component {
     this.requestService = new RequestService()
     this.conversationService = new ConversationService()
     this.random = Math.floor(Math.random() * 100)
-    console.log(this.props[0]._id)
+    console.log(this.props._id)
   }
 
   componentDidMount() {
@@ -47,7 +47,7 @@ class UserCard extends Component {
   }
 
   modalWrong = () => {
-    this.closeModal()
+    this.closeModalTrivial()
     this.setState({
       showRequest: true
     })
@@ -67,7 +67,7 @@ class UserCard extends Component {
 
   closeModalResponse = () => {
     this.setState({
-      showResponse: true
+      showResponse: false,
     })
   }
 
@@ -79,7 +79,7 @@ class UserCard extends Component {
   }
 
   showDates = () => {
-    this.datesService.getUserDates(this.props[0]._id)
+    this.datesService.getUserDates(this.props._id)
       .then(response => {
         console.log("estoy mirando las citas del otro ==>", response.data)
         this.setState({
@@ -90,10 +90,10 @@ class UserCard extends Component {
   }
 
   nextUser = () => {
-    this.props.next()
+    this.closeModalRequest()
+    this.closeModalResponse()
+    this.props.getRandomUser()
     this.showDates()
-    // this.closeModalRequest()
-    // this.closeModalResponse()
   }
 
 
@@ -109,7 +109,7 @@ class UserCard extends Component {
     this.openModalSuccess()
     this.closeModalTrivial()
 
-    this.conversationService.create(this.props[0]._id, this.state.dateSelected._id)
+    this.conversationService.create(this.props._id, this.state.dateSelected._id)
       .then(response => console.log("creando la conversación ==>", response.data))
       .catch(err => console.log("hay un error crear conver en el front", err))
   }
@@ -118,15 +118,15 @@ class UserCard extends Component {
     return (
 
       <div className="card">
-        <img className="profile-pic" src={this.props[0].profileImages} />
+        <img className="profile-pic" src={this.props.profileImages} />
 
 
         <div className="card-pic-container">
-          <img className="card-pic" src={this.props[0].profileImages} />
+          <img className="card-pic" src={this.props.profileImages} />
 
           <div className="info">
-            <p className="card-name">{this.props[0].username}</p>
-            <p className="card-age">{this.props[0].age}</p>
+            <p className="card-name">{this.props.username}</p>
+            <p className="card-age">{this.props.age}</p>
           </div>
           <button onClick={() => this.nextUser()}>Next</button>
           {/* <p className="card-bio">Lo que sea</p> */}
@@ -153,7 +153,7 @@ class UserCard extends Component {
         <Modal
           show={this.state.showTrivial}
           backdrop="static"
-          onHide={this.closeModal}
+          onHide={this.closeModalTrivial}
         >
           <Modal.Header closeButton>
             <Modal.Title>Adivina la mentira y podrás hablar conmigo</Modal.Title>
@@ -162,14 +162,14 @@ class UserCard extends Component {
             <div onClick={() => this.createConversation()} className="search-box">
 
               <div className="search-card two">
-                <p className="search-title">{this.props[0].questionTrue}</p>
+                <p className="search-title">{this.props.questionTrue}</p>
               </div>
 
             </div>
             <div onClick={() => this.modalWrong()} className="search-box">
 
               <div className="search-card two">
-                <p className="search-title">{this.props[0].questionFalse}</p>
+                <p className="search-title">{this.props.questionFalse}</p>
               </div>
 
             </div>
@@ -188,7 +188,7 @@ class UserCard extends Component {
           <Modal.Body>
             {/* {this.random % 2 !== 0 } ? */}
             <Link to="/privatechat" style={{ margin: "10px" }}>
-              <p className="search-title">Chatea con {this.props[0].username}</p>
+              <p className="search-title">Chatea con {this.props.username}</p>
               {/* <PrivateChat {...props}/> */}
             </Link>
 
@@ -206,7 +206,7 @@ class UserCard extends Component {
           onHide={this.closeModalRequest}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Fallaste, ¿Quieres pedirle a {this.props[0].username} una segunda oportunidad?</Modal.Title>
+            <Modal.Title>Fallaste, ¿Quieres pedirle a {this.props.username} una segunda oportunidad?</Modal.Title>
             <button onClick={() => this.createRequest()}>Sí </button>
 
             <Link to="/click-me" style={{margin: "10px"}}>

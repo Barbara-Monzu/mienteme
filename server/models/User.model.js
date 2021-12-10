@@ -34,7 +34,7 @@ const userSchema = new Schema(
       min: 18
     },
 
-    genre: { 
+    gender: { 
       type: String,
       uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
@@ -47,13 +47,13 @@ const userSchema = new Schema(
     },
 
     filter: { 
-      genre: {
-        type: [String],
+      genderFilter: {
+        type: String,
         uppercase: true,
         enum: ['WOMEN', 'MEN', 'BOTH' ],
       },
 
-      age: {
+      ageFilter: {
         type: [Number],
         min: 18,
         max: 80

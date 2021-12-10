@@ -1,6 +1,7 @@
 
+
 import React, { Component, createContext } from "react";
-import CreateUser from "../createUser/CreateUser";
+import EditProfile from "../editProfile/EditProfile";
 import UserCard from '../allUsers/userCard/UserCard'
 import FooterNav from "../footerNav/FooterNav";
 import { Form, Button, Modal, Container, Link } from 'react-bootstrap'
@@ -184,30 +185,12 @@ class LoggedUserHome extends Component {
         return (
             <>
 
-                <Modal>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Crea tu usuario</Modal.Title>
-                    </Modal.Header>
-
-                    <Modal.Body>
-
-                        <CreateUser />
-
-                    </Modal.Body>
-                    {/* <Modal.Footer>
-                <Button onClick={() => setModal(!modal)} variant="primary" type="submit">
-                  Crea tu primer cita
-                </Button>
-            </Modal.Footer> */}
-            <HeaderNav />
-
-                </Modal>
+    
                 {this.state.selectedUser ? (<UserCard {...this.state.selectedUser} next={this.randomUserGlobal} loggedUser={this.props.loggedUser} />) : null}
                 <button onClick={this.logout()}>Log out</button>
                 <FooterNav />
 
         {/* <Conversations />
-
           <UsersRequestPendingCard />
           <SearchCard />
           <ProfileCard />

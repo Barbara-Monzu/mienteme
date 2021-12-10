@@ -1,40 +1,50 @@
-import React from 'react'
+import UserContext from '../../services/UserContext'
+import React, { useState, useEffect, useContext } from 'react'
 import './RequestPending.css'
 import { Link } from "react-router-dom"
-import FooterNav from '../footerNav/FooterNav'
-import HeaderNav from '../headerNav/HeaderNav'
+import RequestService from "../../services/request.service";
+import UserCard from '../allUsers/userCard/UserCard';
+
+
+const requestService = new RequestService()
+
 const RequestPending = () => {
-    
-    // const [ requets, setRequets ] = useState({
-    //     creator: undefined,
-    //     receiver: undefined,
-    // })
-// }
+
+    // const { allUsers } = useContext(UserContext)
+
+    let usersPendings;
+    let [randomUser, setRandomUser] = useState();
+
+useEffect(() => {
+    getRequestPending()
+  }, [])
+
+
+
+const getRequestPending = () => {
+    requestService.getAllRequestPending()
+        .then(response => {
+            usersPendings = response.data
+            getRandomUser()
+        })
+        .catch(err => console.log(err))
+
+
+}
+
+const getRandomUser = () => {
+    const index = Math.floor(Math.random() * usersPendings.length)
+    [randomUser] = usersPendings?.splice(index, 1)
+    setRandomUser(randomUser)
+
+}
+
     return (
 
-
-        <div className="request-card">
-            <HeaderNav />
-
-            <div className="request-card-pic-container">
-                <img className="request-card-pic" src="https://www.fundaciocaixaltea.com/wp-content/uploads/2018/01/default-profile.png"/>
-
-                <div className="request-info">
-                    <p className="request-card-name">Guido</p>
-                    <p className="request-card-age">27</p>
-                </div>
-            </div>
-
-            <p className="request-date-title">Cita Seleccionada</p>
-
-            <div className="request-date">
-                <p>Cena</p>
-                <p>Una rica cena</p>
-                <p>GASTRONOMÍA</p>
-            </div>
-
-            <FooterNav />
-    </div>
+        <div className="second-card">
+        {randomUser ? (<UserCard {...randomUser} next={getRandomUser} />) : null}
+               
+        </div>
     )
 }
 

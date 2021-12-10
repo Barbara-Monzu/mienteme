@@ -14,7 +14,19 @@ class DatesService {
   getOwnDates = (id) => this.app.get(`/mydates/${id}`)
 
   getUserDates = (idOtherUser) => this.app.get(`/its-dates/${idOtherUser}`)
+  
+  getGastronomyDates = () => this.app.get(`/gastronomy-dates`)
 
+  getCultureDates = () => this.app.get(`/culture-dates`)
+
+  getNatureDates = () => this.app.get(`/nature-dates`)
+
+  getRandomDates = () => this.app.get(`/random-dates`)
+
+  getOthersDates = () => this.app.get(`/others-dates` )
+
+  getByDay = (day) => this.app.get(`/byday-dates`, day)
+  
   deleteDate = (idDate) => this.app.delete(`/delete/${idDate}`)
 
 }

@@ -8,13 +8,12 @@ class UsersService {
     })
   }
 
-  getAllUsers = () => this.app.get("/allUsers")
+  getAllUsers = (filter) => this.app.get("/allUsers", filter)
 
   getOneUser = (id) => this.app.get(`/profile/${id}`)
 
   editProfile = (id, newData) => this.app.post(`/profile/${id}/edit-profile`, newData)
 
-  
   deleteProfile = (id, newData) => this.app.delete(`/delete-profile/${id}`, newData)
 }
 

@@ -2,51 +2,42 @@ const router = require("express").Router()
 const User = require("../models/User.model")
 const Date = require("../models/Date.model")
 
-router.post("/newUser/:id", (req, res) => {
+router.post("/profile/:id/edit-profile", (req, res) => {
+
   const { id } = req.params
 
-  const {  username, profileImages, age, bio, genre, city, location, questionTrue, questionFalse, clue } = req.body
+  const {  username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter } = req.body
   
-  User.findByIdAndUpdate(id, { username, profileImages, genre, age, bio, city, location, questionTrue, questionFalse, clue }, { new: true })
+  User.findByIdAndUpdate(id, { username, profileImages, genre, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter]} }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
-
-router.post("/new", (req, res) => {
-
-  const {  username, profileImages, age, bio, genre, city, questionTrue, questionFalse, clue } = req.body
-  
-  User.create({ username, profileImages, genre, age, bio, city, questionTrue, questionFalse, clue })
-    .then(createUserInfo => res.json(createUserInfo))
-    .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
-})
-
-// router.post("/user/newDate", (req, res) => {
-//   const { nameDate, description } = req.body
-
-
-//   Date.create({ 
-//     nameDate, 
-//     description, 
- 
-//   })
-//     .then(newDate => res.json(newDate))
-//     .catch(err => res.json({ err, errMessage: "Problema creando la primera cita del User" }))
-// })
-
 
 
 router.get("/allUsers", (req, res) => {
 
-  // const id = req.session.currentUser._id
-  // const filterGenre = req.body.filter.genre
-  // const filterAgeSince = req.body.filter.age[0]
-  // const filterAgeTo = req.body.filter.age[1]
+  const id = req.session.currentUser._id
+  const { genderFilter, ageFilter  } = req.session.currentUser.filter
 
+  User.find({ $and: [{ gender : genderFilter } , { age : { $gte : ageFilter[0] , $lte : ageFilter[1]} } ] } )
+    .then(allUsers => res.json(allUsers))
+    .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+})
 
-  //   if( filterGenre === "WOMEN") 
+router.get("/allWomen", (req, res) => {
 
-  User.find()
+  const id = req.session.currentUser._id
+
+  User.find( { $and: [ { gender: "WOMEN" }, { gender: 'I DON NOT IDENTIFY WITH ANY GENDER'}] } )
+    .then(allUsers => res.json(allUsers))
+    .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+})
+
+router.get("/allMen", (req, res) => {
+
+  const id = req.session.currentUser._id
+
+  User.find( { $and: [ { gender: "WOMEN" }, { gender: 'I DON NOT IDENTIFY WITH ANY GENDER'}] } )
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })

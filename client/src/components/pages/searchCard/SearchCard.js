@@ -2,9 +2,35 @@ import React from 'react'
 import './SearchCard.css'
 import HeaderNav from '../headerNav/HeaderNav'
 import FooterNav from '../footerNav/FooterNav'
+// import DatesService from "../../../services/dates.service"
 
-const SearchCard = () => {
+const SearchCard = (props) => {
     
+// const datesService = new DatesService()
+// const dates = []
+// let filteredDate = []
+
+
+// getDates()
+// filterByDate()
+
+// const getDates = () => {
+//     datesService.getAllDates()
+//       .then(response => {
+//         console.log("estoy mirando todas las citas ==>", response.data)
+//         dates = [...response.data] 
+//       })
+//       .catch(err => console.log("hay un error al conseguir las citas en el SearchBar", err))
+//   }
+
+
+// const filterByDate = () => {
+//       for(let i = 0; i <= props.users.length; i++) {
+//           let [ one ]= dates.filter( elm => elm.creator === props.users[i]._id )
+//            filteredDate.push(one)
+//       }
+
+//     }
 
     return (
         <>
