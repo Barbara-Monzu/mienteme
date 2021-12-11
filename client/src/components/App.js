@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import './App.css';
 import AuthService from './services/auth.service';
-import NoLoggedRoutes from "./pages/routes/NoLoggedRoutes"
+import NoLoggedRoutes from "./pages/index/NoLoggedRoutes"
 import { UserProvider } from './services/UserContext'
 import AllRoutes from "./pages/index/AllRoutes";
 

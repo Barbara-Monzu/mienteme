@@ -8,7 +8,7 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const {  username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter } = req.body
   
-  User.findByIdAndUpdate(id, { username, profileImages, genre, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter]} }, { new: true })
+  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter]} }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
@@ -59,35 +59,6 @@ router.get("/profile/:id", (req, res) => {
 
   }
 )
-
-
-router.post("/profile/:id/edit-profile", (req, res) => {
-  const { id } = req.params
-
-  const { username, 
-    profileImages, 
-    age, 
-    bio, 
-    city, 
-    location,
-    questionTrue,
-    questionFalse,
-    clue } = req.body
-
-  User.findByIdAndUpdate(id, { username, 
-    profileImages, 
-    age, 
-    bio, 
-    city, 
-    location,
-    questionTrue,
-    questionFalse,
-    clue }, { new: true })
-
-  .then(updatedUser => res.json(updatedUser))
-    .catch(err => res.json({ err, errMessage: "Problema editando al Usuario en el perfil del Usuario" }))
-})
-
 
 
 router.delete("/delete-profile/:id", (req, res) => {

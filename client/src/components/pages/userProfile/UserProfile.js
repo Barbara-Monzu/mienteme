@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import DatesService from "../../services/dates.service";
-import UserCard from '../allUsers/userCard/UserCard'
 import UserContext from '../../services/UserContext'
+import { Link, useHistory } from 'react-router-dom'
 
 
 const datesService = new DatesService()
@@ -10,7 +10,7 @@ const UserProfile = () => {
 
   const { loggedUser } = useContext(UserContext)
   const[dates, setMydates] = useState([])
-  let dateSelected;
+  const[dateSelected, setdateSelected] = useState(undefined)
   
   useEffect(() => {
     showDates()
@@ -64,7 +64,12 @@ const UserProfile = () => {
 
           </div>
 
+
         )}
+
+        <Link className="link" to="/editar-perfil">
+                Editar perfil
+            </Link>
 
 
       </div>

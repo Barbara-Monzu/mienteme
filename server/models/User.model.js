@@ -13,11 +13,13 @@ const userSchema = new Schema(
     password: {
 	    type: String,
 	    required: true,
+
 	  },
 
     profileImages: {
       type: [String],
       default: "",
+
     },
     
     email: {
@@ -27,11 +29,13 @@ const userSchema = new Schema(
       match: [/\S+@\S+\.\S+/, 'is invalid'], 
       index: true,
 	    unique: true
+
     },
 
     age: {
       type: Number,
       min: 18
+
     },
 
     gender: { 
@@ -40,10 +44,12 @@ const userSchema = new Schema(
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
       enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
       required: true,
+
     },
 
     bio: {
       type: String,
+
     },
 
     filter: { 
@@ -53,56 +59,51 @@ const userSchema = new Schema(
         uppercase: true,
         required: true,
         default: 'BOTH',
+
       },
 
       ageFilter: {
-        type: [Number],
+        type: [String],
         required: true,
         default: [18, 80],
         min: 18,
         max: 80
+
       },
+
     },
 
     city: {
       type: String,
       max: 50,
       uppercase: true,
+
     },
 
     location: {
 			type: {
 				type: String,
 				default: "Point",
+
 			},
+
 			coordinates: {
 				type: [Number],
 				maxlength: 2,
 				index: "2dsphere",
+
 			}
+
 		},
 
     questionTrue: {
-        text: {
           type: String, 
-        },
-  
-        type: {
-          type: Boolean, 
-          default: true,
-        }
+
       },
   
       questionFalse: {
-        text: {
-  
-          type:String, 
-        },
-        
-        type: {
-          type: Boolean, 
-          default: false,
-        }
+        type: String,
+
       },
   
       clue: {
