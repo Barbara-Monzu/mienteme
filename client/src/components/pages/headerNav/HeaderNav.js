@@ -8,7 +8,7 @@ const authService = new AuthService()
 
 const HeaderNav = () => {
 
-    const { storeUser } = useContext(UserContext)
+    const { storeUser, loggedUser } = useContext(UserContext)
     
     // let history = useHistory()
   
@@ -31,7 +31,7 @@ const HeaderNav = () => {
         <div className="header-nav">
 
          <Link to="/perfil" style={{margin: "10px"}}>
-         <img className="profile-pic" src="https://www.fundaciocaixaltea.com/wp-content/uploads/2018/01/default-profile.png"/>
+         <img className="profile-pic" src={loggedUser.profileImages[0]}/>
         </Link>
             
         

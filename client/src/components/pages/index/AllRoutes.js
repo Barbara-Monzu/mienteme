@@ -61,9 +61,9 @@ const AllRoutes = () => {
               {/* <Route path="/editar-cita" render={() => <EditFormDate />} /> */}
 
             </Switch>
+          </UsersSelected.Provider>
 
             <FooterNav />
-          </UsersSelected.Provider>
 
         </Router>
 
