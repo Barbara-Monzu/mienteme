@@ -29,16 +29,20 @@ const SecondOpportunity = () => {
 
     const getRandomUser = () => {
         const index = Math.floor(Math.random() * usersSecondsOpportunities.length)
-        [randomUser] = usersSecondsOpportunities?.splice(index, 1);
+        index && ([randomUser] = usersSecondsOpportunities?.splice(index, 1))
         setRandomUser(randomUser);
     }
 
 
     return (
+<>
+        <p>Se está renderizando Segundas Oportunidades</p>
+
         <div className="second-card">
-            {randomUser ? (<UserCard {...randomUser} next={getRandomUser} />) : null}
-            <button onClick={this.logout()}>Log out</button>
+            {randomUser ? (<UserCard user={randomUser} next={getRandomUser} />) : <p>Aún no te han dado Segundas Oportunidades</p>}
+    
         </div>
+</>
     )
 }
 

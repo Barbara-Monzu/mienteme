@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react"
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import './App.css';
 import AuthService from './services/auth.service';
-import LoggedRoutes from "./pages/routes/LoggedRoutes"
 import NoLoggedRoutes from "./pages/routes/NoLoggedRoutes"
 import { UserProvider } from './services/UserContext'
-// import UserProfile from './pages/profile/userProfile';
+import AllRoutes from "./pages/index/AllRoutes";
+
 
 const authService = new AuthService()
 
-const App = props => {
-  
-  const [loggedUser, setLoggedUser] = useState(undefined)
+const App = () => {
+
+  const [loggedUser, setLoggedUser] = useState(null)
 
   const storeUser = user => setLoggedUser(user)
 
@@ -22,28 +22,33 @@ const App = props => {
   }
 
   useEffect(() => {
+
     fetchUser()
   }, [])
 
+  console.log("Usuario logueado _____>>>>>", loggedUser)
 
   return (
     <>
-    
-    <main>
 
-        {loggedUser !== undefined ?
+      <main>
 
+
+        <Router>
           <UserProvider value={{ loggedUser, storeUser, fetchUser }}>
-            <LoggedRoutes />
+            
+            {loggedUser === null ?
+             <NoLoggedRoutes />
+            
+            : (<AllRoutes />)}
+
           </UserProvider>
 
-          :
+        </Router>
 
-          <NoLoggedRoutes />
-         
-        }
-      
-        </main>
+        {/* } */}
+
+      </main>
     </>
   )
 }

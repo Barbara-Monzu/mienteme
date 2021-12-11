@@ -1,73 +1,101 @@
-import React, { Component } from 'react'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import React, { useContext, useState } from 'react'
 import AuthService from '../../services/auth.service'
-import imgPortada from '../../../images/Portada.jpg'
+import { Link, useHistory } from 'react-router-dom'
+import UserContext from "../../services/UserContext"
 
-class LoginPage extends Component {
-  constructor(props) {
-    super(props)
+const authService = new AuthService()
 
-    this.state = {
-      email: "",
-      pwd: ""
-    }
+const LoginPage = props => {
+  
+  const [formData, setFormData] = useState({ email: '', pwd: '' })
+  
+  let history = useHistory()
 
-    this.authService = new AuthService()
-  }
+	const { storeUser } = useContext(UserContext)
 
-  handleSubmit = (e) => {
-    e.preventDefault();
 
-    this.authService.login(this.state.email, this.state.pwd)
-      .then(response => {
-        console.log(response.data)
-        this.props.storeUser(response.data)
+	const clearState = () => {
+		setFormData({ email: '', pwd: '' })
+	}
 
-        this.props.history.push("/click-me")
+	const handleChange = e => {
+		const { name, value } = e.target
+		setFormData({ ...formData, [name]: value })
+	}
 
-      })
-      .catch(err => console.log(err.response.data.message))
-  }
+	const handleSubmit = e => {
+		e.preventDefault()
 
-  handleInputChange = (e) => {
-    const { name, value } = e.currentTarget
+		const { email, pwd } = formData
 
-    this.setState({ [name]: value })
-  }
+		authService
+			.login(email, pwd)
+			.then(res => {
+				storeUser(res.data)
+				history.push('/click-me')
+				clearState()
+			})
+			.catch(err => console.error(err))
+	}
 
-  render() {
+
     return (
-      (
+      
+      
+      <div>
 
-        <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", height: "100vh"}}>
-          <Row style={{paddingTop: "150px"}}>
+      <div className="project-logo-container">
+        <div className="project-logo-box">
+          <img className="project-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/521px-Love_Heart_symbol.svg.png" />
+        </div>
 
-            <Col md={{ span: 4, offset: 4 }}>
-              <h2>Entrar</h2>
+      </div>
+      <h2 className="signup">Inicia sesión</h2>
 
-              <hr />
+      <form onSubmit={handleSubmit}>
 
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group className="mb-3" controlId="email">
-                  <Form.Label></Form.Label>
-                  <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="text" placeholder="Correo electrónico" />
-                </Form.Group>
+        <div className="signup-form">
+         
+            <label></label>
+            <input onChange={e => handleChange(e)} value={formData.email} name="email" type="text" placeholder="Correo electrónico" />
+        
 
-                <Form.Group className="mb-3" controlId="password">
-                  <Form.Label></Form.Label>
-                  <Form.Control onChange={this.handleInputChange} value={this.state.pwd} name="pwd" type="password" placeholder="Contraseña" />
-                </Form.Group>
+        
+            <label></label>
+            <input onChange={e => handleChange(e)} value={formData.pwd} name="pwd" type="password" placeholder="Contraseña" />
+          
+        </div>
 
-                <Button variant="dark" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Col>
-          </Row>
-        </div>)
-    )
+        
+        <div className="signup-box">
+        
+          <button className="signup" style={{cursor: "pointer"}}>
+            Iniciar Sesión
+          </button>
+
+      
+         
+        <Link className="link-footer" to="/" > ¿Olvidaste tu contraseña?</Link>
+
+  
+
+        </div>
+
+       
+        
+      </form>
+
+     
+      
+
+
+    </div>
+
+  
+      )
+    
   }
 
-}
+
 
 export default LoginPage

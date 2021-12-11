@@ -34,7 +34,7 @@ const getRequestPending = () => {
 
 const getRandomUser = () => {
     const index = Math.floor(Math.random() * usersPendings.length)
-    [randomUser] = usersPendings?.splice(index, 1)
+    index && ([randomUser] = usersPendings?.splice(index, 1))
     setRandomUser(randomUser)
 
 }
@@ -42,7 +42,7 @@ const getRandomUser = () => {
     return (
 
         <div className="second-card">
-        {randomUser ? (<UserCard {...randomUser} next={getRandomUser} />) : null}
+        {randomUser ? (<UserCard user={randomUser} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
                
         </div>
     )

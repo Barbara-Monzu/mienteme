@@ -1,103 +1,87 @@
-import React from 'react'
+import React, { Component, createContext, useContext, useState, useEffect } from "react";
 import './UserCard.css'
 import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Component } from "react";
 import DatesService from "../../../services/dates.service"
 import RequestService from "../../../services/request.service"
 import ConversationService from "../../../services/conversation.service"
 
+const datesService = new DatesService()
+const requestService = new RequestService()
+const conversationService = new ConversationService()
+let random = Math.floor(Math.random() * 100)
 
-class UserCard extends Component {
+const UserCard = (props) => {
 
-  constructor(props) {
-    super(props)
+let dates;
+let dateSelected;
 
-    this.state = {
-      showTrivial: false,
-      showResponse: false,
-      showRequest: false,
-      showDates: [],
-      dateSelected: {}
-    }
+  useEffect(() => {
+    showDates()
+  }, [])
 
-    this.datesService = new DatesService()
-    this.requestService = new RequestService()
-    this.conversationService = new ConversationService()
-    this.random = Math.floor(Math.random() * 100)
-    console.log(this.props._id)
-  }
-
-  componentDidMount() {
-    this.showDates()
-
-  }
-
-  openTrivial = () => {
-    this.setState({
-      showTrivial: true
-    })
-  }
-
-  openModalSuccess = () => {
-    this.closeModal()
-    this.setState({
-      showResponse: true
-    })
-  }
-
-  modalWrong = () => {
-    this.closeModalTrivial()
-    this.setState({
-      showRequest: true
-    })
-  }
-
-  closeModalTrivial = () => {
-    this.setState({
-      showTrivial: false
-    })
-  }
-
-  closeModalRequest = () => {
-    this.setState({
-      showRequest: false,
-    })
-  }
-
-  closeModalResponse = () => {
-    this.setState({
-      showResponse: false,
-    })
-  }
-
-  dateSelected = (date) => {
-    this.openTrivial()
-    this.setState({
-      dateSelected: date
-    })
-  }
-
-  showDates = () => {
-    this.datesService.getUserDates(this.props._id)
+  const showDates = () => {
+    datesService.getUserDates(this.props.user_id)
       .then(response => {
+        dates = response.data
         console.log("estoy mirando las citas del otro ==>", response.data)
-        this.setState({
-          showDates: response.data
-        })
       })
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
-  nextUser = () => {
-    this.closeModalRequest()
-    this.closeModalResponse()
-    this.props.getRandomUser()
-    this.showDates()
+  // openTrivial = () => {
+  //   this.setState({
+  //     showTrivial: true
+  //   })
+  // }
+
+  // openModalSuccess = () => {
+  //   this.closeModal()
+  //   this.setState({
+  //     showResponse: true
+  //   })
+  // }
+
+  // modalWrong = () => {
+  //   this.closeModalTrivial()
+  //   this.setState({
+  //     showRequest: true
+  //   })
+  // }
+
+  // closeModalTrivial = () => {
+  //   this.setState({
+  //     showTrivial: false
+  //   })
+  // }
+
+  // closeModalRequest = () => {
+  //   this.setState({
+  //     showRequest: false,
+  //   })
+  // }
+
+  // closeModalResponse = () => {
+  //   this.setState({
+  //     showResponse: false,
+  //   })
+  // }
+
+  const chooseDate = (date) => {
+    // openTrivial()
+    dateSelected = date
   }
 
 
-  createRequest = () => {
+  const nextUser = () => {
+    // closeModalRequest()
+    // closeModalResponse()
+    this.props.next()
+
+  }
+
+
+  const createRequest = () => {
 
     console.log("cita seleccionada", this.state.dateSelected)
     this.requestService.create({ ...this.state.dateSelected })
@@ -105,7 +89,7 @@ class UserCard extends Component {
       .catch(err => console.log("hay un error al crear request en el front", err))
   }
 
-  createConversation = () => {
+  const createConversation = () => {
     this.openModalSuccess()
     this.closeModalTrivial()
 
@@ -114,31 +98,31 @@ class UserCard extends Component {
       .catch(err => console.log("hay un error crear conver en el front", err))
   }
 
-  render() {
+  
     return (
 
       <div className="card">
-        <img className="profile-pic" src={this.props.profileImages} />
+        <img className="profile-pic" src={this.props.user.profileImages} />
 
 
         <div className="card-pic-container">
-          <img className="card-pic" src={this.props.profileImages} />
+          <img className="card-pic" src={this.props.user.profileImages} />
 
           <div className="info">
-            <p className="card-name">{this.props.username}</p>
-            <p className="card-age">{this.props.age}</p>
+            <p className="card-name">{this.props.user.username}</p>
+            <p className="card-age">{this.props.user.age}</p>
           </div>
-          <button onClick={() => this.nextUser()}>Next</button>
+          <button onClick={() => nextUser()}>Next</button>
           {/* <p className="card-bio">Lo que sea</p> */}
         </div>
 
         <p className="date-title">Mis citas</p>
 
-        {this.state.showDates?.map((elm, i) =>
+        {dates?.map((elm, i) =>
 
           <div key={i} className="date">
 
-            <div onClick={() => this.dateSelected(elm)} className="detail">
+            <div onClick={() => chooseDate(elm)} className="detail">
               <p>{elm.nameDate}</p>
               <p className="date-description">{elm.description}</p>
               <p className="date-category">{elm.category}</p>
@@ -147,9 +131,9 @@ class UserCard extends Component {
           </div>
 
         )}
-        {/* <button onClick={this.openModal}>Quiero tener esta cita contigo</button> */}
+        {/* <button onClick={this.openModal}>Quiero tener esta cita contigo</button>  */}
 
-            {/* {this.state.random % 2 !== 0 } ? */}
+            {/* {this.state.random % 2 !== 0 } ?
         <Modal
           show={this.state.showTrivial}
           backdrop="static"
@@ -186,10 +170,10 @@ class UserCard extends Component {
             <Modal.Title>Correcto!!!!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/* {this.random % 2 !== 0 } ? */}
+           
             <Link to="/privatechat" style={{ margin: "10px" }}>
               <p className="search-title">Chatea con {this.props.username}</p>
-              {/* <PrivateChat {...props}/> */}
+             
             </Link>
 
             <Link to="/click-me" style={{margin: "10px"}}>
@@ -200,7 +184,7 @@ class UserCard extends Component {
 
         </Modal>
 
-        <Modal
+        {/* <Modal
           show={this.state.showRequest}
           backdrop="static"
           onHide={this.closeModalRequest}
@@ -219,7 +203,7 @@ class UserCard extends Component {
    
           </Modal.Body>
 
-        </Modal>
+        </Modal> */}
 
 
 
@@ -228,7 +212,7 @@ class UserCard extends Component {
       </div>
 
     )
-  }
+
 
 }
 

@@ -34,7 +34,7 @@ const SearchCard = (props) => {
 
     return (
         <>
-        <HeaderNav />
+        
        <h1 className="search-h1">CLICK-ME</h1>
         <div className="search-container">
             <div className="search-box">
@@ -79,7 +79,7 @@ const SearchCard = (props) => {
             <p className="search-navbar-title">Buscar</p>
         <input className="search-input" type="text" />
         </div>
-        <FooterNav />
+      
         </>
     )
 }

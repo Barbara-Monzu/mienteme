@@ -49,12 +49,16 @@ const userSchema = new Schema(
     filter: { 
       genderFilter: {
         type: String,
-        uppercase: true,
         enum: ['WOMEN', 'MEN', 'BOTH' ],
+        uppercase: true,
+        required: true,
+        default: 'BOTH',
       },
 
       ageFilter: {
         type: [Number],
+        required: true,
+        default: [18, 80],
         min: 18,
         max: 80
       },
