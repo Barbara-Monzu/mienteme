@@ -4,6 +4,7 @@ import UserContext from '../../services/UserContext'
 import './EditProfile.css'
 import PeopleService from '../../services/people.service'
 import UploadsService from '../../services/uploads.service'
+
 import { Form } from 'react-bootstrap'
 
 // import React, { useEffect } from 'react'

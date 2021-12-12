@@ -32,9 +32,11 @@ router.post("/new", (req, res) => {
     Date.findByIdAndUpdate( idDate, { 
       nameDate, 
       description, 
-      street, 
-      number, 
-      city, 
+      addressDate: { 
+        street, 
+        number, 
+        city
+      },
       category, 
       picturesDate, 
       day

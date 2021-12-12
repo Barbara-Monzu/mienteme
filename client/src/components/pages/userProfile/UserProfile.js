@@ -2,15 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import DatesService from "../../services/dates.service";
 import UserContext from '../../services/UserContext'
 import { Link, useHistory } from 'react-router-dom'
+import EditDate from '../editDate/EditDate'
+import { Modal } from 'react-bootstrap'
+
 
 
 const datesService = new DatesService()
 
 const UserProfile = () => {
-
+  
   const { loggedUser } = useContext(UserContext)
   const[dates, setMydates] = useState([])
-  const[dateSelected, setdateSelected] = useState(undefined)
+  const[dateSelected, setDateSelected] = useState(undefined)
+  const [modal, setModal] = useState(false)
   
   useEffect(() => {
     showDates()
@@ -25,14 +29,18 @@ const UserProfile = () => {
     .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
-  console.log(dates)
-
     console.log("mis citas", dates)
 
-    const chooseDate = (dateSelected) => {
-
-
+    const editDate = (date) => {
+      setModal(true)
+      setDateSelected(date)
     }
+    
+    const closeModal = () => {
+      setModal(false)
+    }
+  
+
   
   return (
     <>
@@ -62,6 +70,9 @@ const UserProfile = () => {
               <p className="date-category">{elm.category}</p>
             </div>
 
+            <button onClick={() => editDate(elm)} className=""> Editar Cita
+            </button>
+
           </div>
 
 
@@ -70,6 +81,20 @@ const UserProfile = () => {
         <Link className="link" to="/editar-perfil">
                 Editar perfil
             </Link>
+
+            <Modal
+        show={modal}
+        backdrop="static"
+        onHide={closeModal}>
+
+        <Modal.Header closeButton>
+          <Modal.Title>Edita tu cita</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <EditDate dateSelected={dateSelected} closeModal={closeModal} />
+      </Modal.Body>
+      </Modal>
 
 
       </div>

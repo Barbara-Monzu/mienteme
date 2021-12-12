@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import './SearchCard.css'
-import HeaderNav from '../headerNav/HeaderNav'
-import FooterNav from '../footerNav/FooterNav'
-import { UsersSelected } from "./AllRoutes";
-import DatesService from "../../../services/dates.service"
+import { UsersSelected } from "../index/AllRoutes";
+import DatesService from "../../services/dates.service"
 
 const SearchCard = (props) => {
     
@@ -20,7 +18,7 @@ const[filteredDates, setFilteredDates] = useState(undefined)
 console.log(" CONTEXTO de todos los usuarios: ", allUsers)
 
     useEffect(() => {
-        getDates()
+        // getDates()
         getGastronomyDates()
         // getCultureDates()
         // ggetNatureDates()
@@ -32,37 +30,41 @@ console.log(" CONTEXTO de todos los usuarios: ", allUsers)
       }, [])
 
 
-      const getDates = async () => {
-          const response = await datesService.getAllDates()
-              console.log("estoy mirando todas las citas en SEARCH CARD ==>", response.data)
-              setAllDates(response.data)
-              console.log("allDates Despues del SETallDATES", allDates)
-          const filter = await getFilteredDates()   
+    //   const getDates = async () => {
+    //       const response = await datesService.getAllDates()
+    //           console.log("estoy mirando todas las citas en SEARCH CARD ==>", response.data)
+    //           setAllDates(response.data)
+    //           console.log("allDates Despues del SETallDATES", allDates)
+    //       const filter = await getFilteredDates()   
         
-        }
+    //     }
 
-        const getFilteredDates = () => {
-            let arrDates = []
-              for(let i = 0; i <= allUsers.length; i++) {
-                  let [ dates ] = allDates.filter( elm => elm.creator === allUsers[i]._id )
-                  arrDates.push(dates)
-                  console.log("BUCLE FOR de TODAS LAS CITAS ____> estas son las citas de un user", dates)
-              }
-              setFilteredDates(arrDates);
+        // const getFilteredDates = () => {
+        //     let arrDates = []
+        //       for(let i = 0; i <= allUsers.length; i++) {
+        //           let [ dates ] = allDates.filter( elm => elm.creator === allUsers[i]._id )
+        //           arrDates.push(dates)
+        //           console.log("BUCLE FOR de TODAS LAS CITAS ____> estas son las citas de un user", dates)
+        //       }
+        //       setFilteredDates(arrDates);
         
-            }
+        //     }
 
-            
+
       const getGastronomyDates = async () => {
-          const response = await datesService.getGastronomyDates()
-            setGastronomyDates(response.data)
+          datesService.getGastronomyDates()
+          .then(response => setGastronomyDates(response.data))
+          .catch(err => console.log(err))
+          console.log("ANTES DEL BUCLE GASTRONOMY ___>", gastronomyDates)
             let arrDates = []
-            for(let i = 0; i <= allUsers.length; i++) {
-                let [dates]  = gastronomyDates.filter( elm => elm.creator === allUsers[i]._id );
+          for(let i = 0; i <= allUsers?.length; i++) {
+                let [dates]  = gastronomyDates?.filter( elm => elm.creator === allUsers[i]._id );
                 arrDates.push(dates)
-                console.log("BUCLE FOR de GASTRONOMY ___>", dates)
             }
+
+        
             setGastronomyDates(arrDates);
+            console.log("Miro CUantas citas de gastronomy finalmente pertenecen a mis USERS filtrados ___>", gastronomyDates)
             
         }
 
