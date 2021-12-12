@@ -32,6 +32,7 @@ router.get('/allSecondsOpportunities', (req, res) => {
 router.post('/create/:date/', (req, res) => {
   const { date }  = req.params
   const id = req.session.currentUser._id
+  
 
  Request.create({ creator: id, receiver: date.creator, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: date._id})
      .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))

@@ -17,9 +17,9 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 router.get("/allUsers", (req, res) => {
 
   const id = req.session.currentUser._id
-  const { genderFilter, ageFilter  } = req.session.currentUser.filter
+  const { genderFilter } = req.session.currentUser.filter
 
-  User.find({ $and: [{ gender : genderFilter } , { age : { $gte : ageFilter[0] , $lte : ageFilter[1]} } ] } )
+  User.find({ gender : genderFilter } )
     .then(allUsers => res.json(allUsers))
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })

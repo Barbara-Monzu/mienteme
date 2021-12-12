@@ -1,6 +1,5 @@
-import React, { Component, createContext, useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import './UserCard.css'
-import { Modal, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import DatesService from "../../../services/dates.service"
 import RequestService from "../../../services/request.service"
@@ -13,27 +12,37 @@ let random = Math.floor(Math.random() * 100)
 
 const UserCard = (props) => {
 
-let dates;
-let dateSelected;
+  const [dates, setDates] = useState([])
+  const [dateSelected, setDateSelected] = useState([])
+  const [trivial, setTrivial] = useState(false)
+
+  console.log("eL ID DEL OTRO", props.user._id)
 
   useEffect(() => {
-    showDates()
-  }, [])
+    const waiting = async() => {
+      const venga = await showDates() 
+      await console.log("DATES", dates)
+    }
 
+    waiting()
+  }, [props.user])
+  
   const showDates = () => {
-    datesService.getUserDates(this.props.user_id)
-      .then(response => {
-        dates = response.data
-        console.log("estoy mirando las citas del otro ==>", response.data)
-      })
-      .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
+    datesService.getUserDates(props.user._id)
+    .then(response => {
+      console.log("Las citas del otro ----_________==>", response.data)
+      setDates(response.data)
+    })
+    .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
-  // openTrivial = () => {
-  //   this.setState({
-  //     showTrivial: true
-  //   })
-  // }
+  const openTrivial = () => {
+    setTrivial(true)
+  }
+  
+  const closeModalTrivial = () => {
+    setTrivial(false)
+  }
 
   // openModalSuccess = () => {
   //   this.closeModal()
@@ -49,11 +58,6 @@ let dateSelected;
   //   })
   // }
 
-  // closeModalTrivial = () => {
-  //   this.setState({
-  //     showTrivial: false
-  //   })
-  // }
 
   // closeModalRequest = () => {
   //   this.setState({
@@ -68,32 +72,32 @@ let dateSelected;
   // }
 
   const chooseDate = (date) => {
-    // openTrivial()
-    dateSelected = date
+    openTrivial()
+    setDateSelected(date)
   }
 
 
   const nextUser = () => {
     // closeModalRequest()
     // closeModalResponse()
-    this.props.next()
+    props.next()
 
   }
 
 
   const createRequest = () => {
 
-    console.log("cita seleccionada", this.state.dateSelected)
-    this.requestService.create({ ...this.state.dateSelected })
+    console.log("cita seleccionada", dateSelected)
+    requestService.create({...dates[0]})
       .then(response => console.log("creando la request ==>", response.data))
       .catch(err => console.log("hay un error al crear request en el front", err))
   }
 
   const createConversation = () => {
-    this.openModalSuccess()
-    this.closeModalTrivial()
+    // openModalSuccess()
+    // closeModalTrivial()
 
-    this.conversationService.create(this.props._id, this.state.dateSelected._id)
+    conversationService.create(props.user._id, dateSelected._id)
       .then(response => console.log("creando la conversación ==>", response.data))
       .catch(err => console.log("hay un error crear conver en el front", err))
   }
@@ -102,23 +106,24 @@ let dateSelected;
     return (
 
       <div className="card">
-        <img className="profile-pic" src={this.props.user.profileImages} />
+        <img className="profile-pic" src={props.user.profileImages} />
 
 
         <div className="card-pic-container">
-          <img className="card-pic" src={this.props.user.profileImages} />
+          <img className="card-pic" src={props.user.profileImages} />
 
           <div className="info">
-            <p className="card-name">{this.props.user.username}</p>
-            <p className="card-age">{this.props.user.age}</p>
+            <p className="card-name">{props.user.username}</p>
+            <p className="card-age">{props.user.age}</p>
           </div>
-          <button onClick={() => nextUser()}>Next</button>
-          {/* <p className="card-bio">Lo que sea</p> */}
+          <button onClick={() => props.next()}>Next</button>
+          <button onClick={createRequest()}>Request</button>
+          <p className="card-bio">{props.user.bio}</p>
         </div>
 
         <p className="date-title">Mis citas</p>
 
-        {dates?.map((elm, i) =>
+        {dates?.map((elm, i) => { 
 
           <div key={i} className="date">
 
@@ -128,32 +133,32 @@ let dateSelected;
               <p className="date-category">{elm.category}</p>
             </div>
 
-          </div>
+          </div> })}
 
-        )}
-        {/* <button onClick={this.openModal}>Quiero tener esta cita contigo</button>  */}
+      
+        {/* <button onClick={openModal}>Quiero tener esta cita contigo</button>  */}
 
-            {/* {this.state.random % 2 !== 0 } ?
+            {/* {state.random % 2 !== 0 } ?
         <Modal
-          show={this.state.showTrivial}
+          show={state.showTrivial}
           backdrop="static"
-          onHide={this.closeModalTrivial}
+          onHide={closeModalTrivial}
         >
           <Modal.Header closeButton>
             <Modal.Title>Adivina la mentira y podrás hablar conmigo</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div onClick={() => this.createConversation()} className="search-box">
+            <div onClick={() => createConversation()} className="search-box">
 
               <div className="search-card two">
-                <p className="search-title">{this.props.questionTrue}</p>
+                <p className="search-title">{props.questionTrue}</p>
               </div>
 
             </div>
-            <div onClick={() => this.modalWrong()} className="search-box">
+            <div onClick={() => modalWrong()} className="search-box">
 
               <div className="search-card two">
-                <p className="search-title">{this.props.questionFalse}</p>
+                <p className="search-title">{props.questionFalse}</p>
               </div>
 
             </div>
@@ -162,9 +167,9 @@ let dateSelected;
         </Modal>
             
         <Modal
-          show={this.state.showResponse}
+          show={state.showResponse}
           backdrop="static"
-          onHide={this.closeModalResponse}
+          onHide={closeModalResponse}
         >
           <Modal.Header closeButton>
             <Modal.Title>Correcto!!!!</Modal.Title>
@@ -172,12 +177,12 @@ let dateSelected;
           <Modal.Body>
            
             <Link to="/privatechat" style={{ margin: "10px" }}>
-              <p className="search-title">Chatea con {this.props.username}</p>
+              <p className="search-title">Chatea con {props.username}</p>
              
             </Link>
 
             <Link to="/click-me" style={{margin: "10px"}}>
-            <button onClick={() => this.nextUser()}>Next</button>
+            <button onClick={() => nextUser()}>Next</button>
             </Link>
 
           </Modal.Body>
@@ -185,16 +190,16 @@ let dateSelected;
         </Modal>
 
         {/* <Modal
-          show={this.state.showRequest}
+          show={state.showRequest}
           backdrop="static"
-          onHide={this.closeModalRequest}
+          onHide={closeModalRequest}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Fallaste, ¿Quieres pedirle a {this.props.username} una segunda oportunidad?</Modal.Title>
-            <button onClick={() => this.createRequest()}>Sí </button>
+            <Modal.Title>Fallaste, ¿Quieres pedirle a {props.username} una segunda oportunidad?</Modal.Title>
+            <button onClick={() => createRequest()}>Sí </button>
 
             <Link to="/click-me" style={{margin: "10px"}}>
-            <button onClick={() => this.nextUser()}>No, next</button>
+            <button onClick={() => nextUser()}>No, next</button>
             </Link>
 
            

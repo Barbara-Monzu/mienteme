@@ -42,7 +42,7 @@ const userSchema = new Schema(
       type: String,
       uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
-      enum: ['WOMAN', 'MEN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
+      enum: ['WOMAN', 'MAN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
       required: true,
 
     },

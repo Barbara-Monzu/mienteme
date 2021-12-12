@@ -12,28 +12,29 @@ import HeaderNav from '../headerNav/HeaderNav';
 import PeopleService from "../../services/people.service";
 import UserProfile from "../userProfile/UserProfile";
 import EditProfile from "../editProfile/EditProfile";
+import UserContext from '../../services/UserContext'
 // import UserProfile from './pages/profile/userProfile';
 export const UsersSelected = React.createContext();
 const peopleService = new PeopleService()
 
 const AllRoutes = () => {
 
+  const { loggedUser } = useContext(UserContext)
   const [allUsers, setAllUsers] = useState(undefined)
-  let users;
-
 
   useEffect(() => {
     getAllUsers()
-    setAllUsers(users)
-  }, [users])
+    
+  }, [])
 
   const getAllUsers = () => {
 
     peopleService.getAllUsers()
       .then(response => {
-        users = response.data.filter(elm =>
-          elm._id !== this.props.loggedUser._id)
-        console.log("todos los usuarios menos yo", users)
+        let users = response.data.filter(elm =>
+          elm._id !== loggedUser._id)
+          console.log("todos los usuarios menos yo", users)
+          setAllUsers(users)
       })
       .catch(err => console.log(err))
   }

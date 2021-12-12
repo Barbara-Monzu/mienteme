@@ -37,7 +37,7 @@ const EditProfile = () => {
     useEffect(() => {
         setFormData({
             username: loggedUser?.username,
-            profileImages: loggedUser?.profileImages,
+            profileImages: "",
             age: loggedUser?.age,
             genre: loggedUser?.gender,
             bio: loggedUser?.bio,
@@ -120,10 +120,10 @@ return (
                 <Form.Control name="username" value={formData.username} onChange={e => handleChange(e)} type="text" placeholder="Nombre de usuario" />
             </Form.Group>
 
-            {/* <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label></Form.Label>
             <Form.Control name="profileImages" value={formData.profileImages} onChange={(e) => handleFile(e)} type="file" placeholder="Selecciona una imagen"/>
-          </Form.Group> */}
+          </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check name="age" value={formData.age} onChange={e => handleChange(e)} type="number" label="age" placeholder="Edad" />

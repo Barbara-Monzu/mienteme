@@ -6,7 +6,7 @@ import FooterNav from '../footerNav/FooterNav'
 
 const SearchCard = (props) => {
     
-// const datesService = new DatesService()
+const datesService = new DatesService()
 // const dates = []
 // let filteredDate = []
 

@@ -18,29 +18,32 @@ const MatchContext = React.createContext()
 
 const LoggedUserHome = () => { 
 
-    const allUsers = useContext(UsersSelected);
+    const {allUsers} = useContext(UsersSelected);
 
-    console.log("este es mi contexto de todos los usuarios: ", allUsers)
+    // const[loading, setLoading] = useState(false)
+    const[copyAllUsers, setCopyAllUsers] = useState(undefined)
+    const[newRandomUser, setNewRandomUser] = useState(undefined)
+    const[index, setIndex] = useState(undefined)
 
-    let newRandomUser;
-    let copyUsersFiltered = allUsers;
 
-    console.log("esta es mi copia de todos los usuarios: ", copyUsersFiltered)
+    console.log(" CONTEXTO de todos los usuarios: ", allUsers)
+  
+        useEffect(() => {
+                randomUser()
     
-    const [selectedUser, setSelectedUser] = useState(undefined)
-    
-    
-    const randomUser = () => {
-        const index = Math.floor(Math.random() * copyUsersFiltered.length)
-        index && ([randomUser] = copyUsersFiltered?.splice(index, 1))
+        
+          }, [])
+        
+        const randomUser = async () => {
+            const index = await Math.floor(Math.random() * allUsers?.length)
+            console.log("ÍNDICE!!!!!", index)
+            let [selectedUser] = await allUsers?.splice(index, 1)
+            console.log("esta es mi usuario random: ", selectedUser)
+            setNewRandomUser(selectedUser)
+         
+            
     }
 
-    
-    useEffect(() => {
-        randomUser()
-        setSelectedUser(newRandomUser)
-      }, [copyUsersFiltered])
-    
  
     // showForm = () => {
     //  serviceCheckForm.check()
@@ -55,8 +58,8 @@ const LoggedUserHome = () => {
         return (
             <>
                 <p>Se está renderizando LoggedUserHome</p>
-
-                {selectedUser ? <UserCard user={selectedUser} next={randomUser} /> : <p>Estamos mejorando la página, vuelve en unos minutos</p>}
+                {/* <button onClick={() => randomUser()}>Next</button> */}
+                {!newRandomUser ? (<h3>Si quieres seguir viendo perfiles HAZTE PREMIUM...</h3>)  : <UserCard user={newRandomUser} next={()=> randomUser()}/>}
 
             </>
         )
