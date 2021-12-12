@@ -22,6 +22,8 @@ const LoggedUserHome = () => {
 
     // const[loading, setLoading] = useState(false)
     const[copyAllUsers, setCopyAllUsers] = useState(undefined)
+    const[loading, setLoading] = useState(true)
+
     const[newRandomUser, setNewRandomUser] = useState(undefined)
     const[index, setIndex] = useState(undefined)
 
@@ -29,37 +31,28 @@ const LoggedUserHome = () => {
     console.log(" CONTEXTO de todos los usuarios: ", allUsers)
   
         useEffect(() => {
-                randomUser()
-    
+            randomUser()
+                
         
-          }, [])
+          },[])
         
         const randomUser = async () => {
             const index = await Math.floor(Math.random() * allUsers?.length)
-            console.log("ÍNDICE!!!!!", index)
             let [selectedUser] = await allUsers?.splice(index, 1)
             console.log("esta es mi usuario random: ", selectedUser)
             setNewRandomUser(selectedUser)
-         
-            
-    }
+    };
 
- 
-    // showForm = () => {
-    //  serviceCheckForm.check()
-    //   .then(response => {
-    //     console.log(response.data)
-    //     response.data.CheckFirstForm &&
-    //    setState({ showForm: false }) })
-    //   .catch(err => console.log(err))
-    // }
+
+    randomUser()
+
 
  
         return (
             <>
                 <p>Se está renderizando LoggedUserHome</p>
                 {/* <button onClick={() => randomUser()}>Next</button> */}
-                {!newRandomUser ? (<h3>Si quieres seguir viendo perfiles HAZTE PREMIUM...</h3>)  : <UserCard user={newRandomUser} next={()=> randomUser()}/>}
+                {loading ? (<h3>CARGANDO...</h3>)  : <UserCard user={newRandomUser} next={()=> randomUser()}/>}
 
             </>
         )

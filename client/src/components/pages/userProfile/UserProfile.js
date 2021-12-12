@@ -9,7 +9,7 @@ import { Modal } from 'react-bootstrap'
 
 const datesService = new DatesService()
 
-const UserProfile = () => {
+const UserProfile = () => { 
   
   const { loggedUser } = useContext(UserContext)
   const[dates, setMydates] = useState([])

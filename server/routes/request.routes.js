@@ -32,32 +32,12 @@ router.get('/allSecondsOpportunities', (req, res) => {
 router.post('/create/:date/', (req, res) => {
   const { date }  = req.params
   const id = req.session.currentUser._id
-  
+  const { questionTrue, questionFalse } = req.body
 
- Request.create({ creator: id, receiver: date.creator, questionTrue: "Como hamburguesas" , questionFalse: "Mi peli favorita es Titanic", dateSelected: date._id})
+
+ Request.create({ creator: id, receiver: date.creator, questionTrue: questionTrue , questionFalse: questionFalse, dateSelected: date._id})
      .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
-
-  // mi id va a ser current user, se eliminará de la barra 
-
-  // const getTrivial = User.findById(idCreator)
-  
-    // Promise.all([getTrivial, createRequest])
-    //   .then(data => res.json(data))
-    //   .catch(err => res.json({ err, errMessage: "Creando request" }))
-
-  // User.findById(idCreator)
-  // .then((User) => {
-  // const { questionTrue, questionFalse } = User;
-  // Request
-  //   .create({ creator: id, receiver: idCreatorDate, questionTrue: questionTrue , questionFalse: questionFalse, dateSelected: idDate})
-  //   .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
-  //   .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
-
-  // res.status(200).json({ message: 'Request successfully created', requestCreated }))
-  //   .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
-
-  // }
 
 })
 

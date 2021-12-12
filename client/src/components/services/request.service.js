@@ -14,7 +14,7 @@ class RequestService {
 
   getOneRequest = (id) => this.app.get("/oneRequest")
 
-  create = (infoDate) => this.app.post(`/create/${infoDate}`)
+  create = (infoDate, user) => this.app.post(`/create/${infoDate}`, user)
 
   answer = ( idRequest, answer ) => this.app.post(`/answer/${idRequest}`, answer)
 }

@@ -12,6 +12,12 @@ import HeaderNav from '../headerNav/HeaderNav';
 import PeopleService from "../../services/people.service";
 import UserProfile from "../userProfile/UserProfile";
 import EditProfile from "../editProfile/EditProfile";
+import GastronomyDates from "../datesFilter/GastronomyDates";
+import NatureDates from "../datesFilter/NatureDates";
+import RandomDates from "../datesFilter/RandomDates";
+import CultureDates from "../datesFilter/CultureDates";
+import OthersDates from "../datesFilter/OthersDates";
+import AllDates from "../datesFilter/AllDates";
 import UserContext from '../../services/UserContext'
 // import UserProfile from './pages/profile/userProfile';
 export const UsersSelected = React.createContext();
@@ -59,7 +65,14 @@ const AllRoutes = () => {
               <Route path="/peticiones" render={() => <RequestPending />} />
               <Route path="/perfil" render={() => <UserProfile />} />
               <Route path="/editar-perfil" render={() => <EditProfile />} />
-              {/* <Route path="/editar-cita" render={() => <EditFormDate />} /> */}
+              <Route path="/gastronomía" render={() => <GastronomyDates />} />
+              <Route path="/cultura" render={() => <CultureDates />} />
+              <Route path="/random" render={() => <RandomDates />} />
+              <Route path="/naturaleza" render={() => <NatureDates />} />
+              <Route path="/otros" render={() => <OthersDates />} />
+              <Route path="/todas" render={() => <AllDates />} />
+              {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
+             
 
             </Switch>
           </UsersSelected.Provider>
