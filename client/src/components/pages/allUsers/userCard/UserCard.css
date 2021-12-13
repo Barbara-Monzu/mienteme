@@ -1,47 +1,86 @@
-
 .card-pic-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+}
+
+button.card-button{
+    border-radius: 3px;
+    background-color: white;
+    border: 0;
+}
+
+.card-button-img {
+    width: 30px;
 }
 
 img.card-pic {
-    width: 300px;
-    border-radius: 70px;
+    height: 100%;
+    width: 100%;
+    border-radius: 3px;
+
+}
+
+
+.card-img {
+    width: 20px;
 }
 
 .profile-pic {
-
     width: 50px;
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 10px;
-
 }
 
-.info {
+.all-card-info {
+    /* width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; */
+   
+    top: 270px; 
+    color: white;
+}
+
+.card-info {
   width: 100%;
   display: flex;
   align-items: center;
+  height: 30px;
+  margin-top: 50px;
 }
 
 
 p.card-name {
     font-size: 30px;
     margin-left: 45px;
-    /* margin-top: 0px; */
-    /* margin-left: 35px  */
+    color: black;
+
 }
+
 
 p.card-age {
     font-size: 15px;
     margin-left: 10px;
+    color: black;
 }
 
-.date-title {
-    font-size: 14px;
+p.card-bio {
+    margin-left: 45px;
+    font-style: italic;
     font-weight: 900;
+    color: black;
+}
+
+.card-date-title {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .date {

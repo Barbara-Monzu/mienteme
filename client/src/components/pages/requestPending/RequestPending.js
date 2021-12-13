@@ -45,7 +45,7 @@ const RequestPending = () => {
             <p>Peticiones pendientes</p>
 
             <div className="second-card">
-                {randomUser ? (<UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
+                {randomUser ? (<UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} request={randomUser} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
 
             </div>
         </>

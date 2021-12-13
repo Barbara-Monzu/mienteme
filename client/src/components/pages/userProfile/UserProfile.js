@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import "./UserProfile.css"
 import DatesService from "../../services/dates.service";
 import UserContext from '../../services/UserContext'
 import { Link, useHistory } from 'react-router-dom'
@@ -44,61 +45,54 @@ const UserProfile = () => {
 
   return (
     <>
-      <p>Se está renderizando La página de perfil</p>
+<div className="card-pic-container">
+          <img className="card-pic" src={loggedUser.profileImages[0]} />
 
-
-
-      <div className="card-pic-container">
-        <img className="card-pic" src={loggedUser.profileImages[0]} />
-
-        <div className="info">
-          <p className="card-name">{loggedUser.username}</p>
-          <p className="card-age">{loggedUser.age}</p>
-        </div>
-        {/* <p className="card-bio">Lo que sea</p> */}
-
-
-        <p className="date-title">Mis citas</p>
-
+          <div className="all-card-info">
+            <div className="card-info">
+            <p className="card-name">{loggedUser.username}</p>
+            <p className="card-age">{loggedUser.age}</p>
+            </div>
+            <p className="card-bio">{loggedUser.bio}</p>
+          </div>
+          {/* <p className="card-bio">Lo que sea</p> */}
+  
+      <div className="box-content">
+        <p className="card-date-title">Mis citas</p>
+        <Link className="userProfile-link" to="/editar-perfil">
+              Editar perfil
+        </Link>
+      </div> 
+        <div className="date">
         {dates?.map((elm, i) =>
 
-          <div key={i} className="date">
-
-            <div className="detail">
-              <p>{elm.nameDate}</p>
+          <div key={i}>
+            <div className="userProfile-date-detail"> 
+              <p className="userProfile-date-name">{elm.nameDate}</p>
               <p className="date-description">{elm.description}</p>
               <p className="date-category">{elm.category}</p>
+            <button onClick={() => editDate(elm)} className="userProfile-date-button">Editar cita</button>
             </div>
-
-            <button onClick={() => editDate(elm)} className=""> Editar Cita
-            </button>
-
           </div>
-
-
         )}
+        </div>
 
-        <Link className="link" to="/editar-perfil">
-          Editar perfil
-        </Link>
+            <Modal
+                  show={modal}
+                  backdrop="static"
+                  onHide={closeModal}>
+
+                  <Modal.Header closeButton>
+                    <Modal.Title>Edita tu cita</Modal.Title>
+                  </Modal.Header>
+
+                  <Modal.Body>
+                    <EditDate dateSelected={dateSelected} closeModal={closeModal} />
+                </Modal.Body>
+                </Modal>
 
 
       </div>
-
-
-      {/* <Modal
-          show={modal}
-          backdrop="static"
-          onHide={closeModal}>
-
-          <Modal.Header closeButton>
-            <Modal.Title>Edita tu cita</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <EditDate dateSelected={dateSelected} closeModal={closeModal} />
-          </Modal.Body>
-        </Modal> */}
 
 
     </>

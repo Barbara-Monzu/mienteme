@@ -29,7 +29,6 @@ const UserCard = (props) => {
   const showDates = () => {
     datesService.getUserDates(props.user._id)
       .then(response => {
-        console.log("Las citas del otro ----_________==>", response.data)
         setDates(response.data)
       })
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
@@ -92,39 +91,49 @@ const UserCard = (props) => {
   }
 
 
-  // const editRequest = () => {
+  const editRequest = (answer) => {
+    let response = { response: answer }
+    console.log("LA REQUEST Y LA RESPUESTA", props.request, response)
+    requestService.answer(props.request._id, response)
+      .then(response => console.log("editando la REQUEST ==>", response.data))
+      .catch(err => console.log("hay un error al modificar request en el front", err))
 
-  //   console.log("cita seleccionada y su creador", dateSelected, props.user._id)
-  //   requestService.answer(dateSelected._id, props.user)
-  //     .then(response => console.log("creando la request ==>", response.data))
-  //     .catch(err => console.log("hay un error al crear request en el front", err))
-  // }
+      props.next()
+  }
 
 
   return (
 
     <div className="card">
-      <img className="profile-pic" src={props.user.profileImages} />
+     
 
 
       <div className="card-pic-container">
         <img className="card-pic" src={props.user.profileImages} />
 
-        <div className="info">
+        <div className="all-card-info">
+        <div className="card-info">
           <p className="card-name">{props.user.username}</p>
           <p className="card-age">{props.user.age}</p>
         </div>
 
-        <button onClick={() => props.next()}>Next</button>
-        {/* <button onClick={() => createRequest()}>Request</button> */}
-        <p className="card-bio">{props.user.bio}</p>
+        <p className="card-name">{props.user.bio}</p>
+
+        </div>
+
+      <br/>
+
+         <div className="card-button-container">
+          <button className="card-button" onClick={() => props.next()}> <img className="card-button-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZlC4jg8lepAQZWxzDfAJt_7u1Fz_3IYKFr0yxngu_gWVsaUY-9uU0G5_otZfbqMbkoU&usqp=CAU"/> </button>
+          </div>
+      
       </div>
       {props.dateSelected ? (
         <>
           <p className="date-title">{props.user.username} Seleccionó tu cita</p>
             <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
-            <button>Sí</button>
-            <button>No</button>
+            <button onClick={() => editRequest("YES")}>Sí</button>
+            <button onClick={() => editRequest("NO")}>No</button>
           <div className="date">
 
 
@@ -139,7 +148,7 @@ const UserCard = (props) => {
         :
         (
           <>
-            <p className="date-title">Mis citas</p>
+          <p className="card-date-title">Citas de {props.user.username}</p>
             {dates?.map((elm, i) => (
 
               <div key={i} className="date">

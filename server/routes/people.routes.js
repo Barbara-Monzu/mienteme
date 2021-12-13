@@ -6,9 +6,9 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const { id } = req.params
 
-  const {  username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter } = req.body
-  
-  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter]} }, { new: true })
+  const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter } = req.body
+
+  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter] } }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
@@ -17,20 +17,29 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 router.get("/allUsers", (req, res) => {
 
   const id = req.session.currentUser._id
-  const { genderFilter } = req.session.currentUser.filter
+  const { genderFilter, ageFilter } = req.session.currentUser.filter
 
-  User.find({ gender : genderFilter } )
-    .then(allUsers => res.json(allUsers))
-    .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  console.log("MIRANDO!!!!!", genderFilter, ageFilter[0], ageFilter[1])
+
+  if (genderFilter === "BOTH") {
+
+    User.find({ age: { $gte: ageFilter[0], $lte: ageFilter[1] } })
+      .then(allUsers => res.json(allUsers))
+      .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  }
+  else {
+    User.find({ $and: [{ gender: genderFilter }, { age: { $gte: ageFilter[0], $lte: ageFilter[1] } }] })
+      .then(allUsers => res.json(allUsers))
+      .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  }
 })
-
 
 
 router.get("/profile/:id", (req, res) => {
   const { id } = req.params
 
   const userFind = User.findById(id)
-  const datesFind = Date.find({creator: id})
+  const datesFind = Date.find({ creator: id })
 
   Promise.all([userFind, datesFind])
     .then(infoProfile => {
@@ -38,9 +47,9 @@ router.get("/profile/:id", (req, res) => {
       res.json(infoProfile)
 
     })
-      .catch(err => res.json({ err, errMessage: "Problema encontrando el perfil" }))
+    .catch(err => res.json({ err, errMessage: "Problema encontrando el perfil" }))
 
-  }
+}
 )
 
 

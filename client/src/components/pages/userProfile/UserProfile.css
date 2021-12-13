@@ -1,0 +1,70 @@
+.userProfile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: red;
+}
+
+img.userProfile-pic {
+    width: 80%;
+    border-radius: 70px;
+    box-shadow: 0 0 10px;
+    height: 40vh;
+}
+
+.userProfile-date-detail {
+    border-radius: 3px;
+    border: 1px solid;
+    height: 200px;
+    width: 100px;
+    margin-top: 10px;
+}
+
+
+.userProfile-date-button {
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid black;
+    font-style: italic;
+}
+
+.userProfile-date-name {
+    text-decoration: underline;
+}
+
+.userProfile-link {
+    margin-top: 10px;
+    color: black;
+    font-size: 13px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: transparent;
+    height: 30px;
+    font-style: italic;
+    text-decoration: none;
+    font-weight: 900;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+.userProfile-link:hover {
+    background-color: black;
+    color: white;
+}
+
+.box-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

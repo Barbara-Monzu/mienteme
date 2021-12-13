@@ -16,7 +16,7 @@ class RequestService {
 
   create = (idDate, user) => this.app.post(`/create/${idDate}`, user)
 
-  answer = ( idRequest, answer ) => this.app.post(`/answer/${idRequest}`, answer)
+  answer = (idRequest, response) => this.app.put(`/${idRequest}`, response)
 }
 
 export default RequestService

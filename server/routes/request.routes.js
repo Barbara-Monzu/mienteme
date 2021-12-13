@@ -11,7 +11,7 @@ router.get('/allRequestPending', (req, res) => {
   const id = req.session.currentUser._id
 
   Request
-    .find({ $and: [ { receiver: id, tryAgain: "PENDING"} ] })
+    .find({ $and: [{ receiver: id, tryAgain: "PENDING" }] })
     .populate(["creator", "dateSelected"])
     .then(Request => res.status(200).json(Request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
@@ -22,7 +22,7 @@ router.get('/allSecondsOpportunities', (req, res) => {
   const id = req.session.currentUser._id
 
   Request
-    .find({ $and: [ { creator: id, tryAgain: "YES"} ] })
+    .find({ $and: [{ creator: id, tryAgain: "YES" }] })
     .populate(["receiver", "dateSelected"])
     .then(Request => res.status(200).json(Request))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
@@ -30,36 +30,36 @@ router.get('/allSecondsOpportunities', (req, res) => {
 
 
 router.post('/create/:date/', (req, res) => {
-  const { date }  = req.params
+  const { date } = req.params
   const id = req.session.currentUser._id
   const { questionTrue, questionFalse } = req.body
   const idMatch = req.body._id
 
 
- Request.create({ creator: id, receiver: idMatch, questionTrue: questionTrue , questionFalse: questionFalse, dateSelected: date})
-     .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
+  Request.create({ creator: id, receiver: idMatch, questionTrue: questionTrue, questionFalse: questionFalse, dateSelected: date })
+    .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
 
 })
 
 
-router.put('/answer/:idRequest', (req, res) => {
+router.put('/:idRequest', (req, res) => {
 
-const idRequest = req.params
-const answer = req.body
+  const { idRequest } = req.params
+  const { response } = req.body
+  console.log(req.body, req.params)
 
-//response será "YES" o "NO"
- 
+  console.log("MIRO ANSWER", response)
+
   Request
-    .findByIdAndUpdate({idRequest, tryAgain: "YES"}, { new: true })
-    .then((secondOpportunity) => res.status(200).json({ message: 'Second Opportunity Done' }))
-    .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
+    .findByIdAndUpdate(idRequest, { tryAgain: response }, { new: true })
+    .then((secondOpportunity) => res.status(200).json({ message: 'Second Opportunity Done', secondOpportunity }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error modifiying request", err }))
 
 
 })
 
 
-// TODO router.delete('/', isLoggedIn, (req, res) => { })
 
 
 module.exports = router

@@ -2,24 +2,24 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    
 }
 img.search {
-    width: 100px;
+    width: 85px;
 }
 img.request {
-    width: 40px;
+    width: 30px;
 }
 img.chat {
-    width: 35px;
+    width: 30px;
 }
 img.second-chance {
-    width: 40px;
+    width: 30px;
 }
 img.user {
-    width: 50px;
+    width: 30px;
 }
-
-
-
-
-
