@@ -86,7 +86,7 @@ const UserProfile = () => {
       </div>
 
 
-        {/* <Modal
+      {/* <Modal
           show={modal}
           backdrop="static"
           onHide={closeModal}>

@@ -55,7 +55,7 @@ const userSchema = new Schema(
     filter: { 
       genderFilter: {
         type: String,
-        enum: ['WOMEN', 'MEN', 'BOTH' ],
+        enum: ['WOMAN', 'MAN', 'BOTH' ],
         uppercase: true,
         required: true,
         default: 'BOTH',
