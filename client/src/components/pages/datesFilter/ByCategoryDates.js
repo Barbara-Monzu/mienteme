@@ -18,9 +18,10 @@ const ByCategoryDates = () => {
 
     // const[loading, setLoading] = useState(false)
 
-    const [allGastronomyDates, setGastronomyDates] = useState([])
+    const [allDates, setAllDates] = useState([])
     const [filteredDates, setFilteredDates] = useState([])
 
+//alldates no se usa
 
     console.log(" CONTEXTO filtrado de todos los usuarios: ", allUsers)
 
@@ -34,12 +35,12 @@ const ByCategoryDates = () => {
     const getDates = () => {
         datesService.getByCategory(category)
             .then(response => {
-                console.log("ALL GASTRONOMY DATES ___>", response.data)
-                setGastronomyDates(response.data)
+                console.log("ALL DATES ___>", response.data)
+                setAllDates(response.data) 
                 let arrDates = []
                 for (let i = 0; i < allUsers?.length; i++) {
                     let dates = response.data.filter(elm => {
-                        return elm.creator === allUsers[i]._id
+                        return elm.creator._id === allUsers[i]._id
                     });
 
                     if (dates) dates.forEach(el => arrDates.push(el))
@@ -47,10 +48,10 @@ const ByCategoryDates = () => {
                 console.log("ARR DATES", arrDates)
                 setFilteredDates(arrDates);
             })
-            .then(() => console.log("MIRANDO EL SEGUNDO THEN", allGastronomyDates))
+            .then(() => console.log("MIRANDO EL SEGUNDO THEN", ))
             .catch(err => console.log(err))
 
-        console.log("Miro CUantas citas de gastronomy finalmente pertenecen a mis USERS filtrados ___>", filteredDates)
+        console.log("DATES BY CATEGORY", filteredDates)
 
     }
 

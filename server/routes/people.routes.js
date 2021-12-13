@@ -24,23 +24,6 @@ router.get("/allUsers", (req, res) => {
     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
 })
 
-router.get("/allWomen", (req, res) => {
-
-  const id = req.session.currentUser._id
-
-  User.find( { $and: [ { gender: "WOMEN" }, { gender: 'I DON NOT IDENTIFY WITH ANY GENDER'}] } )
-    .then(allUsers => res.json(allUsers))
-    .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
-})
-
-router.get("/allMen", (req, res) => {
-
-  const id = req.session.currentUser._id
-
-  User.find( { $and: [ { gender: "WOMEN" }, { gender: 'I DON NOT IDENTIFY WITH ANY GENDER'}] } )
-    .then(allUsers => res.json(allUsers))
-    .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
-})
 
 
 router.get("/profile/:id", (req, res) => {

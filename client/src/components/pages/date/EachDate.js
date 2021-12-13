@@ -1,47 +1,34 @@
 
 import { useEffect, useState } from "react";
 import ServiceMessages from '../../services/messages.service';
-import { Link } from "react-router-dom";
+import { Link, useParams  } from "react-router-dom";
 
-export default function EachDate({ nameDate, description, day }) {
-  
-const serviceMessages = new ServiceMessages()
+export default function EachDate({ nameDate, description, creator, day }) {
 
-const [userProfile, setUserProfile] = useState(undefined)
-const [lastMessage, setLastMessage] = useState("")
 
-// console.log("MIRO EL CREADOR DE LA CITA ", creator)
 
-  return (
-    <>
+    return (
+        <>
+                <div className="conversation">
+
+                    <div className="chatOnlineImgContainer">
+                        <p>{nameDate}</p>
+                        <p>{description}</p>
+            <Link to={`/match/${creator._id}`} style={{ marginLeft: "500px", textDecoration: "none" }}>
+                        <p>{creator.username}</p>
     
-    
-        
-<Link to="/" style={{margin: "10px", textDecoration:"none"}}>
+                        <p>{creator.age}</p>
 
-    <div className="conversation">
-      
-      <div className="chatOnlineImgContainer">
-      <p>{nameDate}</p>
-      <p>{description}</p>
-      
-    
-      {/* <p>{creator.username}</p> */}
-      
+            </Link>
+                    </div>
+                    <div className="date">
+                        <p>{day}</p>
 
-        </div>
+                    </div>
+                </div>
 
-      <div className="date">
+            <hr></hr>
+        </>
 
-      <p>{day}</p>
-
-      </div>
-
-    </div>
-  </Link>
-
-    <hr></hr>
-    </>
-   
-  );
+    );
 }

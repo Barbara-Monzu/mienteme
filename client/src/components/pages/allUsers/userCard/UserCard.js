@@ -106,6 +106,7 @@ const UserCard = (props) => {
           <p className="card-name">{props.user.username}</p>
           <p className="card-age">{props.user.age}</p>
         </div>
+        
         <button onClick={() => props.next()}>Next</button>
         {/* <button onClick={() => createRequest()}>Request</button> */}
         <p className="card-bio">{props.user.bio}</p>

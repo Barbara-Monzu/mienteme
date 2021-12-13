@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
 
 
   Date.find()
-    // .populate("creator")
+    .populate("creator")
     .then(allDates => {
       console.log(allDates)
       res.json(allDates)
@@ -83,8 +83,8 @@ router.get("/:category", (req, res) => {
   const { category } = req.params
 
   Date.find({ category: category })
-
-    .then(gastronomyDates => res.json(gastronomyDates))
+  .populate("creator")
+    .then(dates => res.json(dates))
     .catch(err => console.log(err))
 
 })

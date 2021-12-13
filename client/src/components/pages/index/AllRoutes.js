@@ -15,6 +15,7 @@ import EditProfile from "../editProfile/EditProfile";
 import ByCategoryDates from "../datesFilter/ByCategoryDates";
 import AllDates from "../datesFilter/AllDates";
 import UserContext from '../../services/UserContext'
+import ProfileMatch from "../../pages/allUsers/userCard/ProfileMatch"
 // import UserProfile from './pages/profile/userProfile';
 export const UsersSelected = React.createContext();
 const peopleService = new PeopleService()
@@ -62,6 +63,7 @@ const AllRoutes = () => {
               <Route path="/perfil" render={() => <UserProfile />} />
               <Route path="/editar-perfil" render={() => <EditProfile />} />
               <Route path="/todas" render={() => <AllDates />} />
+              <Route path="/match/:id" render={() => <ProfileMatch />} />
               <Route path="/:category" render={() => <ByCategoryDates />} />
               {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
              

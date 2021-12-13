@@ -19,11 +19,6 @@ const MatchContext = React.createContext()
 const LoggedUserHome = () => {
 
     const { allUsers } = useContext(UsersSelected);
-
-    // const[loading, setLoading] = useState(false)
-    const [copyAllUsers, setCopyAllUsers] = useState(undefined)
-    const [loading, setLoading] = useState(true)
-
     const [newRandomUser, setNewRandomUser] = useState(undefined)
     const [index, setIndex] = useState(undefined)
 
@@ -41,10 +36,6 @@ const LoggedUserHome = () => {
         console.log("esta es mi usuario random: ", selectedUser)
         setNewRandomUser(selectedUser)
     };
-
-
-
-
 
     return (
         <>

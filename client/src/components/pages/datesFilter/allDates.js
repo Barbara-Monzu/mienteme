@@ -35,7 +35,7 @@ const AllDates = () => {
                 let arrDates = []
                 for (let i = 0; i < allUsers?.length; i++) {
                     let dates = response.data.filter(elm => {
-                        return elm.creator === allUsers[i]._id
+                        return elm.creator._id === allUsers[i]._id
                     });
 
                     if (dates) dates.forEach(el => arrDates.push(el))
@@ -60,7 +60,7 @@ const AllDates = () => {
 
             <h1 className="search-h1">TODAS LAS CITAS</h1>
             {filteredDates?.map((elm, i) =>
-                <EachDate {...elm} />
+                <EachDate key={i} {...elm} />
 
             )}
 
