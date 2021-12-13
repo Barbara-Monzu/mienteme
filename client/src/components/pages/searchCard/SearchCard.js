@@ -5,9 +5,6 @@ import DatesService from "../../services/dates.service"
 import { Link } from "react-router-dom"
 const SearchCard = (props) => {
     
-const datesService = new DatesService()
-
-const {allUsers} = useContext(UsersSelected);
 
 // const[loading, setLoading] = useState(false)
 
@@ -43,7 +40,7 @@ const {allUsers} = useContext(UsersSelected);
 
             </div>
 
-            <div className="search-box">
+            {/* <div className="search-box">
             <Link to="/naturaleza" style={{margin: "10px"}}>
                     <div className="search-card two">
                         <p className="search-title">Aventúrate</p>
@@ -90,7 +87,7 @@ const {allUsers} = useContext(UsersSelected);
                     </Link>
 
     
-            </div>
+            </div> */}
         </div>
    
       

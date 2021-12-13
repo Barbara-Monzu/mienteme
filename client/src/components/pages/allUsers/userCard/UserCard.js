@@ -22,13 +22,9 @@ const UserCard = (props) => {
   console.log("eL ID DEL OTRO", props.user._id)
 
   useEffect(() => {
-    const waiting = async () => {
-      const venga = await showDates()
-       console.log("DATES", dates)
-    }
 
-    waiting()
-  }, [])
+    showDates()
+  }, [props.user])
 
   const showDates = () => {
     datesService.getUserDates(props.user._id)
@@ -39,62 +35,62 @@ const UserCard = (props) => {
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
-  const openTrivial = () => {
-    setTrivial(true)
-  }
+  // const openTrivial = () => {
+  //   setTrivial(true)
+  // }
 
-  const closeModalTrivial = () => {
-    setTrivial(false)
-  }
+  // const closeModalTrivial = () => {
+  //   setTrivial(false)
+  // }
 
-  const openModalSuccess = () => {
-    setTrivial(false)
-    setSuccess(true)
-  }
+  // const openModalSuccess = () => {
+  //   setTrivial(false)
+  //   setSuccess(true)
+  // }
 
-  const closeModalSuccess = () => {
-    setSuccess(false)
-  }
+  // const closeModalSuccess = () => {
+  //   setSuccess(false)
+  // }
 
-  const openWrong = () => {
-    setTrivial(false)
-    setWrong(true)
-  }
+  // const openWrong = () => {
+  //   setTrivial(false)
+  //   setWrong(true)
+  // }
 
-  const closeModalWrong = () => {
-    setWrong(false)
-  }
+  // const closeModalWrong = () => {
+  //   setWrong(false)
+  // }
 
-  const chooseDate = (date) => {
-    openTrivial()
-    setDateSelected(date)
-  }
-
-
-  const nextUser = () => {
-    closeModalWrong()
-    closeModalSuccess()
-    props.next()
-
-  }
+  // const chooseDate = (date) => {
+  //   openTrivial()
+  //   setDateSelected(date)
+  // }
 
 
-  const createRequest = () => {
+  // const nextUser = () => {
+  //   closeModalWrong()
+  //   closeModalSuccess()
+  //   props.next()
 
-    console.log("cita seleccionada y su creador", dateSelected, props.user)
-    requestService.create(dateSelected, props.user)
-      .then(response => console.log("creando la request ==>", response.data))
-      .catch(err => console.log("hay un error al crear request en el front", err))
-  }
+  // }
 
-  const createConversation = () => {
-    openModalSuccess()
-    closeModalTrivial()
 
-    conversationService.create(props.user._id, dateSelected._id)
-      .then(response => console.log("creando la conversación ==>", response.data))
-      .catch(err => console.log("hay un error crear conver en el front", err))
-  }
+  // const createRequest = () => {
+
+  //   console.log("cita seleccionada y su creador", dateSelected, props.user)
+  //   requestService.create(dateSelected, props.user)
+  //     .then(response => console.log("creando la request ==>", response.data))
+  //     .catch(err => console.log("hay un error al crear request en el front", err))
+  // }
+
+  // const createConversation = () => {
+  //   openModalSuccess()
+  //   closeModalTrivial()
+
+  //   conversationService.create(props.user._id, dateSelected._id)
+  //     .then(response => console.log("creando la conversación ==>", response.data))
+  //     .catch(err => console.log("hay un error crear conver en el front", err))
+  // }
 
 
   return (
@@ -111,27 +107,27 @@ const UserCard = (props) => {
           <p className="card-age">{props.user.age}</p>
         </div>
         <button onClick={() => props.next()}>Next</button>
-        <button onClick={() => createRequest()}>Request</button>
+        {/* <button onClick={() => createRequest()}>Request</button> */}
         <p className="card-bio">{props.user.bio}</p>
       </div>
 
       <p className="date-title">Mis citas</p>
 
-      {dates?.map((elm, i) => {
+      {dates?.map((elm, i) => (
 
         <div key={i} className="date">
 
-          <div onClick={() => chooseDate(elm)} className="detail">
-            <p>{elm.nameDate}</p>
-            <p className="date-description">{elm.description}</p>
-            <p className="date-category">{elm.category}</p>
-          </div>
+          {/* <div onClick={() => chooseDate(elm)} className="detail"> */}
+          <p>{elm.nameDate}</p>
+          <p className="date-description">{elm.description}</p>
+          <p className="date-category">{elm.category}</p>
+          {/* </div> */}
 
         </div>
-      })}
+      ))}
 
 
-      <button onClick={openTrivial()}>Quiero tener esta cita contigo</button>
+      {/* <button onClick={openTrivial}>Quiero tener esta cita contigo</button> */}
 
       {/* random % 2 !== 0 } ? */}
 

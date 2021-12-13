@@ -16,46 +16,44 @@ import AuthService from '../../services/auth.service';
 const MatchContext = React.createContext()
 
 
-const LoggedUserHome = () => { 
+const LoggedUserHome = () => {
 
-    const {allUsers} = useContext(UsersSelected);
+    const { allUsers } = useContext(UsersSelected);
 
     // const[loading, setLoading] = useState(false)
-    const[copyAllUsers, setCopyAllUsers] = useState(undefined)
-    const[loading, setLoading] = useState(true)
+    const [copyAllUsers, setCopyAllUsers] = useState(undefined)
+    const [loading, setLoading] = useState(true)
 
-    const[newRandomUser, setNewRandomUser] = useState(undefined)
-    const[index, setIndex] = useState(undefined)
+    const [newRandomUser, setNewRandomUser] = useState(undefined)
+    const [index, setIndex] = useState(undefined)
 
 
     console.log(" CONTEXTO de todos los usuarios: ", allUsers)
-  
-        useEffect(() => {
-            randomUser()
-                
-        
-          },[])
-        
-        const randomUser = async () => {
-            const index = await Math.floor(Math.random() * allUsers?.length)
-            let [selectedUser] = await allUsers?.splice(index, 1)
-            console.log("esta es mi usuario random: ", selectedUser)
-            setNewRandomUser(selectedUser)
+
+    useEffect(() => {
+        randomUser()
+
+    }, [])
+
+    const randomUser = () => {
+        const index = Math.floor(Math.random() * allUsers?.length)
+        let [selectedUser] = allUsers?.splice(index, 1)
+        console.log("esta es mi usuario random: ", selectedUser)
+        setNewRandomUser(selectedUser)
     };
 
 
-    randomUser()
 
 
- 
-        return (
-            <>
-                <p>Se está renderizando LoggedUserHome</p>
-                {/* <button onClick={() => randomUser()}>Next</button> */}
-                {loading ? (<h3>CARGANDO...</h3>)  : <UserCard user={newRandomUser} next={()=> randomUser()}/>}
 
-            </>
-        )
+    return (
+        <>
+            <p>Se está renderizando LoggedUserHome</p>
+            {/* <button onClick={() => randomUser()}>Next</button> */}
+            {newRandomUser ? <UserCard user={newRandomUser} next={() => randomUser()} /> : (<h3>CARGANDO...</h3>)}
+
+        </>
+    )
 }
 
 
