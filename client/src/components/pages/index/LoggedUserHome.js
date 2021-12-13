@@ -8,20 +8,15 @@ import { Form, Button, Modal, Container, Link } from 'react-bootstrap'
 import PeopleService from "../../services/people.service";
 import CheckFirstFormService from "../../services/checkFirstFormService.service";
 
-import RequestService from "../../services/request.service";
+
 import { UsersSelected } from "./AllRoutes";
-import AuthService from '../../services/auth.service';
-
-
-const MatchContext = React.createContext()
 
 
 const LoggedUserHome = () => {
 
     const { allUsers } = useContext(UsersSelected);
     const [newRandomUser, setNewRandomUser] = useState(undefined)
-    const [index, setIndex] = useState(undefined)
-
+  
 
     console.log(" CONTEXTO de todos los usuarios: ", allUsers)
 

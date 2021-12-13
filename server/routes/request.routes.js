@@ -33,9 +33,10 @@ router.post('/create/:date/', (req, res) => {
   const { date }  = req.params
   const id = req.session.currentUser._id
   const { questionTrue, questionFalse } = req.body
+  const idMatch = req.body._id
 
 
- Request.create({ creator: id, receiver: date.creator, questionTrue: questionTrue , questionFalse: questionFalse, dateSelected: date._id})
+ Request.create({ creator: id, receiver: idMatch, questionTrue: questionTrue , questionFalse: questionFalse, dateSelected: date})
      .then((requestCreated) => res.status(200).json({ message: 'Request successfully created', requestCreated }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Request", err }))
 

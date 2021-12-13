@@ -1,4 +1,4 @@
-import UserContext from '../../services/UserContext'
+
 import React, { useState, useEffect, useContext } from 'react'
 import './RequestPending.css'
 import { Link } from "react-router-dom"
@@ -10,41 +10,45 @@ const requestService = new RequestService()
 
 const RequestPending = () => {
 
-    // const { allUsers } = useContext(UserContext)
-
-    let usersPendings;
-    let [randomUser, setRandomUser] = useState();
-
-useEffect(() => {
-    getRequestPending()
-  }, [])
+    let [randomUser, setRandomUser] = useState(undefined);
+    let [pendings, setPendings] = useState(undefined);
 
 
-
-const getRequestPending = () => {
-    requestService.getAllRequestPending()
-        .then(response => {
-            usersPendings = response.data
-            getRandomUser()
-        })
-        .catch(err => console.log(err))
+    useEffect(() => {
+        getRequestPending()
+    }, [])
 
 
-}
+    const getRequestPending = () => {
+        requestService.getAllRequestPending()
+            .then(response => {
+                console.log("PETICIONES PENDIENTES", response.data)
+                const index = Math.floor(Math.random() * response.data?.length)
+                let [randomUser] = response.data?.splice(index, 1)
+                console.log("la desestructuracion del array", randomUser)
+                setRandomUser(randomUser)
+                setPendings(response.data)
+            })
+            .catch(err => console.log(err))
 
-const getRandomUser = () => {
-    const index = Math.floor(Math.random() * usersPendings.length)
-    index && ([randomUser] = usersPendings?.splice(index, 1))
-    setRandomUser(randomUser)
+    }
 
-}
+    const getRandomUser = () => {
+        const index = Math.floor(Math.random() * pendings?.length)
+        let [randomUser] = pendings?.splice(index, 1)
+        setRandomUser(randomUser)
+
+    }
 
     return (
+        <>
+            <p>Peticiones pendientes</p>
 
-        <div className="second-card">
-        {randomUser ? (<UserCard user={randomUser} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
-               
-        </div>
+            <div className="second-card">
+                {randomUser ? (<UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
+
+            </div>
+        </>
     )
 }
 

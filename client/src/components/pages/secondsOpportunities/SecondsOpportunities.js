@@ -8,9 +8,10 @@ const requestService = new RequestService()
 
 const SecondOpportunity = () => {
 
-    let usersSecondsOpportunities;
 
-    let [randomUser, setRandomUser] = useState();
+
+    let [randomUser, setRandomUser] = useState(undefined);
+    let [secondsOpportunities, setSecondsOpportunities] = useState(undefined);
 
     useEffect(() => {
         getSecondsOpportunities()
@@ -19,7 +20,10 @@ const SecondOpportunity = () => {
     const getSecondsOpportunities = () => {
         requestService.getAllSecondsOpportunities()
             .then(response => {
-                usersSecondsOpportunities = response.data
+                setSecondsOpportunities(response.data)
+                const index = Math.floor(Math.random() * response.data.length)
+                let [randomUser] = response.data?.splice(index, 1)
+                setRandomUser(randomUser);
                 getRandomUser()
             })
             .catch(err => console.log(err))
@@ -28,21 +32,21 @@ const SecondOpportunity = () => {
 
 
     const getRandomUser = () => {
-        const index = Math.floor(Math.random() * usersSecondsOpportunities.length)
-        index && ([randomUser] = usersSecondsOpportunities?.splice(index, 1))
+        const index = Math.floor(Math.random() * secondsOpportunities.length)
+        let [randomUser] = secondsOpportunities?.splice(index, 1)
         setRandomUser(randomUser);
     }
 
 
     return (
-<>
-        <p>Se está renderizando Segundas Oportunidades</p>
+        <>
+            <p>Te han dado una Segunda Oportunidad</p>
 
-        <div className="second-card">
-            {randomUser ? (<UserCard user={randomUser} next={getRandomUser} />) : <p>Aún no te han dado Segundas Oportunidades</p>}
-    
-        </div>
-</>
+            <div className="second-card">
+                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} />) : <p>Vuelve más tarde</p>}
+
+            </div>
+        </>
     )
 }
 
