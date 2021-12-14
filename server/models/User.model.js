@@ -115,11 +115,6 @@ const userSchema = new Schema(
       default: "USER",
       enum: ['USER', 'ADMIN'] 
     },
-
-    CheckFirstForm: {
-      type: Boolean, 
-      default: false,
-    }
     
   },
   

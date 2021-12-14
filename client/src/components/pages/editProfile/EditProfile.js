@@ -87,7 +87,7 @@ const handleSubmit = e => {
         .then(res => {
             storeUser(res.data)
             clearState()
-            history.push('/editar-perfil')
+            history.push('/perfil')
         })
         .catch(err => console.error(err))
 }
@@ -159,7 +159,7 @@ return (
 
     <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <div className="editProfile-data">Pista</div>
-        <Form.Control className="editProfile-input" name="questionFalse" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
+        <Form.Control className="editProfile-input" name="clue" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
     </Form.Group>
     <br />
     
@@ -169,12 +169,14 @@ return (
     <Form.Control className="editProfile-input" name="genderFilter" value={formData.genderFilter} onChange={e => handleChange(e)} type="text" placeholder="¿Mujer, hombre o ambos?"/>
   </Form.Group>
 
+  <p className="editProfile-data">EDAD</p>
+
   <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data">Edad(desde/hasta)</p>
-    <Form.Control className="editProfile-input" name="genderAge" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por edad, introduce un número "/>
+    <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por edad, introduce un número "/>
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Control className="editProfile-input" name="genderAge" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="text" placeholder="hasta..."/>
+    <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="text" placeholder="hasta..."/>
   </Form.Group>
 
     <button className="editProfile-button" style={{ cursor: "pointer" }}>

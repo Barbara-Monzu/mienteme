@@ -7,7 +7,7 @@ const conversationSchema = new Schema({
     ref: 'User',
   }],
 
-  date: {
+  dateSelected: {
     type: Schema.Types.ObjectId,
     ref: 'Date',
   },

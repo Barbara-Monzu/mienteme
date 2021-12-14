@@ -9,7 +9,7 @@ import { Modal, Button } from 'react-bootstrap'
 const datesService = new DatesService()
 const requestService = new RequestService()
 const conversationService = new ConversationService()
-let random = Math.floor(Math.random() * 100)
+
 
 const UserCard = (props) => {
 
@@ -75,7 +75,7 @@ const UserCard = (props) => {
 
   const createRequest = () => {
 
-    console.log("cita seleccionada y su creador", dateSelected, props.user._id)
+    console.log("cita seleccionada y su creador CREANDO CON ESTO", dateSelected, props.user._id)
     requestService.create(dateSelected._id, props.user)
       .then(response => console.log("creando la request ==>", response.data))
       .catch(err => console.log("hay un error al crear request en el front", err))
@@ -84,7 +84,7 @@ const UserCard = (props) => {
   const createConversation = () => {
     openModalSuccess()
     closeModalTrivial()
-
+    console.log("ME INTERESA ESTO para crear una conver", props.user._id, dateSelected._id)
     conversationService.create(props.user._id, dateSelected._id)
       .then(response => console.log("creando la conversación ==>", response.data))
       .catch(err => console.log("hay un error crear conver en el front", err))
@@ -93,7 +93,7 @@ const UserCard = (props) => {
 
   const editRequest = (answer) => {
     let response = { response: answer }
-    console.log("LA REQUEST Y LA RESPUESTA", props.request, response)
+    console.log("editando: LA REQUEST Y LA RESPUESTA", props.request, response)
     requestService.answer(props.request._id, response)
       .then(response => console.log("editando la REQUEST ==>", response.data))
       .catch(err => console.log("hay un error al modificar request en el front", err))
@@ -101,6 +101,13 @@ const UserCard = (props) => {
       props.next()
   }
 
+  // const getChat = (id) => {
+  
+  //   conversationService.getOne(props.user._id, id)
+  //     .then(response => console.log("COJO LA CONVER Q ACABO DE CREAR ==>", response.data))
+  //     .catch(err => console.log("hay un error crear conver en el front", err))
+  // }
+  
 
   return (
 
@@ -178,9 +185,9 @@ const UserCard = (props) => {
         backdrop="static"
         onHide={closeModalTrivial}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Adivina la mentira y podrás hablar conmigo</Modal.Title>
-        </Modal.Header>
+        
+          <Modal.Title>¿Cuál es la mentira?</Modal.Title>
+    
         <Modal.Body>
           <div onClick={() => createConversation()} className="search-box">
 
@@ -205,12 +212,12 @@ const UserCard = (props) => {
         backdrop="static"
         onHide={closeModalSuccess}
       >
-        <Modal.Header closeButton>
+        
           <Modal.Title>Correcto!!!!</Modal.Title>
-        </Modal.Header>
+    
         <Modal.Body>
 
-          <Link to={`/privatechat/${props.user._id}`} style={{ margin: "10px" }}>
+          <Link to={`/chat/${props.user._id}`} style={{ margin: "10px" }}>
             <p className="search-title">Chatea con {props.user.username}</p>
 
           </Link>
@@ -235,9 +242,9 @@ const UserCard = (props) => {
         backdrop="static"
         onHide={closeModalWrong}
       >
-        <Modal.Header closeButton>
+        
           <Modal.Title>Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</Modal.Title>
-        </Modal.Header>
+    
         <Modal.Body>
           <button onClick={() => createRequest()}>Sí </button>
 

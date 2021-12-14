@@ -17,33 +17,38 @@ const dateSchema = new Schema(
 			maxlength: 300,
 		},
 
-		picturesDate: [String],
+		// picturesDate: [String],
 
-		location: {
-			type: {
-				type: String,
-				default: "Point",
-			},
-			coordinates: {
-				type: [Number],
-				maxlength: 2,
-				index: "2dsphere",
-			}
-		},
+		// location: {
+		// 	type: {
+		// 		type: String,
+		// 		default: "Point",
+		// 	},
+		// 	coordinates: {
+		// 		type: [Number],
+		// 		maxlength: 2,
+		// 		index: "2dsphere",
+		// 	}
+		// },
 
-		addressDate: {
-			street: {
-				type: String,
-				trim: true,
-			},
-			number:{
-				type: Number,
-				trim: true,
-			},
-			city: {
-				type: String,
-				trim: true,
-			}
+		// addressDate: {
+		// 	street: {
+		// 		type: String,
+		// 		trim: true,
+		// 	},
+		// 	number:{
+		// 		type: Number,
+		// 		trim: true,
+		// 	},
+		// 	city: {
+		// 		type: String,
+		// 		trim: true,
+		// 	}
+		// },
+
+		city: {
+			type: String,
+			trim: true,
 		},
 
 		category: {

@@ -1,12 +1,10 @@
 
 
-import React, { Component, createContext, useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import PeopleService from "../../services/people.service";
 import EditProfile from "../editProfile/EditProfile";
 import UserCard from '../allUsers/userCard/UserCard'
-import FooterNav from "../footerNav/FooterNav";
-import { Form, Button, Modal, Container, Link } from 'react-bootstrap'
-import PeopleService from "../../services/people.service";
-import CheckFirstFormService from "../../services/checkFirstFormService.service";
+import { Link } from 'react-router-dom'
 
 
 import { UsersSelected } from "./AllRoutes";
@@ -34,9 +32,12 @@ const LoggedUserHome = () => {
 
     return (
         <>
-            <p>Se está renderizando LoggedUserHome</p>
-            {/* <button onClick={() => randomUser()}>Next</button> */}
-            {newRandomUser ? <UserCard user={newRandomUser} next={() => randomUser()} /> : (<h3>CARGANDO...</h3>)}
+         
+            {newRandomUser ? <UserCard user={newRandomUser} next={() => randomUser()} /> : (
+                <h3>Hazte <Link to="/https://www.youtube.com/watch?v=zIY87vU33aA&t=17s">PREMIUM</Link> para seguir viendo perfiles</h3>
+               
+
+                )}
 
         </>
     )

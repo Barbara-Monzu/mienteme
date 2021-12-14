@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from 'react'
 import { UserProvider } from '../../services/UserContext'
 import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import LoggedUserHome from './LoggedUserHome';
+import FormSignUp from "../../pages/signUp/FormSignUp"
 import Chat from '../chatOnline/ChatOnline';
 import PrivateChat from '../privateChat/PrivateChat';
 import SearchCard from '../searchCard/SearchCard';
@@ -55,8 +56,9 @@ const AllRoutes = () => {
             <Switch>
 
               <Route path="/click-me" exact render={() => <LoggedUserHome />} />
+              <Route path="/formulario" exact render={() => <FormSignUp />} />
               <Route path="/chat" render={() => <Chat />} />
-              <Route path="/privatechat" render={() => <PrivateChat />} />
+              <Route path="/chat/:idOtherUser" render={() => <PrivateChat />} />
               <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
               <Route path="/buscar" render={() => <SearchCard />} />
               <Route path="/peticiones" render={() => <RequestPending />} />
@@ -64,7 +66,9 @@ const AllRoutes = () => {
               <Route path="/editar-perfil" render={() => <EditProfile />} />
               <Route path="/todas" render={() => <AllDates />} />
               <Route path="/match/:id" render={() => <ProfileMatch />} />
-              <Route path="/:category" render={() => <ByCategoryDates />} />
+              <Route path="/category/:category" render={() => <ByCategoryDates />} />
+             
+              {/* <Route path="/ciudad" render={() => <ByCity />} /> */}
               {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
              
 

@@ -7,7 +7,9 @@ class DatesService {
     })
   }
 
-  createDate = (newData) => this.app.post('/new', newData)
+  getAllDates = () => this.app.get(`/`)
+
+  createDate = (newData, id) => this.app.post(`/new/${id}`, newData)
 
   editDate = (idDate, newData) => this.app.post(`/edit-date/${idDate}`, newData)
 
@@ -15,12 +17,10 @@ class DatesService {
 
   getUserDates = (idOtherUser) => this.app.get(`/its-dates/${idOtherUser}`)
 
-  getByCategory = (category) => this.app.get(`/${category}`)
-
-  getAllDates = () => this.app.get(`/`)
+  getByCategory = (category) => this.app.get(`/category/${category}`)
 
   getByDay = (day) => this.app.get(`/byday-dates`, day)
-  
+
   deleteDate = (idDate) => this.app.delete(`/delete/${idDate}`)
 
 }

@@ -3,21 +3,17 @@ const router = require("express").Router()
 const Date = require("../models/Date.model")
 
 
-router.post("/new", (req, res) => {
-  const id = req.session.currentUser._id
-  const { nameDate, description, picturesDate, street, number, city, category, day } = req.body
+router.post("/new/:id", (req, res) => {
+  const {id }= req.params
+  console.log("OJOOOOOOOOOOOOO", id, req.session.currentUser)
+  const { nameDate, description, city, category, day } = req.body
 
-  // if (User.findOne(id).sort( dates.length === 3 )) {
-  //   res.status(400).json({ code: 400, message: 'Ya tienes tres citas en tu perfil, borra alguna para poder crear una nueva' })
-  //   return
-  // }
 
   Date.create({
     nameDate,
     description,
-    addressDate: { street, number, city },
+    city,
     category,
-    picturesDate,
     day,
     creator: id
   })
@@ -78,7 +74,18 @@ router.get("/its-dates/:idOtherUser", (req, res) => {
 
 })
 
-router.get("/:category", (req, res) => {
+router.get("/byday-dates", (req, res) => {
+
+  const { day } = req.body
+
+  Date.find({ day: day })
+    .then(gastronomyDates => res.json(gastronomyDates))
+    .catch(err => console.log(err))
+
+})
+
+
+router.get("/category/:category", (req, res) => {
 
   const { category } = req.params
 
@@ -91,22 +98,13 @@ router.get("/:category", (req, res) => {
 
 
 
-router.get("/byday-dates", (req, res) => {
-
-  const { day } = req.body
-
-  Date.find({ day: day })
-    .then(gastronomyDates => res.json(gastronomyDates))
-    .catch(err => console.log(err))
-
-})
 
 
 router.delete("/delete/:idDate", (req, res) => {
   const { idDate } = req.params
 
   Date.findByIdAndDelete(idDate)
-    .then(deleteDateUser => res.json(deleteDateUser))
+    .then(deleteDateUser => res.json("borrando CITA" ,deleteDateUser))
     .catch(err => console.log(err))
 
 })

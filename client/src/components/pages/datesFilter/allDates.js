@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 // import './SearchCard.css'
 import { UsersSelected } from "../index/AllRoutes";
 import DatesService from "../../services/dates.service"
-import EachDate from "../../pages/date/EachDate"
+import EachDate from "../date/EachDate"
 import { Link } from "react-router-dom"
 
 const datesService = new DatesService()

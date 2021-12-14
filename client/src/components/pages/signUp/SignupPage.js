@@ -1,6 +1,6 @@
-import React, { useContext, useHistory, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AuthService from '../../services/auth.service'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 // import EditProfile from '../editProfile/EditProfile'
 import './SignupPage.css'
 import UserContext from "../../services/UserContext"
@@ -11,7 +11,7 @@ const SignupPage = (props) => {
 
   const [formData, setFormData] = useState({ email: '', pwd: '' })
 
-  // let history = useHistory()
+  let history = useHistory()
   const { storeUser } = useContext(UserContext)
 
   const clearState = () => {
@@ -34,7 +34,7 @@ const SignupPage = (props) => {
       .then(res => {
         storeUser(res.data)
       
-        this.props.history.push('/edit-profile')
+       history.push('/formulario')
         clearState()
       })
       .catch(err => err => console.error(err))
