@@ -6,9 +6,9 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const { id } = req.params
 
-  const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter } = req.body
+  const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter, cityFilter } = req.body
 
-  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter] } }, { new: true })
+  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter} }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
@@ -17,18 +17,19 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 router.get("/allUsers", (req, res) => {
 
   const id = req.session.currentUser._id
-  const { genderFilter, ageFilter } = req.session.currentUser.filter
+  const { genderFilter, ageFilter, cityFilter } = req.session.currentUser.filter
 
   console.log("MIRANDO!!!!!", genderFilter, ageFilter[0], ageFilter[1])
 
   if (genderFilter === "BOTH") {
 
-    User.find({ age: { $gte: ageFilter[0], $lte: ageFilter[1] } })
+    User.find({ $and: [{ age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }]})
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }
+
   else {
-    User.find({ $and: [{ gender: genderFilter }, { age: { $gte: ageFilter[0], $lte: ageFilter[1] } }] })
+    User.find({ $and: [{ gender: genderFilter }, { age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }] })
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }

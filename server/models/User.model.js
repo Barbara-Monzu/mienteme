@@ -2,33 +2,33 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
-    username: { 
-      type: String, 
-	    trim: true,
+    username: {
+      type: String,
+      trim: true,
       min: 3,
       max: 20,
-    
+
     },
 
     password: {
-	    type: String,
-	    required: true,
+      type: String,
+      required: true,
 
-	  },
+    },
 
     profileImages: {
       type: [String],
       default: "",
 
     },
-    
+
     email: {
-      type: String, 
+      type: String,
       lowercase: true,
-      required: [true, "can't be blank"], 
-      match: [/\S+@\S+\.\S+/, 'is invalid'], 
+      required: [true, "can't be blank"],
+      match: [/\S+@\S+\.\S+/, 'is invalid'],
       index: true,
-	    unique: true
+      unique: true
 
     },
 
@@ -38,11 +38,11 @@ const userSchema = new Schema(
 
     },
 
-    gender: { 
+    gender: {
       type: String,
       uppercase: true,
       default: 'I DON NOT IDENTIFY WITH ANY GENDER',
-      enum: ['WOMAN', 'MAN', 'I DON NOT IDENTIFY WITH ANY GENDER' ],
+      enum: ['WOMAN', 'MAN', 'I DON NOT IDENTIFY WITH ANY GENDER'],
       required: true,
 
     },
@@ -52,10 +52,10 @@ const userSchema = new Schema(
 
     },
 
-    filter: { 
+    filter: {
       genderFilter: {
         type: String,
-        enum: ['WOMAN', 'MAN', 'BOTH' ],
+        enum: ['WOMAN', 'MAN', 'BOTH'],
         uppercase: true,
         required: true,
         default: 'BOTH',
@@ -71,56 +71,67 @@ const userSchema = new Schema(
 
       },
 
+      cityFilter: {
+        type: String,
+        required: true,
+        default: "MADRID",
+        uppercase: true,
+        trim: true,
+      },
+
     },
 
     city: {
       type: String,
       max: 50,
       uppercase: true,
+      trim: true,
 
     },
 
     location: {
-			type: {
-				type: String,
-				default: "Point",
+      type: {
+        type: String,
+        default: "Point",
 
-			},
+      },
 
-			coordinates: {
-				type: [Number],
-				maxlength: 2,
-				index: "2dsphere",
+      coordinates: {
+        type: [Number],
+        maxlength: 2,
+        index: "2dsphere",
 
-			}
+      }
 
-		},
+    },
 
     questionTrue: {
-          type: String, 
+      type: String,
 
-      },
-  
-      questionFalse: {
-        type: String,
-
-      },
-  
-      clue: {
-        type: String, 
-      },
-    
-    role:  { 
-      type: String, 
-      default: "USER",
-      enum: ['USER', 'ADMIN'] 
     },
-    
+
+    questionFalse: {
+      type: String,
+
+    },
+
+    clue: {
+      type: String,
+    },
+
+    role: {
+      type: String,
+      default: "USER",
+      enum: ['USER', 'ADMIN']
+    },
+
   },
-  
+
   { timestamps: true }
 );
 
 const User = model("User", userSchema);
+
+User.syncIndexes()
 
 module.exports = User;

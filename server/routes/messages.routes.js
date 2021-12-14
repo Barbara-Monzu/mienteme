@@ -5,10 +5,11 @@ const Message = require('../models/Message.model')
 
 
 
-router.get('/allMessages', (req, res) => {
+router.get('/allMessages/:idConver', (req, res) => {
 
   const id = req.session.currentUser._id
-  const idConver = req.body
+  const { idConver } = req.params
+  console.log("ID CONVER COGIENDO LOS MENSAJES", idConver)
 
   Message
     .find({ conversation: idConver})
@@ -27,14 +28,14 @@ router.get('/lastMessage/:idConver', (req, res) => {
   })
 
 
-router.post('/createMessage', (req, res) => {
+router.post('/:idConver', (req, res) => {
 
-  const id = req.session.currentUser._id
-  const { message, conversation } = req.body
+  const { idConver } = req.params
+  console.log("MIRANDO BODY ", req.body)
+  const { message, sender, receiver } = req.body
 
   Message
-    .create({ message: text, sender: id})
-    .then(message => Conversation.findByIdAndUpdate({ _id: conversation }, { $push: { messages: message } }, { new: true }))
+    .create({ message, sender, receiver, conversation: idConver})
     .then(() => res.status(200).json({ message: 'Message successfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthService from '../../services/auth.service'
 import { Link, useHistory } from 'react-router-dom'
 import UserContext from "../../services/UserContext"
@@ -13,6 +13,9 @@ const LoginPage = props => {
 
   const { storeUser } = useContext(UserContext)
 
+  useEffect(() => {
+    return () => clearState();
+  }, [])
 
   const clearState = () => {
     setFormData({ email: '', pwd: '' })
@@ -32,8 +35,8 @@ const LoginPage = props => {
       .login(email, pwd)
       .then(res => {
         storeUser(res.data)
+        // clearState()
         history.push('/click-me')
-        clearState()
       })
       .catch(err => console.error(err))
   }

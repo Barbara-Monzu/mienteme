@@ -34,7 +34,7 @@ const App = () => {
       <main>
 
 
-        <Router>
+  
           <UserProvider value={{ loggedUser, storeUser, fetchUser }}>
             
             {loggedUser === null ?
@@ -44,7 +44,7 @@ const App = () => {
 
           </UserProvider>
 
-        </Router>
+
 
         {/* } */}
 

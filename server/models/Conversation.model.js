@@ -16,6 +16,8 @@ const conversationSchema = new Schema({
 
 }, { timestamps: true })
 
-const Conversation = model('Chat', conversationSchema)
+const Conversation = model('Conversation', conversationSchema)
+
+Conversation.syncIndexes()
 
 module.exports = Conversation

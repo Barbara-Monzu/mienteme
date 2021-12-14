@@ -49,7 +49,7 @@ const AllRoutes = () => {
 
       <main>
 
-        <Router>
+      
             <HeaderNav />
             
             <UsersSelected.Provider value={{ allUsers }}>
@@ -57,8 +57,8 @@ const AllRoutes = () => {
 
               <Route path="/click-me" exact render={() => <LoggedUserHome />} />
               <Route path="/formulario" exact render={() => <FormSignUp />} />
-              <Route path="/chat" render={() => <Chat />} />
-              <Route path="/chat/:idOtherUser" render={() => <PrivateChat />} />
+              <Route path="/chat" exact render={() => <Chat />} />
+              <Route path="/chat/:idConver/:match" render={() => <PrivateChat />} />
               <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
               <Route path="/buscar" render={() => <SearchCard />} />
               <Route path="/peticiones" render={() => <RequestPending />} />
@@ -66,9 +66,9 @@ const AllRoutes = () => {
               <Route path="/editar-perfil" render={() => <EditProfile />} />
               <Route path="/todas" render={() => <AllDates />} />
               <Route path="/match/:id" render={() => <ProfileMatch />} />
-              <Route path="/category/:category" render={() => <ByCategoryDates />} />
+              <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
              
-              {/* <Route path="/ciudad" render={() => <ByCity />} /> */}
+              {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
               {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
              
 
@@ -77,7 +77,7 @@ const AllRoutes = () => {
 
             <FooterNav />
 
-        </Router>
+      
 
 
       </main>

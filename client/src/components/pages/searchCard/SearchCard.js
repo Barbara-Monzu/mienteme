@@ -15,7 +15,7 @@ const SearchCard = (props) => {
             <h1 className="search-h1">CLICK-ME</h1>
             <div className="search-container">
                 <div className="search-box">
-                    <Link to="categoría/GASTRONOMY" style={{ margin: "10px" }}>
+                    <Link to="categoria/GASTRONOMY" style={{ margin: "10px" }}>
                         <div className="search-card one">
                             <p className="search-title">GASTRONOMÍA<br /> brunch </p>
 
@@ -23,7 +23,7 @@ const SearchCard = (props) => {
                     </Link>
 
 
-                    <Link to="categoría/CULTURE" style={{ margin: "10px" }}>
+                    <Link to="categoria/CULTURE" style={{ margin: "10px" }}>
                         <div className="search-card three">
                             <p className="search-title">CULTURA</p>
 
@@ -33,14 +33,14 @@ const SearchCard = (props) => {
                 </div>
 
                 <div className="search-box">
-                    <Link to="categoría/NATURE" style={{ margin: "10px" }}>
+                    <Link to="categoria/NATURE" style={{ margin: "10px" }}>
                         <div className="search-card two">
                             <p className="search-title">NATURALEZA</p>
 
                         </div>
                     </Link>
 
-                    <Link to="categoría/calendario" style={{ margin: "10px" }}>
+                    <Link to="categoria/calendario" style={{ margin: "10px" }}>
                         <div className="search-card four">
                             <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
 
@@ -49,21 +49,21 @@ const SearchCard = (props) => {
                 </div>
 
                 <Link to="/ciudad" style={{ margin: "10px" }}>
-                        <div className="search-card four">
-                            <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
+                    <div className="search-card four">
+                        <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
 
-                        </div>
-                    </Link>
+                    </div>
+                </Link>
 
                 <div className="search-box">
-                    <Link to="categoría/RANDOM" style={{ margin: "10px" }}>
+                    <Link to="categoria/RANDOM" style={{ margin: "10px" }}>
                         <div className="search-card two">
                             <p className="search-title">RANDOM</p>
 
                         </div>
                     </Link>
 
-                    <Link to="categoría/todas" style={{ margin: "10px" }}>
+                    <Link to="categoria/todas" style={{ margin: "10px" }}>
                         <div className="search-card two">
                             <p className="search-title">TODAS</p>
 

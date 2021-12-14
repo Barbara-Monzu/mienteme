@@ -1,46 +1,41 @@
 
 import { useEffect, useState } from "react";
 import "./ChatOnline.css";
-import Conversation from "../conversations/Conversations";
+import ConversationService from "../../services/conversation.service";
+import EachConver from '../eachConver/EachConver';
 
-export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
-//   const [friends, setFriends] = useState([]);
-//   const [onlineFriends, setOnlineFriends] = useState([]);
-//   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+const serviceConversation = new ConversationService()
 
-//   useEffect(() => {
-//     const getFriends = async () => {
-//       const res = await axios.get("/users/friends/" + currentId);
-//       setFriends(res.data);
-//     };
+export default function ChatOnline() {
 
-//     getFriends();
-//   }, [currentId]);
 
-//   useEffect(() => {
-//     setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
-//   }, [friends, onlineUsers]);
+  const [conversations, setConversations] = useState(undefined);
+  const [filteredConversations, setfilteredConversations] = useState(undefined);
 
-//   const handleClick = async (user) => {
-//     try {
-//       const res = await axios.get(
-//         `/conversations/find/${currentId}/${user._id}`
-//       );
-//       setCurrentChat(res.data);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+  useEffect(() => {
+    getConversations()
+
+  }, []);
+
+  const getConversations = () => {
+    serviceConversation.getAllConversations()
+      .then(response => {
+        console.log("todas las convers--------", response.data)
+        setConversations(response.data)
+      })
+      .catch(error => console.log(error))
+  }
+
 
   return (
     <div className="chatOnline">
-        <h1>Chat</h1>
-        <input type="searchbar" className="searchBar" placeholder="mensajes"/>
-    
-        <Conversation />
-        <Conversation />
-        <Conversation />
-        <Conversation />
+      <h1>Chat</h1>
+      <input type="searchbar" className="searchBar" placeholder="mensajes" />
+
+
+      {conversations?.map((elm, index) => <EachConver key={index} {...elm} />)}
+
+
     </div>
   );
 }

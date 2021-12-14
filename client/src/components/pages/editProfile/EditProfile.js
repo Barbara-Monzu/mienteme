@@ -46,6 +46,7 @@ const EditProfile = () => {
             ageFirstFilter: loggedUser?.filter.ageFilter[0],
             ageSecondFilter: loggedUser?.filter.ageFilter[1],
             ageFilter: loggedUser?.filter.ageFilter,
+            cityFilter: loggedUser?.filter.cityFilter,
             city: loggedUser?.city,
             questionTrue: loggedUser?.questionTrue,
             questionFalse: loggedUser?.questionFalse,
@@ -65,6 +66,7 @@ const clearState = () => {
         genderFilter: "",
         ageFirstFilter: "",
         ageSecondFilter: "",
+        cityFilter: "",
         city: "",
         questionTrue: "",
         questionFalse: "",
@@ -169,7 +171,7 @@ return (
     <Form.Control className="editProfile-input" name="genderFilter" value={formData.genderFilter} onChange={e => handleChange(e)} type="text" placeholder="¿Mujer, hombre o ambos?"/>
   </Form.Group>
 
-  <p className="editProfile-data">EDAD</p>
+  <p className="editProfile-data">Edad</p>
 
   <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data">Edad(desde/hasta)</p>
     <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por edad, introduce un número "/>
@@ -177,6 +179,10 @@ return (
 
   <Form.Group className="mb-3" controlId="formBasicCheckbox">
     <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="text" placeholder="hasta..."/>
+  </Form.Group>
+  <p className="editProfile-data">Ciudad</p>
+  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+    <Form.Control className="editProfile-input" name="cityFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Por ciudad..."/>
   </Form.Group>
 
     <button className="editProfile-button" style={{ cursor: "pointer" }}>

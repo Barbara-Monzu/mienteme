@@ -85,7 +85,7 @@ router.get("/byday-dates", (req, res) => {
 })
 
 
-router.get("/category/:category", (req, res) => {
+router.get("/categoria/:category", (req, res) => {
 
   const { category } = req.params
 

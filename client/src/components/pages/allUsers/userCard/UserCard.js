@@ -9,6 +9,7 @@ import { Modal, Button } from 'react-bootstrap'
 const datesService = new DatesService()
 const requestService = new RequestService()
 const conversationService = new ConversationService()
+const peopleService = new ConversationService()
 
 
 const UserCard = (props) => {
@@ -18,6 +19,7 @@ const UserCard = (props) => {
   const [trivial, setTrivial] = useState(false)
   const [success, setSuccess] = useState(false)
   const [wrong, setWrong] = useState(false)
+  const [conversation, setConversation] = useState(false)
 
   console.log("eL ID DEL OTRO", props.user._id)
 
@@ -84,10 +86,24 @@ const UserCard = (props) => {
   const createConversation = () => {
     openModalSuccess()
     closeModalTrivial()
-    console.log("ME INTERESA ESTO para crear una conver", props.user._id, dateSelected._id)
-    conversationService.create(props.user._id, dateSelected._id)
+    let idOtherUser = { idOtherUser: props.user._id }
+    console.log("ME INTERESA ESTO para crear una conver", idOtherUser, dateSelected._id)
+    conversationService.create(dateSelected._id, idOtherUser)
       .then(response => console.log("creando la conversación ==>", response.data))
       .catch(err => console.log("hay un error crear conver en el front", err))
+
+      getConversation()
+  }
+
+  const getConversation = () => {
+
+    conversationService.getOne(dateSelected._id)
+      .then(response => 
+        {console.log("cogiendo la conver que acabamos de crear ==>", response.data)
+        setConversation(response.data)
+      })
+      .catch(err => console.log("hay un error crear conver en el front", err))
+
   }
 
 
@@ -98,49 +114,49 @@ const UserCard = (props) => {
       .then(response => console.log("editando la REQUEST ==>", response.data))
       .catch(err => console.log("hay un error al modificar request en el front", err))
 
-      props.next()
+    props.next()
   }
 
   // const getChat = (id) => {
-  
+
   //   conversationService.getOne(props.user._id, id)
   //     .then(response => console.log("COJO LA CONVER Q ACABO DE CREAR ==>", response.data))
   //     .catch(err => console.log("hay un error crear conver en el front", err))
   // }
-  
+
 
   return (
 
     <div className="card">
-     
+
 
 
       <div className="card-pic-container">
         <img className="card-pic" src={props.user.profileImages} />
 
         <div className="all-card-info">
-        <div className="card-info">
-          <p className="card-name">{props.user.username}</p>
-          <p className="card-age">{props.user.age}</p>
-        </div>
-
-        <p className="card-name">{props.user.bio}</p>
-
-        </div>
-
-      <br/>
-
-         <div className="card-button-container">
-          <button className="card-button" onClick={() => props.next()}> <img className="card-button-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZlC4jg8lepAQZWxzDfAJt_7u1Fz_3IYKFr0yxngu_gWVsaUY-9uU0G5_otZfbqMbkoU&usqp=CAU"/> </button>
+          <div className="card-info">
+            <p className="card-name">{props.user.username}</p>
+            <p className="card-age">{props.user.age}</p>
           </div>
-      
+
+          <p className="card-name">{props.user.bio}</p>
+
+        </div>
+
+        <br />
+
+        <div className="card-button-container">
+          <button className="card-button" onClick={() => props.next()}> <img className="card-button-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZlC4jg8lepAQZWxzDfAJt_7u1Fz_3IYKFr0yxngu_gWVsaUY-9uU0G5_otZfbqMbkoU&usqp=CAU" /> </button>
+        </div>
+
       </div>
       {props.dateSelected ? (
         <>
           <p className="date-title">{props.user.username} Seleccionó tu cita</p>
-            <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
-            <button onClick={() => editRequest("YES")}>Sí</button>
-            <button onClick={() => editRequest("NO")}>No</button>
+          <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
+          <button onClick={() => editRequest("YES")}>Sí</button>
+          <button onClick={() => editRequest("NO")}>No</button>
           <div className="date">
 
 
@@ -155,7 +171,7 @@ const UserCard = (props) => {
         :
         (
           <>
-          <p className="card-date-title">Citas de {props.user.username}</p>
+            <p className="card-date-title">Citas de {props.user.username}</p>
             {dates?.map((elm, i) => (
 
               <div key={i} className="date">
@@ -184,24 +200,27 @@ const UserCard = (props) => {
         show={trivial}
         backdrop="static"
         onHide={closeModalTrivial}
+        className="trivial-modal"
       >
-        
-          <Modal.Title>¿Cuál es la mentira?</Modal.Title>
-    
+
+        <Modal.Title className="the-lie">¿Cuál es la mentira?</Modal.Title>
+
         <Modal.Body>
-          <div onClick={() => createConversation()} className="search-box">
+          <div className="tri-card">
+            <div onClick={() => openWrong()} className="search-box">
 
-            <div className="search-card two">
-              <p className="search-title">{props.user.questionTrue}</p>
+              <div className="search-card color">
+                <p className="search-title">{props.user.questionTrue}</p>
+              </div>
+
             </div>
+            <div onClick={() => createConversation()} className="search-box">
 
-          </div>
-          <div onClick={() => openWrong()} className="search-box">
+              <div className="search-card color" >
+                <p className="search-title">{props.user.questionFalse}</p>
+              </div>
 
-            <div className="search-card two">
-              <p className="search-title">{props.user.questionFalse}</p>
             </div>
-
           </div>
 
         </Modal.Body>
@@ -212,12 +231,12 @@ const UserCard = (props) => {
         backdrop="static"
         onHide={closeModalSuccess}
       >
-        
-          <Modal.Title>Correcto!!!!</Modal.Title>
-    
+
+        <Modal.Title>Correcto!!!!</Modal.Title>
+
         <Modal.Body>
 
-          <Link to={`/chat/${props.user._id}`} style={{ margin: "10px" }}>
+          <Link to={`/chat/${conversation._id}/${props.user._id}`} style={{ margin: "10px" }}>
             <p className="search-title">Chatea con {props.user.username}</p>
 
           </Link>
@@ -242,9 +261,9 @@ const UserCard = (props) => {
         backdrop="static"
         onHide={closeModalWrong}
       >
-        
-          <Modal.Title>Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</Modal.Title>
-    
+
+        <Modal.Title className="search-card color" >Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</Modal.Title>
+
         <Modal.Body>
           <button onClick={() => createRequest()}>Sí </button>
 

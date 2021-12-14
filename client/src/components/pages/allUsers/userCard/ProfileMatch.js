@@ -22,8 +22,6 @@ const ProfileMatch = () => {
     const getUser = (id) => {
         peopleService.getOneUser(id)
             .then(response => {
-                console.log("MIRANDO la promesa", response.data)
-
                 setUser(response.data)
             })
             .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))

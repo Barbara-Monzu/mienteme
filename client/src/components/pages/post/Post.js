@@ -16,7 +16,7 @@ export default function Post({ message }) {
     <div className="post">
          
       <div className="postCenter">
-          <span className="postText">{message}</span>
+          <span className="postText">{message.message}</span>
        </div>
       
       

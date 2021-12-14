@@ -27,6 +27,7 @@ const FormSignUp = () => {
         genderFilter: "",
         ageFirstFilter: undefined,
         ageSecondFilter: undefined,
+        cityFilter: undefined,
         city: "",
         questionTrue: "",
         questionFalse: "",
@@ -66,7 +67,7 @@ const FormSignUp = () => {
     //         .uploadImg(uploadedData)
     //         .then(res => setFormData({ ...formData, isLoading: false, profileImages: res.data.cloudinary_url }))
     //         .catch(err => console.error(err)) 
-            
+
     // }
 
 
@@ -78,7 +79,7 @@ const FormSignUp = () => {
 
     const closeModal = () => {
         setModal(false)
-        history.push("/click-me") 
+        history.push("/click-me")
     }
 
 
@@ -138,7 +139,7 @@ const FormSignUp = () => {
                     <p className="editProfile-data">Género</p>
                     <Form.Control className="editProfile-input" name="genderFilter" value={formData.genderFilter} onChange={e => handleChange(e)} type="text" placeholder="¿Mujer, hombre o ambos?" />
                 </Form.Group>
-
+                <p className="editProfile-data">Edad</p>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data">Edad(desde/hasta)</p>
                     <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por edad, introduce un número " />
                 </Form.Group>
@@ -146,25 +147,29 @@ const FormSignUp = () => {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="text" placeholder="hasta..." />
                 </Form.Group>
+                <p className="editProfile-data">Ciudad</p>
+                <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por ciudad..." />
+                </Form.Group>
 
                 <button className="editProfile-button" style={{ cursor: "pointer" }}>
                     Guardar
                 </button>
             </Form>
 
-                <Modal
-                    show={modal}
-                    backdrop="static"
-                    onHide={closeModal}>
+            <Modal
+                show={modal}
+                backdrop="static"
+                onHide={closeModal}>
 
-                    <Modal.Header closeButton>
-                        <Modal.Title>Crea tu primera cita</Modal.Title>
-                    </Modal.Header>
+                <Modal.Header closeButton>
+                    <Modal.Title>Crea tu primera cita</Modal.Title>
+                </Modal.Header>
 
-                    <Modal.Body>
-                        <EditDate closeModal={closeModal} />
-                    </Modal.Body>
-                </Modal>
+                <Modal.Body>
+                    <EditDate closeModal={closeModal} />
+                </Modal.Body>
+            </Modal>
 
 
 

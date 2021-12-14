@@ -10,10 +10,11 @@ class ConversationService {
 
   getAllConversations = () => this.app.get("/")
 
-  create = (idOtherUser, idDate) => this.app.post(`/create/${idDate}`, idOtherUser)
+  create = (idDate, idOtherUser) => this.app.post(`/create/${idDate}`, idOtherUser)
 
-  getOne = (idOtherUser, id) => this.app.get(`private/${idOtherUser}`, id)
+  getOne = (idDate) => this.app.get(`private/${idDate}`)
 
+  delete = (idConver) => this.app.delete(`/${idConver}`)
 
 }
 
