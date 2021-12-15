@@ -21,7 +21,6 @@ const UserCard = (props) => {
   const [wrong, setWrong] = useState(false)
   const [conversation, setConversation] = useState(false)
 
-  console.log("eL ID DEL OTRO", props.user._id)
 
   useEffect(() => {
 
@@ -79,8 +78,13 @@ const UserCard = (props) => {
 
     console.log("cita seleccionada y su creador CREANDO CON ESTO", dateSelected, props.user._id)
     requestService.create(dateSelected._id, props.user)
-      .then(response => console.log("creando la request ==>", response.data))
+      .then(response => {
+
+        nextUser()
+        console.log("creando la request ==>", response.data)
+      })
       .catch(err => console.log("hay un error al crear request en el front", err))
+
   }
 
   const createConversation = () => {
@@ -92,14 +96,14 @@ const UserCard = (props) => {
       .then(response => console.log("creando la conversación ==>", response.data))
       .catch(err => console.log("hay un error crear conver en el front", err))
 
-      getConversation()
+    getConversation()
   }
 
   const getConversation = () => {
 
     conversationService.getOne(dateSelected._id)
-      .then(response => 
-        {console.log("cogiendo la conver que acabamos de crear ==>", response.data)
+      .then(response => {
+        console.log("cogiendo la conver que acabamos de crear ==>", response.data)
         setConversation(response.data)
       })
       .catch(err => console.log("hay un error crear conver en el front", err))
@@ -107,28 +111,33 @@ const UserCard = (props) => {
   }
 
 
-  const editRequest = (answer) => {
+  const editRequestYes = (answer) => {
     let response = { response: answer }
     console.log("editando: LA REQUEST Y LA RESPUESTA", props.request, response)
     requestService.answer(props.request._id, response)
-      .then(response => console.log("editando la REQUEST ==>", response.data))
+      .then(response => {
+        console.log("EDITANDO REQUEST CON ÉXITO==>", response.data)
+        props.next()
+      })
       .catch(err => console.log("hay un error al modificar request en el front", err))
 
-    props.next()
   }
 
-  // const getChat = (id) => {
+  const deleteRequest = () => {
+    console.log("BORRANDO LA PETICIÓN, PORQUE HE DICHO QUE NO", props.request)
+    requestService.delete(props.request._id)
+      .then(response => {
+        console.log("BORRADA ==>", response.data)
+        props.next()
+      })
+      .catch(err => console.log("hay un error al BORRAR request en el front", err))
 
-  //   conversationService.getOne(props.user._id, id)
-  //     .then(response => console.log("COJO LA CONVER Q ACABO DE CREAR ==>", response.data))
-  //     .catch(err => console.log("hay un error crear conver en el front", err))
-  // }
+  }
 
 
   return (
 
     <div className="card">
-
 
 
       <div className="card-pic-container">
@@ -154,18 +163,16 @@ const UserCard = (props) => {
       {props.dateSelected ? (
         <>
           <p className="date-title">{props.user.username} Seleccionó tu cita</p>
-          <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
-          <button onClick={() => editRequest("YES")}>Sí</button>
-          <button onClick={() => editRequest("NO")}>No</button>
           <div className="date">
-
 
             <p>{props.dateSelected.nameDate}</p>
             <p className="date-description">{props.dateSelected.description}</p>
             <p className="date-category">{props.dateSelected.category}</p>
 
-
           </div>
+          <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
+          <button onClick={() => editRequestYes("YES")}>Sí</button>
+          <button onClick={() => deleteRequest()}>No</button>
         </>
       )
         :
@@ -190,7 +197,6 @@ const UserCard = (props) => {
 
         )
       }
-
 
       {/* <button onClick={openTrivial}>Quiero tener esta cita contigo</button> */}
 
@@ -238,22 +244,13 @@ const UserCard = (props) => {
 
           <Link to={`/chat/${conversation._id}/${props.user._id}`} style={{ margin: "10px" }}>
             <p className="search-title">Chatea con {props.user.username}</p>
-
           </Link>
 
           <Link to="/click-me" style={{ margin: "10px" }}>
-            <button onClick={() => nextUser()}>Next</button>
+            <button onClick={() => nextUser()}>Más tarde</button>
           </Link>
 
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={closeModalSuccess}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={closeModalSuccess}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
 
       <Modal
@@ -271,13 +268,13 @@ const UserCard = (props) => {
             <button onClick={() => nextUser()}>No, next</button>
           </Link>
 
+          <Link to="/click-me" style={{ margin: "10px" }}>
+            <button onClick={() => nextUser()}>Next</button>
+          </Link>
+
         </Modal.Body>
 
       </Modal>
-
-
-
-
 
     </div>
 

@@ -17,7 +17,7 @@ export default function PrivateChat() {
     const { loggedUser } = useContext(UserContext)
     const  {idConver, match } = useParams()
     
-console.log("ahoraaaaaa", match)
+    console.log("MI MATCH:", match)
 
     const [room, setRoom] = useState('')
 
@@ -50,6 +50,7 @@ console.log("ahoraaaaaa", match)
     }
 
     const getMatch = () => {
+
         peopleService.getOneUser(match)
         .then((response => {
             console.log("AAAAAAAAA", response.data[0])
@@ -57,7 +58,6 @@ console.log("ahoraaaaaa", match)
         }))
         .catch(err => console.log(err))
     }
-
 
 
     const setSocketConfig = () => {
@@ -84,14 +84,11 @@ console.log("ahoraaaaaa", match)
     }
 
 
-
-    //Envío mensajes y los recibo. ¿Porqué si pongo al revés estos dos funciones me da error? No lee el useEffect()
-
     useEffect(() => {
         socket.on("receiveMessages", message => {
-            console.log("DESPUES DE COMER_____________", message)
-           
-            setMessagesBack([...messagesBack, message])
+            console.log("MENSAJE CREADO Y RECIBIDO___", message)
+            messagesBack ? setMessagesBack([...messagesBack, message]) : setMessagesBack([message])
+            
 
         })
         return () => { socket.off() }
@@ -116,7 +113,6 @@ console.log("ahoraaaaaa", match)
             .create(newMessage, idConver)
             .then(response => console.log("CREANDO MENSAJE", response.data))
             .catch(err => console.error(err))
-
     }
 
 
@@ -150,7 +146,7 @@ console.log("ahoraaaaaa", match)
                     <hr></hr>
 
                 </div>
-                {messagesBack && (
+            
                 <div className="feedWrapper">
                     <div>
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
@@ -160,7 +156,7 @@ console.log("ahoraaaaaa", match)
                         <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
                         <button> ENVIAR</button>
                     </form>
-                </div>) }
+                </div>
             </div>
 
         </div>

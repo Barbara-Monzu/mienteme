@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   console.log("MIRANDO MI ID EN BACK", id)
 
   Conversation
-    .find({ $match: { members: id } })
+    .find({ members: id })
     .populate(["members", "dateSelected"])
     .then(conversations => res.status(200).json(conversations))
     .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))

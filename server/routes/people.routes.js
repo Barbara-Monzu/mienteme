@@ -8,7 +8,7 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter, cityFilter } = req.body
 
-  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter} }, { new: true })
+  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter } }, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
@@ -23,7 +23,7 @@ router.get("/allUsers", (req, res) => {
 
   if (genderFilter === "BOTH") {
 
-    User.find({ $and: [{ age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }]})
+    User.find({ $and: [{ age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }] })
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }
@@ -34,6 +34,7 @@ router.get("/allUsers", (req, res) => {
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }
 })
+
 
 
 router.get("/profile/:id", (req, res) => {

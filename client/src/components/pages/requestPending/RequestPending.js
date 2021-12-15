@@ -10,8 +10,8 @@ const requestService = new RequestService()
 
 const RequestPending = () => {
 
-    let [randomUser, setRandomUser] = useState(undefined);
-    let [pendings, setPendings] = useState(undefined);
+    const [randomUser, setRandomUser] = useState(undefined);
+    const [pendings, setPendings] = useState(undefined);
 
 
     useEffect(() => {

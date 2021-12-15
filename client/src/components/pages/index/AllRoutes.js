@@ -17,19 +17,42 @@ import ByCategoryDates from "../datesFilter/ByCategoryDates";
 import AllDates from "../datesFilter/AllDates";
 import UserContext from '../../services/UserContext'
 import ProfileMatch from "../../pages/allUsers/userCard/ProfileMatch"
-// import UserProfile from './pages/profile/userProfile';
+import ConversationService from "../../services/conversation.service";
+import RequestService from "../../services/request.service";
+
 export const UsersSelected = React.createContext();
 const peopleService = new PeopleService()
+const serviceConversation = new ConversationService()
+const requestService = new RequestService()
 
 const AllRoutes = () => {
 
   const { loggedUser } = useContext(UserContext)
   const [allUsers, setAllUsers] = useState(undefined)
+  const [removingConvers, setRemovingConvers] = useState(undefined)
+  const [secondsOpportunities, setSecondsOpportunities] = useState(undefined);
+  const [usersFiltered, setUsersFilter] = useState(undefined);
 
   useEffect(() => {
     getAllUsers()
-    
+
   }, [])
+
+  useEffect(() => {
+    allUsers && conversations()
+
+  }, [allUsers]);
+
+  useEffect(() => {
+    removingConvers && requestsReceived()
+
+  }, [removingConvers])
+
+
+  useEffect(() => {
+    secondsOpportunities && resquestCreatedForMe()
+
+}, [secondsOpportunities])
 
   const getAllUsers = () => {
 
@@ -37,11 +60,55 @@ const AllRoutes = () => {
       .then(response => {
         let users = response.data.filter(elm =>
           elm._id !== loggedUser._id)
-          console.log("todos los usuarios menos yo", users)
-          setAllUsers(users)
+        console.log("TODOS MENOS YO", users)
+        setAllUsers(users)
       })
       .catch(err => console.log(err))
   }
+
+  const conversations = () => {
+    serviceConversation.getAllConversations()
+      .then(response => {
+        let usersChat = response.data.map(elm =>
+          elm.members.filter(user => user._id !== loggedUser._id)[0])
+        let removing = allUsers?.filter(elm =>
+          !usersChat.some(user => user._id === elm._id))
+
+        console.log("QUITO MIS CONVERS", removing)
+        setRemovingConvers(removing)
+      })
+      .catch(error => console.log(error))
+  }
+
+
+  const requestsReceived = () => {
+    requestService.getAllRequestPending()
+      .then(response => {
+        let usersSecondOpportunities = response.data.map(elm => elm.creator)
+        let removing = removingConvers?.filter(elm =>
+        !usersSecondOpportunities.some(userReq => userReq._id === elm._id))
+        console.log("QUITO LAS REQUEST PENDING QUE RECIBO", removing)
+        setSecondsOpportunities(removing)
+
+      })
+      .catch(err => console.log(err))
+
+  }
+
+
+  const resquestCreatedForMe = () => {
+      requestService.getRequestCreatedForMe()
+          .then(response => {
+            let receivers = response.data.map(elm => elm.receiver)
+            let removing = secondsOpportunities?.filter(elm => 
+              !receivers.some(user => user._id === elm._id ))
+              console.log("QUITO ADEMÁS LAS REQUEST CREADAS POR MI, A LA ESPERA DE SER CONTESTADAS", removing)
+              setUsersFilter(removing)
+          })
+          .catch(err => console.log(err))
+
+  }
+
 
 
   return (
@@ -49,35 +116,35 @@ const AllRoutes = () => {
 
       <main>
 
-      
-            <HeaderNav />
-            
-            <UsersSelected.Provider value={{ allUsers }}>
-            <Switch>
 
-              <Route path="/click-me" exact render={() => <LoggedUserHome />} />
-              <Route path="/formulario" exact render={() => <FormSignUp />} />
-              <Route path="/chat" exact render={() => <Chat />} />
-              <Route path="/chat/:idConver/:match" render={() => <PrivateChat />} />
-              <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
-              <Route path="/buscar" render={() => <SearchCard />} />
-              <Route path="/peticiones" render={() => <RequestPending />} />
-              <Route path="/perfil" render={() => <UserProfile />} />
-              <Route path="/editar-perfil" render={() => <EditProfile />} />
-              <Route path="/todas" render={() => <AllDates />} />
-              <Route path="/match/:id" render={() => <ProfileMatch />} />
-              <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
-             
-              {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
-              {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
-             
+        <HeaderNav />
 
-            </Switch>
-          </UsersSelected.Provider>
+        <UsersSelected.Provider value={{ usersFiltered }}>
+          <Switch>
 
-            <FooterNav />
+            <Route path="/click-me" exact render={() => <LoggedUserHome />} />
+            <Route path="/formulario" exact render={() => <FormSignUp />} />
+            <Route path="/chat" exact render={() => <Chat />} />
+            <Route path="/chat/:idConver/:match" render={() => <PrivateChat />} />
+            <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
+            <Route path="/buscar" render={() => <SearchCard />} />
+            <Route path="/peticiones" render={() => <RequestPending />} />
+            <Route path="/perfil" render={() => <UserProfile />} />
+            <Route path="/editar-perfil" render={() => <EditProfile />} />
+            <Route path="/todas" render={() => <AllDates />} />
+            <Route path="/match/:id" render={() => <ProfileMatch />} />
+            <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
 
-      
+            {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
+            {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
+
+
+          </Switch>
+        </UsersSelected.Provider>
+
+        <FooterNav />
+
+
 
 
       </main>

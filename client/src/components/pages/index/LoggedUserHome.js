@@ -12,21 +12,20 @@ import { UsersSelected } from "./AllRoutes";
 
 const LoggedUserHome = () => {
 
-    const { allUsers } = useContext(UsersSelected);
+    const { usersFiltered } = useContext(UsersSelected);
     const [newRandomUser, setNewRandomUser] = useState(undefined)
 
 
-    console.log(" CONTEXTO de todos los usuarios: ", allUsers)
+    console.log(" CONTEXTO todos los usuarios: ", usersFiltered)
 
     useEffect(() => {
-        console.log('Holi')
-        allUsers && randomUser()
+        usersFiltered && randomUser()
 
-    }, [allUsers])
+    }, [usersFiltered])
 
     const randomUser = () => {
-        const index = Math.floor(Math.random() * allUsers.length)
-        let [selectedUser] = allUsers.splice(index, 1)
+        const index = Math.floor(Math.random() * usersFiltered.length)
+        let [selectedUser] = usersFiltered.splice(index, 1)
         console.log("esta es mi usuario random: ", selectedUser)
         setNewRandomUser(selectedUser)
     };

@@ -10,6 +10,8 @@ class RequestService {
 
   getAllRequestPending = () => this.app.get("/allRequestPending")
 
+  getRequestCreatedForMe = () => this.app.get("/myRequestsCreated")
+
   getAllSecondsOpportunities = () => this.app.get("/allSecondsOpportunities")
 
   getOneRequest = (id) => this.app.get("/oneRequest")
@@ -17,6 +19,8 @@ class RequestService {
   create = (idDate, user) => this.app.post(`/create/${idDate}`, user)
 
   answer = (idRequest, response) => this.app.put(`/${idRequest}`, response)
+
+  delete = (idRequest) => this.app.delete(`/${idRequest}`)
 }
 
 export default RequestService
