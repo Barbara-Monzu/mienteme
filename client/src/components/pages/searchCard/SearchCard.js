@@ -63,7 +63,7 @@ const SearchCard = (props) => {
                         </div>
                     </Link>
 
-                    <Link to="categoria/todas" style={{ margin: "10px" }}>
+                    <Link to="/todas" style={{ margin: "10px" }}>
                         <div className="search-card two">
                             <p className="search-title">TODAS</p>
 

@@ -14,7 +14,7 @@ const ByCategoryDates = () => {
 
     console.log("PARAMAS", category)
 
-    const { allUsers } = useContext(UsersSelected);
+    const { usersFiltered } = useContext(UsersSelected);
 
     // const[loading, setLoading] = useState(false)
 
@@ -23,7 +23,7 @@ const ByCategoryDates = () => {
 
 //alldates no se usa
 
-    console.log(" CONTEXTO filtrado de todos los usuarios: ", allUsers)
+    console.log(" CONTEXTO filtrado de todos los usuarios: ", usersFiltered)
 
     useEffect(() => {
         getDates()
@@ -38,9 +38,9 @@ const ByCategoryDates = () => {
                 console.log("ALL DATES ___>", response.data)
                 setAllDates(response.data) 
                 let arrDates = []
-                for (let i = 0; i < allUsers?.length; i++) {
+                for (let i = 0; i < usersFiltered?.length; i++) {
                     let dates = response.data.filter(elm => {
-                        return elm.creator._id === allUsers[i]._id
+                        return elm.creator._id === usersFiltered[i]._id
                     });
 
                     if (dates) dates.forEach(el => arrDates.push(el))
