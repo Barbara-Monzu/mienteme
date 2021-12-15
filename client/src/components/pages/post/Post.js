@@ -1,25 +1,34 @@
+import React, { useContext } from 'react'
+import UserContext from '../../services/UserContext'
 import "./Post.css";
-
-
-// import { format } from "timeago.js";
-
-// import { AuthContext } from "../../context/AuthContext";
-
 
 export default function Post({ message }) {
 
+  const { loggedUser } = useContext(UserContext)
 
-  // messages.creator === currentUser._id ? 
-  // SACAR MENSAJES A LA DERECHA Y EN AZUL : SACARLOS A LA IZQUIERDA Y EN BLANCO
+  
 
   return (
-    <div className="post">
-         
-      <div className="postCenter">
-          <span className="postText">{message.message}</span>
-       </div>
-      
-      
-    </div>
+
+    <>
+      {(message?.sender === loggedUser._id) ?
+        (<div className="post">
+
+          <div className="postCenter">
+            <span className="postText">{message.message}</span>
+          </div>
+
+        </div>) :
+        (<div className="post">
+
+          <div className="postCenter">
+            <span className="postText">{message.message}</span>
+          </div>
+
+        </div>)}
+
+    </>
   );
 }
+
+

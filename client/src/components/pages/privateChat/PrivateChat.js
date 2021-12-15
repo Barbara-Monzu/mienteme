@@ -35,12 +35,13 @@ export default function PrivateChat() {
 
     }, [])
 
-  
+
     const getMessages = () => {
         console.log("LA CONVER", idConver)
         messagesService
             .getAllMessages(idConver)
             .then((response => {
+                console.log(response, "UN CONSOLE.LOG MAS")
                 setMessagesBack(response.data)
             }))
             .catch(err => console.error(err))

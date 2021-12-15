@@ -12,20 +12,21 @@ router.get('/allMessages/:idConver', (req, res) => {
   console.log("ID CONVER COGIENDO LOS MENSAJES", idConver)
 
   Message
-    .find({ conversation: idConver})
+    .find({ conversation: idConver })
+    .populate(["sender", "receiver"])
     .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
-    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err: err.message }))
 })
 
 router.get('/lastMessage/:idConver', (req, res) => {
 
-    const  { idConver }  = req.params
-  
-    Message
-      .find({ conversation: idConver}).sort( { 'createdAt': -1 } )
-      .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
-      .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
-  })
+  const { idConver } = req.params
+
+  Message
+    .find({ conversation: idConver }).sort({ 'createdAt': -1 })
+    .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
+    .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
+})
 
 
 router.post('/:idConver', (req, res) => {
@@ -35,7 +36,7 @@ router.post('/:idConver', (req, res) => {
   const { message, sender, receiver } = req.body
 
   Message
-    .create({ message, sender, receiver, conversation: idConver})
+    .create({ message, sender, receiver, conversation: idConver })
     .then(() => res.status(200).json({ message: 'Message successfully created' }))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating message", err }))
 

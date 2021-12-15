@@ -7,8 +7,30 @@ import { Link } from "react-router-dom";
 import ConversationService from "../../services/conversation.service";
 const serviceConversation = new ConversationService()
 
-export default function EachConversation({ members, dateSelected, _id }) {
+export default function EachConversation({ members, dateSelected, _id, createdAt }) {
 
+  var date = new Date(createdAt);  // dateStr you get from mongodb
+
+  const monthName = {
+    [1]: 'Enero',
+    [2]: 'Febrero',
+    [3]: 'Marzo',
+    [4]: 'Abril',
+    [5]: 'Mayo',
+    [6]: 'Junio',
+    [7]: 'Julio',
+    [8]: 'Agosto',
+    [9]: 'Septiembre',
+    [10]: 'Octubre',
+    [11]: 'Noviembre',
+    [12]: 'Diciembre',
+  }
+
+  const d = date.getDate();
+  let m = date.getMonth() + 1;
+  m = monthName[m].slice(0, 3)
+
+  
   const serviceMessages = new ServiceMessages()
   const { loggedUser } = useContext(UserContext)
   console.log("mira este id a las 12", _id)
@@ -67,6 +89,7 @@ export default function EachConversation({ members, dateSelected, _id }) {
           <div>
             <p>{dateSelected?.nameDate}</p>
             <span className="conversationName">{userProfile?.username}, {userProfile?.age}</span>
+            <p>{d} de {m}</p>
 
           </div>
           <p>{lastMessage?.message}</p>
