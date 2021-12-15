@@ -91,24 +91,30 @@ const UserCard = (props) => {
     openModalSuccess()
     closeModalTrivial()
     let idOtherUser = { idOtherUser: props.user._id }
-    console.log("ME INTERESA ESTO para crear una conver", idOtherUser, dateSelected._id)
-    conversationService.create(dateSelected._id, idOtherUser)
-      .then(response => console.log("creando la conversación ==>", response.data))
-      .catch(err => console.log("hay un error crear conver en el front", err))
-
-    getConversation()
-  }
-
-  const getConversation = () => {
-
-    conversationService.getOne(dateSelected._id)
+   
+    console.log("ME INTERESA ESTO para crear una conver", idOtherUser, dateSelected._id, dateSelected)
+      conversationService
+      .create(dateSelected._id, idOtherUser)
       .then(response => {
-        console.log("cogiendo la conver que acabamos de crear ==>", response.data)
-        setConversation(response.data)
-      })
+        setConversation(response.data._id)
+        console.log("creando la conversación ==>", response.data)
+        })
       .catch(err => console.log("hay un error crear conver en el front", err))
 
   }
+
+  console.log("CONVER", conversation)
+
+  // const getConversation = () => {
+
+  //   conversationService.getOne(dateSelected._id)
+  //     .then(response => {
+  //       console.log("CONVERRRRR!!! ==>", response.data)
+  //       setConversation(response.data)
+  //     })
+  //     .catch(err => console.log("hay un error crear conver en el front", err))
+
+  // }
 
 
   const editRequestYes = (answer) => {
@@ -242,7 +248,7 @@ const UserCard = (props) => {
 
         <Modal.Body>
 
-          <Link to={`/chat/${conversation._id}/${props.user._id}`} style={{ margin: "10px" }}>
+          <Link to={`/chat/${conversation}/${props.user._id}`} style={{ margin: "10px" }}>
             <p className="search-title">Chatea con {props.user.username}</p>
           </Link>
 

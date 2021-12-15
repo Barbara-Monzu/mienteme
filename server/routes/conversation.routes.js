@@ -37,11 +37,14 @@ router.post('/create/:idDate', (req, res) => {
   const id = req.session.currentUser._id
   const { idDate } = req.params
   const { idOtherUser } = req.body
-  console.log("MIRA ESTO 11 23 ---------", idOtherUser, req.body, req.body.idOtherUser)
+  console.log("MIRA ESTO 11 23 en creando conver---------", idOtherUser, idDate)
 
   Conversation
     .create({ dateSelected: idDate, members: [id, idOtherUser] })
-    .then((converCreated) => console.log("creando convers", converCreated))
+    .then((converCreated) => {
+      res.status(200).json(converCreated)
+      console.log("creando convers", converCreated)
+    })
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
 
 })
@@ -73,12 +76,12 @@ router.get('/private/:idDate', (req, res) => {
 
   Conversation
     .findOne({
-        $and: [
-          { $match: { 'members': id } },
-          { 'dateSelected': idDate }
-        ]
-      }
-   )
+      $and: [
+        { $match: { 'members': id } },
+        { 'dateSelected': idDate }
+      ]
+    }
+    )
     .then((response) => console.log("TRAYENDO ÚNICA CONVER ", response))
     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
 

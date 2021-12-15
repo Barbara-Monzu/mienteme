@@ -35,20 +35,16 @@ const ByCategoryDates = () => {
     const getDates = () => {
         datesService.getByCategory(category)
             .then(response => {
-                console.log("ALL DATES ___>", response.data)
+                console.log("ALL DATES BY CATEGORY___>", response.data)
                 setAllDates(response.data) 
                 let arrDates = []
                 for (let i = 0; i < usersFiltered?.length; i++) {
-                    let dates = response.data.filter(elm => {
-                        return elm.creator._id === usersFiltered[i]._id
-                    });
-
+                    let dates = response.data.filter(elm => elm.creator?._id === usersFiltered[i]?._id);
                     if (dates) dates.forEach(el => arrDates.push(el))
                 }
                 console.log("ARR DATES", arrDates)
                 setFilteredDates(arrDates);
             })
-            .then(() => console.log("MIRANDO EL SEGUNDO THEN", ))
             .catch(err => console.log(err))
 
         console.log("DATES BY CATEGORY", filteredDates)
@@ -63,7 +59,7 @@ const ByCategoryDates = () => {
             </Link>
 
             <h1 className="search-h1">Citas</h1>
-            {filteredDates.map((elm, i) =>
+            {filteredDates?.map((elm, i) =>
                 <EachDate {...elm} />
 
             )}

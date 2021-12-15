@@ -30,12 +30,12 @@ const AllDates = () => {
     const getDates = () => {
         datesService.getAllDates()
             .then(response => {
-                // console.log("ALL DATES ___>", response.data)
+                console.log("ALL DATES ___>", response.data)
                 setAllDates(response.data)
                 let arrDates = []
                 for (let i = 0; i < usersFiltered?.length; i++) {
                     let dates = response.data.filter(elm => {
-                        return elm.creator._id === usersFiltered[i]._id
+                        return elm.creator?._id === usersFiltered[i]?._id
                     });
 
                     if (dates) dates.forEach(el => arrDates.push(el))

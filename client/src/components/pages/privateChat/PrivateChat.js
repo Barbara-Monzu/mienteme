@@ -15,8 +15,8 @@ let socket;
 export default function PrivateChat() {
 
     const { loggedUser } = useContext(UserContext)
-    const  {idConver, match } = useParams()
-    
+    const { idConver, match } = useParams()
+
     console.log("MI MATCH:", match)
 
     const [room, setRoom] = useState('')
@@ -28,35 +28,33 @@ export default function PrivateChat() {
     const [conver, setConver] = useState(undefined)
 
     const updateMessages = (message) => setMessages([...messages, message.message])
-    // const setInitialMessages = () => setMessages(chat.messages.map(message => parseMessage(message, 'db')))
-
 
     useEffect(() => {
         getMatch()
         setSocketConfig()
-      
-        //cada vez q los mensaggesNuevos cambien imprímeme de nuevo esto
+
     }, [])
 
-    // const setInitialMessages = () => setMessagesBack(getMessages())
-
+  
     const getMessages = () => {
-       messagesService
+        console.log("LA CONVER", idConver)
+        messagesService
             .getAllMessages(idConver)
             .then((response => {
-                setMessagesBack(response.data)}))
+                setMessagesBack(response.data)
+            }))
             .catch(err => console.error(err))
-                console.log("MENSAJES:", messagesBack)
+        console.log("MENSAJES:", messagesBack)
     }
 
     const getMatch = () => {
 
         peopleService.getOneUser(match)
-        .then((response => {
-            console.log("AAAAAAAAA", response.data[0])
-            setUser(response.data[0])
-        }))
-        .catch(err => console.log(err))
+            .then((response => {
+                console.log("AAAAAAAAA", response.data[0])
+                setUser(response.data[0])
+            }))
+            .catch(err => console.log(err))
     }
 
 
@@ -88,7 +86,7 @@ export default function PrivateChat() {
         socket.on("receiveMessages", message => {
             console.log("MENSAJE CREADO Y RECIBIDO___", message)
             messagesBack ? setMessagesBack([...messagesBack, message]) : setMessagesBack([message])
-            
+
 
         })
         return () => { socket.off() }
@@ -129,13 +127,13 @@ export default function PrivateChat() {
                 <div className="postWrapper">
                     <div className="postTop">
                         <div className="postTopLeft">
-                        <Link to={`/match/${user?._id}`}>
-                            <img
-                                className="postProfileImg"
-                                src={user?.profileImages}
-                                alt=""
-                            />
-                        </Link>
+                            <Link to={`/match/${user?._id}`}>
+                                <img
+                                    className="postProfileImg"
+                                    src={user?.profileImages}
+                                    alt=""
+                                />
+                            </Link>
                             {/* <span className="postUsername">{messages.messages}</span> */}
                             <span className="postDate">{user?.username}</span>
                             <span className="postDate">{user?.age}</span>
@@ -146,7 +144,7 @@ export default function PrivateChat() {
                     <hr></hr>
 
                 </div>
-            
+
                 <div className="feedWrapper">
                     <div>
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}

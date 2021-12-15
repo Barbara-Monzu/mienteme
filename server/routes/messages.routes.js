@@ -22,7 +22,7 @@ router.get('/lastMessage/:idConver', (req, res) => {
     const  { idConver }  = req.params
   
     Message
-      .findOne({ conversation: idConver}, { sort: { 'created_at' : -1 } })
+      .find({ conversation: idConver}).sort( { 'createdAt': -1 } )
       .then(MessagesPrivates => res.status(200).json(MessagesPrivates))
       .catch(err => res.status(500).json({ code: 500, message: "Error retrieving Conversations", err }))
   })
