@@ -40,7 +40,7 @@ const SearchCard = (props) => {
                         </div>
                     </Link>
 
-                    <Link to="categoria/calendario" style={{ margin: "10px" }}>
+                    <Link to="/calendario" style={{ margin: "10px" }}>
                         <div className="search-card four">
                             <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
 

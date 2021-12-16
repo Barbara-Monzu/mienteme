@@ -33,6 +33,5 @@ export default function Conversation({ currentUser }) {
     <EachConver />
     </>
 
-   
   );
 }

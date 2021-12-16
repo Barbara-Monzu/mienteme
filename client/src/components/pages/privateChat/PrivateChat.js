@@ -35,7 +35,7 @@ export default function PrivateChat() {
 
     }, [])
 
-
+  
     const getMessages = () => {
         console.log("LA CONVER", idConver)
         messagesService
@@ -123,10 +123,10 @@ export default function PrivateChat() {
 
 
     return (
+
+        <>
         <div className="privateChat">
-            <div className="feed">
-                <div className="postWrapper">
-                    <div className="postTop">
+
                         <div className="postTopLeft">
                             <Link to={`/match/${user?._id}`}>
                                 <img
@@ -135,29 +135,24 @@ export default function PrivateChat() {
                                     alt=""
                                 />
                             </Link>
-                            {/* <span className="postUsername">{messages.messages}</span> */}
-                            <span className="postDate">{user?.username}</span>
-                            <span className="postDate">{user?.age}</span>
-
+        
+                            <span className="name-chat">{user?.username}    {user?.age} </span>
                         </div>
-                    </div>
 
                     <hr></hr>
 
-                </div>
-
                 <div className="feedWrapper">
-                    <div>
+                    <div className="ave">
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
                         <div ref={divRef}></div>
                     </div>
                     <form onSubmit={sendMessage} className="postBottom">
                         <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
-                        <button> ENVIAR</button>
+                        <button className="send-msg"> ENVIAR</button>
                     </form>
                 </div>
-            </div>
-
         </div>
+
+        </>
     );
 }

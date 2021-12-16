@@ -18,6 +18,8 @@ class DatesService {
   getUserDates = (idOtherUser) => this.app.get(`/its-dates/${idOtherUser}`)
 
   getByCategory = (category) => this.app.get(`/categoria/${category}`)
+  
+  getByCity = (city) => this.app.get(`/?city=${city}`)
 
   getByDay = (day) => this.app.get(`/byday-dates`, day)
 

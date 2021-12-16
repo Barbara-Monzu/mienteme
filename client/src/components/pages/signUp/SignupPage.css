@@ -81,6 +81,12 @@ button.signup-social {
     margin: 3px;
 }
 
+button.signup-social:hover {
+    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(0, 0, 0, 0.81);
+}
+
+
 img .exit-logo {
     width: 30px;
 }
@@ -125,4 +131,29 @@ img.project-logo {
 .project-logo-box {
     width: 55%;
     text-align: end;
+}
+
+.project-logo-big {
+    width: 100px;
+    height: 100px;
+}
+
+.home-page {
+    color: black;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.home-page:hover {
+    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(0, 0, 0, 0.81);
+}
+.no-dec {
+    text-decoration:none
+}
+
+h2 {
+    margin: 10px;
 }

@@ -1,14 +1,20 @@
 .conversation {
     display: flex;
     align-items: baseline;
-    padding: 8px;
     cursor: pointer;
     margin-top: 20px;
+  
+
   }
   
-  .conversation:hover {
+  .global:hover {
     background-color: rgb(245, 243, 243);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+
   }
+ 
   
   .conversationImg {
     width: 50px;
@@ -23,11 +29,8 @@
   }
 
   .date {
-    display: flex;
     width: 100%;
-    position: relative;
-    justify-content: space-between;
-   
+    height: 50px;
    
   }
 
@@ -47,16 +50,67 @@
   }
   
   .chatOnlineImg {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid white;
   }
+
+  .delete-icon {
+    position: relative;
+    left: 90%;
+    height: 20px;
+    border-radius: 26px;
+    padding: 2%;
+    z-index: 9999;
+    cursor: pointer;
+    margin-bottom: 3px;
+  
+  }
+
+  .delete-icon:hover {
+    border: 2px solid #ada9a9;
+
+    
+  }
+
+  .barra {
+    position: relative;
+    left: 20%,
+  }
+
 
   
   @media screen and (max-width: 768px) {
     .message {
       display: none;
     }
+  }
+
+  p {
+    font-size: small;
+    margin: auto;
+  }
+
+  .d-m {
+    font-size: 12px;
+    margin: auto 0;
+    padding-left: 40px;
+
+  }
+
+  .username-chat {
+    font-size: 16px;
+    margin-left: 9px;
+    font-weight: bolder;
+  }
+
+  .bachat {
+    display: flex;
+    
+  }
+
+  .last-message {
+    color: #969090; 
   }

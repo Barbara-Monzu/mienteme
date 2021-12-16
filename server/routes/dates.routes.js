@@ -96,8 +96,16 @@ router.get("/categoria/:category", (req, res) => {
 
 })
 
+router.get("/by-city/:city", (req, res) => {
 
+  const { city } = req.params
 
+  Date.find({ city: city })
+  .populate("creator")
+    .then(dates => res.json(dates))
+    .catch(err => console.log(err))
+
+})
 
 
 router.delete("/delete/:idDate", (req, res) => {

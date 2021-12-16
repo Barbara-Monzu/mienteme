@@ -1,13 +1,24 @@
-.privateChat {
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Poppins:wght@300&display=swap');
+* {
+    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* .privateChat {
     height: 100vh;
     width: 100%;
     background-color:  rgb(245, 243, 243);
-}
+    
+} */
 
-.feed{
+/* .feed{
     flex:5.5
-}
+} */
 
 .feedWrapper{
     padding: 20px;
+}
+
+.name-chat {
+    padding-left: 30px;
 }

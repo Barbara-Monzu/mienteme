@@ -3,47 +3,51 @@ import { Link } from "react-router-dom";
 
 
 
-const  Home = (props) => {
+const Home = (props) => {
 
-const visualPage = {
-  display: "flex", 
-  flexDirection: "column", 
-  justifyContent: "center",
-  textAlign: "center",
-  alignItems: "center",
-  alignContent: "center",
-  position: "absolute", 
-  width: "100%",
-  top: "200px",
-  backgroundBlendMode: "lighten"
+  const visualPage = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    textAlign: "center",
+    alignItems: "center",
+    alignContent: "center",
+    position: "absolute",
+    width: "100%",
+    top: "200px",
+    backgroundBlendMode: "lighten"
 
-}
+  }
 
 
 
   return (
     <>
 
-        <div style={{backgroundImage: "linear-gradient( 135deg, #3C8CE7 10%, #00EAFF 100%)", backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
-
-        <h1 style={{ color: "white", fontFamily: "Helvetica", fontSize: "70px"}}>Click-me </h1>
-        <p style={{ color: "white", fontFamily: "Helvetica", fontSize: "30px" }}>¿Verdad o mentira?</p>
-        
-          <div>
-
-            <Link to="/login" >
-              <button>Iniciar sesión</button>
-            </Link>
-
-            <Link to="/singup" >
-              <button>Crear nueva cuenta</button>
-            </Link>
+      <div style={{backgroundSize: "cover", height: "100vh", display: "flex", justifyContent: "center", flexDirection: "Column", alignItems: "center"}}>
 
 
-            <div style={{marginTop: "20px"}}></div>
-          </div>
+      <div className="project-logo-container">
+        <div className="project-logo-box">
+          <img className="project-logo-big" src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" />
+        </div>
 
       </div>
+
+        <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}}>Miénteme</h1>
+  
+      <Link to="/singup" className="no-dec">
+        <h2 className="home-page">Regístrate</h2>
+      </Link>
+
+      <Link to="/login" className="no-dec">
+        <h2 className="home-page">Inicia sesión</h2>
+      </Link>
+
+
+    </div>
+        
+
     </>
   )
 }

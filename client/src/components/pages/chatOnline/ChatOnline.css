@@ -38,17 +38,24 @@ h1 {
   }
 
   .searchBar {
-    width: 100%;
+    position: relative;
+    width: 88%;
     border-radius: 26px;
     border: 1px solid #ada9a9;
-    padding: 1% 6%;
+    padding: 2% 6%;
     background-image: url(https://img.icons8.com/ios-filled/50/000000/search--v1.png);
     background-size: contain;
     background-repeat: no-repeat;
     outline: 0;
-    background-position: 20px;
+    background-position: 95%;
     background-size: 20px;
+    margin-bottom: 15px;
   }
+
+  .searchBar:hover {
+    border: 1.5px solid black;
+  }
+
   
   @media screen and (max-width: 768px) {
     .chatOnlineName {

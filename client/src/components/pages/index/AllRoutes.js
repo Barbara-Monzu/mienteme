@@ -19,6 +19,7 @@ import UserContext from '../../services/UserContext'
 import ProfileMatch from "../../pages/allUsers/userCard/ProfileMatch"
 import ConversationService from "../../services/conversation.service";
 import RequestService from "../../services/request.service";
+import MyCalendar from "../../pages/calendar/Calendar"
 
 export const UsersSelected = React.createContext();
 const peopleService = new PeopleService()
@@ -133,10 +134,10 @@ const AllRoutes = () => {
             <Route path="/editar-perfil" render={() => <EditProfile />} />
             <Route path="/todas" render={() => <AllDates />} />
             <Route path="/match/:id" render={() => <ProfileMatch />} />
+            <Route path="/calendario" render={() => <MyCalendar />} />
             <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
 
             {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
-            {/* <Route path="/calendario" render={() => <ByDayDates />} /> */}
 
 
           </Switch>

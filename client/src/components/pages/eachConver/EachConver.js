@@ -3,13 +3,14 @@ import { useEffect, useState, useContext } from "react";
 import "./EachConver.css";
 import UserContext from '../../services/UserContext'
 import ServiceMessages from '../../services/messages.service';
-import { Link } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import ConversationService from "../../services/conversation.service";
 const serviceConversation = new ConversationService()
 
 export default function EachConversation({ members, dateSelected, _id, createdAt }) {
 
-  var date = new Date(createdAt);  // dateStr you get from mongodb
+  const history = useHistory()
+  const date = new Date(createdAt);  // dateStr you get from mongodb
 
   const monthName = {
     [1]: 'Enero',
@@ -30,7 +31,7 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
   let m = date.getMonth() + 1;
   m = monthName[m].slice(0, 3)
 
-  
+
   const serviceMessages = new ServiceMessages()
   const { loggedUser } = useContext(UserContext)
   console.log("mira este id a las 12", _id)
@@ -38,14 +39,16 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
   const [userProfile, setUserProfile] = useState(undefined)
   const [lastMessage, setLastMessage] = useState("")
+  const [deleteConver, setdeleteConver] = useState(false)
 
-  //DESCOMENTAR
+
+
 
   useEffect(() => {
 
     _id && getLastMessage
       (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
-  }, [])
+  }, [deleteConver])
 
 
   const getLastMessage = () => {
@@ -63,6 +66,8 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
     serviceConversation.delete(idConver)
       .then(response => {
         console.log("borrando una conver --------", response.data)
+        setdeleteConver(!deleteConver)
+        history.push("/chat")
       })
       .catch(error => console.log(error))
   }
@@ -70,37 +75,35 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
   console.log("LAST MESSAGE", lastMessage)
 
   return (
-    <>
+    <div className="global">
 
-      <div className="conversation">
+      <Link to={`/chat/${_id}/${userProfile?._id}`} style={{ textDecoration: "none", color: "black" }}>
+        <div className="conversation">
 
-        <div className="chatOnlineImgContainer">
-          <Link to={`/chat/${_id}/${userProfile?._id}`} style={{ margin: "10px" }}>
+          <div className="chatOnlineImgContainer">
+            <p className=""><strong>{userProfile?.username}</strong> eligió: {dateSelected?.nameDate}</p>
             <img
               className="chatOnlineImg"
               src={userProfile?.profileImages}
               alt=""
             />
-          </Link>
-          <div className="chatOnlineBadge"></div>
-        </div>
-
-        <div className="date">
-          <div>
-            <p>{dateSelected?.nameDate}</p>
-            <span className="conversationName">{userProfile?.username}, {userProfile?.age}</span>
-            <p>{d} de {m}</p>
-
+            {/* <div className="chatOnlineBadge"></div> */}
           </div>
-          <p>{lastMessage?.message}</p>
-          <button onClick={() => remove(_id)} > Eliminar</button>
-
+         
+          <p className="last-message">{lastMessage?.message}</p>
+          <p className="d-m">{d} de {m}</p>
+    
 
         </div>
+      </Link>
+      <div className="bachat">
+        <img className="delete-icon" onClick={() => remove(_id)} src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" />
       </div>
+      
+      <hr style={{ margin: "auto auto auto 80px" }} className="barra"></hr>
 
-      <hr></hr>
-    </>
+  
+    </div>
 
   );
 }
