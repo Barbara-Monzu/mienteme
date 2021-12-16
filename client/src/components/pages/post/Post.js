@@ -3,7 +3,7 @@ import UserContext from '../../services/UserContext'
 import "./Post.css";
 
 export default function Post({ message }) {
-
+  console.log(message, "ALGOOOOOO")
   const { loggedUser } = useContext(UserContext)
 
   console.log("SENDER", message?.sender)
@@ -14,15 +14,15 @@ export default function Post({ message }) {
       {(message?.sender._id === loggedUser._id) ?
         (
           <div className="post-loggedUser">
-          <div className="postCenter">
-            <span className="postText">{message.message}</span>
-            <span className="postText">{message.createAt}</span>
+            <div className="postCenter">
+              <span className="postText">{message.message}</span>
+              <span className="postText">{message.createAt}</span>
 
-          </div>
+            </div>
 
-        </div>) :
+          </div>) :
         (<div className="post-match">
-        <div className="profile-pic-chat">
+          <div className="profile-pic-chat">
             <img className="picture-chat" src={message.sender.profileImages} alt="" />
           </div>
           <div className="">
