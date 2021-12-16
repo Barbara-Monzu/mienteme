@@ -4,12 +4,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* .privateChat {
+.privateChat {
     height: 100vh;
     width: 100%;
     background-color:  rgb(245, 243, 243);
     
-} */
+}
 
 /* .feed{
     flex:5.5
@@ -17,8 +17,13 @@
 
 .feedWrapper{
     padding: 20px;
+    /* margin-top: 80%; */
 }
 
 .name-chat {
     padding-left: 30px;
+}
+
+.feedWrapper.but{
+    margin-top: 100%;
 }

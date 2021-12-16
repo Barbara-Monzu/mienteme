@@ -120,7 +120,7 @@ const AllRoutes = () => {
 
         <HeaderNav />
 
-        <UsersSelected.Provider value={{ usersFiltered }}>
+        <UsersSelected.Provider value={{ usersFiltered, allUsers }}>
           <Switch>
 
             <Route path="/click-me" exact render={() => <LoggedUserHome />} />

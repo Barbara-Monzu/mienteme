@@ -10,14 +10,14 @@ const datesService = new DatesService()
 const AllDates = () => {
 
 
-    const { usersFiltered } = useContext(UsersSelected);
+    const { allUsers } = useContext(UsersSelected);
 
     // const[loading, setLoading] = useState(false)
     const [allDates, setAllDates] = useState(undefined)
     const [filteredDates, setFilteredDates] = useState(undefined)
 
 
-    console.log(" CONTEXTO de todos los usuarios: ", usersFiltered)
+    console.log(" CONTEXTO de todos los usuarios: ", allUsers)
 
     useEffect(() => {
         getDates()
@@ -33,9 +33,9 @@ const AllDates = () => {
                 console.log("ALL DATES ___>", response.data)
                 setAllDates(response.data)
                 let arrDates = []
-                for (let i = 0; i < usersFiltered?.length; i++) {
+                for (let i = 0; i < allUsers?.length; i++) {
                     let dates = response.data.filter(elm => {
-                        return elm.creator?._id === usersFiltered[i]?._id
+                        return elm.creator?._id === allUsers[i]?._id
                     });
 
                     if (dates) dates.forEach(el => arrDates.push(el))
@@ -53,7 +53,7 @@ const AllDates = () => {
 
     return (
         <>
-            <Link to="/buscar" style={{ marginLeft: "100vh", textDecoration: "none"}}>
+            <Link to="/buscar" style={{ marginLeft: "100vh", textDecoration: "none" }}>
                 <button className="search-title">VOLVER</button>
             </Link>
 

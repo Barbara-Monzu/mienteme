@@ -11,6 +11,7 @@ const requestService = new RequestService()
 const conversationService = new ConversationService()
 const peopleService = new ConversationService()
 
+let random;
 
 const UserCard = (props) => {
 
@@ -24,6 +25,7 @@ const UserCard = (props) => {
 
   useEffect(() => {
 
+    random = Math.floor(Math.random() * (50))
     showDates()
   }, [props.user])
 
@@ -191,27 +193,49 @@ const UserCard = (props) => {
         )
       }
 
+      {(random % 2 === 0) ? (
 
-      <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
+        <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
 
-        <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
+          <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
 
-        <Modal.Body>
-          <div className="userCard-trivial-subcontainer">
-            <div onClick={() => openWrong()} className="">
-              <div className="userCard-trivial-box">
-                <p className="userCard-trivial-text">{props.user.questionTrue}</p>
+          <Modal.Body>
+            <div className="userCard-trivial-subcontainer">
+              <div onClick={() => openWrong()} className="">
+                <div className="userCard-trivial-box">
+                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
+                </div>
+              </div>
+
+              <div onClick={() => createConversation()} className="">
+                <div className="userCard-trivial-box">
+                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
+                </div>
               </div>
             </div>
+          </Modal.Body>
+        </Modal>) :
+        (<Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
 
-            <div onClick={() => createConversation()} className="">
-              <div className="userCard-trivial-box">
-                <p className="userCard-trivial-text">{props.user.questionFalse}</p>
+          <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
+
+          <Modal.Body>
+            <div className="userCard-trivial-subcontainer">
+              <div onClick={() => createConversation()} className="">
+                <div className="userCard-trivial-box">
+                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
+                </div>
+              </div>
+
+              <div onClick={() => openWrong()} className="">
+                <div className="userCard-trivial-box">
+                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </Modal.Body>
-      </Modal>
+          </Modal.Body>
+        </Modal>)}
+
 
       <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
 

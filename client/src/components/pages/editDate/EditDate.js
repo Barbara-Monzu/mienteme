@@ -82,16 +82,16 @@ const EditDate = (props) => {
                     <Form.Control name="nameDate" value={formData.nameDate} onChange={e => handleChange(e)} type="text" placeholder="Nombre de cita" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check name="description" value={formData.description} onChange={e => handleChange(e)} type="text" label="" placeholder="Descripción" />
+                    <Form.Control name="description" value={formData.description} onChange={e => handleChange(e)} type="text" label="" placeholder="Descripción" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check name="city" value={formData.city} onChange={e => handleChange(e)} type="text" placeholder="Ciudad" />
+                    <Form.Control name="city" value={formData.city} onChange={e => handleChange(e)} type="text" placeholder="Ciudad" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check name="day" value={formData.day} onChange={e => handleChange(e)} type="text" placeholder="Día" />
+                    <Form.Control name="day" value={formData.day} onChange={e => handleChange(e)} type="text" placeholder="Día" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check name="category" value={formData.category} onChange={e => handleChange(e)} type="text" placeholder="Categoría" />
+                    <Form.Control name="category" value={formData.category} onChange={e => handleChange(e)} type="text" placeholder="Categoría" />
                 </Form.Group>
                 {props.dateSelected ?
                     (<button className="signup" style={{ cursor: "pointer" }}>

@@ -86,6 +86,7 @@ export default function PrivateChat() {
     useEffect(() => {
         socket.on("receiveMessages", message => {
             getMessages()
+
         })
         return () => { socket.off() }
     }, [message])
@@ -122,19 +123,19 @@ export default function PrivateChat() {
     return (
 
         <>
+            <div className="postTopLeft">
+                <Link to={`/match/${user?._id}`}>
+                    <img
+                        className="postProfileImg"
+                        src={user?.profileImages}
+                        alt=""
+                    />
+                </Link>
+
+                <span className="name-chat">{user?.username}    {user?.age} </span>
+            </div>
+
             <div className="privateChat">
-
-                <div className="postTopLeft">
-                    <Link to={`/match/${user?._id}`}>
-                        <img
-                            className="postProfileImg"
-                            src={user?.profileImages}
-                            alt=""
-                        />
-                    </Link>
-
-                    <span className="name-chat">{user?.username}    {user?.age} </span>
-                </div>
 
                 <hr></hr>
 
@@ -143,6 +144,8 @@ export default function PrivateChat() {
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
                         <div ref={divRef}></div>
                     </div>
+                </div>
+                <div className="feedWrapper">
                     <form onSubmit={sendMessage} className="postBottom">
                         <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
                         <button className="send-msg"> ENVIAR</button>

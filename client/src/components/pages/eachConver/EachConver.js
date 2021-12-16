@@ -7,11 +7,10 @@ import { Link, useHistory } from "react-router-dom";
 import ConversationService from "../../services/conversation.service";
 const serviceConversation = new ConversationService()
 
-export default function EachConversation({ members, dateSelected, _id, createdAt }) {
+export default function EachConversation({ members, dateSelected, _id, createdAt, ...rest }) {
 
   const history = useHistory()
   const date = new Date(createdAt);
-  console.log("MEMBERS!!!!!!!!!!", members)
   // dateStr you get from mongodb
 
   const monthName = {
@@ -36,28 +35,23 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
   const serviceMessages = new ServiceMessages()
   const { loggedUser } = useContext(UserContext)
-  console.log("mira este id a las 12", _id)
-  console.log("dateSelected", dateSelected)
 
   const [userProfile, setUserProfile] = useState(undefined)
   const [lastMessage, setLastMessage] = useState("")
-  const [deleteConver, setdeleteConver] = useState(false)
-
-
 
 
   useEffect(() => {
 
     _id && getLastMessage()
 
+  }, [_id])
 
-  }, [deleteConver])
 
+  useEffect(() => {
 
-useEffect(() => {
-      (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
-  }, [deleteConver])
+    (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
 
+  }, [_id])
 
 
 
@@ -72,19 +66,14 @@ useEffect(() => {
 
   }
 
-  const remove = (_id) => {
-    const idConver = _id
-    console.log("Marcusss", _id)
-    serviceConversation.delete(idConver)
+  const remove = () => {
+    serviceConversation.delete(_id)
       .then(response => {
-        console.log("borrando una conver --------", response.data)
-        setdeleteConver(!deleteConver)
-        history.push("/chat")
+        rest.getConversations();
       })
       .catch(error => console.log(error))
   }
 
-  console.log("LAST MESSAGE", lastMessage)
 
   return (
     <div className="global">
@@ -93,7 +82,7 @@ useEffect(() => {
         <div className="conversation">
 
           <div className="chatOnlineImgContainer">
-            <p className=""><strong>{userProfile?.username}</strong> eligió: {dateSelected?.nameDate}</p>
+            <p ><strong>{userProfile?.username}</strong> eligió: {dateSelected?.nameDate}</p>
             <img
               className="chatOnlineImg"
               src={userProfile?.profileImages}
@@ -109,7 +98,7 @@ useEffect(() => {
         </div>
       </Link>
       <div className="bachat">
-        <img className="delete-icon" onClick={() => remove(_id)} src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" />
+        <img className="delete-icon" onClick={remove} src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" />
       </div>
 
       <hr style={{ margin: "auto auto auto 80px" }} className="barra"></hr>

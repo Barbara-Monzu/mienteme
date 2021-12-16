@@ -13,7 +13,7 @@ const dateSchema = new Schema(
 		description: {
 			type: String,
 			trim: true,
-			required: true,
+			// required: true,
 			maxlength: 300,
 		},
 
@@ -55,7 +55,8 @@ const dateSchema = new Schema(
 			type: String,
 			uppercase: true,
 			trim: true,
-			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM', 'OTHERS' ]
+			default: "RANDOM",
+			enum: ['GASTRONOMY', 'CULTURE', 'NATURE', 'RANDOM']
 		},
 
 		day: {

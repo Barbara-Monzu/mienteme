@@ -1,5 +1,3 @@
-
-
 import { Form, Modal } from 'react-bootstrap'
 import { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
@@ -32,6 +30,7 @@ const FormSignUp = () => {
         questionTrue: "",
         questionFalse: "",
         clue: "",
+        loading: false,
     })
 
 
@@ -56,19 +55,19 @@ const FormSignUp = () => {
     }
 
 
-    // const handleFile = e => {
+    const handleFile = e => {
 
-    //     setFormData({ ...formData, isLoading: true })
+        setFormData({ ...formData, loading: true })
 
-    //     const uploadedData = new FormData()
-    //     uploadedData.append('imageData', e.target.files[0])
+        const uploadedData = new FormData()
+        uploadedData.append('imageData', e.target.files[0])
 
-    //     uploadsService
-    //         .uploadImg(uploadedData)
-    //         .then(res => setFormData({ ...formData, isLoading: false, profileImages: res.data.cloudinary_url }))
-    //         .catch(err => console.error(err)) 
+        uploadsService
+            .uploadImage(uploadedData)
+            .then(res => setFormData({ ...formData, loading: false, profileImages: res.data.cloudinary_url }))
+            .catch(err => console.error(err))
 
-    // }
+    }
 
 
 
@@ -89,7 +88,7 @@ const FormSignUp = () => {
             <h1>Editar Perfil</h1>
 
 
-            <Form className="" onSubmit={handleSubmit}>
+            <Form className="form-sign-up" onSubmit={handleSubmit}>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <div className="editProfile-data">Username</div>
@@ -97,11 +96,11 @@ const FormSignUp = () => {
                     <Form.Control className="editProfile-input" name="username" value={formData.username} onChange={e => handleChange(e)} type="text" placeholder="Nombre de usuario" />
                 </Form.Group>
 
-                {/* <Form.Group className="editProfile-data-container" controlId="formBasicPassword">
+                <Form.Group className="editProfile-data-container" controlId="formBasicPassword">
                     <div className="editProfile-data">Imagen</div>
                     <Form.Label></Form.Label>
-                    <Form.Control name="profileImages" value={formData.profileImages} onChange={(e) => handleFile(e)} type="file" />
-                </Form.Group> */}
+                    <Form.Control name="profileImages" onChange={(e) => handleFile(e)} type="file" />
+                </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <div className="editProfile-data">Edad</div>
@@ -135,10 +134,22 @@ const FormSignUp = () => {
                 <br />
 
                 <h3 className="editProfile-h3">¿Con quién quieres quedar?</h3>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <p className="editProfile-data">Género</p>
-                    <Form.Control className="editProfile-input" name="genderFilter" value={formData.genderFilter} onChange={e => handleChange(e)} type="text" placeholder="¿Mujer, hombre o ambos?" />
-                </Form.Group>
+                <div className="checkbox">
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Mujer</p>
+                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="WOMAN" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Hombre</p>
+                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="MAN" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Ambos</p>
+                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="BOTH" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+                </div>
                 <p className="editProfile-data">Edad</p>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data">Edad(desde/hasta)</p>
                     <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por edad, introduce un número " />
@@ -149,7 +160,7 @@ const FormSignUp = () => {
                 </Form.Group>
                 <p className="editProfile-data">Ciudad</p>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por ciudad..." />
+                    <Form.Control className="editProfile-input" name="cityFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por ciudad..." />
                 </Form.Group>
 
                 <button className="editProfile-button" style={{ cursor: "pointer" }}>

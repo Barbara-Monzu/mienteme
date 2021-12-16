@@ -31,18 +31,18 @@ const UserProfile = () => {
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
-  
+
   const editDate = (date) => {
     setModal(true)
     setDateSelected(date)
   }
-  
+
   const deleteDate = (id) => {
     datesService.deleteDate(id)
-    .then(response => {
-      console.log("ELIMINANDO CON ÉXITO ==>", response.data)
-    })
-    .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
+      .then(response => {
+        console.log("ELIMINANDO CON ÉXITO ==>", response.data)
+      })
+      .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
 
   const closeModal = () => {
@@ -57,48 +57,54 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="card-pic-container">
-        <img className="card-pic" src={loggedUser.profileImages[0]} />
+      <div className="userProfile-container">
 
-        <div className="all-card-info">
-          <div className="card-info">
-            <p className="card-name">{loggedUser.username}</p>
-            <p className="card-age">{loggedUser.age}</p>
+        <div className="userProfile-subcontainer">
+          <img className="userProfile-img" src={loggedUser.profileImages[0]} />
+
+          <div className="userProfile-info-container">
+            <div className="userProfile-info-1">
+              <p className="userProfile-name">{loggedUser.username}</p>
+              <p className="userProfile-age">{loggedUser.age}</p>
+            </div>
+            <p className="userProfile-bio">{loggedUser.bio}</p>
           </div>
-          <p className="card-bio">{loggedUser.bio}</p>
         </div>
-        {/* <p className="card-bio">Lo que sea</p> */}
 
-        <div className="box-content">
-          <p className="card-date-title">Mis citas</p>
-          <Link className="userProfile-link" to="/editar-perfil">
-            Editar perfil
-          </Link>
+        <div className="userProfile-link-container">
+          <Link className="userProfile-link" to="/editar-perfil">editar perfil</Link>
         </div>
-        <button onClick={() => setModal(true)}>Crea una cita</button>
 
-        <div className="date">
+        <div className="userProfile-dates-home">
+          <p className="userProfile-date-title">mis citas</p>
+        </div>
+
+        <div className="userProfile-detail-date-home">
           {dates?.map((elm, i) =>
 
             <div key={i}>
-              <div className="userProfile-date-detail">
-                <p className="userProfile-date-name">{elm.nameDate}</p>
-                <p className="date-description">{elm.description}</p>
-                <p className="date-category">{elm.category}</p>
-                <button onClick={() => editDate(elm)} className="userProfile-date-button">Editar </button>
-                <button onClick={() => deleteDate(elm._id)} className="userProfile-date-button">Borrar </button>
+              <div className="userProfile-detail-date">
+                <p className="userProfile-detail-date-name">{elm.nameDate}</p>
+                <p className="userProfile-detail-date-description">{elm.description}</p>
+                <div className="userProfile-detail-date-category-content">
+                  <p className="userProfile-detail-date-category">{elm.category}</p>
+                </div>
+                <div className="userProfile-button">
+                  <button onClick={() => editDate(elm)} className="userProfile-date-button">editar </button>
+                  <button onClick={() => deleteDate(elm._id)} className="userProfile-date-button">borrar </button>
+                </div>
               </div>
             </div>
           )}
         </div>
 
-        <Modal
-          show={modal}
-          backdrop="static"
-          onHide={closeModal}>
+        <div className="userProfile-button-subcontainer">
+          <button className="userProfile-button-create" onClick={() => setModal(true)}>crea una cita</button>
+        </div>
 
+        <Modal show={modal} backdrop="static" onHide={closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Edita tu cita</Modal.Title>
+            <Modal.Title className="userProfile-modal-title">edita tu cita</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -106,10 +112,7 @@ const UserProfile = () => {
           </Modal.Body>
         </Modal>
 
-        <Modal
-          show={modaltwo}
-          backdrop="static"
-          onHide={closeModaltwo}
+        <Modal show={modaltwo} backdrop="static" onHide={closeModaltwo}
         >
           <Modal.Header closeButton>
             <Modal.Title>Crea una cita</Modal.Title>
@@ -130,3 +133,4 @@ const UserProfile = () => {
 }
 
 export default UserProfile
+

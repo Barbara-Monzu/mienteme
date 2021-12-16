@@ -60,14 +60,17 @@
   .delete-icon {
     position: relative;
     left: 90%;
-    height: 20px;
+    height: 50px;
     border-radius: 26px;
     padding: 2%;
     z-index: 9999;
     cursor: pointer;
     margin-bottom: 3px;
+    color:black;
   
   }
+
+  
 
   .delete-icon:hover {
     border: 2px solid #ada9a9;

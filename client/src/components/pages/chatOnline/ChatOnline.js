@@ -20,7 +20,6 @@ export default function ChatOnline() {
   const getConversations = () => {
     serviceConversation.getAllConversations()
       .then(response => {
-        console.log("todas las convers--------", response.data)
         setConversations(response.data)
       })
       .catch(error => console.log(error))
@@ -32,7 +31,7 @@ export default function ChatOnline() {
       <h1>Chat</h1>
       <input type="searchbar" className="searchBar" placeholder="buscar a..." />
 
-      {conversations?.map((elm, index) => <EachConver key={index} {...elm} />)}
+      {conversations?.map((elm, index) => <EachConver getConversations={getConversations} key={index} {...elm} />)}
 
 
     </div>

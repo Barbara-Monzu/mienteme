@@ -8,7 +8,11 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter, cityFilter } = req.body
 
-  User.findByIdAndUpdate(id, { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter } }, { new: true })
+  const query = { username, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter } };
+
+  if (profileImages) query.profileImages = profileImages
+
+  User.findByIdAndUpdate(id, query, { new: true })
     .then(createUserInfo => res.json(createUserInfo))
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })

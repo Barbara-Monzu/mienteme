@@ -14,16 +14,16 @@ const ByCategoryDates = () => {
 
     console.log("PARAMAS", category)
 
-    const { usersFiltered } = useContext(UsersSelected);
+    const { allUsers } = useContext(UsersSelected);
 
     // const[loading, setLoading] = useState(false)
 
     const [allDates, setAllDates] = useState([])
     const [filteredDates, setFilteredDates] = useState([])
 
-//alldates no se usa
+    //alldates no se usa
 
-    console.log(" CONTEXTO filtrado de todos los usuarios: ", usersFiltered)
+    console.log(" CONTEXTO filtrado de todos los usuarios: ", allUsers)
 
     useEffect(() => {
         getDates()
@@ -36,10 +36,10 @@ const ByCategoryDates = () => {
         datesService.getByCategory(category)
             .then(response => {
                 console.log("ALL DATES BY CATEGORY___>", response.data)
-                setAllDates(response.data) 
+                setAllDates(response.data)
                 let arrDates = []
-                for (let i = 0; i < usersFiltered?.length; i++) {
-                    let dates = response.data.filter(elm => elm.creator?._id === usersFiltered[i]?._id);
+                for (let i = 0; i < allUsers?.length; i++) {
+                    let dates = response.data.filter(elm => elm.creator?._id === allUsers[i]?._id);
                     if (dates) dates.forEach(el => arrDates.push(el))
                 }
                 console.log("ARR DATES", arrDates)
@@ -59,6 +59,7 @@ const ByCategoryDates = () => {
             </Link>
 
             <h1 className="search-h1">Citas</h1>
+
             {filteredDates?.map((elm, i) =>
                 <EachDate {...elm} />
 

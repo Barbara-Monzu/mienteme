@@ -93,7 +93,7 @@ router.delete("/:idConver", (req, res) => {
   console.log("MARCUSSSS", req.params)
 
   Conversation.findByIdAndDelete(idConver)
-    .then(deleteConver => res.json({ deleteConver }))
+    .then(deleteConver => res.json(deleteConver))
     .catch(err => res.json({ err, errMessage: "Problema borrando Conver" }))
 })
 

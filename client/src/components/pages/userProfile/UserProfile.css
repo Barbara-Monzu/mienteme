@@ -1,70 +1,179 @@
-.userProfile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.userProfile-subcontainer {
+    position: relative;
+}
+
+.userProfile-img {
     width: 100%;
-    background-color: red;
-}
-
-img.userProfile-pic {
-    width: 80%;
-    border-radius: 70px;
-    box-shadow: 0 0 10px;
-    height: 40vh;
-}
-
-.userProfile-date-detail {
     border-radius: 3px;
-    border: 1px solid;
-    height: 200px;
-    width: 100px;
+}
+
+.userProfile-info-container {
+    display: block;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    color: white;
+    font-weight: 900;
+}
+
+.userProfile-info-1 {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    width: 90px;
+    margin: 0;
+    background-color: rgba(255, 172, 201, 0.8);
+    border-radius: 5px;
+}
+
+.userProfile-name {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.userProfile-age {
+    margin-left: 10px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.userProfile-bio {
+    display: flex;
+    justify-content: space-around;
+    height: 25px;
+    width: 300px;
+    margin: 5px 0;
+    background-color: rgba(255, 172, 201, 0.8);
+    border-radius: 5px;
+}
+
+.userProfile-dates-home {
+    display: flex;
+    justify-content: center;
     margin-top: 10px;
 }
 
-
-.userProfile-date-button {
-    background-color: white;
-    border-radius: 3px;
-    border: 1px solid black;
-    font-style: italic;
+.userProfile-date-title {
+    font-weight: 900;
+    /* margin-left: 20px; */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 40%;
+    text-align: center;
+    border-radius: 15px;
 }
 
-.userProfile-date-name {
-    text-decoration: underline;
+.userProfile-link-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
 .userProfile-link {
-    margin-top: 10px;
-    color: black;
-    font-size: 13px;
-    width: 100px;
-    border-radius: 5px;
-    background-color: transparent;
-    height: 30px;
-    font-style: italic;
     text-decoration: none;
-    font-weight: 900;
-    border: 1px solid black;
+    color: black;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 100px;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.userProfile-detail-date-home {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    display: flex;
-    justify-content: center;
-    width: 100px;
-    margin-right: 10px;
-    text-decoration: none;
-    color: black;
-    border-radius: 3px;
-    border: 1px solid black;
-}
-
-.userProfile-link:hover {
-    background-color: black;
-    color: white;
-}
-
-.box-content {
-    display: flex;
     justify-content: space-around;
-    align-items: center;
+    border-radius: 3px;
 }
+
+.userProfile-detail-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 340px;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.userProfile-detail-date-name {
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 5px;
+}
+
+.userProfile-detail-date-description {
+    margin: 0;
+    text-align: center;
+}
+
+
+.userProfile-button {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.userProfile-date-button {
+    margin: 5px;
+    width: 80px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    background-color: white;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.userProfile-date-button:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
+}
+
+.userProfile-detail-date-category-content {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.userProfile-detail-date-category {
+    margin: 0;
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+.userProfile-button-subcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.userProfile-button-create {
+    font-size: 14px;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 120px;
+}
+
+.userProfile-button-create:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
+}
+
+.userProfile-modal-title {
+    color: rgba(255, 172, 201, 0.8)
+}
+
+
+
+
+
+
+
