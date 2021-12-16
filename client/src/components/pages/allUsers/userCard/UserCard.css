@@ -1,141 +1,181 @@
-.card-pic-container {
-    position: relative;
-    display: inline-block;
-    text-align: center;
-    overflow: hidden;
-}
-
-button.card-button{
-    border-radius: 3px;
-    background-color: white;
-    border: 0;
-}
-
-.card-button-img {
-    width: 30px;
-}
-
-img.card-pic {
-    height: 100%;
+.userCard-img {
     width: 100%;
     border-radius: 3px;
-
 }
 
-
-.card-img {
-    width: 20px;
+.userCard-subcontainer {
+    position: relative;
 }
 
-.profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.all-card-info {
-    /* width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; */
-   
-    top: 270px; 
+.userCard-info-container {
+    display: block;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
     color: white;
-}
-
-.card-info {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 30px;
-  margin-top: 50px;
-}
-
-
-p.card-name {
-    font-size: 30px;
-    margin-left: 45px;
-    color: black;
-
-}
-
-
-p.card-age {
-    font-size: 15px;
-    margin-left: 10px;
-    color: black;
-}
-
-p.card-bio {
-    margin-left: 45px;
-    font-style: italic;
     font-weight: 900;
-    color: black;
 }
 
-.card-date-title {
+.userCard-info-1 {
     display: flex;
     justify-content: center;
-    font-size: 18px;
-    font-weight: 900;
-    text-transform: uppercase;
+    height: 30px;
+    width: 90px;
+    margin: 0;
+    background-color: rgba(255, 172, 201, 0.8);
+    border-radius: 5px;
 }
 
-.date {
+.userCard-name {
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.userCard-age {
+    margin-left: 10px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.userCard-bio {
     display: flex;
     justify-content: space-around;
-
-    /* width: 100%; */
+    height: 25px;
+    width: 300px;
+    margin: 5px 0;
+    background-color: rgba(255, 172, 201, 0.8);
+    border-radius: 5px;
 }
 
-.date .detail {
+.userCard-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+
+button.userCard-button {
+    width: 100px;
+    background-color: white;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    border-radius: 3px;
+}
+
+.userCard-dates-home {
+    display: flex;
+    margin-top: 10px;
+}
+
+.userCard-detail-date-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 3px;
+}
+
+.userCard-key {
+    
+}
+
+.userCard-date-title {
+    font-weight: 900;
+    margin-left: 20px;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 40%;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.userCard-detail-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 340px;
+    height: 20%;
+    margin: 10px 0;
+    border-radius: 3px;
+    background-color: #ffefe6;
+    font-size: 14px;
+}
+
+.userCard-detail-date-name {
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+}
+
+.userCard-detail-date-description {
+    margin: 0;
+    text-align: center;
+}
+
+.userCard-detail-date-category-content {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.userCard-detail-date-category {
+    margin: 0;
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+.userCard-trivial-header {
+    text-align: center;
+}
+
+.userCard-trivial-subcontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.date-description {
+.userCard-trivial-box {
+    height: 50px;
+    background-color: #ffefe6;
+    margin: 10px 0;
+    width: 300px;
     text-align: center;
-    font-size: 12px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
 }
 
-.date-category {
-    font-size: 14px;
-    font-weight: 900;
+.userCard-trivial-text {
+    margin-top: 13px;
 }
 
-.card-container {
+.userCard-correctTrivial-subcontainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-p.date-title {
+.userCard-correctTrivial-title {
     text-align: center;
-    text-transform: uppercase;
-    font-style: italic;
 }
 
-
-.color {
-    background: #e53935;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #e35d5b, #e53935);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #e35d5b, #e53935); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-
+.userCard-correctTrivial-chat {
+    text-decoration: none;
+    color: rgba(255, 172, 201, 0.8);
+    font-weight: 900;
+    text-decoration: none;
+    text-decoration-line: underline;
 }
 
-.trivial-modal {
-    display:flex,
-
-}
-
-.tri-card {
-    display: flex;
-    cursor: pointer;
-}
-
-.the-lie {
-    text-align: "center"
+.userCard-correctTrivial-button {
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    background-color:  #ffefe6;
+    border-radius: 3px;
+    width: 150px;
 }

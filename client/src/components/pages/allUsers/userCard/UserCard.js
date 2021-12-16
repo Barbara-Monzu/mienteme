@@ -91,30 +91,19 @@ const UserCard = (props) => {
     openModalSuccess()
     closeModalTrivial()
     let idOtherUser = { idOtherUser: props.user._id }
-   
+
     console.log("ME INTERESA ESTO para crear una conver", idOtherUser, dateSelected._id, dateSelected)
-      conversationService
+    conversationService
       .create(dateSelected._id, idOtherUser)
       .then(response => {
         setConversation(response.data._id)
         console.log("creando la conversación ==>", response.data)
-        })
+      })
       .catch(err => console.log("hay un error crear conver en el front", err))
 
   }
 
   console.log("CONVER", conversation)
-
-  // const getConversation = () => {
-
-  //   conversationService.getOne(dateSelected._id)
-  //     .then(response => {
-  //       console.log("CONVERRRRR!!! ==>", response.data)
-  //       setConversation(response.data)
-  //     })
-  //     .catch(err => console.log("hay un error crear conver en el front", err))
-
-  // }
 
 
   const editRequestYes = (answer) => {
@@ -143,40 +132,34 @@ const UserCard = (props) => {
 
   return (
 
-    <div className="card">
+    <div className="userCard-container">
+      <div className="userCard-subcontainer">
+        <img className="userCard-img" src={props.user.profileImages} />
 
-
-      <div className="card-pic-container">
-        <img className="card-pic" src={props.user.profileImages} />
-
-        <div className="all-card-info">
-          <div className="card-info">
-            <p className="card-name">{props.user.username}</p>
-            <p className="card-age">{props.user.age}</p>
+        <div className="userCard-info-container">
+          <div className="userCard-info-1">
+            <p className="userCard-name">{props.user.username}</p>
+            <p className="userCard-age">{props.user.age}</p>
           </div>
 
-          <p className="card-name">{props.user.bio}</p>
-
+          <p className="userCard-bio">{props.user.bio}</p>
         </div>
+      </div>
 
-        <br />
-
-        <div className="card-button-container">
-          <button className="card-button" onClick={() => props.next()}> <img className="card-button-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZlC4jg8lepAQZWxzDfAJt_7u1Fz_3IYKFr0yxngu_gWVsaUY-9uU0G5_otZfbqMbkoU&usqp=CAU" /> </button>
-        </div>
-
+      <div className="userCard-button-container">
+        <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
       </div>
       {props.dateSelected ? (
         <>
-          <p className="date-title">{props.user.username} Seleccionó tu cita</p>
-          <div className="date">
+          <p className="userCard-date-">{props.user.username} seleccionó tu cita</p>
 
+          <div className="date">
             <p>{props.dateSelected.nameDate}</p>
             <p className="date-description">{props.dateSelected.description}</p>
             <p className="date-category">{props.dateSelected.category}</p>
-
           </div>
-          <p className="date-category">¿Quieres darle una Segunda Oportunidad?</p>
+
+          <p className="date-category">¿Quieres darle una segunda oportunidad?</p>
           <button onClick={() => editRequestYes("YES")}>Sí</button>
           <button onClick={() => deleteRequest()}>No</button>
         </>
@@ -184,78 +167,67 @@ const UserCard = (props) => {
         :
         (
           <>
-            <p className="card-date-title">Citas de {props.user.username}</p>
-            {dates?.map((elm, i) => (
+            <div className="userCard-dates-home">
+              <p className="userCard-date-title">Citas de {props.user.username}</p>
+            </div>
 
-              <div key={i} className="date">
+            <div className="userCard-detail-date-home">
+              {dates?.map((elm, i) => (
 
-                <div onClick={() => chooseDate(elm)} className="detail">
-                  <p>{elm.nameDate}</p>
-                  <p className="date-description">{elm.description}</p>
-                  <p className="date-category">{elm.category}</p>
+                <div key={i} className="userCard-key">
+
+                  <div onClick={() => chooseDate(elm)} className="userCard-detail-date">
+                    <p className="userCard-detail-date-name">{elm.nameDate}</p>
+                    <p className="userCard-detail-date-description">{elm.description}</p>
+                    <div className="userCard-detail-date-category-content">
+                      <p className="userCard-detail-date-category">{elm.category}</p>
+                    </div>
+                  </div>
                 </div>
-
-              </div>
-
-
-            ))}
+              ))}
+            </div>
           </>
 
         )
       }
 
-      {/* <button onClick={openTrivial}>Quiero tener esta cita contigo</button> */}
 
-      {/* random % 2 !== 0 } ? */}
+      <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
 
-      <Modal
-        show={trivial}
-        backdrop="static"
-        onHide={closeModalTrivial}
-        className="trivial-modal"
-      >
-
-        <Modal.Title className="the-lie">¿Cuál es la mentira?</Modal.Title>
+        <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
 
         <Modal.Body>
-          <div className="tri-card">
-            <div onClick={() => openWrong()} className="search-box">
-
-              <div className="search-card color">
-                <p className="search-title">{props.user.questionTrue}</p>
+          <div className="userCard-trivial-subcontainer">
+            <div onClick={() => openWrong()} className="">
+              <div className="userCard-trivial-box">
+                <p className="userCard-trivial-text">{props.user.questionTrue}</p>
               </div>
-
             </div>
-            <div onClick={() => createConversation()} className="search-box">
 
-              <div className="search-card color" >
-                <p className="search-title">{props.user.questionFalse}</p>
+            <div onClick={() => createConversation()} className="">
+              <div className="userCard-trivial-box">
+                <p className="userCard-trivial-text">{props.user.questionFalse}</p>
               </div>
-
             </div>
           </div>
-
         </Modal.Body>
       </Modal>
 
-      <Modal
-        show={success}
-        backdrop="static"
-        onHide={closeModalSuccess}
-      >
+      <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
 
-        <Modal.Title>Correcto!!!!</Modal.Title>
+        <Modal.Title className="userCard-correctTrivial-title">¡¡¡Correcto!!!!</Modal.Title>
 
         <Modal.Body>
 
-          <Link to={`/chat/${conversation}/${props.user._id}`} style={{ margin: "10px" }}>
-            <p className="search-title">Chatea con {props.user.username}</p>
-          </Link>
+          <div className="userCard-correctTrivial-subcontainer">
+            <Link className="userCard-correctTrivial-chat" to={`/chat/${conversation}/${props.user._id}`} style={{ margin: "10px" }}>
+              <p>Chatea con {props.user.username}</p>
+            </Link>
 
-          <Link to="/click-me" style={{ margin: "10px" }}>
-            <button onClick={() => nextUser()}>Más tarde</button>
-          </Link>
-
+            <Link to="/click-me" style={{ margin: "10px" }}>
+              <button className="userCard-correctTrivial-button" onClick={() => nextUser()}>Más tarde</button>
+            </Link>
+          </div>
         </Modal.Body>
       </Modal>
 

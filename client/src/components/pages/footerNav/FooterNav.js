@@ -8,7 +8,7 @@ const FooterNav = () => {
 
 
     return (
-        <div className="navbar-container">
+        <div className="footerNav-container">
             <Link className="link" to="/click-me">
                 <img className="user" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/OOjs_UI_icon_userAvatar.svg/2048px-OOjs_UI_icon_userAvatar.svg.png" />
             </Link>

@@ -10,7 +10,9 @@ const serviceConversation = new ConversationService()
 export default function EachConversation({ members, dateSelected, _id, createdAt }) {
 
   const history = useHistory()
-  const date = new Date(createdAt);  // dateStr you get from mongodb
+  const date = new Date(createdAt);
+  console.log("MEMBERS!!!!!!!!!!", members)
+  // dateStr you get from mongodb
 
   const monthName = {
     [1]: 'Enero',
@@ -48,9 +50,13 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
     _id && getLastMessage()
 
-      (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
+
   }, [deleteConver])
 
+
+useEffect(() => {
+      (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
+  }, [deleteConver])
 
 
 
