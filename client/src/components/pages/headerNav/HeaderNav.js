@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import AuthService from '../../services/auth.service';
 import UserContext from "../../services/UserContext";
-import { Link, useHistory} from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import './HeaderNav.css'
 
 const authService = new AuthService()
@@ -28,17 +28,18 @@ const HeaderNav = () => {
 
 
   return (
-    <div className="header-nav">
-
-      <Link to="/perfil" style={{ margin: "10px" }}>
-        <img className="header-profile-pic" src={loggedUser.profileImages[0]} />
+    <div className="headerNav-container">
+      <Link to="/perfil">
+        <img className="headerNav-profile-img" src={loggedUser.profileImages[0]} />
       </Link>
 
-      <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}} className="header-nav-h1">MIÉNTEME</h1>
-      <img className="logout" style={{ cursor: "pointer" }} onClick={logout} src="https://iconape.com/wp-content/files/ij/9415/png/01-16.png" />
-
-
+      <div className="headerNav-subcontainer">
+        <img className="headerNav-project-img" src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" />
+        <h1 className="headerNav-text">miénteme</h1>
+      </div>
+      <img className="headerNav-logout" onClick={logout} src="https://iconape.com/wp-content/files/ij/9415/png/01-16.png" />
     </div>
+
 
   )
 }

@@ -1,4 +1,4 @@
-.header-nav {
+.headerNav-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,19 +6,38 @@
 
 .header-nav-h1 {
     font-size: 22px;
-
+    font-style: italic;
 }
 
-.header-profile-pic {
-    width: 40px;
-    height: 40px;
+.headerNav-profile-img {
+    width: 48px;
+    height: 48px;
     padding: 10px;
     border-radius: 50%;
 }
 
-.logout {
-    width: 30px;
-    height: 30px;
+.headerNav-project-img {
+    width: 25px;
+}
+
+.headerNav-subcontainer {
+    display: flex;
+    align-items: center;
+}
+
+.headerNav-text {
+    margin-top: 10px;
+    font-weight: 900;
+    color: rgba(255, 172, 201, 0.8);
+}
+
+.headerNav-logout {
+    width: 45px;
+    height: 45px;
     padding: 10px;
 }
+
+
+
+
 

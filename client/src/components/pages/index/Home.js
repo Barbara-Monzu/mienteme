@@ -34,7 +34,7 @@ const Home = (props) => {
 
       </div>
 
-        <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}}>Miénteme</h1>
+        <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}}><strong>miénteme</strong></h1>
   
       <Link to="/singup" className="no-dec">
         <h2 className="home-page">Regístrate</h2>
