@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import "./EachConver.css";
 import UserContext from '../../services/UserContext'
 import ServiceMessages from '../../services/messages.service';
-import { Link, useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ConversationService from "../../services/conversation.service";
 const serviceConversation = new ConversationService()
 
@@ -46,15 +46,12 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
   useEffect(() => {
 
-    _id && getLastMessage
-    (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
+    _id && getLastMessage()
+
+      (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
   }, [deleteConver])
 
-  useEffect(() => {
 
-    _id && getLastMessage
-    (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
-  }, [deleteConver])
 
 
 
@@ -98,10 +95,10 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
             />
             {/* <div className="chatOnlineBadge"></div> */}
           </div>
-         
+
           <p className="last-message">{lastMessage?.message}</p>
           <p className="d-m">{d} de {m}</p>
-    
+
 
         </div>
       </Link>
@@ -111,7 +108,7 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
       <hr style={{ margin: "auto auto auto 80px" }} className="barra"></hr>
 
-  
+
     </div>
 
   );
