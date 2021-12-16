@@ -35,7 +35,7 @@ export default function PrivateChat() {
 
     }, [])
 
-  
+
     const getMessages = () => {
         console.log("LA CONVER", idConver)
         messagesService
@@ -85,10 +85,7 @@ export default function PrivateChat() {
 
     useEffect(() => {
         socket.on("receiveMessages", message => {
-            console.log("MENSAJE CREADO Y RECIBIDO___", message)
-            messagesBack ? setMessagesBack([...messagesBack, message]) : setMessagesBack([message])
-
-
+            getMessages()
         })
         return () => { socket.off() }
     }, [message])
@@ -125,21 +122,21 @@ export default function PrivateChat() {
     return (
 
         <>
-        <div className="privateChat">
+            <div className="privateChat">
 
-                        <div className="postTopLeft">
-                            <Link to={`/match/${user?._id}`}>
-                                <img
-                                    className="postProfileImg"
-                                    src={user?.profileImages}
-                                    alt=""
-                                />
-                            </Link>
-        
-                            <span className="name-chat">{user?.username}    {user?.age} </span>
-                        </div>
+                <div className="postTopLeft">
+                    <Link to={`/match/${user?._id}`}>
+                        <img
+                            className="postProfileImg"
+                            src={user?.profileImages}
+                            alt=""
+                        />
+                    </Link>
 
-                    <hr></hr>
+                    <span className="name-chat">{user?.username}    {user?.age} </span>
+                </div>
+
+                <hr></hr>
 
                 <div className="feedWrapper">
                     <div className="ave">
@@ -151,7 +148,7 @@ export default function PrivateChat() {
                         <button className="send-msg"> ENVIAR</button>
                     </form>
                 </div>
-        </div>
+            </div>
 
         </>
     );

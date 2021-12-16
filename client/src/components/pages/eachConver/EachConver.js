@@ -47,8 +47,17 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
   useEffect(() => {
 
     _id && getLastMessage
-      (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
+    (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
   }, [deleteConver])
+
+  useEffect(() => {
+
+    _id && getLastMessage
+    (members[0]._id !== loggedUser._id) ? setUserProfile(members[0]) : setUserProfile(members[1])
+  }, [deleteConver])
+
+
+
 
 
   const getLastMessage = () => {
@@ -99,7 +108,7 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
       <div className="bachat">
         <img className="delete-icon" onClick={() => remove(_id)} src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/000000/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" />
       </div>
-      
+
       <hr style={{ margin: "auto auto auto 80px" }} className="barra"></hr>
 
   
