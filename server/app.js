@@ -12,8 +12,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 const cors = require("cors")
-// const path = require('path')
-const { addUser, removeUser, getUser, getUsersInRoom } = require('../client/src/utils/chatUsers')
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/chatUsers')
 
 io.on('connect', socket => {
 

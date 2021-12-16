@@ -63,7 +63,7 @@ export default function PrivateChat() {
 
         const username = loggedUser.username
 
-        socket = io(process.env.REACT_APP_SOCKET_IO, {
+        socket = io("https://mienteme.herokuapp.com", {
 
             cors: {
                 origin: process.env.REACT_APP_SOCKET_URL,
