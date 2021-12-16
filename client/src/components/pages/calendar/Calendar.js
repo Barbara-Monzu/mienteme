@@ -102,7 +102,6 @@ class MyCalendar extends Component {
         return (
             <div className="calendar">
                 <Calendar
-                    selectable
                     localizer={localizer}
                     culture="es-ES"
                     events={this.state.events}

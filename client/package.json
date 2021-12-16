@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
+    "cloudinary": "^1.27.1",
     "cors": "^2.8.5",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -21,8 +22,8 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "REACT_APP_SOCKET_URL=http://localhost:3000 REACT_APP_BASE_URL=http://localhost:5005/api REACT_APP_SOCKET_IO=http://localhost:5005 react-scripts start",
+		"build": "REACT_APP_SOCKET_URL=https://mienteme.herokuapp.com REACT_APP_BASE_URL=https://mienteme.herokuapp.com/api react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

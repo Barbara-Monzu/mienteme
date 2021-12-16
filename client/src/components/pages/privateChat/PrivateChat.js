@@ -63,10 +63,10 @@ export default function PrivateChat() {
 
         const username = loggedUser.username
 
-        socket = io("//localhost:5005", {
+        socket = io(process.env.REACT_APP_SOCKET_IO, {
 
             cors: {
-                origin: "//localhost:3000",
+                origin: process.env.REACT_APP_SOCKET_URL,
                 credentials: true
             }, transports: ['websocket']
         })
