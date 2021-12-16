@@ -34,7 +34,7 @@ const HeaderNav = () => {
         <img className="header-profile-pic" src={loggedUser.profileImages[0]} />
       </Link>
 
-      <h1 className="header-nav-h1">CLICK-ME</h1>
+      <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}} className="header-nav-h1">MIÉNTEME</h1>
       <img className="logout" style={{ cursor: "pointer" }} onClick={logout} src="https://iconape.com/wp-content/files/ij/9415/png/01-16.png" />
 
 

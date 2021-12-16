@@ -66,7 +66,7 @@ export default function PrivateChat() {
         socket = io("https://mienteme.herokuapp.com", {
 
             cors: {
-                origin: "//localhost:3000",
+                origin: "https://mienteme.herokuapp.com",
                 credentials: true
             }, transports: ['websocket']
         })
