@@ -24,6 +24,7 @@
   "scripts": {
     "start": "REACT_APP_SOCKET_URL=http://localhost:3000 REACT_APP_BASE_URL=http://localhost:5005/api REACT_APP_SOCKET_IO=http://localhost:5005 react-scripts start",
 		"build": "REACT_APP_SOCKET_URL=https://mienteme.herokuapp.com REACT_APP_BASE_URL=https://mienteme.herokuapp.com/api react-scripts build",
+    "deploy": "rm -rf build; npm run build; cd ..; mv client/build/* server/public; git add .; git commit -m deploy; git subtree push --prefix=server heroku_app_master master",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
