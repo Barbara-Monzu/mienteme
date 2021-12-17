@@ -12,6 +12,8 @@ const datesService = new DatesService()
 
 const UserProfile = () => {
 
+  let history = useHistory()
+  
   const { loggedUser } = useContext(UserContext)
   const [dates, setMydates] = useState([])
   const [dateSelected, setDateSelected] = useState(undefined)
@@ -40,6 +42,7 @@ const UserProfile = () => {
   const deleteDate = (id) => {
     datesService.deleteDate(id)
       .then(response => {
+        history.push('/perfil')
         console.log("ELIMINANDO CON ÉXITO ==>", response.data)
       })
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))

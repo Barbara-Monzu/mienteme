@@ -179,3 +179,9 @@ button.userCard-button {
     border-radius: 3px;
     width: 150px;
 }
+
+.clue-picture {
+    heigth: 25px;
+    width: 25px;
+    margin: auto;
+}

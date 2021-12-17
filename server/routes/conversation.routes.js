@@ -49,26 +49,6 @@ router.post('/create/:idDate', (req, res) => {
 
 })
 
-// router.get('/private/:idOtherUser', (req, res) => {
-
-//   // const { id } = req.body
-//   const { idOtherUser } = req.params
-
-
-//   Conversation
-//     .findOne({
-//       $in: {
-//         $and: [
-//           { 'members': id },
-//           { 'members': idOtherUser }
-//         ]
-//       }
-//     })
-//     .populate("dateSelected members")
-//     .then((response) => console.log("TRAYENDO ÚNICA CONVER ", response))
-//     .catch(err => res.status(500).json({ code: 500, message: "Error creating Conversation", err }))
-
-// })
 
 router.get('/private/:idDate', (req, res) => {
   const { idDate } = req.params
@@ -90,7 +70,6 @@ router.get('/private/:idDate', (req, res) => {
 
 router.delete("/:idConver", (req, res) => {
   const { idConver } = req.params
-  console.log("MARCUSSSS", req.params)
 
   Conversation.findByIdAndDelete(idConver)
     .then(deleteConver => res.json(deleteConver))

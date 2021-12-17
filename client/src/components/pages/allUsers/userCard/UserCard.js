@@ -21,7 +21,10 @@ const UserCard = (props) => {
   const [success, setSuccess] = useState(false)
   const [wrong, setWrong] = useState(false)
   const [conversation, setConversation] = useState(false)
+  const [clue, setModalClue] = useState(false)
+  const [alreadyClue, setAlreadyClue] = useState(false)
 
+  console.log("random", random)
 
   useEffect(() => {
 
@@ -72,16 +75,34 @@ const UserCard = (props) => {
   const nextUser = () => {
     closeModalWrong()
     closeModalSuccess()
+    
     props.next()
 
   }
 
+  const clueModal = () => {
+    setModalClue(true)
+    setTrivial(false)
+    // count()
+
+  }
+  console.log(clue, "clue")
+  const closeModalClue = () => {
+    setModalClue(false)
+    setTrivial(true)
+    setAlreadyClue(true)
+
+  }
+
+  const count = () => setTimeout(closeModalClue(), 30000)
+
+
+
   const createRequest = () => {
 
-    console.log("cita seleccionada y su creador CREANDO CON ESTO", dateSelected, props.user._id)
     requestService.create(dateSelected._id, props.user)
       .then(response => {
-
+        setAlreadyClue(false)
         nextUser()
         console.log("creando la request ==>", response.data)
       })
@@ -92,13 +113,14 @@ const UserCard = (props) => {
   const createConversation = () => {
     openModalSuccess()
     closeModalTrivial()
+    setAlreadyClue(false)
     let idOtherUser = { idOtherUser: props.user._id }
 
-    console.log("ME INTERESA ESTO para crear una conver", idOtherUser, dateSelected._id, dateSelected)
     conversationService
       .create(dateSelected._id, idOtherUser)
       .then(response => {
         setConversation(response.data._id)
+
         console.log("creando la conversación ==>", response.data)
       })
       .catch(err => console.log("hay un error crear conver en el front", err))
@@ -131,6 +153,7 @@ const UserCard = (props) => {
 
   }
 
+  console.log("props.dateSelected", props.dateSelected)
 
   return (
 
@@ -141,7 +164,7 @@ const UserCard = (props) => {
         <div className="userCard-info-container">
           <div className="userCard-info-1">
             <p className="userCard-name">{props.user.username}</p>
-            <p className="userCard-age">{props.user.age}</p>
+            <p className="userCard-age">{props.user.age} </p>
           </div>
 
           <p className="userCard-bio">{props.user.bio}</p>
@@ -153,7 +176,7 @@ const UserCard = (props) => {
       </div>
       {props.dateSelected ? (
         <>
-          <p className="userCard-date-">{props.user.username} seleccionó tu cita</p>
+          <p className="userCard-date-">{props.user.username} Seleccionó tu cita</p>
 
           <div className="date">
             <p>{props.dateSelected.nameDate}</p>
@@ -171,6 +194,7 @@ const UserCard = (props) => {
           <>
             <div className="userCard-dates-home">
               <p className="userCard-date-title">Citas de {props.user.username}</p>
+              <p className="userCard-date-title">{props.user.city}</p>
             </div>
 
             <div className="userCard-detail-date-home">
@@ -193,7 +217,7 @@ const UserCard = (props) => {
         )
       }
 
-      {(random % 2 === 0) ? (
+      {(random % 2 !== 0) ? (
 
         <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
 
@@ -213,6 +237,13 @@ const UserCard = (props) => {
                 </div>
               </div>
             </div>
+            {!alreadyClue && ( 
+            <div onClick={() => clueModal()} className="">
+              <div className="userCard-trivial-box">
+                <p style={{ backgroundColor: "yellow" }} className="userCard-trivial-text">Pista</p>
+              </div>
+            </div>) }
+
           </Modal.Body>
         </Modal>) :
         (<Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
@@ -233,6 +264,12 @@ const UserCard = (props) => {
                 </div>
               </div>
             </div>
+            {!alreadyClue && ( 
+            <div onClick={() => clueModal()} className="">
+              <div className="userCard-trivial-box">
+                <p style={{ backgroundColor: "green" }} className="userCard-trivial-text">Pista</p>
+              </div>
+            </div>) }
           </Modal.Body>
         </Modal>)}
 
@@ -276,6 +313,21 @@ const UserCard = (props) => {
 
         </Modal.Body>
 
+      </Modal>
+
+      <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
+
+        <Modal.Title className="userCard-correctTrivial-title">Pista
+          <img className="clue-picture" src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" alt="" />
+          </Modal.Title>
+        <Modal.Body>
+
+            <div className="userCard-trivial-box">
+              <p className="userCard-trivial-text">{props.user.clue}</p>
+            </div>
+          <div className="userCard-trivial-box" onClick={() => closeModalClue()} className=""> Ok
+          </div>
+        </Modal.Body>
       </Modal>
 
     </div>

@@ -63,10 +63,10 @@ export default function PrivateChat() {
 
         const username = loggedUser.username
 
-        socket = io("https://mienteme.herokuapp.com", {
+        socket = io(process.env.REACT_APP_SOCKET_IO, {
 
             cors: {
-                origin: "https://mienteme.herokuapp.com",
+                origin: process.env.REACT_APP_SOCKET_URL,
                 credentials: true
             }, transports: ['websocket']
         })
@@ -79,12 +79,12 @@ export default function PrivateChat() {
         })
 
         socket.emit("conectado", "online");
-
     }
 
 
     useEffect(() => {
         socket.on("receiveMessages", message => {
+            console.log("MENSAJE CREADO Y RECIBIDO___", message)
             getMessages()
 
         })
@@ -123,19 +123,19 @@ export default function PrivateChat() {
     return (
 
         <>
-            <div className="postTopLeft">
-                <Link to={`/match/${user?._id}`}>
-                    <img
-                        className="postProfileImg"
-                        src={user?.profileImages}
-                        alt=""
-                    />
-                </Link>
-
-                <span className="name-chat">{user?.username}    {user?.age} </span>
-            </div>
-
             <div className="privateChat">
+
+                <div className="postTopLeft">
+                    <Link to={`/match/${user?._id}`}>
+                        <img
+                            className="postProfileImg"
+                            src={user?.profileImages}
+                            alt=""
+                        />
+                    </Link>
+
+                    <span className="name-chat">{user?.username}    {user?.age} </span>
+                </div>
 
                 <hr></hr>
 
@@ -144,8 +144,6 @@ export default function PrivateChat() {
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
                         <div ref={divRef}></div>
                     </div>
-                </div>
-                <div className="feedWrapper">
                     <form onSubmit={sendMessage} className="postBottom">
                         <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
                         <button className="send-msg"> ENVIAR</button>

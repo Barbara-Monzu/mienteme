@@ -63,7 +63,7 @@ const userSchema = new Schema(
       },
 
       ageFilter: {
-        type: [String],
+        type: [Number],
         required: true,
         default: [18, 80],
         min: 18,

@@ -18,14 +18,13 @@ const RequestPending = () => {
         getRequestPending()
     }, [])
 
-
+console.log("randomUser", randomUser)
     const getRequestPending = () => {
         requestService.getAllRequestPending()
             .then(response => {
                 console.log("PETICIONES PENDIENTES", response.data)
                 const index = Math.floor(Math.random() * response.data?.length)
                 let [randomUser] = response.data?.splice(index, 1)
-                console.log("la desestructuracion del array", randomUser)
                 setRandomUser(randomUser)
                 setPendings(response.data)
             })

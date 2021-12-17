@@ -37,6 +37,38 @@ router.get("/allUsers", (req, res) => {
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }
+
+  // if ((ageFilter === [null, null]) && cityFilter && genderFilter) {
+  //   User.find({ $and: [{ gender: genderFilter }, { city: cityFilter }] })
+  //     .then(allUsers => res.json(allUsers))
+  //     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  // }
+
+  // if (ageFilter && !cityFilter && genderFilter) {
+  //   User.find({ $and: [{ gender: genderFilter }, [{ age: { $gte: ageFilter[0], $lte: ageFilter[1] } }]] })
+  //     .then(allUsers => res.json(allUsers))
+  //     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  // }
+
+
+  // if ((ageFilter === []) && !cityFilter && genderFilter) {
+  //   User.find({ gender: genderFilter })
+  //     .then(allUsers => res.json(allUsers))
+  //     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  // }
+
+  // if ((ageFilter === []) && !cityFilter && !genderFilter) {
+  //   User.find()
+  //     .then(allUsers => res.json(allUsers))
+  //     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+  // }
+
+  // else {
+  //   User.find()
+  //     .then(allUsers => res.json(allUsers))
+  //     .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
+
+  // }
 })
 
 

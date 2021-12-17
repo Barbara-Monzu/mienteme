@@ -23,10 +23,10 @@ const EditProfile = () => {
         age: "",
         gender: "",
         bio: "",
-        genderFilter: "",
+        genderFilter: "BOTH",
         ageFirstFilter: undefined,
         ageSecondFilter: undefined,
-        city: "",
+        city: "MADRID",
         questionTrue: "",
         questionFalse: "",
         clue: "",
@@ -86,6 +86,7 @@ const EditProfile = () => {
         peopleService
             .editProfile(loggedUser._id, formData)
             .then(res => {
+                console.log("EDITANDO CON ÉXITO", res.data)
                 storeUser(res.data)
                 clearState()
                 history.push('/perfil')
@@ -144,17 +145,17 @@ const EditProfile = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <div className="editProfile-data">Pregunta verdadera</div>
-                    <Form.Control className="editProfile-input" name="questionTrue" value={formData.questionTrue} onChange={e => handleChange(e)} type="text" placeholder="Pregunta Verdadera" />
+                    <div className="editProfile-data">Escribe una verdad sobre ti</div>
+                    <Form.Control className="editProfile-input" name="questionTrue" value={formData.questionTrue} onChange={e => handleChange(e)} type="text" placeholder="Verdad " />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <div className="editProfile-data">Pregunta Falsa</div>
-                    <Form.Control className="editProfile-input" name="questionFalse" value={formData.questionFalse} onChange={e => handleChange(e)} type="text" placeholder="Pregunta Falsa" />
+                    <div className="editProfile-data">Escribe una mentira sobre ti</div>
+                    <Form.Control className="editProfile-input" name="questionFalse" value={formData.questionFalse} onChange={e => handleChange(e)} type="text" placeholder="Mentira" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <div className="editProfile-data">Pista</div>
+                    <div className="editProfile-data">Da una pista</div>
                     <Form.Control className="editProfile-input" name="clue" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
                 </Form.Group>
                 <br />
@@ -162,12 +163,12 @@ const EditProfile = () => {
                 <h3 className="editProfile-h3">¿Con quién quieres quedar?</h3>
                 <div className="checkbox">
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <p className="editProfile-data">Mujer</p>
+                        <p className="editProfile-data">Mujeres</p>
                         <Form.Check className="editProfile-checkbox" name="genderFilter" value="WOMAN" onChange={e => handleChange(e)} type="radio" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <p className="editProfile-data">Hombre</p>
+                        <p className="editProfile-data">Hombres</p>
                         <Form.Check className="editProfile-checkbox" name="genderFilter" value="MAN" onChange={e => handleChange(e)} type="radio" />
                     </Form.Group>
 
