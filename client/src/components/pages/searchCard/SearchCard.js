@@ -11,69 +11,61 @@ const SearchCard = (props) => {
 
     return (
         <>
-
-            <h1 className="search-h1">CLICK-ME</h1>
             <div className="search-container">
-                <div className="search-box">
-                    <Link to="categoria/GASTRONOMY" style={{ margin: "10px" }}>
-                        <div className="search-card one">
-                            <p className="search-title">GASTRONOMÍA<br /> brunch </p>
+                <h4 className="searchCard-h4">Atrévete a explorar</h4>
+                <p className="searchCard-subtitle">¿Cuál es tu vibra...?</p>
 
-                        </div>
-                    </Link>
-
-
-                    <Link to="categoria/CULTURE" style={{ margin: "10px" }}>
-                        <div className="search-card three">
-                            <p className="search-title">CULTURA</p>
-
-                        </div>
-                    </Link>
-
-                </div>
-
-                <div className="search-box">
-                    <Link to="categoria/NATURE" style={{ margin: "10px" }}>
-                        <div className="search-card two">
-                            <p className="search-title">NATURALEZA</p>
-
-                        </div>
-                    </Link>
-
-                    <Link to="/calendario" style={{ margin: "10px" }}>
-                        <div className="search-card four">
-                            <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
-
-                        </div>
-                    </Link>
-                </div>
-
-                <Link to="/ciudad" style={{ margin: "10px" }}>
-                    <div className="search-card four">
-                        <p className="search-title">ELIGE EL DÍA DE LA SEMANA</p>
-
+                <div className="searchCard-box-1">
+                    <div className="searchCard-box-1-content">
+                        <p className="searchCard-box-text">Gastronomía</p>
+                        <Link to="categoria/GASTRONOMY">
+                            <div className="search-card one">
+                                <img className="searchCard-image-1" />
+                            </div>
+                        </Link>
                     </div>
-                </Link>
 
-                <div className="search-box">
-                    <Link to="categoria/RANDOM" style={{ margin: "10px" }}>
-                        <div className="search-card two">
-                            <p className="search-title">RANDOM</p>
-
-                        </div>
-                    </Link>
-
-                    <Link to="/todas" style={{ margin: "10px" }}>
-                        <div className="search-card two">
-                            <p className="search-title">TODAS</p>
-
-                        </div>
-                    </Link>
+                    <div className="searchCard-box-1-content">
+                        <p className="searchCard-box-text">Cultura</p>
+                        <Link to="categoria/CULTURE">
+                            <div className="search-card one">
+                                <img className="searchCard-image-2" />
+                            </div>
+                        </Link>
+                    </div>
                 </div>
 
+                <div className="searchCard-box-2">
+                    <div className="searchCard-box-2-content">
+                        <p className="searchCard-box-text">Naturaleza</p>
+                        <Link to="categoria/NATURE">
+                            <div className="search-card one">
+                                <img className="searchCard-image-3" />
+                            </div>
+                        </Link>
+                    </div>
 
+                    <div className="searchCard-box-content">
+                        <p className="searchCard-box-text">Random</p>
+                        <Link to="categoria/RANDOM">
+                            <div className="search-card one">
+                                <img className="searchCard-image-4" />
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+
+                <div className="searchCard-box-3">
+                    <div className="searchCard-box-content">
+                        <p className="searchCard-box-text all">Todas</p>
+                        <Link to="categoria/todas">
+                            <div className="search-card one">
+                                <img className="searchCard-image-5" />
+                            </div>
+                        </Link>
+                    </div>
+                </div>
             </div>
-
 
         </>
     )

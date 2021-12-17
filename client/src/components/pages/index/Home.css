@@ -1,0 +1,17 @@
+.loggedUserHome-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 89.7vh;
+    background-color: rgba(255, 233, 241, 0.8);;
+}
+
+.loggedUserHome-h3 {
+    font-size: 30px;
+}
+
+.loggedUserHome-link {
+    text-decoration: none;
+    color: rgb(92, 92, 92);
+    font-weight: 900;
+}

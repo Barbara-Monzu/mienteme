@@ -6,11 +6,10 @@
     height: 32px;
     position: fixed;
     bottom: 0;
-    background-color: #ffefe6;
-    
+    background-color: rgba(255, 233, 241, 0.8);
 }
 img.search {
-    width: 85px;
+    width: 30px;
 }
 img.request {
     width: 30px;
@@ -24,4 +23,3 @@ img.second-chance {
 img.user {
     width: 30px;
 }
-

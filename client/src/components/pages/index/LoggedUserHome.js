@@ -5,6 +5,7 @@ import PeopleService from "../../services/people.service";
 import EditProfile from "../editProfile/EditProfile";
 import UserCard from '../allUsers/userCard/UserCard'
 import { Link } from 'react-router-dom'
+import './Home.css'
 
 
 import { UsersSelected } from "./AllRoutes";
@@ -33,11 +34,14 @@ const LoggedUserHome = () => {
     return (
         <>
             {newRandomUser ? <UserCard user={newRandomUser} next={() => randomUser()} /> : (
-                <div className="search-card color" style={{width: "100%", height: "100vh"}}>
-                    
-                <h3>Hazte <Link to="/https://www.youtube.com/watch?v=zIY87vU33aA&t=17s">PREMIUM</Link> para seguir viendo perfiles</h3>
+                <div className="loggedUserHome-container">
+                    <h3 className="loggedUserHome-h3">Hazte <Link className="loggedUserHome-link" to="/https://www.youtube.com/watch?v=zIY87vU33aA&t=17s">PREMIUM</Link> para seguir viendo perfiles</h3>
                 </div>
             )}
+
+
+
+
 
         </>
     )

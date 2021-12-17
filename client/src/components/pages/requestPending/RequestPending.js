@@ -41,11 +41,11 @@ console.log("randomUser", randomUser)
 
     return (
         <>
-            <p>Peticiones pendientes</p>
 
-            <div className="second-card">
-                {randomUser ? (<UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} request={randomUser} next={getRandomUser} />) : <p>No tienes Peticiones pendientes</p>}
-
+            <div className="request-container">
+                <div className="second-card">
+                    {randomUser ?  ( <UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} request={randomUser} next={getRandomUser} />) : <p className="request-subtitle">No tienes solicitudes pendientes</p>}
+                </div>
             </div>
         </>
     )

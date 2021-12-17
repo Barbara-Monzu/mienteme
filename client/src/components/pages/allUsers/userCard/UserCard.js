@@ -166,30 +166,37 @@ const UserCard = (props) => {
         <div className="userCard-info-container">
           <div className="userCard-info-1">
             <p className="userCard-name">{props.user.username}</p>
-            <p className="userCard-age">{props.user.age} </p>
+            <p className="userCard-age">{props.user.age}</p>
           </div>
 
           <p className="userCard-bio">{props.user.bio}</p>
         </div>
       </div>
 
-      <div className="userCard-button-container">
-      {!props.return && 
-        (<button className="userCard-button" onClick={() => props.next()}>Siguiente</button>)}
-      </div>
+      {!props.return &&
+        (<div className="userCard-button-container">
+          <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
+        </div>)}
+
       {props.dateSelected ? (
         <>
-          <p className="userCard-date-">{props.user.username} Seleccionó tu cita</p>
+          <p className="userCard-request-title">{props.user.username} falló la mentira</p>
 
-          <div className="date">
-            <p>{props.dateSelected.nameDate}</p>
-            <p className="date-description">{props.dateSelected.description}</p>
-            <p className="date-category">{props.dateSelected.category}</p>
+          <div className="userCard-request-date">
+            <div className="userCard-request-box">
+              <p className="userCard-request-name">{props.dateSelected.nameDate}</p>
+              <p className="userCard-request-description">{props.dateSelected.description}</p>
+              <div className="userCard-request-category-content">
+                <p className="userCard-request-category">{props.dateSelected.category}</p>
+              </div>
+            </div>
           </div>
 
-          <p className="date-category">¿Quieres darle una segunda oportunidad?</p>
-          <button onClick={() => editRequestYes("YES")}>Sí</button>
-          <button onClick={() => deleteRequest()}>No</button>
+          <p className="userCard-request-again">¿Quieres darle una <br /> segunda oportunidad?</p>
+          <div className="userCard-request-buttons">
+            <button className="userCard-request-button" onClick={() => editRequestYes("YES")}>Sí</button>
+            <button className="userCard-request-button" onClick={() => deleteRequest()}>No</button>
+          </div>
         </>
       )
         :
@@ -197,14 +204,13 @@ const UserCard = (props) => {
           <>
             <div className="userCard-dates-home">
               <p className="userCard-date-title">Citas de {props.user.username}</p>
-              <p className="userCard-date-title">{props.user.city}</p>
+              <p className="userCard-date-title">Citas de {props.user.city}</p>
             </div>
 
             <div className="userCard-detail-date-home">
               {dates?.map((elm, i) => (
 
-                <div key={i} className="userCard-key">
-
+                <div key={i}>
                   <div onClick={() => chooseDate(elm)} className="userCard-detail-date">
                     <p className="userCard-detail-date-name">{elm.nameDate}</p>
                     <p className="userCard-detail-date-description">{elm.description}</p>
@@ -224,7 +230,7 @@ const UserCard = (props) => {
 
         <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
 
-          <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
+          <Modal.Title><p className="userCard-trivial-header">¿Cuál es la mentira?</p> </Modal.Title>
 
           <Modal.Body>
             <div className="userCard-trivial-subcontainer">
@@ -240,12 +246,12 @@ const UserCard = (props) => {
                 </div>
               </div>
             </div>
-            {!alreadyClue && ( 
-            <div onClick={() => clueModal()} className="">
-              <div className="userCard-trivial-box">
-                <p style={{ backgroundColor: "yellow" }} className="userCard-trivial-text">Pista</p>
-              </div>
-            </div>) }
+            {!alreadyClue && (
+              <div onClick={() => clueModal()} className="">
+                <div className="userCard-trivial-box">
+                  <p style={{ backgroundColor: "yellow" }} className="userCard-trivial-text">Pista</p>
+                </div>
+              </div>)}
 
           </Modal.Body>
         </Modal>) :
@@ -257,34 +263,34 @@ const UserCard = (props) => {
             <div className="userCard-trivial-subcontainer">
               <div onClick={() => createConversation()} className="">
                 <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
+                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
                 </div>
               </div>
 
               <div onClick={() => openWrong()} className="">
                 <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
+                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
                 </div>
               </div>
             </div>
-            {!alreadyClue && ( 
-            <div onClick={() => clueModal()} className="">
-              <div className="userCard-trivial-box">
-                <p style={{ backgroundColor: "green" }} className="userCard-trivial-text">Pista</p>
-              </div>
-            </div>) }
+            {!alreadyClue && (
+              <div onClick={() => clueModal()} className="">
+                <div className="userCard-trivial-box">
+                  <p style={{ backgroundColor: "green" }} className="userCard-trivial-text">Pista</p>
+                </div>
+              </div>)}
           </Modal.Body>
         </Modal>)}
 
 
       <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
 
-        <Modal.Title className="userCard-correctTrivial-title">¡¡¡Correcto!!!!</Modal.Title>
+        <Modal.Title> <p className="userCard-correctTrivial-title">¡¡¡Correcto!!!</p> </Modal.Title>
 
         <Modal.Body>
 
           <div className="userCard-correctTrivial-subcontainer">
-            <Link className="userCard-correctTrivial-chat" to={`/chat/${conversation}/${props.user._id}`} style={{ margin: "10px" }}>
+            <Link className="userCard-correctTrivial-chat" to={`/chat/${conversation}/${props.user._id}`}>
               <p>Chatea con {props.user.username}</p>
             </Link>
 
@@ -318,17 +324,16 @@ const UserCard = (props) => {
 
       </Modal>
 
-      <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
+      <Modal show={wrong} backdrop="static" onHide={closeModalWrong}>
 
-        <Modal.Title className="userCard-correctTrivial-title">Pista
-          <img className="clue-picture" src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" alt="" />
-          </Modal.Title>
+        <Modal.Title> <p className="userCard-wrongTrivial-title">Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</p> </Modal.Title>
         <Modal.Body>
+          <div className="userCard-wrongTrivial-buttons">
+            <button className="userCard-wrongTrivial-button" onClick={() => createRequest()}>Sí</button>
 
-            <div className="userCard-trivial-box">
-              <p className="userCard-trivial-text">{props.user.clue}</p>
-            </div>
-          <div className="userCard-trivial-box" onClick={() => closeModalClue()} className=""> Ok
+            <Link to="/click-me" style={{ margin: "10px" }}>
+              <button className="userCard-wrongTrivial-button" onClick={() => nextUser()}>No</button>
+            </Link>
           </div>
         </Modal.Body>
       </Modal>

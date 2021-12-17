@@ -20,9 +20,9 @@ export default function EachDate({ nameDate, description, creator, day }) {
 
                         </div>
                         <div className="description-date">
-                            <p className="d-m">{nameDate}</p>
-                            <p>{description}</p>
-                            <p className="last-message">{day}</p>
+                            <p className="name-date-bycat"><strong>{nameDate}</strong></p>
+                            <p className="name-date-bycat">{description}</p>
+                            <p className="name-date-bycat">{day}</p>
                         </div>
                     </div>
             

@@ -1,3 +1,8 @@
+.userCard-container {
+    background-color: rgba(255, 233, 241, 0.8);
+    height: 89.7vh;
+}
+
 .userCard-img {
     width: 100%;
     border-radius: 3px;
@@ -22,8 +27,9 @@
     height: 30px;
     width: 90px;
     margin: 0;
-    background-color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(255, 233, 241, 0.8);
     border-radius: 5px;
+    color: black;
 }
 
 .userCard-name {
@@ -43,27 +49,36 @@
     height: 25px;
     width: 300px;
     margin: 5px 0;
-    background-color: rgba(255, 172, 201, 0.8);
+    /* background-color: rgba(255, 233, 241, 0.8); */
     border-radius: 5px;
 }
 
 .userCard-button-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 5px;
     font-size: 12px;
+    margin-right: 20px;
 }
 
 
 button.userCard-button {
     width: 100px;
     background-color: white;
-    border: 1px solid rgba(255, 172, 201, 0.8);
-    border-radius: 3px;
+    border: 2px solid rgba(255, 172, 201, 0.8);
+    border-radius: 15px;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+button.userCard-button:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
 }
 
 .userCard-dates-home {
     display: flex;
+    justify-content: center;
     margin-top: 10px;
 }
 
@@ -75,37 +90,39 @@ button.userCard-button {
     border-radius: 3px;
 }
 
-.userCard-key {
-    
-}
-
 .userCard-date-title {
     font-weight: 900;
     margin-left: 20px;
     margin-top: 10px;
-    border: 1px solid rgba(255, 172, 201, 0.8);
     width: 40%;
     text-align: center;
-    border-radius: 3px;
 }
 
 .userCard-detail-date {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    border: 2px solid rgba(255, 172, 201, 0.8);
     width: 340px;
-    height: 20%;
     margin: 10px 0;
-    border-radius: 3px;
-    background-color: #ffefe6;
+    border-radius: 15px;
+    background-color: white;
     font-size: 14px;
 }
+
+.userCard-detail-date:hover {
+    background-color: black;
+    color:rgba(255, 172, 201, 0.8);
+}
+
+
 
 .userCard-detail-date-name {
     margin: 0;
     text-align: center;
     font-weight: 900;
+    margin-top: 5px;
+    text-decoration-line: underline;
 }
 
 .userCard-detail-date-description {
@@ -121,14 +138,25 @@ button.userCard-button {
     margin-top: 10px;
 }
 
+
 .userCard-detail-date-category {
     margin: 0;
     margin-right: 10px;
     font-weight: 900;
 }
 
+.userCard-detail-date-category:hover {
+    color: rgba(255, 172, 201, 0.8)
+}
+
 .userCard-trivial-header {
-    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 
 .userCard-trivial-subcontainer {
@@ -139,16 +167,21 @@ button.userCard-button {
 
 .userCard-trivial-box {
     height: 50px;
-    background-color: #ffefe6;
+    background-color: white;
     margin: 10px 0;
     width: 300px;
     text-align: center;
     border: 1px solid rgba(255, 172, 201, 0.8);
-    border-radius: 3px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5vh;
+}
+
+.userCard-trivial-box:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
 }
 
 .userCard-trivial-text {
@@ -162,7 +195,12 @@ button.userCard-button {
 }
 
 .userCard-correctTrivial-title {
+    text-transform: uppercase;
     text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    padding: 20px;
+    margin: 0;
 }
 
 .userCard-correctTrivial-chat {
@@ -175,13 +213,122 @@ button.userCard-button {
 
 .userCard-correctTrivial-button {
     border: 1px solid rgba(255, 172, 201, 0.8);
-    background-color:  #ffefe6;
-    border-radius: 3px;
+    background-color: white;
+    border-radius: 15px;
     width: 150px;
+    font-size: 16px;
 }
 
-.clue-picture {
-    heigth: 25px;
-    width: 25px;
-    margin: auto;
+.userCard-correctTrivial-button:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
+}
+
+.userCard-wrongTrivial-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 20px;
+    margin: 0;
+}
+
+.userCard-wrongTrivial-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userCard-wrongTrivial-button {
+    width: 100px;
+    height: 30px;
+    border: 1px solid rgba(255, 172, 201, 0.8);
+    background-color: white;
+    border-radius: 15px;
+}
+
+.userCard-wrongTrivial-button:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
+}
+
+.userCard-request-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-weight: 900;
+    text-align: center;
+    font-size: 18px;
+}
+
+.userCard-request-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 3px;
+}
+
+.userCard-request-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(255, 172, 201, 0.8);
+    width: 340px;
+    margin: 10px 0;
+    border-radius: 15px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.userCard-request-name {
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 5px;
+    text-decoration-line: underline;
+}
+
+.userCard-request-description {
+    margin: 0;
+    text-align: center;
+}
+
+.userCard-request-category-content {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
+.userCard-request-category {
+    margin: 0;
+    margin-right: 10px;
+    font-weight: 900;
+}
+
+.userCard-request-again {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-weight: 900;
+    text-align: center;
+    font-size: 18px;
+}
+
+.userCard-request-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.userCard-request-button {
+    width: 120px;
+    margin: 5px;
+    border: 2px solid rgba(255, 172, 201, 0.8);
+    background-color: white;
+    border-radius: 15px;
 }

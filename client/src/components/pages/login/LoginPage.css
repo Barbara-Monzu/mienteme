@@ -1,49 +1,36 @@
-.signup-header {
+.login-header {
     padding: 20px;
     display: flex;
     align-items: center;
 }
 
-.signup-h1 {
+.login-h1 {
     font-weight: 900;
     color: rgba(255, 172, 201, 0.8);
     margin-top: 5px;
 }
 
-.signup-img {
+.login-img {
     width: 30px;
 }
 
-.signup-container {
-    height: 90vh;
+.login-container {
+    height: 89.3vh;
     background-color: rgba(255, 233, 241, 0.8);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
-.signup-h2 {
+.login-h2 {
     font-weight: 900;
     font-style:normal;
-}
-
-.signup-subtitle {
     text-align: center;
-    font-size: 13px;
-    line-height: 15px;
-    margin-left: 10px;
-    margin-right: 20px;
-    font-weight: 900;
-    margin-top: 10px;
-}
-
-.signup-a {
+    margin: 0;
     color: black;
-    font-weight: 900;
 }
 
-.signup-inputs {
+.login-inputs {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -53,20 +40,22 @@
     height: 80px;
 }
 
-.signup-singleInput {
+.login-singleInput {
     width: 65%;
     font-size: 14px;
     border-radius: 15px;
     border: 2px solid rgba(255, 172, 201, 0.8);
+    padding-left: 10px;
+    
 }
 
-.signup-subcontainer {
+.login-subcontainer {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.signup-button {
+.login-button {
     width: 80%;
     border: 2px solid rgba(255, 172, 201, 0.8);
     background-color: white;
@@ -77,32 +66,12 @@
     margin-bottom: 3px;
 }
 
-
-
-/* .signup-text {
-    text-align: center;
-    width: 90%;
-    margin-top: 15px;
-    font-size: 12px;
-} */
-
-
-
-.signup-link-footer {
+.login-link-footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    color:black;
+    color:white;
     font-weight: 900;
     height: 20%;
+    margin-top: 20px;
 }
-
-
-
-
-
-
-
-
-
-

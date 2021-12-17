@@ -1,66 +1,36 @@
-/* .header {
-    display: flex;
-    justify-content: space-around;
-} */
-
-h2 {
-    font-style: italic;
-}
-
-
-
-img.profile-pic {
-    width: 60px;
-}
-
-.request-card-pic-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.request-card-pic {
-    width: 500px;
-    border-radius: 70px;
-}
-
-.request-info {
-    display: flex;
-    align-items: center;
-}
-
-
-.request-card-name {
-    font-size: 40px;
-    /* margin-top: 0px; */
-    /* margin-left: 35px  */
-}
-
-.request-card-age {
-    font-size: 25px;
-    margin-right: 100px;
-}
-
-.request-date-title {
-    text-align: center;
+.request-title {
+    width: 90%;
     text-transform: uppercase;
-    font-style: italic;
-}
-
-.card-profile {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 20px;
 }
-
-a.box {
-    text-decoration: none;
-    color: black;
+.request-subtitle {
     display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 25px;
+    height: 89.7vh;
+}
+.request-container {
+    background-color: rgba(255, 233, 241, 0.8);
 }
 
-.request-date {
-   display: flex;
-   flex-direction: column; 
-   justify-content: center;
-   align-items: center; 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

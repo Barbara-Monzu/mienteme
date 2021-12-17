@@ -13,7 +13,7 @@ const datesService = new DatesService()
 const UserProfile = () => {
 
   let history = useHistory()
-  
+
   const { loggedUser } = useContext(UserContext)
   const [dates, setMydates] = useState([])
   const [dateSelected, setDateSelected] = useState(undefined)
@@ -61,7 +61,6 @@ const UserProfile = () => {
   return (
     <>
       <div className="userProfile-container">
-
         <div className="userProfile-subcontainer">
           <img className="userProfile-img" src={loggedUser.profileImages[0]} />
 
@@ -75,11 +74,14 @@ const UserProfile = () => {
         </div>
 
         <div className="userProfile-link-container">
-          <Link className="userProfile-link" to="/editar-perfil">editar perfil</Link>
+          {/* <div className="userProfile-button-subcontainer"> */}
+          <button className="userProfile-button-create" onClick={() => setModal(true)}>Crea una cita</button>
+          {/* </div> */}
+          <Link className="userProfile-link" to="/editar-perfil">Editar perfil</Link>
         </div>
 
         <div className="userProfile-dates-home">
-          <p className="userProfile-date-title">mis citas</p>
+          <p className="userProfile-date-title">Mis citas</p>
         </div>
 
         <div className="userProfile-detail-date-home">
@@ -93,21 +95,17 @@ const UserProfile = () => {
                   <p className="userProfile-detail-date-category">{elm.category}</p>
                 </div>
                 <div className="userProfile-button">
-                  <button onClick={() => editDate(elm)} className="userProfile-date-button">editar </button>
-                  <button onClick={() => deleteDate(elm._id)} className="userProfile-date-button">borrar </button>
+                  <button onClick={() => editDate(elm)} className="userProfile-date-button">Editar </button>
+                  <button onClick={() => deleteDate(elm._id)} className="userProfile-date-button">Borrar </button>
                 </div>
               </div>
             </div>
           )}
         </div>
 
-        <div className="userProfile-button-subcontainer">
-          <button className="userProfile-button-create" onClick={() => setModal(true)}>crea una cita</button>
-        </div>
-
         <Modal show={modal} backdrop="static" onHide={closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title className="userProfile-modal-title">edita tu cita</Modal.Title>
+            <Modal.Title> <p className="userProfile-modal-title">Edita tu cita</p> </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -124,9 +122,6 @@ const UserProfile = () => {
             <EditDate closeModal={closeModal} />
           </Modal.Body>
         </Modal>
-
-
-
       </div>
 
 

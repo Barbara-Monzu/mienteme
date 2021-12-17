@@ -1,118 +1,110 @@
-.search-h1 {
-    font-style: italic;
+.search-container {
+    height: 100vh;
+    background-color: rgba(255, 233, 241, 0.8)
+}
+
+.searchCard-h4 {
+    width: 90%;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 20px;   
+}
+
+.searchCard-subtitle {
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 12px;
+    font-weight: 900;
 }
 
 .search-container {
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    height: 120vh;
+}
+
+.searchCard-box-1 {
+    display: flex;
+}
+
+.searchCard-box-content {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.search-box {
-    display: flex;
-    flex-direction: column;
-}
-
-.search-box a {
-    text-decoration: none;
-}
-
-.search-card {
-    color: white;
-    font-size: 30px;
-    font-weight: 900;
-    font-style: italic;
-    text-align: start;
-    background-color: gray;
-    height: 300px;
-    width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 8px;
-    border-radius: 10px;
-}
-
-.search-card.one {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-image: url(https://www.cocinayvino.com/wp-content/uploads/2016/09/54710710_ml-1068x657.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.search-card.two { 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-image: url(https://www.aventurequebec.ca/public_upload/images/Entreprise/Carbure%20Aventure/thumbnails/CarbureAventure-scale_max-1000x1000.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.search-card.three { 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-image: url(https://cdn.broadwaydirect.com/wp-content/uploads/2017/10/Haunted-Theater-800x450.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.search-card.four { 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-image: url(https://hips.hearstapps.com/esq.h-cdn.co/assets/17/09/1488473694-stocksy-txp52523c11xoo100-medium-1198520.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.search-title {
-    margin-left: 10px;
-}
-
-.search-subtitle {
-    font-size: 16px;
-    font-weight: 900;
-    margin-left: 10px;
-}
-
-.search-interest {
-    font-size: 12px;
-    margin-left: 10px;
-}
-
-.search-navbar {
+.searchCard-box-text {
+    margin: 0;
     text-align: center;
+    font-size: 12px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+
+.searchCard-box-text.all{
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+    padding-top: 20px;
+}
+
+
+.searchCard-box-2{
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
 }
 
-.search-navbar-title {
-    font-size: 20px;
-    font-style: italic;
+.searchCard-image-1 {
+    background-image: url(https://www.thecl.com/wp-content/uploads/2019/10/Romantic-Dinner-Date-Ideas.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 185px;
+    width: 160px;
+    border-radius: 15px;
+    margin: 5px;
 }
 
-.search-input {
-    width: 500px;
-    border-radius: 10px;
-    height: 20px;
+.searchCard-image-2 {
+    background-image: url(https://i.pinimg.com/564x/01/e5/82/01e582d0d5e651a7551bd74ca88bbe44.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 185px;
+    width: 160px;
+    border-radius: 15px;
+    margin: 5px;
 }
 
+.searchCard-image-3 {
+    background-image: url(https://i.pinimg.com/736x/69/18/d9/6918d9769f4589be110d71d5435e4eb0.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 185px;
+    width: 160px;
+    border-radius: 15px;
+    margin: 5px;
+}
 
+.searchCard-image-4{
+    background-image: url(https://i.pinimg.com/originals/b9/74/80/b97480bcf31315150d8bcfadadefcec1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 185px;
+    width: 160px;
+    border-radius: 15px;
+    margin: 5px;
+}
 
-
-
-
-
-
-
-
-
-
-
+.searchCard-image-5 {
+    background-image: url(https://i.pinimg.com/originals/ef/ed/df/efeddf0fdee5999a03ef33db08b1828b.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 330px;
+    width: 330px;
+    border-radius: 15px;
+}

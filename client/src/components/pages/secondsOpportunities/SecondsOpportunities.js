@@ -40,10 +40,8 @@ const SecondOpportunity = () => {
 
     return (
         <>
-            <p className="text-seccondOpp">Te ha dado una Segunda Oportunidad</p>
-
-            <div className="second-card">
-                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} />) : <p>Vuelve más tarde, ya has agotado todas tus segundas oportunidades</p>}
+            <div className="secondOp-container">
+                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} />) : <p className="secondsOp-text">Vuelve más tarde, ya has agotado todas tus segundas oportunidades</p>}
 
             </div>
         </>

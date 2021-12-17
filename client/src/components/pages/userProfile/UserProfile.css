@@ -1,3 +1,7 @@
+.userProfile-container {
+    background-color: rgba(255, 233, 241, 0.8)
+}
+
 .userProfile-subcontainer {
     position: relative;
 }
@@ -55,31 +59,40 @@
 
 .userProfile-date-title {
     font-weight: 900;
-    /* margin-left: 20px; */
     display: flex;
     justify-content: center;
-    margin-top: 10px;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    /* margin-top: 10px; */
+    padding-top: 20px;
     width: 40%;
     text-align: center;
-    border-radius: 15px;
+    font-size: 18px;
 }
 
 .userProfile-link-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     margin-right: 20px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .userProfile-link {
     text-decoration: none;
     color: black;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    border: 2px solid rgba(255, 172, 201, 0.8);
     width: 100px;
-    text-align: center;
     border-radius: 15px;
     font-size: 14px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.userProfile-link:hover {
+    background-color: black;
+    color: rgba(255, 172, 201, 0.8);
 }
 
 .userProfile-detail-date-home {
@@ -94,10 +107,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    border: 2px solid rgba(255, 172, 201, 0.8);
     width: 340px;
     margin: 10px 0;
-    border-radius: 3px;
+    border-radius: 15px;
     background-color: white;
     font-size: 14px;
 }
@@ -107,6 +120,7 @@
     text-align: center;
     font-weight: 900;
     margin-top: 5px;
+    text-decoration-line: underline;
 }
 
 .userProfile-detail-date-description {
@@ -123,11 +137,13 @@
 
 .userProfile-date-button {
     margin: 5px;
-    width: 80px;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    width: 60px;
+    border: 2px solid rgba(255, 172, 201, 0.8);
     background-color: white;
     border-radius: 15px;
     margin: 5px;
+    font-weight: 900;
+    font-size: 11px;
 }
 
 .userProfile-date-button:hover {
@@ -158,8 +174,9 @@
     font-size: 14px;
     background-color: white;
     border-radius: 15px;
-    border: 1px solid rgba(255, 172, 201, 0.8);
+    border: 2px solid rgba(255, 172, 201, 0.8);
     width: 120px;
+    font-weight: 900;
 }
 
 .userProfile-button-create:hover {
@@ -168,12 +185,15 @@
 }
 
 .userProfile-modal-title {
-    color: rgba(255, 172, 201, 0.8)
+    color: black(255, 172, 201, 0.8)
 }
 
-
-
-
-
-
-
+.userProfile-modal-title {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 14px;
+    font-weight: 900;
+    margin-top: 20px;
+    margin-left: 20px;
+}
