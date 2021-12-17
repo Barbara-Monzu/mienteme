@@ -140,15 +140,15 @@ export default function PrivateChat() {
                 <hr></hr>
 
                 <div className="feedWrapper">
-                    <div className="ave">
+                    
                         {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
                         <div ref={divRef}></div>
-                    </div>
+                   
+                </div>
                     <form onSubmit={sendMessage} className="postBottom">
                         <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
                         <button className="send-msg"> ENVIAR</button>
                     </form>
-                </div>
             </div>
 
         </>

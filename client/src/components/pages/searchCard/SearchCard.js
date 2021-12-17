@@ -45,7 +45,7 @@ const SearchCard = (props) => {
                         </Link>
                     </div>
 
-                    <div className="searchCard-box-content">
+                    <div className="searchCard-box-2-content">
                         <p className="searchCard-box-text">Random</p>
                         <Link to="categoria/RANDOM">
                             <div className="search-card one">
@@ -56,7 +56,7 @@ const SearchCard = (props) => {
                 </div>
 
                 <div className="searchCard-box-3">
-                    <div className="searchCard-box-content">
+                    <div className="searchCard-box-3-content">
                         <p className="searchCard-box-text all">Todas</p>
                         <Link to="categoria/todas">
                             <div className="search-card one">

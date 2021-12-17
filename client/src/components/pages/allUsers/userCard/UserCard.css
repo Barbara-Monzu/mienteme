@@ -1,6 +1,7 @@
 .userCard-container {
     background-color: rgba(255, 233, 241, 0.8);
-    height: 89.7vh;
+    height: auto;
+    padding-bottom: 50px;
 }
 
 .userCard-img {
@@ -25,7 +26,8 @@
     display: flex;
     justify-content: center;
     height: 30px;
-    width: 90px;
+    width: fit-content;
+    padding: 0px 10px;
     margin: 0;
     background-color: rgba(255, 233, 241, 0.8);
     border-radius: 5px;
@@ -45,12 +47,17 @@
 
 .userCard-bio {
     display: flex;
-    justify-content: space-around;
-    height: 25px;
-    width: 300px;
-    margin: 5px 0;
-    /* background-color: rgba(255, 233, 241, 0.8); */
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0px 10px;
+    margin: 0;
+    background-color: rgba(255, 233, 241, 0.8);
     border-radius: 5px;
+    color: black;
+    margin-top: 10px;
 }
 
 .userCard-button-container {
@@ -261,24 +268,18 @@ button.userCard-button:hover {
     font-size: 18px;
 }
 
-.userCard-request-date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 3px;
-}
 
 .userCard-request-box {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px solid rgba(255, 172, 201, 0.8);
-    width: 340px;
-    margin: 10px 0;
+    width: 90%;
+    margin: 10px auto;
     border-radius: 15px;
     background-color: white;
     font-size: 14px;
+    padding: 10px;
 }
 
 .userCard-request-name {
@@ -286,7 +287,7 @@ button.userCard-button:hover {
     text-align: center;
     font-weight: 900;
     margin-top: 5px;
-    text-decoration-line: underline;
+ 
 }
 
 .userCard-request-description {

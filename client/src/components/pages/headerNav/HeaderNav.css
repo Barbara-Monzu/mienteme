@@ -1,7 +1,11 @@
 .headerNav-container{
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    z-index: 100;
+    background-color: #fff;
 }
 
 .header-nav-h1 {

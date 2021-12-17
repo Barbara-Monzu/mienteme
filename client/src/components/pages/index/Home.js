@@ -31,10 +31,8 @@ const Home = (props) => {
         <div className="project-logo-box">
           <img className="project-logo-big" src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" />
         </div>
-
       </div>
-
-        <h1 style={{ color: "rgba(255, 172, 201, 0.8)"}}><strong>miénteme</strong></h1>
+        <h1 style={{ color: "rgba(255, 172, 201, 0.8)", marginBottom: "100px"}}><strong>miénteme</strong></h1>
   
       <Link to="/singup" className="no-dec">
         <h2 className="home-page">Regístrate</h2>

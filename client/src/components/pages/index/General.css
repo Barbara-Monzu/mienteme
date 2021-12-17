@@ -1,0 +1,30 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.general-header {
+    
+    position: relative;
+    display: block;
+    height: 54px;
+    width:100vw;
+    z-index: 100px;
+
+}
+
+.general-footer {
+    position: fixed;
+    display: block;
+    height: 42px;
+    width:100vw;
+    z-index:100;
+}
+
+.general-routes {
+    position: relative;
+    display: block;
+    height: calc(100% - 96px);
+    width: 100vw;
+}

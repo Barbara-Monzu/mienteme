@@ -1,9 +1,9 @@
 .post-loggedUser{
-
+width: fit-content;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: 20px 0 20px 50%;
+  /* margin: 20px 0 20px 50%; */
   padding: 5px 10px;
   text-align: end;
   background-color: rgba(254, 221, 233, 0.8)
@@ -13,15 +13,39 @@
 .post-match{
 
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  margin: 20px 50% 20px 0%;
-  padding: 5px 10px;
+  box-shadow: 0px 0px 16px -8px rgb(0 0 0 / 68%);
   text-align: start;
-  background-color: rgba(216, 216, 216, 0.8)
+  width: fit-content;
+  width: rgba(216, 216, 216, 0.8);
+  padding: 10px;
+
 }
 
+.interlocutorMatch {
+ 
+}
 
+.interlocutor {
+
+}
+
+.ave {
+  display:flex;
+  flex-direction: column;
+  justify-content:flex-end;
+  align-items:flex-end;
+  gap: 10px;
+  margin: 10px;
+}
+
+.ave2 {
+  display:flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items:flex-start;
+  gap: 10px;
+  margin: 10px;
+}
 
 .postWrapper {
   padding: 10px;
@@ -60,7 +84,7 @@
 }
 
 .postCenter{
-    margin: 20px 0;
+    margin: 0px;
    
 }
 
@@ -110,6 +134,7 @@
 
 .postText {
   text-align: end;
+  
 }
 
 .postText-match {

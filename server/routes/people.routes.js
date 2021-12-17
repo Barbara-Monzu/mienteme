@@ -8,7 +8,7 @@ router.post("/profile/:id/edit-profile", (req, res) => {
 
   const { username, profileImages, age, bio, city, location, questionTrue, questionFalse, clue, gender, genderFilter, ageFirstFilter, ageSecondFilter, cityFilter } = req.body
 
-  const query = { username, age, bio, city, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter } };
+  const query = { username, age, bio, city, gender, location, questionTrue, questionFalse, clue, filter: { genderFilter, ageFilter: [ageFirstFilter, ageSecondFilter], cityFilter } };
 
   if (profileImages) query.profileImages = profileImages
 

@@ -22,7 +22,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     showDates()
-  }, [modal])
+  }, [modal, dates])
 
   const showDates = () => {
     datesService.getOwnDates(loggedUser._id)
@@ -91,6 +91,7 @@ const UserProfile = () => {
               <div className="userProfile-detail-date">
                 <p className="userProfile-detail-date-name">{elm.nameDate}</p>
                 <p className="userProfile-detail-date-description">{elm.description}</p>
+                <p className="userProfile-detail-date-description">{elm.day}</p>
                 <div className="userProfile-detail-date-category-content">
                   <p className="userProfile-detail-date-category">{elm.category}</p>
                 </div>

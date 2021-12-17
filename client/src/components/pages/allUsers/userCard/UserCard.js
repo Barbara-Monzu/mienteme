@@ -85,10 +85,9 @@ const UserCard = (props) => {
   const clueModal = () => {
     setModalClue(true)
     setTrivial(false)
-    // count()
 
   }
-  console.log(clue, "clue")
+
   const closeModalClue = () => {
     setModalClue(false)
     setTrivial(true)
@@ -96,7 +95,7 @@ const UserCard = (props) => {
 
   }
 
-  const count = () => setTimeout(closeModalClue(), 30000)
+
 
 
 
@@ -245,13 +244,13 @@ const UserCard = (props) => {
                   <p className="userCard-trivial-text">{props.user.questionFalse}</p>
                 </div>
               </div>
+              {!alreadyClue && (
+                <div onClick={() => clueModal()} className="">
+                  <div className="userCard-trivial-box">
+                    <p style={{ color: "pink" }} className="userCard-trivial-text">Pista</p>
+                  </div>
+                </div>)}
             </div>
-            {!alreadyClue && (
-              <div onClick={() => clueModal()} className="">
-                <div className="userCard-trivial-box">
-                  <p style={{ backgroundColor: "yellow" }} className="userCard-trivial-text">Pista</p>
-                </div>
-              </div>)}
 
           </Modal.Body>
         </Modal>) :
@@ -272,13 +271,13 @@ const UserCard = (props) => {
                   <p className="userCard-trivial-text">{props.user.questionFalse}</p>
                 </div>
               </div>
+              {!alreadyClue && (
+                <div onClick={() => clueModal()} className="">
+                  <div className="userCard-trivial-box">
+                    <p style={{ color: "green" }} className="userCard-trivial-text">Pista</p>
+                  </div>
+                </div>)}
             </div>
-            {!alreadyClue && (
-              <div onClick={() => clueModal()} className="">
-                <div className="userCard-trivial-box">
-                  <p style={{ backgroundColor: "green" }} className="userCard-trivial-text">Pista</p>
-                </div>
-              </div>)}
           </Modal.Body>
         </Modal>)}
 
@@ -334,6 +333,25 @@ const UserCard = (props) => {
             <Link to="/click-me" style={{ margin: "10px" }}>
               <button className="userCard-wrongTrivial-button" onClick={() => nextUser()}>No</button>
             </Link>
+          </div>
+        </Modal.Body>
+      </Modal>
+
+
+
+
+      <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
+
+        <Modal.Title className="userCard-correctTrivial-title">Pista
+          <img className="clue-picture" style={{ width: "40px", heigth: "40px" }} src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" alt="" />
+        </Modal.Title>
+        <Modal.Body>
+          <div className="userCard-trivial-subcontainer">
+            <div className="userCard-trivial-box">
+              <p className="userCard-trivial-text">{props.user.clue}</p>
+            </div>
+            <div className="userCard-trivial-box" onClick={() => closeModalClue()} className=""> Ok
+            </div>
           </div>
         </Modal.Body>
       </Modal>

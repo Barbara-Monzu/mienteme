@@ -1,6 +1,8 @@
 .search-container {
     height: 100vh;
+    padding-bottom: 50px;
     background-color: rgba(255, 233, 241, 0.8)
+   
 }
 
 .searchCard-h4 {
@@ -29,9 +31,26 @@
     height: 120vh;
 }
 
-.searchCard-box-1 {
+.searchCard-box-1,
+.searchCard-box-2,
+.searchCard-box-3{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    gap: 10px;
+    margin: 0 auto;
 }
+.searchCard-box-1-content,
+.searchCard-box-2-content  {
+    width: 50%;
+}
+
+.searchCard-box-3-content {
+    width: 100%;
+}
+
 
 .searchCard-box-content {
     display: flex;
@@ -48,26 +67,23 @@
 }
 
 .searchCard-box-text.all{
-    margin: 0;
+    margin: 10px;
     text-align: center;
     font-size: 18px;
     font-weight: 900;
-    padding-top: 20px;
+    padding: 20px;
 }
 
 
-.searchCard-box-2{
-    display: flex;
-}
 
 .searchCard-image-1 {
     background-image: url(https://www.thecl.com/wp-content/uploads/2019/10/Romantic-Dinner-Date-Ideas.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     height: 185px;
-    width: 160px;
+    width: 100%;
     border-radius: 15px;
-    margin: 5px;
+   
 }
 
 .searchCard-image-2 {
@@ -75,9 +91,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 185px;
-    width: 160px;
+    width: 100%;
     border-radius: 15px;
-    margin: 5px;
+   
 }
 
 .searchCard-image-3 {
@@ -85,9 +101,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 185px;
-    width: 160px;
+    width: 100%;
     border-radius: 15px;
-    margin: 5px;
+  
 }
 
 .searchCard-image-4{
@@ -95,9 +111,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 185px;
-    width: 160px;
+    width: 100%;
     border-radius: 15px;
-    margin: 5px;
+   
 }
 
 .searchCard-image-5 {
@@ -105,6 +121,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 330px;
-    width: 330px;
+    width: 100%;
     border-radius: 15px;
 }

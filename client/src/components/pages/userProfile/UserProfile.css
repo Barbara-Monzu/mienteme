@@ -1,5 +1,6 @@
 .userProfile-container {
-    background-color: rgba(255, 233, 241, 0.8)
+    background-color: rgba(255, 233, 241, 0.8);
+    padding-bottom: 50px;
 }
 
 .userProfile-subcontainer {
@@ -42,10 +43,13 @@
 }
 
 .userProfile-bio {
+    
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
     height: 25px;
-    width: 300px;
+    width: fit-content;
     margin: 5px 0;
     background-color: rgba(255, 172, 201, 0.8);
     border-radius: 5px;
@@ -95,24 +99,20 @@
     color: rgba(255, 172, 201, 0.8);
 }
 
-.userProfile-detail-date-home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    border-radius: 3px;
-}
+
 
 .userProfile-detail-date {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 2px solid rgba(255, 172, 201, 0.8);
-    width: 340px;
+    width: 90%;
     margin: 10px 0;
     border-radius: 15px;
     background-color: white;
     font-size: 14px;
+    margin: 0 auto;
+    padding: 10px;
 }
 
 .userProfile-detail-date-name {
@@ -120,7 +120,8 @@
     text-align: center;
     font-weight: 900;
     margin-top: 5px;
-    text-decoration-line: underline;
+  
+    font-size: 18px;
 }
 
 .userProfile-detail-date-description {
@@ -159,11 +160,6 @@
     margin-top: 10px;
 }
 
-.userProfile-detail-date-category {
-    margin: 0;
-    margin-right: 10px;
-    font-weight: 900;
-}
 
 .userProfile-button-subcontainer {
     display: flex;

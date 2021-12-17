@@ -85,10 +85,12 @@ const FormSignUp = () => {
     return (
 
         <>
-            <h1>Editar Perfil</h1>
 
 
-            <Form className="form-sign-up" onSubmit={handleSubmit}>
+
+            <Form className="editProfile-container" onSubmit={handleSubmit}>
+
+                <h1 className="editProfile-h3">Crear perfil</h1>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <div className="editProfile-data">Username</div>
@@ -131,7 +133,24 @@ const FormSignUp = () => {
                     <div className="editProfile-data">Da una pista</div>
                     <Form.Control className="editProfile-input" name="clue" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
                 </Form.Group>
-                <br />
+
+                <h3 className="editProfile-h3">¿Con qué género te identificas?</h3>
+                <div className="checkbox">
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Mujer</p>
+                        <Form.Check className="editProfile-checkbox" name="gender" value="WOMAN" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Hombre</p>
+                        <Form.Check className="editProfile-checkbox" name="gender" value="MAN" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <p className="editProfile-data">Otros</p>
+                        <Form.Check className="editProfile-checkbox" name="gender" value="I DON NOT IDENTIFY WITH ANY GENDER" onChange={e => handleChange(e)} type="radio" />
+                    </Form.Group>
+                </div>
 
                 <h3 className="editProfile-h3">¿Con quién quieres quedar?</h3>
                 <div className="checkbox">
@@ -163,9 +182,11 @@ const FormSignUp = () => {
                     <Form.Control className="editProfile-input" name="cityFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Filtra por ciudad..." />
                 </Form.Group>
 
-                <button className="editProfile-button" style={{ cursor: "pointer" }}>
-                    Guardar
-                </button>
+                <div className="editProfile-button-container">
+                    <button className="editProfile-button" style={{ cursor: "pointer" }}>
+                        Crear
+                    </button>
+                </div>
             </Form>
 
             <Modal

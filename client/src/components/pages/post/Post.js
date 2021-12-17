@@ -12,7 +12,8 @@ export default function Post({ message }) {
 
     <>
       {(message?.sender._id === loggedUser._id) ?
-        (
+        (<div className="ave">
+
           <div className="post-loggedUser">
             <div className="postCenter">
               <span className="postText">{message.message}</span>
@@ -20,16 +21,28 @@ export default function Post({ message }) {
 
             </div>
 
-          </div>) :
-        (<div className="post-match">
-          <div className="profile-pic-chat">
-            <img className="picture-chat" src={message.sender.profileImages} alt="" />
-          </div>
-          <div className="">
-            <span className="postText-match">{message.message}</span>
           </div>
 
-        </div>)}
+        </div>
+
+        )
+        :
+
+        (
+          <div className="ave2">
+
+            <div className="post-match">
+              <div className="profile-pic-chat">
+                <img className="picture-chat" src={message.sender.profileImages} alt="" />
+              </div>
+              <div className="">
+                <span className="postText-match">{message.message}</span>
+              </div>
+
+            </div>
+          </div>
+        )
+      }
 
     </>
   );

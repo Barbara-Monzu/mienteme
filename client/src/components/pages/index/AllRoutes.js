@@ -20,6 +20,7 @@ import ProfileMatch from "../../pages/allUsers/userCard/ProfileMatch"
 import ConversationService from "../../services/conversation.service";
 import RequestService from "../../services/request.service";
 import MyCalendar from "../../pages/calendar/Calendar"
+import "./General.css"
 
 export const UsersSelected = React.createContext();
 const peopleService = new PeopleService()
@@ -117,9 +118,10 @@ const AllRoutes = () => {
 
       <main>
 
-
+      <div className="general-header">
         <HeaderNav />
-
+      </div>
+      <div className="general-routes">
         <UsersSelected.Provider value={{ usersFiltered, allUsers }}>
           <Switch>
             <Route path="/" exact render={() => <Redirect to="/click-me" />} />
@@ -142,9 +144,10 @@ const AllRoutes = () => {
 
           </Switch>
         </UsersSelected.Provider>
-
+        </div>
+      <div className="general-footer">
         <FooterNav />
-
+        </div>
 
 
 
