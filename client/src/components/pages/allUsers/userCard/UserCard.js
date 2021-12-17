@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import './UserCard.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import DatesService from "../../../services/dates.service"
 import RequestService from "../../../services/request.service"
 import ConversationService from "../../../services/conversation.service"
@@ -23,6 +23,8 @@ const UserCard = (props) => {
   const [conversation, setConversation] = useState(false)
   const [clue, setModalClue] = useState(false)
   const [alreadyClue, setAlreadyClue] = useState(false)
+
+  const history = useHistory()
 
   console.log("random", random)
 
@@ -75,8 +77,8 @@ const UserCard = (props) => {
   const nextUser = () => {
     closeModalWrong()
     closeModalSuccess()
-    
-    props.next()
+
+    props.return ? history.push("/click-me") : props.next()
 
   }
 
@@ -172,7 +174,8 @@ const UserCard = (props) => {
       </div>
 
       <div className="userCard-button-container">
-        <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
+      {!props.return && 
+        (<button className="userCard-button" onClick={() => props.next()}>Siguiente</button>)}
       </div>
       {props.dateSelected ? (
         <>

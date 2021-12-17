@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import PeopleService from "../../../services/people.service"
 import UserCard from "./UserCard"
 
+let noRandom = true;
 
 const peopleService = new PeopleService()
 
@@ -30,7 +31,7 @@ const ProfileMatch = () => {
     return (
         <>
             <p>Se está renderizando Profile Match</p>
-            {user[0]?._id ? (<UserCard user={user[0]} />) : (<h3>CARGANDO...</h3>)}
+            {user[0]?._id ? (<UserCard user={user[0]} return={noRandom}/>) : (<h3>CARGANDO...</h3>)}
         </>
 
     )

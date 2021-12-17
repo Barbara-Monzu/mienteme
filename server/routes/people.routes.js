@@ -13,7 +13,10 @@ router.post("/profile/:id/edit-profile", (req, res) => {
   if (profileImages) query.profileImages = profileImages
 
   User.findByIdAndUpdate(id, query, { new: true })
-    .then(createUserInfo => res.json(createUserInfo))
+    .then(createUserInfo => {
+      req.session.currentUser = createUserInfo
+      res.json(createUserInfo)
+    })
     .catch(err => res.json({ err, errMessage: "Problema creando por primera vez la info del User" }))
 })
 
@@ -27,13 +30,13 @@ router.get("/allUsers", (req, res) => {
 
   if (genderFilter === "BOTH") {
 
-    User.find({ $and: [{ age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }] })
+    User.find({ $and: [{ age: { $gte: ageFilter[0] } }, { age: { $lte: ageFilter[1] } }, { city: cityFilter }] })
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }
 
   else {
-    User.find({ $and: [{ gender: genderFilter }, { age: { $gte: ageFilter[0], $lte: ageFilter[1] } }, { city: cityFilter }] })
+    User.find({ $and: [{ gender: genderFilter }, { age: { $gte: ageFilter[0] } }, { age: { $lte: ageFilter[1] } }, { city: cityFilter }] })
       .then(allUsers => res.json(allUsers))
       .catch(err => res.json({ err, errMessage: "Problema buscando Users" }))
   }

@@ -37,7 +37,7 @@ const AllRoutes = () => {
   useEffect(() => {
     getAllUsers()
 
-  }, [])
+  }, [loggedUser.filter.genderFilter])
 
   useEffect(() => {
     allUsers && conversations()
@@ -53,7 +53,7 @@ const AllRoutes = () => {
   useEffect(() => {
     secondsOpportunities && resquestCreatedForMe()
 
-}, [secondsOpportunities])
+  }, [secondsOpportunities])
 
   const getAllUsers = () => {
 
@@ -87,7 +87,7 @@ const AllRoutes = () => {
       .then(response => {
         let usersSecondOpportunities = response.data.map(elm => elm.creator)
         let removing = removingConvers?.filter(elm =>
-        !usersSecondOpportunities.some(userReq => userReq._id === elm._id))
+          !usersSecondOpportunities.some(userReq => userReq._id === elm._id))
         console.log("QUITO LAS REQUEST PENDING QUE RECIBO", removing)
         setSecondsOpportunities(removing)
 
@@ -98,15 +98,15 @@ const AllRoutes = () => {
 
 
   const resquestCreatedForMe = () => {
-      requestService.getRequestCreatedForMe()
-          .then(response => {
-            let receivers = response.data.map(elm => elm.receiver)
-            let removing = secondsOpportunities?.filter(elm => 
-              !receivers.some(user => user._id === elm._id ))
-              console.log("QUITO ADEMÁS LAS REQUEST CREADAS POR MI, A LA ESPERA DE SER CONTESTADAS", removing)
-              setUsersFilter(removing)
-          })
-          .catch(err => console.log(err))
+    requestService.getRequestCreatedForMe()
+      .then(response => {
+        let receivers = response.data.map(elm => elm.receiver)
+        let removing = secondsOpportunities?.filter(elm =>
+          !receivers.some(user => user._id === elm._id))
+        console.log("QUITO ADEMÁS LAS REQUEST CREADAS POR MI, A LA ESPERA DE SER CONTESTADAS", removing)
+        setUsersFilter(removing)
+      })
+      .catch(err => console.log(err))
 
   }
 
@@ -122,7 +122,7 @@ const AllRoutes = () => {
 
         <UsersSelected.Provider value={{ usersFiltered, allUsers }}>
           <Switch>
-
+            <Route path="/" exact render={() => <Redirect to="/click-me" />} />
             <Route path="/click-me" exact render={() => <LoggedUserHome />} />
             <Route path="/formulario" exact render={() => <FormSignUp />} />
             <Route path="/chat" exact render={() => <Chat />} />
