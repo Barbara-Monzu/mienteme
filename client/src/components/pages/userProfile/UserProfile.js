@@ -9,20 +9,21 @@ import { Modal, Button } from 'react-bootstrap'
 
 
 const datesService = new DatesService()
+let removeDate = false
 
 const UserProfile = () => {
 
   let history = useHistory()
-
   const { loggedUser } = useContext(UserContext)
   const [dates, setMydates] = useState([])
   const [dateSelected, setDateSelected] = useState(undefined)
   const [modal, setModal] = useState(false)
   const [modaltwo, setModaltwo] = useState(false)
-
+  const [removing, setRemoving] = useState(removeDate)
+  
   useEffect(() => {
     showDates()
-  }, [modal, dates])
+  }, [dates])
 
   const showDates = () => {
     datesService.getOwnDates(loggedUser._id)
@@ -42,6 +43,7 @@ const UserProfile = () => {
   const deleteDate = (id) => {
     datesService.deleteDate(id)
       .then(response => {
+       
         history.push('/perfil')
         console.log("ELIMINANDO CON ÉXITO ==>", response.data)
       })
@@ -87,7 +89,7 @@ const UserProfile = () => {
         <div className="userProfile-detail-date-home">
           {dates?.map((elm, i) =>
 
-            <div key={i}>
+            <div key={i} className="userProfile-container-date">
               <div className="userProfile-detail-date">
                 <p className="userProfile-detail-date-name">{elm.nameDate}</p>
                 <p className="userProfile-detail-date-description">{elm.description}</p>

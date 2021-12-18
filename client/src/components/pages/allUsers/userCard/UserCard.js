@@ -247,7 +247,7 @@ const UserCard = (props) => {
               {!alreadyClue && (
                 <div onClick={() => clueModal()} className="">
                   <div className="userCard-trivial-box">
-                    <p style={{ color: "pink" }} className="userCard-trivial-text">Pista</p>
+                    <p className="userCard-trivial-text">Pista</p>
                   </div>
                 </div>)}
             </div>
@@ -274,7 +274,7 @@ const UserCard = (props) => {
               {!alreadyClue && (
                 <div onClick={() => clueModal()} className="">
                   <div className="userCard-trivial-box">
-                    <p style={{ color: "green" }} className="userCard-trivial-text">Pista</p>
+                    <p className="userCard-trivial-text">Pista</p>
                   </div>
                 </div>)}
             </div>

@@ -55,6 +55,7 @@
 
 .signup-singleInput {
     width: 65%;
+    padding-left: 10px;
     font-size: 14px;
     border-radius: 15px;
     border: 2px solid rgba(255, 172, 201, 0.8);

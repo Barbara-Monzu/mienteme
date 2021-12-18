@@ -13,8 +13,6 @@ const uploadsService = new UploadsService()
 const EditProfile = () => {
 
 
-    const [modal, setModal] = useState(false)
-
     let history = useHistory()
     const { loggedUser, storeUser } = useContext(UserContext)
     const [formData, setFormData] = useState({
@@ -112,94 +110,96 @@ const EditProfile = () => {
     return (
 
         <>
-           <div className="userCard-container">
-        <h3 className="editProfile-h3">Editar Perfil</h3>
-            <Form className="editProfile-container" onSubmit={handleSubmit}>
+            <div className="userCard-container">
+                <h3 className="editProfile-h3">Editar Perfil</h3>
+                <Form className="editProfile-container" onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <div className="editProfile-data">
-                        <Form.Label></Form.Label>
-                        <Form.Control className="editProfile-input" name="username" value={formData.username} onChange={e => handleChange(e)} type="text" placeholder="Nombre de usuario" />
+                            <Form.Label></Form.Label>
+                            <Form.Control className="editProfile-input" name="username" value={formData.username} onChange={e => handleChange(e)} type="text" placeholder="Nombre de usuario" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <div className="editProfile-data">
-                        <Form.Label></Form.Label>
-                        <Form.Control name="editProfile-image" onChange={(e) => handleFile(e)} type="file" />
+                            <Form.Label></Form.Label>
+                            <Form.Control name="editProfile-image" onChange={(e) => handleFile(e)} type="file" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control  className="editProfile-input" name="age" value={formData.age} onChange={e => handleChange(e)} type="number" placeholder="Edad" />
+                            <Form.Control className="editProfile-input" name="age" value={formData.age} onChange={e => handleChange(e)} type="number" placeholder="Edad" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control  className="editProfile-input" name="bio" value={formData.bio} onChange={e => handleChange(e)} type="textarea" placeholder="Acerca de mí" />
+                            <Form.Control className="editProfile-input" name="bio" value={formData.bio} onChange={e => handleChange(e)} type="textarea" placeholder="Acerca de mí" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control  className="editProfile-input" name="city" value={formData.city} onChange={e => handleChange(e)} type="text" placeholder="Ciudad" />
+                            <Form.Control className="editProfile-input" name="city" value={formData.city} onChange={e => handleChange(e)} type="text" placeholder="Ciudad" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control className="editProfile-input" name="questionTrue" value={formData.questionTrue} onChange={e => handleChange(e)} type="text" placeholder="Escribe una verdad sobre ti" />
+                            <Form.Control className="editProfile-input" name="questionTrue" value={formData.questionTrue} onChange={e => handleChange(e)} type="text" placeholder="Escribe una verdad sobre ti" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control className="editProfile-input" name="questionFalse" value={formData.questionFalse} onChange={e => handleChange(e)} type="text" placeholder="Escribe una mentira sobre ti" />
+                            <Form.Control className="editProfile-input" name="questionFalse" value={formData.questionFalse} onChange={e => handleChange(e)} type="text" placeholder="Escribe una mentira sobre ti" />
                         </div>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <div className="editProfile-data">
-                        <Form.Control className="editProfile-input" name="clue" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
+                            <Form.Control className="editProfile-input" name="clue" value={formData.clue} onChange={e => handleChange(e)} type="text" placeholder="Pon una pista..." />
                         </div>
                     </Form.Group>
-                    
+
                     <h3 className="editProfile-h3">¿Con quién quieres quedar?</h3>
                     <div className="checkbox">
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <p className="editProfile-gender">Mujer</p>
-                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="WOMAN" onChange={e => handleChange(e)} type="radio"/>
+                            <Form.Check className="editProfile-checkbox" name="genderFilter" value="WOMAN" onChange={e => handleChange(e)} type="radio" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <p className="editProfile-gender">Hombre</p>
-                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="MAN" onChange={e => handleChange(e)} type="radio"/>
+                            <Form.Check className="editProfile-checkbox" name="genderFilter" value="MAN" onChange={e => handleChange(e)} type="radio" />
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicCheckbox"> 
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <p className="editProfile-gender">Ambos</p>
-                        <Form.Check className="editProfile-checkbox" name="genderFilter" value="BOTH" onChange={e => handleChange(e)} type="radio"/>
+                            <Form.Check className="editProfile-checkbox" name="genderFilter" value="BOTH" onChange={e => handleChange(e)} type="radio" />
                         </Form.Group>
                     </div>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data"></p>
-                    <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="number" placeholder="Filtra por edad(introduce un número)"/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox"> <p className="editProfile-data"></p>
+                        <Form.Control className="editProfile-input" name="ageFirstFilter" value={formData.ageFirstFilter} onChange={e => handleChange(e)} type="number" placeholder="Filtra por edad(introduce un número)" />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="number" placeholder="Filtra por edad(introduce un número)"/>
-                </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Control className="editProfile-input" name="ageSecondFilter" value={formData.ageSecondFilter} onChange={e => handleChange(e)} type="number" placeholder="Filtra por edad(introduce un número)" />
+                    </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Control className="editProfile-input" name="cityFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Por ciudad..."/>
-                </Form.Group>
-            </Form>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Control className="editProfile-input" name="cityFilter" value={formData.cityFilter} onChange={e => handleChange(e)} type="text" placeholder="Por ciudad..." />
+                    </Form.Group>
 
-            <div className="editProfile-button-container">
-                <button className="editProfile-button">Editar</button>
+                    <div className="editProfile-button-container">
+                        <button className="editProfile-button">Editar</button>
+                    </div>
+
+                </Form>
+
             </div>
-        </div>
         </>
 
 
