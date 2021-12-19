@@ -1,8 +1,8 @@
-# Click-me
+# Miénteme
 
 ### Description
 
-**Click-me** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
+**Miénteme** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
 
 ### Server Install
 
@@ -30,7 +30,6 @@ npm run dev
 ### On client:
 
 - REACT_APP_API_URL = Api URL
-- REACT_APP_API_KEY_MAPS = Key to your google maps api
 
 
 ### Client Install
@@ -74,10 +73,10 @@ npm run start
 | ----------- | -------------------------- |-------------------------------------------------- |
 | Base 
 |             | /                          | Render home page                            |
-|             | /singup                  | Render user register page                     |
+|             | /signup                  | Render user register page                     |
 |             | /login            | Render user login page                               |
 | User 
-|             | /                  | Render all users                                    |
+|             | /click-me                  | Render all users                                    |
 |             | /profile                    | Render user profile  page                  |
 |             | /edit-profile/:id         | Render edit user profile page                |
 |             | /profile/chat                 | Render chat                              |
@@ -95,7 +94,7 @@ npm run start
 
 ### Technologies
 
-- React
+- React - Hooks
 - MongoDB
 - Express
 - Node
