@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext, createContext } from 'react'
-import { UserProvider } from '../../services/UserContext'
 import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import LoggedUserHome from './LoggedUserHome';
 import FormSignUp from "../../pages/signUp/FormSignUp"
@@ -38,7 +37,7 @@ const AllRoutes = () => {
   useEffect(() => {
     getAllUsers()
 
-  }, [loggedUser.filter.genderFilter])
+  }, [loggedUser.filter])
 
   useEffect(() => {
     allUsers && conversations()
@@ -118,35 +117,35 @@ const AllRoutes = () => {
 
       <main>
 
-      <div className="general-header">
-        <HeaderNav />
-      </div>
-      <div className="general-routes">
-        <UsersSelected.Provider value={{ usersFiltered, allUsers }}>
-          <Switch>
-            <Route path="/" exact render={() => <Redirect to="/click-me" />} />
-            <Route path="/click-me" exact render={() => <LoggedUserHome />} />
-            <Route path="/formulario" exact render={() => <FormSignUp />} />
-            <Route path="/chat" exact render={() => <Chat />} />
-            <Route path="/chat/:idConver/:match" render={() => <PrivateChat />} />
-            <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
-            <Route path="/buscar" render={() => <SearchCard />} />
-            <Route path="/peticiones" render={() => <RequestPending />} />
-            <Route path="/perfil" render={() => <UserProfile />} />
-            <Route path="/editar-perfil" render={() => <EditProfile />} />
-            <Route path="/todas" render={() => <AllDates />} />
-            <Route path="/match/:id" render={() => <ProfileMatch />} />
-            <Route path="/calendario" render={() => <MyCalendar />} />
-            <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
-
-            {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
-
-
-          </Switch>
-        </UsersSelected.Provider>
+        <div className="general-header">
+          <HeaderNav />
         </div>
-      <div className="general-footer">
-        <FooterNav />
+        <div className="general-routes">
+          <UsersSelected.Provider value={{ usersFiltered, allUsers }}>
+            <Switch>
+              <Route path="/" exact render={() => <Redirect to="/click-me" />} />
+              <Route path="/click-me" exact render={() => <LoggedUserHome />} />
+              <Route path="/formulario" exact render={() => <FormSignUp />} />
+              <Route path="/chat" exact render={() => <Chat />} />
+              <Route path="/chat/:idConver/:match" render={() => <PrivateChat />} />
+              <Route path="/segundas-oportunidades" render={() => <SecondsOpportunities />} />
+              <Route path="/buscar" render={() => <SearchCard />} />
+              <Route path="/peticiones" render={() => <RequestPending />} />
+              <Route path="/perfil" render={() => <UserProfile />} />
+              <Route path="/editar-perfil" render={() => <EditProfile />} />
+              <Route path="/todas" render={() => <AllDates />} />
+              <Route path="/match/:id" render={() => <ProfileMatch />} />
+              <Route path="/calendario" render={() => <MyCalendar />} />
+              <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
+
+              {/* <Route path="/?ciudad=" render={() => <ByCity />} /> */}
+
+
+            </Switch>
+          </UsersSelected.Provider>
+        </div>
+        <div className="general-footer">
+          <FooterNav />
         </div>
 
 

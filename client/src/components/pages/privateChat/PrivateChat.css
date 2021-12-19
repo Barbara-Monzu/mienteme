@@ -5,10 +5,9 @@
 }
 
 .privateChat {
-    height: 100vh;
+    height: 89vh;
     width: 100%;
-    background-color:  rgb(245, 243, 243);
-    
+    background-color: rgb(255 244 244);
 }
 
 /* .feed{
@@ -16,8 +15,11 @@
 } */
 
 .feedWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
     padding: 20px;
-    /* margin-top: 80%; */
+    height: 79%;
 }
 
 .name-chat {

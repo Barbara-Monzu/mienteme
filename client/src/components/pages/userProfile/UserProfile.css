@@ -24,23 +24,28 @@
 
 .userProfile-info-1 {
     display: flex;
-    justify-content: center;
-    height: 30px;
-    width: 90px;
+    justify-content: space-around;
+    height: 40px;
+    width: fit-content;
     margin: 0;
+    padding: 5px;
     background-color: rgba(255, 172, 201, 0.8);
     border-radius: 5px;
+
 }
 
 .userProfile-name {
     font-size: 18px;
     margin-top: 2px;
+    width: fit-content;
 }
 
 .userProfile-age {
     margin-left: 10px;
     font-size: 16px;
     margin-top: 5px;
+ 
+    width: fit-content;
 }
 
 .userProfile-bio {
@@ -96,12 +101,15 @@
 }
 
 .userProfile-link:hover {
-    background-color: black;
-    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(255, 172, 201, 0.8);
+    color: black;
+    border: 2px solid rgb(255, 248, 248);
+    padding: 2px;
 }
 
 .userProfile-container-date {
     height: auto;
+    margin: 15px;
 
 }
 
@@ -126,7 +134,7 @@
     text-align: center;
     font-weight: 900;
     margin-top: 5px;
-  
+    width: fit-content;
     font-size: 18px;
 }
 
@@ -151,11 +159,14 @@
     margin: 5px;
     font-weight: 900;
     font-size: 11px;
+    padding: 1px;
 }
 
 .userProfile-date-button:hover {
-    background-color: black;
-    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(255, 172, 201, 0.8);
+    color: black;
+    border: 2px solid rgb(255, 248, 248);
+  
 }
 
 .userProfile-detail-date-category-content {
@@ -179,11 +190,14 @@
     border: 2px solid rgba(255, 172, 201, 0.8);
     width: 120px;
     font-weight: 900;
+    padding: 1px;
 }
 
 .userProfile-button-create:hover {
-    background-color: black;
-    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(255, 172, 201, 0.8);
+    color: black;
+    border: 2px solid rgb(255, 248, 248);
+    
 }
 
 .userProfile-modal-title {

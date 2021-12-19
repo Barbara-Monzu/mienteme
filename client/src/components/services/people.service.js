@@ -8,7 +8,7 @@ class UsersService {
     })
   }
 
-  getAllUsers = (filter) => this.app.get("/allUsers", filter)
+  getAllUsers = () => this.app.get("/allUsers")
 
   getOneUser = (id) => this.app.get(`/profile/${id}`)
 

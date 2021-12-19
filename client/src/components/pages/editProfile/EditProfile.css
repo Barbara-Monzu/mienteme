@@ -29,34 +29,37 @@
 }
 
 .editProfile-data {
-    padding: 10px;
+    padding: 5px;
+    font-size: 10px;
+    margin: 0px;
 }
 
-.userCard-container {
-    background-color: rgba(255, 233, 241, 0.8)
-}
 
 .editProfile-button-container {
     display: flex;
     justify-content: center;
+    margin: 30px;
 }
 
 .editProfile-button {
-    width: 200px;
+    width: 140px;
     border-radius: 15px;
     background-color: white;
     border: 2px solid rgba(255, 172, 201, 0.8);
     margin-bottom: 10px;
     font-weight: 900;
     text-transform: uppercase;
+    padding: 1px;
 }
 
 .editProfile-button:hover {
-    background-color: black;
-    color: rgba(255, 172, 201, 0.8);
+    background-color: rgba(255, 172, 201, 0.8);
+    color: black;
+    border: 2px solid rgb(255, 248, 248);
+    padding: 3px;
 }
 
 form.editProfile-container {
-    padding: 1rem 30px;
+    padding: 50px;
     background-color: rgba(255, 233, 241, 0.8);
 }

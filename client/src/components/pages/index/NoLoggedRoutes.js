@@ -11,7 +11,7 @@ const NoLoggedRoutes = ({ storeUser, loggedUser, fetchUser }) => {
             <Switch>
 
                <Route path="/" exact render={() => <Home />} />
-                <Route path="/singup" render={(props) => <SignupPage />} />
+                <Route path="/signup" render={(props) => <SignupPage />} />
                 <Route path="/login" render={(props) => <LoginPage/>} />
 
             </Switch>

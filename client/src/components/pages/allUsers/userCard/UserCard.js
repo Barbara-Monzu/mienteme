@@ -203,7 +203,7 @@ const UserCard = (props) => {
           <>
             <div className="userCard-dates-home">
               <p className="userCard-date-title">Citas de {props.user.username}</p>
-              <p className="userCard-date-title">Citas de {props.user.city}</p>
+              <p className="userCard-date-title">{props.user.city}</p>
             </div>
 
             <div className="userCard-detail-date-home">

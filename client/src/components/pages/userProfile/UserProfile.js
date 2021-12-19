@@ -69,7 +69,7 @@ const UserProfile = () => {
           <div className="userProfile-info-container">
             <div className="userProfile-info-1">
               <p className="userProfile-name">{loggedUser.username}</p>
-              <p className="userProfile-age">{loggedUser.age}</p>
+              <p className="userProfile-age">{loggedUser.age} años</p>
             </div>
             <p className="userProfile-bio">{loggedUser.bio}</p>
           </div>

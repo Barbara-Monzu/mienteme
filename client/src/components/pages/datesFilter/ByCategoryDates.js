@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-// import './GastronomyDates.css'
+import './AllDates.css'
 import { UsersSelected } from "../index/AllRoutes";
 import DatesService from "../../services/dates.service"
 import EachDate from "../date/EachDate"
@@ -54,11 +54,9 @@ const ByCategoryDates = () => {
     return (
         <>
 
-            <Link to="/buscar" style={{ marginLeft: "100vh", textDecoration: "none" }}>
-                <button className="search-title">VOLVER</button>
-            </Link>
 
             <h1 className="search-h1">Citas</h1>
+            <Link to="/buscar" className="volver-button">VOLVER</Link>
 
             {filteredDates?.map((elm, i) =>
                 <EachDate {...elm} />

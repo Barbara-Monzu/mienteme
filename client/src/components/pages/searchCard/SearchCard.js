@@ -58,7 +58,7 @@ const SearchCard = (props) => {
                 <div className="searchCard-box-3">
                     <div className="searchCard-box-3-content">
                         <p className="searchCard-box-text all">Todas</p>
-                        <Link to="categoria/todas">
+                        <Link to="/todas">
                             <div className="search-card one">
                                 <img className="searchCard-image-5" />
                             </div>

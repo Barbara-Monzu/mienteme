@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-// import './SearchCard.css'
+import './AllDates.css'
 import { UsersSelected } from "../index/AllRoutes";
 import DatesService from "../../services/dates.service"
 import EachDate from "../date/EachDate"
@@ -52,19 +52,20 @@ const AllDates = () => {
 
 
     return (
+
         <>
-            <Link to="/buscar" style={{ marginLeft: "100vh", textDecoration: "none" }}>
-                <button className="search-title">VOLVER</button>
-            </Link>
+            <div className="all-dates-container">
+                <Link to="/buscar" className="volver-button">VOLVER</Link>
 
-            <h1 className="search-h1">TODAS LAS CITAS</h1>
-            {filteredDates?.map((elm, i) =>
-                <EachDate key={i} {...elm} />
+                <h1 className="">TODAS LAS CITAS</h1>
+                {filteredDates?.map((elm, i) =>
+                    <EachDate key={i} {...elm} />
 
-            )}
+                )}
 
-
+            </div>
         </>
+
     )
 }
 

@@ -32,9 +32,6 @@ export default function Post({ message }) {
           <div className="ave2">
 
             <div className="post-match">
-              <div className="profile-pic-chat">
-                <img className="picture-chat" src={message.sender.profileImages} alt="" />
-              </div>
               <div className="">
                 <span className="postText-match">{message.message}</span>
               </div>
