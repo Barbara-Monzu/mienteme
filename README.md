@@ -1,5 +1,7 @@
 # Miénteme
 
+#### App demo: http://mienteme.herokuapp.com/
+
 ### Description
 
 **Miénteme** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
@@ -22,6 +24,7 @@ npm run dev
 - PORT=5005
 - ORIGIN=http://localhost:3000
 - SESS_SECRET
+- MONGODB_URI
 - CLOUDINARY_NAME = Your Cloudinary user name
 - CLOUDINARY_KEY = Key to your Cloudinary account
 - CLOUDINARY_SECRET = Secret key of your Cloudinary account
@@ -29,7 +32,9 @@ npm run dev
 
 ### On client:
 
-- REACT_APP_API_URL = Api URL
+- REACT_APP_BASE_URL=http://localhost:5005/api
+- REACT_APP_SOCKET_URL=http://localhost:3000
+- REACT_APP_SOCKET_IO=http://localhost:5005
 
 
 ### Client Install
