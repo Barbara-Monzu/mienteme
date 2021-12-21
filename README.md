@@ -2,6 +2,10 @@
 
 #### App demo: http://mienteme.herokuapp.com/
 
+#### Note!: 
+When you create an appointment, the available categories are -->  GASTRONOMY, NATURE, CULTURE, RANDOM.
+
+
 ### Description
 
 **Miénteme** (SPA) is an online dating application. The profiles propose ideal romantic dates. Users can "swipe left" to reject a candidate or selects a date and  to play to guess a truth and a lie proposed by the profile. In order to talk to that person, the lie must be guess.
