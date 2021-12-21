@@ -27,7 +27,7 @@ export default function PrivateChat() {
     const [message, setMessage] = useState('')
     const [conver, setConver] = useState(undefined)
 
-    const updateMessages = (message) => setMessages([...messages, message.message])
+    // const updateMessages = (message) => setMessages([...messages, message.message])
 
     useEffect(() => {
         getMatch()
@@ -37,22 +37,20 @@ export default function PrivateChat() {
 
 
     const getMessages = () => {
-        console.log("LA CONVER", idConver)
+
         messagesService
             .getAllMessages(idConver)
             .then((response => {
-                console.log(response, "UN CONSOLE.LOG MAS")
                 setMessagesBack(response.data)
             }))
             .catch(err => console.error(err))
-        console.log("MENSAJES:", messagesBack)
+      
     }
 
     const getMatch = () => {
 
         peopleService.getOneUser(match)
             .then((response => {
-                console.log("AAAAAAAAA", response.data[0])
                 setUser(response.data[0])
             }))
             .catch(err => console.log(err))

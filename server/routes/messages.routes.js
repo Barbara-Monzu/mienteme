@@ -43,7 +43,7 @@ router.post('/:idConver', (req, res) => {
 })
 
 
-router.delete('/deleteMessage/:idMessage', (req, res) => {
+router.delete('/:idMessage', (req, res) => {
 
   const { idMessage } = req.params
   const { conversation } = req.body
