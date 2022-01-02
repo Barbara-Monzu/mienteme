@@ -23,10 +23,9 @@ const UserCard = (props) => {
   const [conversation, setConversation] = useState(false)
   const [clue, setModalClue] = useState(false)
   const [alreadyClue, setAlreadyClue] = useState(false)
+  const [alreadyMatch, setAlreadyMatch] = useState(false)
 
   const history = useHistory()
-
-  console.log("random", random)
 
   useEffect(() => {
 
@@ -35,7 +34,8 @@ const UserCard = (props) => {
   }, [props.user])
 
   const showDates = () => {
-    datesService.getUserDates(props.user._id)
+    datesService
+      .getUserDates(props.user._id)
       .then(response => {
         setDates(response.data)
       })
@@ -69,8 +69,16 @@ const UserCard = (props) => {
   }
 
   const chooseDate = (date) => {
-    openTrivial()
+    !props.disableTrivial ? openTrivial() : openAlreadyMatch()
     setDateSelected(date)
+  }
+
+  const openAlreadyMatch = () => {
+    setAlreadyMatch(true)
+  }
+
+  const closeAlreadyMatch = () => {
+    setAlreadyMatch(false)
   }
 
 
@@ -78,7 +86,7 @@ const UserCard = (props) => {
     closeModalWrong()
     closeModalSuccess()
 
-    props.return ? history.push("/click-me") : props.next()
+    props.disableBtn ? history.push("/click-me") : props.next()
 
   }
 
@@ -96,12 +104,10 @@ const UserCard = (props) => {
   }
 
 
-
-
-
   const createRequest = () => {
 
-    requestService.create(dateSelected._id, props.user)
+    requestService
+      .create(dateSelected._id, props.user)
       .then(response => {
         setAlreadyClue(false)
         nextUser()
@@ -119,17 +125,10 @@ const UserCard = (props) => {
 
     conversationService
       .create(dateSelected._id, idOtherUser)
-      .then(response => {
-        setConversation(response.data._id)
-
-        console.log("creando la conversación ==>", response.data)
-      })
+      .then(response => setConversation(response.data._id))
       .catch(err => console.log("hay un error crear conver en el front", err))
 
   }
-
-  console.log("CONVER", conversation)
-
 
   const editRequestYes = (answer) => {
     let response = { response: answer }
@@ -172,7 +171,7 @@ const UserCard = (props) => {
         </div>
       </div>
 
-      {!props.return &&
+      {!props.disableBtn &&
         (<div className="userCard-button-container">
           <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
         </div>)}
@@ -193,36 +192,33 @@ const UserCard = (props) => {
 
           <p className="userCard-request-again">¿Quieres darle una <br /> segunda oportunidad?</p>
           <div className="userCard-request-buttons">
-            <button className="userCard-request-button" onClick={() => editRequestYes("YES")}>Sí</button>
             <button className="userCard-request-button" onClick={() => deleteRequest()}>No</button>
+            <button className="userCard-request-button" onClick={() => editRequestYes("YES")}>Sí</button>
           </div>
         </>
       )
         :
-        (
-          <>
-            <div className="userCard-dates-home">
-              <p className="userCard-date-title">Citas de {props.user.username}</p>
-              <p className="userCard-date-title">{props.user.city}</p>
-            </div>
+        (<>
+          <div className="userCard-dates-home">
+            <p className="userCard-date-title">Citas de {props.user.username}</p>
+            <p className="userCard-date-title">{props.user.city}</p>
+          </div>
 
-            <div className="userCard-detail-date-home">
-              {dates?.map((elm, i) => (
+          <div className="userCard-detail-date-home">
+            {dates?.map((elm, i) => (
 
-                <div key={i}>
-                  <div onClick={() => chooseDate(elm)} className="userCard-detail-date">
-                    <p className="userCard-detail-date-name">{elm.nameDate}</p>
-                    <p className="userCard-detail-date-description">{elm.description}</p>
-                    <div className="userCard-detail-date-category-content">
-                      <p className="userCard-detail-date-category">{elm.category}</p>
-                    </div>
+              <div key={i}>
+                <div onClick={() => chooseDate(elm)} className="userCard-detail-date">
+                  <p className="userCard-detail-date-name">{elm.nameDate}</p>
+                  <p className="userCard-detail-date-description">{elm.description}</p>
+                  <div className="userCard-detail-date-category-content">
+                    <p className="userCard-detail-date-category">{elm.category}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </>
-
-        )
+              </div>
+            ))}
+          </div>
+        </>)
       }
 
       {(random % 2 !== 0) ? (
@@ -337,9 +333,6 @@ const UserCard = (props) => {
         </Modal.Body>
       </Modal>
 
-
-
-
       <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
 
         <Modal.Title className="userCard-correctTrivial-title">Pista
@@ -353,6 +346,13 @@ const UserCard = (props) => {
             <div className="userCard-trivial-box" onClick={() => closeModalClue()} className=""> Ok
             </div>
           </div>
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={alreadyMatch} backdrop="static" className="userCard-correctTrivial-container" onHide={closeAlreadyMatch}>
+        <Modal.Header closeButton> Lo sentimos </Modal.Header>
+        <Modal.Body >
+          <p className="userCard-trivial-text">No puedes seleccionar otra cita, ya has hecho match con este usuario.</p>
         </Modal.Body>
       </Modal>
 

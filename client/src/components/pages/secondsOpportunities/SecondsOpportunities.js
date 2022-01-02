@@ -4,11 +4,9 @@ import UserCard from '../allUsers/userCard/UserCard';
 import { useEffect, createContext, useState } from "react";
 
 const requestService = new RequestService()
-
+let disableBtn = true;
 
 const SecondOpportunity = () => {
-
-
 
     let [randomUser, setRandomUser] = useState(undefined);
     let [secondsOpportunities, setSecondsOpportunities] = useState(undefined);
@@ -30,7 +28,6 @@ const SecondOpportunity = () => {
 
     }
 
-
     const getRandomUser = () => {
         const index = Math.floor(Math.random() * secondsOpportunities.length)
         let [randomUser] = secondsOpportunities?.splice(index, 1)
@@ -41,7 +38,8 @@ const SecondOpportunity = () => {
     return (
         <>
             <div className="secondOp-container">
-                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} />) : <p className="secondsOp-text">Vuelve más tarde, ya has agotado todas tus segundas oportunidades</p>}
+                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} disableBtn={disableBtn} />)
+                    : <p className="secondsOp-text">Vuelve más tarde, ya has agotado todas tus segundas oportunidades</p>}
 
             </div>
         </>

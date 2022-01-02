@@ -1,37 +1,34 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Link, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom'
 import PeopleService from "../../../services/people.service"
 import UserCard from "./UserCard"
 
-let noRandom = true;
+let disableBtn = true;
+let disableTrivial = true;
 
 const peopleService = new PeopleService()
 
 const ProfileMatch = () => {
 
     const { id } = useParams()
-
     const [user, setUser] = useState([])
-    console.log("ID DE BEGOÑA", id)
-
 
     useEffect(() => {
         getUser(id)
-        // showDates()
+
     }, [])
 
     const getUser = (id) => {
-        peopleService.getOneUser(id)
-            .then(response => {
-                setUser(response.data)
-            })
+        peopleService
+            .getOneUser(id)
+            .then(response => setUser(response.data))
             .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
     }
 
     return (
         <>
-            <p>Se está renderizando Profile Match</p>
-            {user[0]?._id ? (<UserCard user={user[0]} return={noRandom}/>) : (<h3>CARGANDO...</h3>)}
+            {user[0]?._id ? (<UserCard user={user[0]} disableBtn={disableBtn} disableTrivial={disableTrivial} />)
+                : (<h3>Estamos mejorando la aplicación, vuelve en unos minutos</h3>)}
         </>
 
     )

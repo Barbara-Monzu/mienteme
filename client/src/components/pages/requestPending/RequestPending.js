@@ -1,28 +1,26 @@
-
 import React, { useState, useEffect, useContext } from 'react'
 import './RequestPending.css'
 import { Link } from "react-router-dom"
 import RequestService from "../../services/request.service";
 import UserCard from '../allUsers/userCard/UserCard';
 
-
 const requestService = new RequestService()
+let disableBtn = true;
+
 
 const RequestPending = () => {
 
     const [randomUser, setRandomUser] = useState(undefined);
     const [pendings, setPendings] = useState(undefined);
 
-
     useEffect(() => {
         getRequestPending()
     }, [])
 
-console.log("randomUser", randomUser)
     const getRequestPending = () => {
-        requestService.getAllRequestPending()
+        requestService
+            .getAllRequestPending()
             .then(response => {
-                console.log("PETICIONES PENDIENTES", response.data)
                 const index = Math.floor(Math.random() * response.data?.length)
                 let [randomUser] = response.data?.splice(index, 1)
                 setRandomUser(randomUser)
@@ -44,7 +42,8 @@ console.log("randomUser", randomUser)
 
             <div className="request-container">
                 <div className="second-card">
-                    {randomUser ?  ( <UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} request={randomUser} next={getRandomUser} />) : <p className="request-subtitle">No tienes solicitudes pendientes</p>}
+                    {randomUser ? (<UserCard user={randomUser.creator} dateSelected={randomUser.dateSelected} request={randomUser} next={getRandomUser} disableBtn={disableBtn}/>)
+                        : <p className="request-subtitle">No tienes solicitudes pendientes</p>}
                 </div>
             </div>
         </>

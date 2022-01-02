@@ -32,19 +32,12 @@ const App = () => {
     <>
 
       <main>
-
-
-  
           <UserProvider value={{ loggedUser, storeUser, fetchUser }}>
-            
-            {loggedUser === null ?
-             <NoLoggedRoutes />
-            
+
+            {loggedUser === null ? <NoLoggedRoutes />
             : (<AllRoutes />)}
 
           </UserProvider>
-
-
 
         {/* } */}
 

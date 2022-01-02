@@ -4,7 +4,7 @@ const Date = require("../models/Date.model")
 
 
 router.post("/new/:id", (req, res) => {
-  const {id }= req.params
+  const {id } = req.params
   console.log("OJOOOOOOOOOOOOO", id, req.session.currentUser)
   const { nameDate, description, city, category, day } = req.body
 

@@ -20,20 +20,17 @@ const UserProfile = () => {
   const [modal, setModal] = useState(false)
   const [modaltwo, setModaltwo] = useState(false)
   const [removing, setRemoving] = useState(removeDate)
-  
+
   useEffect(() => {
     showDates()
   }, [dates])
 
   const showDates = () => {
-    datesService.getOwnDates(loggedUser._id)
-      .then(response => {
-        setMydates(response.data)
-        console.log("estoy mirando mis citas en mi perfil ==>", response.data)
-      })
+    datesService
+      .getOwnDates(loggedUser._id)
+      .then(response => setMydates(response.data))
       .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
   }
-
 
   const editDate = (date) => {
     setModal(true)
@@ -41,9 +38,9 @@ const UserProfile = () => {
   }
 
   const deleteDate = (id) => {
-    datesService.deleteDate(id)
+    datesService
+      .deleteDate(id)
       .then(response => {
-       
         history.push('/perfil')
         console.log("ELIMINANDO CON ÉXITO ==>", response.data)
       })
@@ -75,10 +72,8 @@ const UserProfile = () => {
           </div>
         </div>
 
-        <div className="userProfile-link-container">
-          {/* <div className="userProfile-button-subcontainer"> */}
+        <div className="userProfile-link-container"> 
           <button className="userProfile-button-create" onClick={() => setModal(true)}>Crea una cita</button>
-          {/* </div> */}
           <Link className="userProfile-link" to="/editar-perfil">Editar perfil</Link>
         </div>
 
