@@ -26,11 +26,12 @@ const HeaderNav = () => {
 
   }
 
+  console.log("profileImages ===>", loggedUser)
 
   return (
     <div className="headerNav-container">
       <Link to="/perfil">
-        <img className="headerNav-profile-img" src={loggedUser.profileImages[0]} />
+        <img className="headerNav-profile-img" src={loggedUser?.profileImages[0]} />
       </Link>
 
       <div className="headerNav-subcontainer">

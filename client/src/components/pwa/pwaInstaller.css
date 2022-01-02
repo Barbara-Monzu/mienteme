@@ -1,0 +1,16 @@
+.install-button {
+    width: fit-content;
+    margin: 0 auto;
+    background: tomato;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 black;
+    transition: box-shadow 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
+  }
+  
+  .install-button:hover {
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px black;
+  }
