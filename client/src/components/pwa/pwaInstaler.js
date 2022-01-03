@@ -46,12 +46,12 @@ function PWAInstaller() {
     return (
         <>
             {installable &&
-                <div className="divLi" style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: 'center' }}>
                     <div
                         className="install-button"
                         onClick={handleInstallClick}
                     >
-                        INSTALAR APP
+                        Instalar App
                     </div>
                 </div>
             }

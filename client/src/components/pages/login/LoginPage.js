@@ -3,7 +3,6 @@ import AuthService from '../../services/auth.service'
 import { Link, useHistory } from 'react-router-dom'
 import UserContext from "../../services/UserContext"
 import './LoginPage.css'
-import PWAInstaller from '../../pwa/pwaInstaler'
 
 const authService = new AuthService()
 
@@ -72,8 +71,6 @@ const LoginPage = props => {
           </div>
 
         </form>
-        HOLA
-        <PWAInstaller />
       </div>
     </div>
 
