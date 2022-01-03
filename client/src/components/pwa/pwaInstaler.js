@@ -25,7 +25,6 @@ function PWAInstaller() {
             // console.log('INSTALL: Success');
             alert.run({ type: "success", msg: "App Installed! 💻" })
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleInstallClick = (e) => {

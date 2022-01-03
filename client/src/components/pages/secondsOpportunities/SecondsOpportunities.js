@@ -1,15 +1,17 @@
 import './SecondsOpportunities.css'
 import RequestService from "../../services/request.service";
 import UserCard from '../allUsers/userCard/UserCard';
-import { useEffect, createContext, useState } from "react";
+import { useEffect, useState } from "react";
 
 const requestService = new RequestService()
 let disableBtn = true;
+let secondOpor = true;
 
 const SecondOpportunity = () => {
 
     let [randomUser, setRandomUser] = useState(undefined);
     let [secondsOpportunities, setSecondsOpportunities] = useState(undefined);
+
 
     useEffect(() => {
         getSecondsOpportunities()
@@ -38,7 +40,7 @@ const SecondOpportunity = () => {
     return (
         <>
             <div className="secondOp-container">
-                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} disableBtn={disableBtn} />)
+                {randomUser ? (<UserCard user={randomUser.receiver} next={getRandomUser} disableBtn={disableBtn} secondOpor={secondOpor} />)
                     : <p className="secondsOp-text">Vuelve más tarde, ya has agotado todas tus segundas oportunidades</p>}
 
             </div>

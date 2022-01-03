@@ -1,12 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import './UserCard.css'
 import { Link, useHistory } from 'react-router-dom'
-import DatesService from "../../../services/dates.service"
 import RequestService from "../../../services/request.service"
+import UserDates from "./UserDates"
+import UserInfo from "./UserInfo"
+import RequestFailed from "./RequestFailed"
 import ConversationService from "../../../services/conversation.service"
 import { Modal, Button } from 'react-bootstrap'
 
-const datesService = new DatesService()
 const requestService = new RequestService()
 const conversationService = new ConversationService()
 const peopleService = new ConversationService()
@@ -15,7 +16,6 @@ let random;
 
 const UserCard = (props) => {
 
-  const [dates, setDates] = useState([])
   const [dateSelected, setDateSelected] = useState([])
   const [trivial, setTrivial] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -30,17 +30,8 @@ const UserCard = (props) => {
   useEffect(() => {
 
     random = Math.floor(Math.random() * (50))
-    showDates()
   }, [props.user])
 
-  const showDates = () => {
-    datesService
-      .getUserDates(props.user._id)
-      .then(response => {
-        setDates(response.data)
-      })
-      .catch(err => console.log("hay un error al conseguir las citas del otro en el front", err))
-  }
 
   const openTrivial = () => {
     setTrivial(true)
@@ -154,79 +145,31 @@ const UserCard = (props) => {
   }
 
   console.log("props.dateSelected", props.dateSelected)
+  console.log("RANDOM", random)
+  console.log("props.user.questionTrue", props.user.questionTrue)
+  console.log("props.user.questionFalse", props.user.questionFalse)
 
   return (
 
     <div className="userCard-container">
-      <div className="userCard-subcontainer">
-        <img className="userCard-img" src={props.user.profileImages} />
-
-        <div className="userCard-info-container">
-          <div className="userCard-info-1">
-            <p className="userCard-name">{props.user.username}</p>
-            <p className="userCard-age">{props.user.age}</p>
-          </div>
-
-          <p className="userCard-bio">{props.user.bio}</p>
-        </div>
-      </div>
+      <UserInfo user={props.user} />
 
       {!props.disableBtn &&
         (<div className="userCard-button-container">
           <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
         </div>)}
 
-      {props.dateSelected ? (
-        <>
-          <p className="userCard-request-title">{props.user.username} falló la mentira</p>
 
-          <div className="userCard-request-date">
-            <div className="userCard-request-box">
-              <p className="userCard-request-name">{props.dateSelected.nameDate}</p>
-              <p className="userCard-request-description">{props.dateSelected.description}</p>
-              <div className="userCard-request-category-content">
-                <p className="userCard-request-category">{props.dateSelected.category}</p>
-              </div>
-            </div>
-          </div>
-
-          <p className="userCard-request-again">¿Quieres darle una <br /> segunda oportunidad?</p>
-          <div className="userCard-request-buttons">
-            <button className="userCard-request-button" onClick={() => deleteRequest()}>No</button>
-            <button className="userCard-request-button" onClick={() => editRequestYes("YES")}>Sí</button>
-          </div>
-        </>
-      )
-        :
-        (<>
-          <div className="userCard-dates-home">
-            <p className="userCard-date-title">Citas de {props.user.username}</p>
-            <p className="userCard-date-title">{props.user.city}</p>
-          </div>
-
-          <div className="userCard-detail-date-home">
-            {dates?.map((elm, i) => (
-
-              <div key={i}>
-                <div onClick={() => chooseDate(elm)} className="userCard-detail-date">
-                  <p className="userCard-detail-date-name">{elm.nameDate}</p>
-                  <p className="userCard-detail-date-description">{elm.description}</p>
-                  <div className="userCard-detail-date-category-content">
-                    <p className="userCard-detail-date-category">{elm.category}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>)
+      {props.dateSelected ? <RequestFailed user={props.user} dateSelected={props.dateSelected}
+        deleteRequest={deleteRequest} editRequestYes={editRequestYes} />
+        : <UserDates user={props.user} chooseDate={chooseDate} secondOpor={props.secondOpor} />
       }
 
       {(random % 2 !== 0) ? (
 
         <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
-
-          <Modal.Title><p className="userCard-trivial-header">¿Cuál es la mentira?</p> </Modal.Title>
-
+          <Modal.Title><p className="userCard-trivial-header">¿Cuál es la mentira?</p>
+          </Modal.Title>
           <Modal.Body>
             <div className="userCard-trivial-subcontainer">
               <div onClick={() => openWrong()} className="">
@@ -250,21 +193,20 @@ const UserCard = (props) => {
 
           </Modal.Body>
         </Modal>) :
+
         (<Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
-
           <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
-
           <Modal.Body>
             <div className="userCard-trivial-subcontainer">
               <div onClick={() => createConversation()} className="">
                 <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
+                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
                 </div>
               </div>
 
               <div onClick={() => openWrong()} className="">
                 <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
+                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
                 </div>
               </div>
               {!alreadyClue && (
@@ -279,9 +221,7 @@ const UserCard = (props) => {
 
 
       <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
-
         <Modal.Title> <p className="userCard-correctTrivial-title">¡¡¡Correcto!!!</p> </Modal.Title>
-
         <Modal.Body>
 
           <div className="userCard-correctTrivial-subcontainer">
@@ -294,29 +234,6 @@ const UserCard = (props) => {
             </Link>
           </div>
         </Modal.Body>
-      </Modal>
-
-      <Modal
-        show={wrong}
-        backdrop="static"
-        onHide={closeModalWrong}
-      >
-
-        <Modal.Title className="search-card color" >Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</Modal.Title>
-
-        <Modal.Body>
-          <button onClick={() => createRequest()}>Sí </button>
-
-          <Link to="/click-me" style={{ margin: "10px" }}>
-            <button onClick={() => nextUser()}>No, next</button>
-          </Link>
-
-          <Link to="/click-me" style={{ margin: "10px" }}>
-            <button onClick={() => nextUser()}>Next</button>
-          </Link>
-
-        </Modal.Body>
-
       </Modal>
 
       <Modal show={wrong} backdrop="static" onHide={closeModalWrong}>
@@ -360,9 +277,7 @@ const UserCard = (props) => {
 
   )
 
-
 }
-
 
 
 export default UserCard
