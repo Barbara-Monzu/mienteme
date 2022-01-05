@@ -16,8 +16,6 @@ const ByCategoryDates = () => {
 
     const { usersFiltered } = useContext(UsersSelected);
 
-    // const[loading, setLoading] = useState(false)
-
     const [allDates, setAllDates] = useState([])
     const [filteredDates, setFilteredDates] = useState([])
 
