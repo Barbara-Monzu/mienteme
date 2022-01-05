@@ -159,11 +159,9 @@ const UserCard = (props) => {
           <button className="userCard-button" onClick={() => props.next()}>Siguiente</button>
         </div>)}
 
-
       {props.dateSelected ? <RequestFailed user={props.user} dateSelected={props.dateSelected}
         deleteRequest={deleteRequest} editRequestYes={editRequestYes} />
-        : <UserDates user={props.user} chooseDate={chooseDate} secondOpor={props.secondOpor} />
-      }
+        : <UserDates user={props.user} chooseDate={chooseDate} secondOpor={props.secondOpor} />}
 
       {(random % 2 !== 0) ? (
 
@@ -193,7 +191,7 @@ const UserCard = (props) => {
 
           </Modal.Body>
         </Modal>) :
-
+        
         (<Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
           <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
           <Modal.Body>
@@ -217,8 +215,7 @@ const UserCard = (props) => {
                 </div>)}
             </div>
           </Modal.Body>
-        </Modal>)}
-
+      </Modal>)}
 
       <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
         <Modal.Title> <p className="userCard-correctTrivial-title">¡¡¡Correcto!!!</p> </Modal.Title>
@@ -237,12 +234,10 @@ const UserCard = (props) => {
       </Modal>
 
       <Modal show={wrong} backdrop="static" onHide={closeModalWrong}>
-
         <Modal.Title> <p className="userCard-wrongTrivial-title">Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</p> </Modal.Title>
         <Modal.Body>
           <div className="userCard-wrongTrivial-buttons">
             <button className="userCard-wrongTrivial-button" onClick={() => createRequest()}>Sí</button>
-
             <Link to="/click-me" style={{ margin: "10px" }}>
               <button className="userCard-wrongTrivial-button" onClick={() => nextUser()}>No</button>
             </Link>
@@ -251,7 +246,6 @@ const UserCard = (props) => {
       </Modal>
 
       <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
-
         <Modal.Title className="userCard-correctTrivial-title">Pista
           <img className="clue-picture" style={{ width: "40px", heigth: "40px" }} src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" alt="" />
         </Modal.Title>
