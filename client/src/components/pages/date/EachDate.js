@@ -7,12 +7,10 @@ export default function EachDate({ nameDate, description, creator, day }) {
         <>
 
             <Link to={`/match/${creator._id}`} style={{ marginLeft: "500px", textDecoration: "none", color: "black" }}>
-               
                     <div className="alldates">
                         <div className="">
                             <p style={{ margin: "10px" }}><strong>{creator.username}</strong>, {creator.age}</p>
                             <img className="imag-date" src={creator.profileImages} alt="" />
-
                         </div>
                         <div className="description-date">
                             <p className="name-date-bycat"><strong>{nameDate}</strong></p>

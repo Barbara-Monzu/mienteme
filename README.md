@@ -1,6 +1,6 @@
 # Miénteme
 
-#### App demo: http://mienteme.herokuapp.com/
+#### App demo: https://mienteme.herokuapp.com/
 
 #### Note!: 
 When you create an appointment, the available categories are -->  GASTRONOMY, NATURE, CULTURE, RANDOM.
