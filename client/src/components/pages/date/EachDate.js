@@ -6,7 +6,7 @@ export default function EachDate({ nameDate, description, creator, day }) {
     return (
         <>
 
-            <Link to={`/match/${creator._id}`} style={{ marginLeft: "500px", textDecoration: "none", color: "black" }}>
+            <Link to={`/perfil-user/${creator._id}`} style={{ marginLeft: "500px", textDecoration: "none", color: "black" }}>
                     <div className="alldates">
                         <div className="">
                             <p style={{ margin: "10px" }}><strong>{creator.username}</strong>, {creator.age}</p>

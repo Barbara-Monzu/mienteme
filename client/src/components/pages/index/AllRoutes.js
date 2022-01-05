@@ -13,9 +13,10 @@ import PeopleService from "../../services/people.service";
 import UserProfile from "../userProfile/UserProfile";
 import EditProfile from "../editProfile/EditProfile";
 import ByCategoryDates from "../datesFilter/ByCategoryDates";
-import AllDates from "../datesFilter/AllDates";
+import AllDates from "../datesFilter/allDates";
 import UserContext from '../../services/UserContext'
 import ProfileMatch from "../../pages/allUsers/userCard/ProfileMatch"
+import ProfileNoMatch from "../../pages/allUsers/userCard/ProfileNoMatch"
 import ConversationService from "../../services/conversation.service";
 import RequestService from "../../services/request.service";
 import MyCalendar from "../../pages/calendar/Calendar"
@@ -134,6 +135,7 @@ const AllRoutes = () => {
             <Route path="/editar-perfil" render={() => <EditProfile />} />
             <Route path="/todas" render={() => <AllDates />} />
             <Route path="/match/:id" render={() => <ProfileMatch />} />
+            <Route path="/perfil-user/:id" render={() => <ProfileNoMatch />} />
             <Route path="/calendario" render={() => <MyCalendar />} />
             <Route path="/categoria/:category" render={() => <ByCategoryDates />} />
           </Switch>

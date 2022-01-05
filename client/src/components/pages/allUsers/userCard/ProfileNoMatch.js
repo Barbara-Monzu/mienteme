@@ -4,11 +4,10 @@ import PeopleService from "../../../services/people.service"
 import UserCard from "./UserCard"
 
 let disableBtn = true;
-let disableTrivial = true;
 
 const peopleService = new PeopleService()
 
-const ProfileMatch = () => {
+const ProfileNoMatch = () => {
 
     const { id } = useParams()
     const [user, setUser] = useState([])
@@ -27,12 +26,11 @@ const ProfileMatch = () => {
 
     return (
         <>
-            {user[0]?._id ? (<UserCard user={user[0]} disableBtn={disableBtn} disableTrivial={disableTrivial} />)
+            {user[0]?._id ? (<UserCard user={user[0]} disableBtn={disableBtn} />)
                 : (<h3>Estamos mejorando la aplicación, vuelve en unos minutos</h3>)}
         </>
-
     )
 
 }
 
-export default ProfileMatch
+export default ProfileNoMatch
