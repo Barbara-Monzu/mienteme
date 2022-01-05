@@ -26,7 +26,6 @@ const HeaderNav = () => {
 
   }
 
-  console.log("profileImages ===>", loggedUser)
 
   return (
     <div className="headerNav-container">

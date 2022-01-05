@@ -18,6 +18,7 @@ export default function PrivateChat() {
     const { idConver, match } = useParams()
 
     console.log("MI MATCH:", match)
+    console.log("idConver:", idConver)
 
     const [room, setRoom] = useState('')
 
@@ -27,7 +28,6 @@ export default function PrivateChat() {
     const [message, setMessage] = useState('')
     const [conver, setConver] = useState(undefined)
 
-    // const updateMessages = (message) => setMessages([...messages, message.message])
 
     useEffect(() => {
         getMatch()
@@ -44,25 +44,21 @@ export default function PrivateChat() {
                 setMessagesBack(response.data)
             }))
             .catch(err => console.error(err))
-      
+
     }
 
     const getMatch = () => {
 
-        peopleService.getOneUser(match)
-            .then((response => {
-                setUser(response.data[0])
-            }))
+        peopleService
+            .getOneUser(match)
+            .then((response => setUser(response.data[0])))
             .catch(err => console.log(err))
     }
 
 
     const setSocketConfig = () => {
-
         const username = loggedUser.username
-
         socket = io(process.env.REACT_APP_SOCKET_IO, {
-
             cors: {
                 origin: process.env.REACT_APP_SOCKET_URL,
                 credentials: true
@@ -122,7 +118,6 @@ export default function PrivateChat() {
 
         <>
             <div className="privateChat">
-
                 <div className="postTopLeft">
                     <Link to={`/match/${user?._id}`}>
                         <img
@@ -131,22 +126,21 @@ export default function PrivateChat() {
                             alt=""
                         />
                     </Link>
-
                     <span className="name-chat">{user?.username}    {user?.age} </span>
                 </div>
 
                 <hr></hr>
 
                 <div className="feedWrapper">
-                    
-                        {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
-                        <div ref={divRef}></div>
-                   
+
+                    {messagesBack?.map((elm, i) => <Post key={i} message={elm} />)}
+                    <div ref={divRef}></div>
+
                 </div>
-                    <form onSubmit={sendMessage} className="postBottom">
-                        <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
-                        <button className="send-msg"> ENVIAR</button>
-                    </form>
+                <form onSubmit={sendMessage} className="postBottom">
+                    <input value={message} onChange={e => setMessage(e.target.value)} type="area" className="writeMessage" placeholder="escribe un mensaje..." />
+                    <button className="send-msg"> ENVIAR</button>
+                </form>
             </div>
 
         </>

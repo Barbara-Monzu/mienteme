@@ -1,12 +1,7 @@
-
-import { useEffect, useState } from "react";
-import ServiceMessages from '../../services/messages.service';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Date.css"
 
 export default function EachDate({ nameDate, description, creator, day }) {
-
-    console.log("mirando en nATURE:", nameDate)
 
     return (
         <>

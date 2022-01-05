@@ -8,7 +8,6 @@ const serviceConversation = new ConversationService()
 
 export default function ChatOnline() {
 
-
   const [conversations, setConversations] = useState(undefined);
   const [filteredConversations, setfilteredConversations] = useState(undefined);
 
@@ -18,7 +17,8 @@ export default function ChatOnline() {
   }, []);
 
   const getConversations = () => {
-    serviceConversation.getAllConversations()
+    serviceConversation
+      .getAllConversations()
       .then(response => {
         setConversations(response.data)
       })
@@ -30,10 +30,7 @@ export default function ChatOnline() {
     <div className="chatOnline">
       <h1>Chat</h1>
       <input type="searchbar" className="searchBar" placeholder="buscar a..." />
-
       {conversations?.map((elm, index) => <EachConver getConversations={getConversations} key={index} {...elm} />)}
-
-
     </div>
   );
 }

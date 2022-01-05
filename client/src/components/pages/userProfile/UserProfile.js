@@ -52,7 +52,7 @@ const UserProfile = () => {
   }
 
   const closeModaltwo = () => {
-    setModal(false)
+    setModaltwo(false)
   }
 
 
@@ -73,7 +73,7 @@ const UserProfile = () => {
         </div>
 
         <div className="userProfile-link-container"> 
-          <button className="userProfile-button-create" onClick={() => setModal(true)}>Crea una cita</button>
+          <button className="userProfile-button-create" onClick={() => setModaltwo(true)}>Crea una cita</button>
           <Link className="userProfile-link" to="/editar-perfil">Editar perfil</Link>
         </div>
 
@@ -111,17 +111,15 @@ const UserProfile = () => {
           </Modal.Body>
         </Modal>
 
-        <Modal show={modaltwo} backdrop="static" onHide={closeModaltwo}
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Crea una cita</Modal.Title>
+        <Modal show={modaltwo} backdrop="static" onHide={closeModaltwo}>
+        <Modal.Header closeButton>
+            <Modal.Title> <p className="userProfile-modal-title">Crea tu cita</p> </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EditDate closeModal={closeModal} />
+            <EditDate closeModal={closeModaltwo} />
           </Modal.Body>
         </Modal>
       </div>
-
 
     </>
 

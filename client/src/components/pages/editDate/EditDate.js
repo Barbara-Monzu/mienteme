@@ -69,13 +69,11 @@ const EditDate = (props) => {
                 })
                 .catch(err => console.error(err)))
 
-
     }
 
 
     return (
         <>
-            <p>El formulario de editar cita</p>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label></Form.Label>
@@ -101,8 +99,6 @@ const EditDate = (props) => {
                     (<button className="signup" style={{ cursor: "pointer" }}>
                         Crear
                     </button>)}
-
-
             </Form>
         </>
     )

@@ -28,3 +28,11 @@
     height: calc(100% - 96px);
     width: 100vw;
 }
+
+/* @media screen and (max-width: 2000px) { 
+    body {
+      width: 415px;
+      height: 816px;
+    }
+  
+     } */

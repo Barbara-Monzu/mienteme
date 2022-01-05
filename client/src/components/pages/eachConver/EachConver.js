@@ -11,7 +11,6 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
 
   const history = useHistory()
   const date = new Date(createdAt);
-  // dateStr you get from mongodb
 
   const monthName = {
     [1]: 'Enero',
@@ -54,23 +53,18 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
   }, [_id])
 
 
-
-
-
   const getLastMessage = () => {
-    serviceMessages.getLastMessage(_id)
-      .then(response => {
-        setLastMessage(response.data[0])
-      })
+    serviceMessages
+      .getLastMessage(_id)
+      .then(response => setLastMessage(response.data[0]))
       .catch(err => console.log(err))
 
   }
 
   const remove = () => {
-    serviceConversation.delete(_id)
-      .then(response => {
-        rest.getConversations();
-      })
+    serviceConversation
+      .delete(_id)
+      .then(response => rest.getConversations())
       .catch(error => console.log(error))
   }
 
@@ -94,7 +88,6 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
           <p className="last-message">{lastMessage?.message}</p>
           <p className="d-m">{d} de {m}</p>
 
-
         </div>
       </Link>
       <div className="bachat">
@@ -102,7 +95,6 @@ export default function EachConversation({ members, dateSelected, _id, createdAt
       </div>
 
       <hr style={{ margin: "auto auto auto 80px" }} className="barra"></hr>
-
 
     </div>
 

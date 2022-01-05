@@ -7,17 +7,14 @@ import UserCard from '../allUsers/userCard/UserCard'
 import { Link } from 'react-router-dom'
 import './Home.css'
 
-
 import { UsersSelected } from "./AllRoutes";
-
 
 const LoggedUserHome = () => {
 
     const { usersFiltered } = useContext(UsersSelected);
     const [newRandomUser, setNewRandomUser] = useState(undefined)
 
-
-    console.log(" CONTEXTO todos los usuarios: ", usersFiltered)
+    console.log("TODOS LOS USUARIOS: ", usersFiltered)
 
     useEffect(() => {
         usersFiltered && randomUser()
@@ -27,7 +24,7 @@ const LoggedUserHome = () => {
     const randomUser = () => {
         const index = Math.floor(Math.random() * usersFiltered.length)
         let [selectedUser] = usersFiltered.splice(index, 1)
-        console.log("esta es mi usuario random: ", selectedUser)
+        // console.log("esta es mi usuario random: ", selectedUser)
         setNewRandomUser(selectedUser)
     };
 
@@ -38,15 +35,9 @@ const LoggedUserHome = () => {
                     <h3 className="loggedUserHome-h3">Hazte <Link className="loggedUserHome-link" to="/https://www.youtube.com/watch?v=zIY87vU33aA&t=17s">PREMIUM</Link> para seguir viendo perfiles</h3>
                 </div>
             )}
-
-
-
-
-
         </>
     )
 }
-
 
 
 export default LoggedUserHome

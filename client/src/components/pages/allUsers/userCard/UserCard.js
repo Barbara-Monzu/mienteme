@@ -6,12 +6,15 @@ import UserDates from "./UserDates"
 import UserInfo from "./UserInfo"
 import RequestFailed from "./RequestFailed"
 import ConversationService from "../../../services/conversation.service"
-import { Modal, Button } from 'react-bootstrap'
+import TrivialA from "./TrivialA"
+import TrivialB from "./TrivialB"
+import SuccessModal from "./SuccessModal"
+import WrongModal from "./WrongModal"
+import ClueModal from "./ClueModal"
+import AlreadyMatchModal from "./AlreadyMatchModal"
 
 const requestService = new RequestService()
 const conversationService = new ConversationService()
-const peopleService = new ConversationService()
-
 let random;
 
 const UserCard = (props) => {
@@ -72,11 +75,9 @@ const UserCard = (props) => {
     setAlreadyMatch(false)
   }
 
-
   const nextUser = () => {
     closeModalWrong()
     closeModalSuccess()
-
     props.disableBtn ? history.push("/click-me") : props.next()
 
   }
@@ -93,7 +94,6 @@ const UserCard = (props) => {
     setAlreadyClue(true)
 
   }
-
 
   const createRequest = () => {
 
@@ -124,7 +124,8 @@ const UserCard = (props) => {
   const editRequestYes = (answer) => {
     let response = { response: answer }
     console.log("editando: LA REQUEST Y LA RESPUESTA", props.request, response)
-    requestService.answer(props.request._id, response)
+    requestService
+      .answer(props.request._id, response)
       .then(response => {
         console.log("EDITANDO REQUEST CON ÉXITO==>", response.data)
         props.next()
@@ -135,7 +136,8 @@ const UserCard = (props) => {
 
   const deleteRequest = () => {
     console.log("BORRANDO LA PETICIÓN, PORQUE HE DICHO QUE NO", props.request)
-    requestService.delete(props.request._id)
+    requestService
+      .delete(props.request._id)
       .then(response => {
         console.log("BORRADA ==>", response.data)
         props.next()
@@ -145,9 +147,6 @@ const UserCard = (props) => {
   }
 
   console.log("props.dateSelected", props.dateSelected)
-  console.log("RANDOM", random)
-  console.log("props.user.questionTrue", props.user.questionTrue)
-  console.log("props.user.questionFalse", props.user.questionFalse)
 
   return (
 
@@ -163,109 +162,22 @@ const UserCard = (props) => {
         deleteRequest={deleteRequest} editRequestYes={editRequestYes} />
         : <UserDates user={props.user} chooseDate={chooseDate} secondOpor={props.secondOpor} />}
 
-      {(random % 2 !== 0) ? (
+      {(random % 2 !== 0) ?
+        <TrivialA trivial={trivial} closeModalTrivial={closeModalTrivial}
+          openWrong={openWrong} createConversation={createConversation} clueModal={clueModal} user={props.user} />
 
-        <Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
-          <Modal.Title><p className="userCard-trivial-header">¿Cuál es la mentira?</p>
-          </Modal.Title>
-          <Modal.Body>
-            <div className="userCard-trivial-subcontainer">
-              <div onClick={() => openWrong()} className="">
-                <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
-                </div>
-              </div>
+        : <TrivialB trivial={trivial} closeModalTrivial={closeModalTrivial}
+          openWrong={openWrong} createConversation={createConversation} clueModal={clueModal} user={props.user} />}
 
-              <div onClick={() => createConversation()} className="">
-                <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
-                </div>
-              </div>
-              {!alreadyClue && (
-                <div onClick={() => clueModal()} className="">
-                  <div className="userCard-trivial-box">
-                    <p className="userCard-trivial-text">Pista</p>
-                  </div>
-                </div>)}
-            </div>
+      <SuccessModal success={success} closeModalSuccess={closeModalSuccess} conversation={conversation}
+        user={props.user} nextUser={nextUser} alreadyClue={alreadyClue} />
 
-          </Modal.Body>
-        </Modal>) :
-        
-        (<Modal show={trivial} backdrop="static" onHide={closeModalTrivial} className="userCard-trivial-container">
-          <Modal.Title className="userCard-trivial-header">¿Cuál es la mentira?</Modal.Title>
-          <Modal.Body>
-            <div className="userCard-trivial-subcontainer">
-              <div onClick={() => createConversation()} className="">
-                <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionFalse}</p>
-                </div>
-              </div>
+      <WrongModal wrong={wrong} closeModalWrong={closeModalWrong} alreadyClue={alreadyClue}
+        user={props.user} nextUser={nextUser} createRequest={createRequest} />
 
-              <div onClick={() => openWrong()} className="">
-                <div className="userCard-trivial-box">
-                  <p className="userCard-trivial-text">{props.user.questionTrue}</p>
-                </div>
-              </div>
-              {!alreadyClue && (
-                <div onClick={() => clueModal()} className="">
-                  <div className="userCard-trivial-box">
-                    <p className="userCard-trivial-text">Pista</p>
-                  </div>
-                </div>)}
-            </div>
-          </Modal.Body>
-      </Modal>)}
+      <ClueModal clue={clue} closeModalClue={closeModalClue} user={props.user} />
 
-      <Modal show={success} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalSuccess}>
-        <Modal.Title> <p className="userCard-correctTrivial-title">¡¡¡Correcto!!!</p> </Modal.Title>
-        <Modal.Body>
-
-          <div className="userCard-correctTrivial-subcontainer">
-            <Link className="userCard-correctTrivial-chat" to={`/chat/${conversation}/${props.user._id}`}>
-              <p>Chatea con {props.user.username}</p>
-            </Link>
-
-            <Link to="/click-me" style={{ margin: "10px" }}>
-              <button className="userCard-correctTrivial-button" onClick={() => nextUser()}>Más tarde</button>
-            </Link>
-          </div>
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={wrong} backdrop="static" onHide={closeModalWrong}>
-        <Modal.Title> <p className="userCard-wrongTrivial-title">Fallaste, ¿Quieres pedirle a {props.user.username} una segunda oportunidad?</p> </Modal.Title>
-        <Modal.Body>
-          <div className="userCard-wrongTrivial-buttons">
-            <button className="userCard-wrongTrivial-button" onClick={() => createRequest()}>Sí</button>
-            <Link to="/click-me" style={{ margin: "10px" }}>
-              <button className="userCard-wrongTrivial-button" onClick={() => nextUser()}>No</button>
-            </Link>
-          </div>
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={clue} backdrop="static" className="userCard-correctTrivial-container" onHide={closeModalClue}>
-        <Modal.Title className="userCard-correctTrivial-title">Pista
-          <img className="clue-picture" style={{ width: "40px", heigth: "40px" }} src="https://cdn-icons-png.flaticon.com/512/3798/3798376.png" alt="" />
-        </Modal.Title>
-        <Modal.Body>
-          <div className="userCard-trivial-subcontainer">
-            <div className="userCard-trivial-box">
-              <p className="userCard-trivial-text">{props.user.clue}</p>
-            </div>
-            <div className="userCard-trivial-box" onClick={() => closeModalClue()} className=""> Ok
-            </div>
-          </div>
-        </Modal.Body>
-      </Modal>
-
-      <Modal show={alreadyMatch} backdrop="static" className="userCard-correctTrivial-container" onHide={closeAlreadyMatch}>
-        <Modal.Header closeButton> Lo sentimos </Modal.Header>
-        <Modal.Body >
-          <p className="userCard-trivial-text">No puedes seleccionar otra cita, ya has hecho match con este usuario.</p>
-        </Modal.Body>
-      </Modal>
+      <AlreadyMatchModal alreadyMatch={alreadyMatch} closeAlreadyMatch={closeAlreadyMatch} />
 
     </div>
 
