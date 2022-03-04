@@ -2,9 +2,13 @@
 
 #### App demo: https://mienteme.herokuapp.com/
 
+#### Login 
+*  email: fer@fer.com
+* password: fer
+
 #### Note!: 
 When you create an appointment, the available categories are -->  GASTRONOMY, NATURE, CULTURE, RANDOM.
-
+- The design is pending improvement 😅
 
 ### Description
 
